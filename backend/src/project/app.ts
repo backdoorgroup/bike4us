@@ -26,7 +26,7 @@ export class AppController {
 })
 export class AppModule {}
 
-async function createApp() {
+export const createApp = async () => {
   const app = await NestFactory.create(AppModule)
 
   const config = new DocumentBuilder().build()
@@ -36,5 +36,3 @@ async function createApp() {
 
   await app.listen(3000)
 }
-
-createApp()
