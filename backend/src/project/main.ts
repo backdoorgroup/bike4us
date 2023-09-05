@@ -1,6 +1,6 @@
 import { NestFactory } from "@nestjs/core"
-
 import { Module, Controller, Get, Injectable } from "@nestjs/common"
+import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger"
 
 @Injectable()
 export class AppService {
@@ -28,6 +28,11 @@ export class AppModule {}
 
 async function createApp() {
   const app = await NestFactory.create(AppModule)
+
+  const config = new DocumentBuilder().build()
+  const document = SwaggerModule.createDocument(app, config)
+
+  SwaggerModule.setup("docs", app, document)
 
   await app.listen(3000)
 }
