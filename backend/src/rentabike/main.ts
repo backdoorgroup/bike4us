@@ -1,3 +1,5 @@
-import { createApp } from "./project/app"
+import "module-alias/register"
+
+import { createApp } from "rentabike/project/app"
 
 createApp()
