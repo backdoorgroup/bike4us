@@ -1,5 +1,5 @@
 import "module-alias/register"
 
-import { createApp } from "rentabike/project/app"
+import { bootstrap } from "rentabike/project/bootstrap"
 
-createApp()
+bootstrap()
