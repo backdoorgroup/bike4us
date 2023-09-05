@@ -1,30 +1,6 @@
 import { NestFactory } from "@nestjs/core"
-import { Module, Controller, Get, Injectable } from "@nestjs/common"
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger"
-
-@Injectable()
-export class AppService {
-  getHello(): string {
-    return "Hello World!"
-  }
-}
-
-@Controller()
-export class AppController {
-  constructor(private readonly appService: AppService) {}
-
-  @Get()
-  getHello(): string {
-    return this.appService.getHello()
-  }
-}
-
-@Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService]
-})
-export class AppModule {}
+import { AppModule } from "./module"
 
 export const createApp = async () => {
   const app = await NestFactory.create(AppModule)
