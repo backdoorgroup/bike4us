@@ -18,7 +18,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "rentabike/*": ["./src/rentabike/*"]
+      "bike4us/*": ["./src/bike4us/*"]
     }
   }
 }

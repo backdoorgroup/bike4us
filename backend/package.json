@@ -29,6 +29,6 @@
     "typescript": "^5.1.3"
   },
   "_moduleAliases": {
-    "rentabike": "./src/rentabike"
+    "bike4us": "./src/bike4us"
   }
 }
