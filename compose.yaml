@@ -1,6 +1,7 @@
 services:
   postgres:
     image: postgres:15.3
+    # essa versão de postgres precisa mudar pra ser igual o da máquina da fatec
     ports:
       - 5432:5432
     volumes:
