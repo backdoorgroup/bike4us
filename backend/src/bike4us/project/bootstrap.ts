@@ -6,6 +6,8 @@ import { AppModule } from "bike4us/project/module"
 export const bootstrap = async () => {
   const app = await NestFactory.create(AppModule)
 
+  app.setGlobalPrefix("/api/v1")
+
   const config = new DocumentBuilder().build()
   const document = SwaggerModule.createDocument(app, config)
 
