@@ -6,6 +6,8 @@ export const settings = {
   DB_HOST: process.env.DB_HOST || "localhost",
   DB_PORT: process.env.DB_PORT || 5432,
 
+  PORT: process.env.NEST_PORT || 8000,
+
   // Firebase
   FB_PROJECT_ID: process.env.FB_PROJECT_ID,
   FB_CLIENT_EMAIL: process.env.FB_CLIENT_EMAIL,
