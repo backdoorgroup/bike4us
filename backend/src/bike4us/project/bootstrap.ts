@@ -14,5 +14,5 @@ export const bootstrap = async () => {
 
   SwaggerModule.setup("docs", app, document)
 
-  await app.listen(settings.PORT)
+  await app.listen(settings.NEST_PORT)
 }
