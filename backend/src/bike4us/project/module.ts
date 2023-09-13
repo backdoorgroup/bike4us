@@ -1,5 +1,4 @@
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common"
-import cors from "cors"
 import helmet from "helmet"
 
 import { AuthMiddleware } from "bike4us/modules/auth/middlewares"
@@ -9,6 +8,6 @@ import { AuthMiddleware } from "bike4us/modules/auth/middlewares"
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware, cors(), helmet()).forRoutes("*")
+    consumer.apply(AuthMiddleware, helmet()).forRoutes("*")
   }
 }
