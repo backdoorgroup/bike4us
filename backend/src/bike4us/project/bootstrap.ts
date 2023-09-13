@@ -7,7 +7,6 @@ import { settings } from "bike4us/project/settings"
 export const bootstrap = async () => {
   const app = await NestFactory.create(AppModule)
 
-  app.enableCors()
   app.setGlobalPrefix("/api/v1")
 
   const config = new DocumentBuilder().build()

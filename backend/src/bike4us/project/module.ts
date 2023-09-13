@@ -1,25 +1,14 @@
-import type { Request } from "express"
-import { MiddlewareConsumer, Module, Controller, Get, Req, NestModule } from "@nestjs/common"
+import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common"
+import cors from "cors"
+import helmet from "helmet"
 
 import { AuthMiddleware } from "bike4us/modules/auth/middlewares"
 
-// TODO: REMOVER ISSO, É SÓ TESTE
-@Controller()
-class TestController {
-  @Get("/teste")
-  test(@Req() req: Request) {
-    return {
-      user: req.user
-    }
-  }
-}
-
 @Module({
-  imports: [],
-  controllers: [TestController]
+  imports: []
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes("*")
+    consumer.apply(AuthMiddleware, cors(), helmet()).forRoutes("*")
   }
 }
