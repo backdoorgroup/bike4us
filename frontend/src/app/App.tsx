@@ -2,6 +2,8 @@ import { useEffect, useState } from "react"
 import { initializeApp } from "firebase/app"
 import { getAuth, signInWithEmailAndPassword, setPersistence, browserLocalPersistence, signOut } from "firebase/auth"
 
+import { useUserStore } from "~/stores"
+
 const app = initializeApp({
   apiKey: import.meta.env._FB_API_KEY,
   authDomain: import.meta.env._FB_AUTH_DOMAIN,
@@ -18,15 +20,16 @@ setPersistence(auth, browserLocalPersistence)
 export default function App() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
-  const [user, setUser] = useState({})
+
+  const { user, setUser } = useUserStore()
 
   useEffect(() => {
-    const subscriber = auth.onAuthStateChanged((user) => {
+    const subscribe = auth.onAuthStateChanged((user) => {
       setUser(user)
     })
 
-    return subscriber
-  }, [])
+    return subscribe
+  }, [setUser])
 
   return (
     <main>
