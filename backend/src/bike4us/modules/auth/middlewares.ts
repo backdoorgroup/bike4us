@@ -6,9 +6,8 @@ import { auth } from "bike4us/modules/auth/services"
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: NextFunction) {
-    let token = req.header("authorization")
-    token = token?.replace("Bearer", "")
-    token = token?.trim()
+    const header = req.header("authorization")
+    const token = header?.replace("Bearer", "")?.trim()
 
     if (!token) {
       req.user = {}
@@ -19,10 +18,13 @@ export class AuthMiddleware implements NestMiddleware {
     }
 
     try {
-      const user = await auth.verifyIdToken(token)
+      const decodedToken = await auth.verifyIdToken(token)
+      const user = await auth.getUser(decodedToken.uid)
 
       req.user = user
-    } catch (e) {}
+    } catch (e) {
+      req.user = {}
+    }
 
     next()
   }
