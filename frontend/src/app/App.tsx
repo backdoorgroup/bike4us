@@ -2,14 +2,6 @@ import { useEffect, useState } from "react"
 import { initializeApp } from "firebase/app"
 import { getAuth, signInWithEmailAndPassword, setPersistence, browserLocalPersistence, signOut } from "firebase/auth"
 
-// import axios from "axios"
-
-// const $axios = axios.create({
-//   headers: {
-//     Authorization: `Bearer `
-//   }
-// })
-
 const app = initializeApp({
   apiKey: import.meta.env._FB_API_KEY,
   authDomain: import.meta.env._FB_AUTH_DOMAIN,
