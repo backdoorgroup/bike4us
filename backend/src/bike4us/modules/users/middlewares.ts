@@ -14,9 +14,8 @@ export class IdentityMiddleware implements NestMiddleware {
     if (!token) {
       req.user = {}
 
-      next()
-
-      return
+      // TODO: checar se esse return next() é necessário
+      return next()
     }
 
     try {
@@ -28,6 +27,6 @@ export class IdentityMiddleware implements NestMiddleware {
       req.user = {}
     }
 
-    next()
+    return next()
   }
 }
