@@ -1,6 +1,6 @@
 import { TypeOrmModule } from "@nestjs/typeorm"
 
-import { settings } from "bike4us/project/settings"
+import { settings } from "~/settings"
 
 export const DatabaseModule = TypeOrmModule.forRoot({
   type: "postgres",
@@ -9,10 +9,10 @@ export const DatabaseModule = TypeOrmModule.forRoot({
   port: settings.DB_PORT,
   username: settings.DB_USER,
   password: settings.DB_PASSWORD,
-  database: settings.DB_NAME,
+  database: settings.DB_NAME
 
-  entities: ["**/models.ts"],
+  // entities: ["src/**/models.ts"],
 
-  migrations: ["src/bike4us/project/migrations/*.ts"],
-  migrationsTableName: "migration"
+  // migrations: ["src/migrations/*.ts"],
+  // migrationsTableName: "migration"
 })

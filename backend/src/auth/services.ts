@@ -1,6 +1,6 @@
 import admin from "firebase-admin"
 
-import { settings } from "bike4us/project/settings"
+import { settings } from "~/settings"
 
 const config = {
   projectId: settings.FB_PROJECT_ID,

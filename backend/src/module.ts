@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common"
 
-import { DatabaseModule } from "bike4us/project/database"
-import { IdentityMiddleware } from "bike4us/modules/users/middlewares"
+import { DatabaseModule } from "~/database"
+import { IdentityMiddleware } from "~/auth/middlewares"
 
 @Module({
   imports: [DatabaseModule]

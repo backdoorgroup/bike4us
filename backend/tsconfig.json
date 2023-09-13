@@ -18,7 +18,7 @@
     "noFallthroughCasesInSwitch": false,
 
     "paths": {
-      "bike4us/*": ["./src/bike4us/*"]
+      "~/*": ["./src/*"]
     }
   }
 }

@@ -4,8 +4,8 @@ import cors from "cors"
 import { NestFactory } from "@nestjs/core"
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger"
 
-import { AppModule } from "bike4us/project/module"
-import { settings } from "bike4us/project/settings"
+import { AppModule } from "~/module"
+import { settings } from "~/settings"
 
 export const bootstrap = async () => {
   const app = await NestFactory.create(AppModule)
