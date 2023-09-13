@@ -9,10 +9,14 @@ export const DatabaseModule = TypeOrmModule.forRoot({
   port: settings.DB_PORT,
   username: settings.DB_USER,
   password: settings.DB_PASSWORD,
-  database: settings.DB_NAME
+  database: settings.DB_NAME,
 
-  // entities: ["src/**/models.ts"],
+  entities: ["**/models.{js,ts}"],
 
-  // migrations: ["src/migrations/*.ts"],
-  // migrationsTableName: "migration"
+  migrationsTableName: "migration",
+
+  migrations: ["src/migrations/*.ts"],
+
+  synchronize: settings.NEST_MODE === "dev",
+  ssl: settings.NEST_MODE === "prod",
 })
