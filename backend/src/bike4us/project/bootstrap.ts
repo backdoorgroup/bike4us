@@ -1,3 +1,5 @@
+import helmet from "helmet"
+
 import { NestFactory } from "@nestjs/core"
 import { SwaggerModule, DocumentBuilder } from "@nestjs/swagger"
 
@@ -9,6 +11,8 @@ export const bootstrap = async () => {
 
   app.enableCors()
   app.setGlobalPrefix("/api/v1")
+
+  app.use(helmet())
 
   const config = new DocumentBuilder().build()
   const document = SwaggerModule.createDocument(app, config)

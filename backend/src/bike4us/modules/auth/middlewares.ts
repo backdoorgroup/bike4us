@@ -4,7 +4,7 @@ import { Injectable, NestMiddleware } from "@nestjs/common"
 import { auth } from "bike4us/modules/auth/services"
 
 @Injectable()
-export class AuthMiddleware implements NestMiddleware {
+export class IdentityMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: NextFunction) {
     const header = req.header("authorization")
     const token = header?.replace("Bearer", "")?.trim()
