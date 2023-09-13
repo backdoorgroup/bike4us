@@ -4,6 +4,7 @@ import { Injectable, NestMiddleware } from "@nestjs/common"
 import { auth } from "bike4us/modules/users/services"
 
 /* TODO: melhorar isso pra cobrir os casos de: identificação e rota protegida */
+/* TODO: a estrutura do projeto tá muito inflada pra o que vai ser no final do dia, é necessário simplificar */
 @Injectable()
 export class IdentityMiddleware implements NestMiddleware {
   async use(req: Request, res: Response, next: NextFunction) {
