@@ -8,7 +8,7 @@ export const client = axios.create({
 
 client.interceptors.request.use(
   async (config) => {
-    const user = useUserStore.getState().user
+    const { user } = useUserStore.getState()
     const token = await user?.getIdToken()
 
     if (token) config.headers.Authorization = `Bearer ${token}`
