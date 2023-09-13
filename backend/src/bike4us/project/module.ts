@@ -1,9 +1,10 @@
 import { MiddlewareConsumer, Module, NestModule } from "@nestjs/common"
 
+import { DatabaseModule } from "bike4us/project/database"
 import { IdentityMiddleware } from "bike4us/modules/auth/middlewares"
 
 @Module({
-  imports: []
+  imports: [DatabaseModule]
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
