@@ -10,7 +10,6 @@ export const identity = async function (req: Request, res: Response, next: NextF
   if (!token) {
     req.user = {}
 
-    // TODO: checar se esse return next() é necessário
     return next()
   }
 
