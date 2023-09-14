@@ -18,5 +18,5 @@ export const DatabaseModule = TypeOrmModule.forRoot({
   migrations: ["src/migrations/*.ts"],
 
   synchronize: settings.NEST_MODE === "dev",
-  ssl: settings.NEST_MODE === "prod",
+  ssl: settings.NEST_MODE === "prod"
 })
