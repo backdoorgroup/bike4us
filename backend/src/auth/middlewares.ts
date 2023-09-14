@@ -1,8 +1,9 @@
 import type { Request, Response, NextFunction } from "express"
+import type { UserRecord } from "firebase-admin/auth"
 
+import { HttpStatus } from "~/helpers"
 import { auth } from "~/auth/services"
 
-/* TODO: melhorar isso pra cobrir os casos de: identificação e rota protegida */
 export const identity = async function (req: Request, res: Response, next: NextFunction) {
   const header = req.header("authorization")
   const token = header?.replace("Bearer", "")?.trim()
@@ -21,6 +22,16 @@ export const identity = async function (req: Request, res: Response, next: NextF
   } catch (e) {
     req.user = {}
   }
+
+  return next()
+}
+
+export const authenticated = function (req: Request, res: Response, next: NextFunction) {
+  const user = req.user as UserRecord
+
+  if (user?.uid) return next()
+
+  res.status(HttpStatus.Unauthorized).json({ message: "Unauthorized" })
 
   return next()
 }
