@@ -1,7 +1,7 @@
 export const settings = {
-  // Nest
-  NEST_PORT: parseInt(process.env.NEST_PORT) || 8000,
-  NEST_MODE: process.env.NEST_MODE || "dev",
+  // Express
+  EXPRESS_PORT: parseInt(process.env.EXPRESS_PORT) || 8000,
+  EXPRESS_MODE: process.env.EXPRESS_MODE || "dev",
 
   // Database
   DB_NAME: process.env.DB_NAME || "postgres",
