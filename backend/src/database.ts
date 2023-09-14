@@ -5,23 +5,19 @@ import { settings } from "~/settings"
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: "postgres",
+    TypeOrmModule.forRootAsync({
+      useFactory: () => ({
+        type: "postgres",
 
-      host: settings.DB_HOST,
-      port: settings.DB_PORT,
-      username: settings.DB_USER,
-      password: settings.DB_PASSWORD,
-      database: settings.DB_NAME,
+        host: settings.DB_HOST,
+        port: settings.DB_PORT,
+        database: settings.DB_NAME,
+        username: settings.DB_USER,
+        password: settings.DB_PASSWORD,
 
-      entities: ["**/models.{js,ts}"],
-
-      migrationsTableName: "migration",
-
-      migrations: ["src/migrations/*.ts"],
-
-      synchronize: settings.NEST_MODE === "dev",
-      ssl: settings.NEST_MODE === "prod"
+        autoLoadEntities: true,
+        synchronize: true
+      })
     })
   ]
 })
