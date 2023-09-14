@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "tsx src/main.ts"
+    "dev": "tsx watch src/main.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",

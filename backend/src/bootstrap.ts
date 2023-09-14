@@ -5,21 +5,24 @@ import express from "express"
 import { identity } from "~/auth/middlewares"
 import { dataSource } from "~/database"
 import { settings } from "~/settings"
+import { router } from "~/router"
 
 export const bootstrap = () => {
   const app = express()
 
-  // Connect to database
+  // Database
   dataSource.initialize()
 
-  // Third-party middlewares
+  // Middlewares
   app.use(express.json())
   app.use(cors())
   app.use(helmet())
 
-  // Local middlewares
   app.use(identity)
 
-  // Run server
+  // Routing
+  app.use("/api/v1/", router)
+
+  // Server
   app.listen(settings.EXPRESS_PORT)
 }
