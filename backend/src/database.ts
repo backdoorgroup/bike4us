@@ -1,22 +1,28 @@
+import { Module } from "@nestjs/common"
 import { TypeOrmModule } from "@nestjs/typeorm"
 
 import { settings } from "~/settings"
 
-export const DatabaseModule = TypeOrmModule.forRoot({
-  type: "postgres",
+@Module({
+  imports: [
+    TypeOrmModule.forRoot({
+      type: "postgres",
 
-  host: settings.DB_HOST,
-  port: settings.DB_PORT,
-  username: settings.DB_USER,
-  password: settings.DB_PASSWORD,
-  database: settings.DB_NAME,
+      host: settings.DB_HOST,
+      port: settings.DB_PORT,
+      username: settings.DB_USER,
+      password: settings.DB_PASSWORD,
+      database: settings.DB_NAME,
 
-  entities: ["**/models.{js,ts}"],
+      entities: ["**/models.{js,ts}"],
 
-  migrationsTableName: "migration",
+      migrationsTableName: "migration",
 
-  migrations: ["src/migrations/*.ts"],
+      migrations: ["src/migrations/*.ts"],
 
-  synchronize: settings.NEST_MODE === "dev",
-  ssl: settings.NEST_MODE === "prod"
+      synchronize: settings.NEST_MODE === "dev",
+      ssl: settings.NEST_MODE === "prod"
+    })
+  ]
 })
+export class DatabaseModule {}
