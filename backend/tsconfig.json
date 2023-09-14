@@ -3,6 +3,8 @@
 
   "compilerOptions": {
     "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "strictPropertyInitialization": false,
 
     "paths": {
       "~/*": ["./src/*"]
