@@ -13,6 +13,7 @@ export function SearchCard() {
         Encontre um anunciado
       </Typography>
 
+      {/* TODO: isso deve tá em volta de um form */}
       <TextField
         fullWidth
         size="small"
