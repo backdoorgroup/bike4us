@@ -24,11 +24,11 @@ export default function App() {
   const { user, setUser } = useUserStore()
 
   useEffect(() => {
-    const subscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user)
     })
 
-    return subscribe
+    return unsubscribe
   }, [setUser])
 
   return (
