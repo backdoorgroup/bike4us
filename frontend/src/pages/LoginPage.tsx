@@ -12,7 +12,6 @@ export function LoginPage() {
   return (
     <>
       <pre>{JSON.stringify(user, null, 4)}</pre>
-
       <form
         onSubmit={async (e) => {
           e.preventDefault()
