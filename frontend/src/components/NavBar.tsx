@@ -4,7 +4,7 @@ import Icon from "@mui/material/Icon"
 import TextField from "@mui/material/TextField"
 import InputAdornment from "@mui/material/InputAdornment"
 
-export function Navbar() {
+export function NavBar() {
   return (
     <AppBar
       component="header"

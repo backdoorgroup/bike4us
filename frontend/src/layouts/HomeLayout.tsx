@@ -1,14 +1,15 @@
 import { Outlet } from "react-router-dom"
 
-import { Navbar } from "~/components"
+import { NavBar, NavBottom } from "~/components"
 
 export function LandingLayout() {
   return (
     <>
-      <Navbar />
+      <NavBar />
       <main>
         <Outlet />
       </main>
+      <NavBottom />
     </>
   )
 }
