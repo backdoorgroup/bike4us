@@ -19,3 +19,12 @@ client.interceptors.request.use(
     return Promise.reject(error)
   }
 )
+
+client.interceptors.response.use(
+  function (response) {
+    return response
+  },
+  function (error) {
+    return Promise.reject(error)
+  }
+)
