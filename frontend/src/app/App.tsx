@@ -18,7 +18,7 @@ const theme = createTheme({
 export function App() {
   return (
     <StrictMode>
-      <StyledEngineProvider injectFirst>
+      <StyledEngineProvider>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Router router={router} />

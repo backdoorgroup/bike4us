@@ -14,7 +14,7 @@ export function NavBar() {
       elevation={0}
       sx={{ borderBottom: 1, borderColor: "lightgray" }}>
       <Toolbar>
-        <Link component={RouterLink} to="/" sx={{ width: "24px", height: "24px" }}>
+        <Link component={RouterLink} to="/" sx={{ fontSize: "32px", height: "32px", width: "32px" }}>
           <Icon fontSize="inherit">directions_bike</Icon>
         </Link>
       </Toolbar>
