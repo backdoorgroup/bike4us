@@ -11,16 +11,9 @@ export function ListingCard() {
       <CardActionArea>
         <CardMedia sx={{ height: 128 }} image="https://loremflickr.com/128/128/animals" />
         <CardContent>
-          <Typography variant="subtitle2">Vila Pinheiro, São Paulo</Typography>
-          <Typography variant="caption" component="p" color="text.secondary">
-            10 horas atrás
-          </Typography>
-          <Typography variant="subtitle1" component="span" sx={{ fontWeight: 700 }}>
-            R$300
-          </Typography>
-          <Typography variant="caption" component="span">
-            /dia
-          </Typography>
+          <Typography variant="body1">Bicicleta aro 29</Typography>
+          <Typography variant="subtitle2">R$300/dia</Typography>
+          <Typography variant="caption">10 horas atrás</Typography>
         </CardContent>
       </CardActionArea>
     </Card>

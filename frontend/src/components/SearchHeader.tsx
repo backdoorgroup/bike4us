@@ -5,7 +5,7 @@ export function SearchHeader(props: BoxProps) {
   return (
     <Box component="header" {...props}>
       <Typography variant="h6" component="h1">
-        Encontre o anunciado perfeito
+        Alugue uma bicicleta
       </Typography>
 
       <Typography variant="body2" component="h2">
