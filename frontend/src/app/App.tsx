@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import { initializeApp } from "firebase/app"
 import { getAuth, signInWithEmailAndPassword, setPersistence, browserLocalPersistence, signOut } from "firebase/auth"
+import { RouterProvider } from "react-router-dom"
 
 import { useUserStore } from "~/stores"
+import { router } from "~/router"
 
 const app = initializeApp({
   apiKey: import.meta.env._FB_API_KEY,
@@ -17,7 +19,7 @@ const auth = getAuth(app)
 
 setPersistence(auth, browserLocalPersistence)
 
-export default function App() {
+export function App() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -33,6 +35,7 @@ export default function App() {
 
   return (
     <main>
+      <RouterProvider router={router} />
       <pre>{JSON.stringify(user, null, 4)}</pre>
 
       <form
