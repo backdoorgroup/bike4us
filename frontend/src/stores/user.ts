@@ -6,10 +6,10 @@ interface State {
   user: User | null
 }
 interface Actions {
-  setUser: (user: User) => void
+  setUser: (user: User | null) => void
 }
 
 export const useUserStore = create<State & Actions>((set) => ({
   user: null,
-  setUser: (user: User) => set(() => ({ user }))
+  setUser: (user) => set(() => ({ user }))
 }))
