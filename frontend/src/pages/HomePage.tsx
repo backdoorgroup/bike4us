@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import Box from "@mui/material/Box"
 
-import { SearchCard, SearchHeader, ListingCarousel } from "~/components"
+import { SearchCard, SearchHeader, ListingCarousel, ListingCard } from "~/components"
 
 export function HomePage() {
   return (
@@ -20,7 +20,9 @@ export function HomePage() {
           </Typography>
         </Container>
         <Container>
-          <ListingCarousel />
+          <ListingCarousel>
+            <ListingCard />
+          </ListingCarousel>
         </Container>
       </Box>
     </>
