@@ -2,10 +2,10 @@ import helmet from "helmet"
 import cors from "cors"
 import express from "express"
 
-import { identity } from "~/auth/middlewares"
-import { dataSource } from "~/database"
-import { settings } from "~/settings"
-import { router } from "~/router"
+import { identity } from "src/auth/middlewares"
+import { dataSource } from "src/database"
+import { settings } from "src/settings"
+import { router } from "src/router"
 
 export const bootstrap = () => {
   const app = express()

@@ -1,8 +1,9 @@
 import type { Request, Response, NextFunction } from "express"
 import type { UserRecord } from "firebase-admin/auth"
 
-import { HttpStatus } from "~/helpers"
-import { auth } from "~/auth/services"
+import { HttpStatus } from "lib/helpers"
+
+import { auth } from "src/auth/services"
 
 export const identity = async function (req: Request, res: Response, next: NextFunction) {
   const header = req.header("authorization")

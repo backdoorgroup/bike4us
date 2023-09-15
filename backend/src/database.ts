@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm"
 
-import { settings } from "~/settings"
+import { settings } from "src/settings"
 
 export const dataSource = new DataSource({
   type: "postgres",

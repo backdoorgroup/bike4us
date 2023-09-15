@@ -1,6 +1,6 @@
 import { Router } from "express"
 
-import { authenticated } from "~/auth/middlewares"
+import { authenticated } from "src/auth/middlewares"
 
 export const router = Router()
 
