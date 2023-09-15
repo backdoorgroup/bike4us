@@ -7,7 +7,7 @@ export const client = axios.create({
 })
 
 client.interceptors.request.use(
-  async (config) => {
+  async function (config) {
     const { user } = useUserStore.getState()
     const token = await user?.getIdToken()
 
@@ -15,5 +15,7 @@ client.interceptors.request.use(
 
     return config
   },
-  (error) => Promise.reject(error)
+  function (error) {
+    return Promise.reject(error)
+  }
 )
