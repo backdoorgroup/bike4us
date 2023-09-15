@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar"
 import Icon from "@mui/material/Icon"
 import TextField from "@mui/material/TextField"
 import InputAdornment from "@mui/material/InputAdornment"
-// import Button from "@mui/material/Button"
+import IconButton from "@mui/material/IconButton"
 
 export function LandingLayout() {
   return (
@@ -17,7 +17,9 @@ export function LandingLayout() {
         elevation={0}
         sx={{ borderBottom: 1, borderColor: "lightgray" }}>
         <Toolbar>
-          <Icon sx={{ marginRight: 2 }}>directions_bike</Icon>
+          <IconButton size="small" sx={{ marginRight: 1 }}>
+            <Icon fontSize="inherit">directions_bike</Icon>
+          </IconButton>
           <TextField
             fullWidth
             size="small"
@@ -30,6 +32,9 @@ export function LandingLayout() {
               )
             }}
           />
+          <IconButton size="small" sx={{ marginLeft: 1 }}>
+            <Icon fontSize="inherit">login</Icon>
+          </IconButton>
         </Toolbar>
       </AppBar>
       <main>
