@@ -4,6 +4,7 @@ import CssBaseline from "@mui/material/CssBaseline"
 import createTheme from "@mui/material/styles/createTheme"
 import ThemeProvider from "@mui/material/styles/ThemeProvider"
 
+import { StrictMode } from "react"
 import { RouterProvider as Router } from "react-router-dom"
 
 import { router } from "~/router"
@@ -16,11 +17,13 @@ const theme = createTheme({
 
 export function App() {
   return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Router router={router} />
-      </ThemeProvider>
-    </StyledEngineProvider>
+    <StrictMode>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Router router={router} />
+        </ThemeProvider>
+      </StyledEngineProvider>
+    </StrictMode>
   )
 }
