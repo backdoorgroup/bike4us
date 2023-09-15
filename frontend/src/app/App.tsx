@@ -4,6 +4,10 @@ import CssBaseline from "@mui/material/CssBaseline"
 import createTheme from "@mui/material/styles/createTheme"
 import ThemeProvider from "@mui/material/styles/ThemeProvider"
 
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"
+import ptBR from "date-fns/locale/pt-BR"
+
 import { StrictMode } from "react"
 import { RouterProvider as Router } from "react-router-dom"
 
@@ -27,8 +31,10 @@ export function App() {
     <StrictMode>
       <StyledEngineProvider>
         <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Router router={router} />
+          <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={ptBR}>
+            <CssBaseline />
+            <Router router={router} />
+          </LocalizationProvider>
         </ThemeProvider>
       </StyledEngineProvider>
     </StrictMode>
