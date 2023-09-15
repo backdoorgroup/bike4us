@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app"
 import { getAuth, setPersistence, browserLocalPersistence } from "firebase/auth"
 
 const app = initializeApp({
+  // TODO: extrair pra settings
   apiKey: import.meta.env._FB_API_KEY,
   authDomain: import.meta.env._FB_AUTH_DOMAIN,
   projectId: import.meta.env._FB_PROJECT_ID,
@@ -10,6 +11,6 @@ const app = initializeApp({
   appId: import.meta.env._FB_APP_ID
 })
 
-export const auth = getAuth(app)
+export const authClient = getAuth(app)
 
-setPersistence(auth, browserLocalPersistence)
+setPersistence(authClient, browserLocalPersistence)
