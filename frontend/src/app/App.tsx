@@ -34,7 +34,7 @@ export function App() {
   }, [setUser])
 
   return (
-    <main>
+    <>
       <RouterProvider router={router} />
       <pre>{JSON.stringify(user, null, 4)}</pre>
 
@@ -51,6 +51,6 @@ export function App() {
           Sign out
         </button>
       </form>
-    </main>
+    </>
   )
 }
