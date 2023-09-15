@@ -1,6 +1,9 @@
+import { Link as RouterLink } from "react-router-dom"
+
 import AppBar from "@mui/material/AppBar"
 import Toolbar from "@mui/material/Toolbar"
 import Icon from "@mui/material/Icon"
+import Link from "@mui/material/Link"
 
 export function NavBar() {
   return (
@@ -11,7 +14,9 @@ export function NavBar() {
       elevation={0}
       sx={{ borderBottom: 1, borderColor: "lightgray" }}>
       <Toolbar>
-        <Icon sx={{ marginRight: 2 }}>directions_bike</Icon>
+        <Link component={RouterLink} to="/">
+          <Icon fontSize="small">directions_bike</Icon>
+        </Link>
       </Toolbar>
     </AppBar>
   )

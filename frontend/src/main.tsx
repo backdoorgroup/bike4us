@@ -1,4 +1,4 @@
-import "~/assets/main.scss"
+// import "~/assets/main.scss" // Enable if you want Tailwind
 
 import { App } from "~/app"
 
