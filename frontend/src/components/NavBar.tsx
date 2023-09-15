@@ -13,9 +13,19 @@ export function NavBar() {
       color="inherit"
       elevation={0}
       sx={{ borderBottom: 1, borderColor: "lightgray" }}>
-      <Toolbar>
-        <Link component={RouterLink} to="/" sx={{ fontSize: "32px", height: "32px", width: "32px" }}>
+      <Toolbar sx={{ justifyContent: "space-between" }}>
+        <Link
+          component={RouterLink}
+          to="/"
+          sx={{ fontSize: "24px", height: "24px", width: "24px", color: "text.primary" }}>
           <Icon fontSize="inherit">directions_bike</Icon>
+        </Link>
+
+        <Link
+          component={RouterLink}
+          to="/"
+          sx={{ fontSize: "24px", height: "24px", width: "24px", color: "text.primary" }}>
+          <Icon fontSize="inherit">account_circle</Icon>
         </Link>
       </Toolbar>
     </AppBar>
