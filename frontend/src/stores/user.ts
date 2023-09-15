@@ -9,7 +9,7 @@ interface Actions {
   setUser: (user: User | null) => void
 }
 
-export const useUserStore = create<State & Actions>((set) => ({
+export const useUserStore = create<State & Actions>()((set) => ({
   user: null,
   setUser: (user) => set(() => ({ user }))
 }))
