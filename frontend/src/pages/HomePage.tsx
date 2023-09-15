@@ -1,15 +1,20 @@
-import Box from "@mui/material/Box"
+import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 
 import { SearchCard, SearchHeader } from "~/components"
 
 export function HomePage() {
   return (
-    <Box sx={{ bgcolor: "primary.main", color: "common.white" }}>
-      <Container sx={{ paddingY: 2 }}>
+    <>
+      <Container sx={{ bgcolor: "primary.main", color: "common.white", paddingY: 4 }}>
         <SearchHeader mb={2} />
         <SearchCard />
       </Container>
-    </Box>
+      <Container sx={{ paddingY: 4 }}>
+        <Typography variant="h6" component="h4">
+          Anúncios recentes
+        </Typography>
+      </Container>
+    </>
   )
 }
