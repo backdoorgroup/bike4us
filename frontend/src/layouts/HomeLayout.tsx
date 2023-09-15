@@ -6,7 +6,7 @@ import Toolbar from "@mui/material/Toolbar"
 export function LandingLayout() {
   return (
     <>
-      <AppBar component="header" position="sticky" color="transparent" elevation={0}>
+      <AppBar component="header" position="sticky">
         <Toolbar>bike4us</Toolbar>
       </AppBar>
       <main>
