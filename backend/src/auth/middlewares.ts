@@ -6,31 +6,27 @@ import { HttpStatus } from "lib/helpers"
 import { auth } from "src/auth/services"
 
 export const identity = async function (req: Request, res: Response, next: NextFunction) {
-  const header = req.header("authorization")
-  const token = header?.replace("Bearer", "")?.trim()
-
-  if (!token) {
-    req.user = {}
-
-    return next()
-  }
-
   try {
+    const header = req.header("authorization") as string
+    const token = header.replace("Bearer", "").trim()
+
     const decodedToken = await auth.verifyIdToken(token)
     const user = await auth.getUser(decodedToken.uid)
 
     req.user = user
-  } catch (e) {
-    req.user = {}
+  } catch (error) {
+    req.user = {} as UserRecord
   }
 
   return next()
 }
 
 export const authenticated = function (req: Request, res: Response, next: NextFunction) {
-  const user = req.user as UserRecord
+  const user = req.user
 
-  if (user?.uid) return next()
+  if (user?.uid) {
+    return next()
+  }
 
   res.status(HttpStatus.Unauthorized).json({ message: "Unauthorized" })
 
