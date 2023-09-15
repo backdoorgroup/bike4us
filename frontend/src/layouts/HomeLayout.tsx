@@ -7,7 +7,7 @@ export function LandingLayout() {
   return (
     <>
       <AppBar component="header" position="sticky" color="transparent" elevation={0}>
-        <Toolbar className="justify-between">bike4us</Toolbar>
+        <Toolbar>bike4us</Toolbar>
       </AppBar>
       <main>
         <Outlet />
