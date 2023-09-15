@@ -20,7 +20,7 @@ export function HomePage() {
         </Typography>
 
         <Card elevation={0} sx={{ padding: 2 }}>
-          <Typography variant="h6" component="h3" mb={2}>
+          <Typography variant="h6" component="h3" mb={1}>
             Encontre um anunciado
           </Typography>
 
@@ -38,7 +38,7 @@ export function HomePage() {
             }}
           />
 
-          <Button fullWidth variant="contained" disableElevation>
+          <Button fullWidth disableElevation variant="contained">
             Encontrar
           </Button>
         </Card>
