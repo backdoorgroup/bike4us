@@ -16,7 +16,7 @@ export function NavBottom() {
       onChange={(_, value) => setValue(value)}>
       <BottomNavigationAction label="Encontrar" icon={<Icon>search</Icon>} />
       <BottomNavigationAction label="Anunciar" icon={<Icon>add_circle_outline</Icon>} />
-      <BottomNavigationAction label="Minha conta" icon={<Icon>person</Icon>} />
+      <BottomNavigationAction label="Meus anúncios" icon={<Icon>grid_view</Icon>} />
     </BottomNavigation>
   )
 }
