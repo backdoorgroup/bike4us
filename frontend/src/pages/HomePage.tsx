@@ -17,7 +17,7 @@ export function HomePage() {
       </Box>
       <Box sx={{ paddingY: 4 }}>
         <Container>
-          <Typography variant="h6" component="h4" mb={2}>
+          <Typography gutterBottom variant="h6" component="h4">
             Anúncios recentes
           </Typography>
         </Container>

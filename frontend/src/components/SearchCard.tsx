@@ -11,7 +11,7 @@ import Button from "@mui/material/Button"
 export function SearchCard() {
   return (
     <Card elevation={0} sx={{ padding: 2 }}>
-      <Typography variant="h6" component="h3" mb={2}>
+      <Typography gutterBottom variant="h6" component="h3">
         Encontre seu anunciado
       </Typography>
 
