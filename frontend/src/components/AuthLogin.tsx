@@ -11,14 +11,20 @@ import Button from "@mui/material/Button"
 
 import { AuthService } from "~/services"
 
-export function AuthLoginPage() {
+export function AuthLogin() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [showPassword, setShowPassword] = useState(false)
 
-  const toggleShowPassword = () => setShowPassword((showPassword) => !showPassword)
-  const handleEmail: ChangeEventHandler<HTMLInputElement> = (event) => setEmail(event.target.value)
-  const handlePassword: ChangeEventHandler<HTMLInputElement> = (event) => setPassword(event.target.value)
+  const toggleShowPassword = () => {
+    setShowPassword((showPassword) => !showPassword)
+  }
+  const handleEmail: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setEmail(event.target.value)
+  }
+  const handlePassword: ChangeEventHandler<HTMLInputElement> = (event) => {
+    setPassword(event.target.value)
+  }
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault()
 

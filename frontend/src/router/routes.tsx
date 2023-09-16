@@ -1,7 +1,7 @@
 import type { RouteObject } from "react-router-dom"
 
 import { LandingLayout } from "~/layouts"
-import { HomePage, AuthPage, AuthLoginPage } from "~/pages"
+import { HomePage, AuthPage } from "~/pages"
 
 export const routes: RouteObject[] = [
   {
@@ -13,18 +13,8 @@ export const routes: RouteObject[] = [
         element: <HomePage />
       },
       {
-        path: "auth",
-        element: <AuthPage />,
-        children: [
-          // TODO: Router guard de auth
-          {
-            path: "entrar",
-            element: <AuthLoginPage />
-          }
-          // {
-          //   path: "cadastro"
-          // }
-        ]
+        path: "auth/:step?",
+        element: <AuthPage />
       }
     ]
   }
