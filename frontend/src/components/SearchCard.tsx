@@ -15,7 +15,6 @@ export function SearchCard() {
         Encontre seu anunciado
       </Typography>
 
-      {/* TODO: isso deve tá em volta de um form */}
       <TextField
         fullWidth
         label="Buscar"
@@ -30,7 +29,7 @@ export function SearchCard() {
         }}
       />
       <DateTimePicker disablePast label="Retirada" sx={{ marginBottom: 2, width: "100%" }} />
-      <DateTimePicker disablePast label="Devolução" sx={{ marginBottom: 2, width: "100%" }} />
+      <DateTimePicker disablePast label="Devolução" sx={{ marginBottom: 4, width: "100%" }} />
 
       <Button fullWidth disableElevation variant="contained">
         Encontrar
