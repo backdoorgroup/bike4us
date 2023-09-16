@@ -7,7 +7,7 @@ import Typography from "@mui/material/Typography"
 
 export function ListingCard() {
   return (
-    <Card sx={{ minWidth: 256, width: 256, border: 1, borderColor: "grey.300" }} elevation={0}>
+    <Card sx={{ minWidth: 256, width: 256 }} variant="outlined">
       <CardActionArea>
         <CardMedia sx={{ height: 128 }} image="https://loremflickr.com/128/128/animals" />
         <CardContent>
