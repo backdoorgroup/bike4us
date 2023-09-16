@@ -1,7 +1,7 @@
 import type { RouteObject } from "react-router-dom"
 
 import { LandingLayout } from "~/layouts"
-import { HomePage, LoginPage } from "~/pages"
+import { HomePage, AuthPage } from "~/pages"
 
 export const routes: RouteObject[] = [
   {
@@ -14,7 +14,7 @@ export const routes: RouteObject[] = [
       },
       {
         path: "/auth",
-        element: <LoginPage />
+        element: <AuthPage />
       }
     ]
   }

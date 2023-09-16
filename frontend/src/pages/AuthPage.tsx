@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useUserStore } from "~/stores"
 import { AuthService } from "~/services"
 
-export function LoginPage() {
+export function AuthPage() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
