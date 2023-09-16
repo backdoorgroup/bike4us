@@ -7,7 +7,6 @@ import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker"
 import Card from "@mui/material/Card"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
-import Stack from "@mui/material/Stack"
 
 export function SearchCard() {
   return (
@@ -30,10 +29,8 @@ export function SearchCard() {
           )
         }}
       />
-      <Stack direction="row" gap="8px" sx={{ marginBottom: 3 }}>
-        <DateTimePicker label="Retirada" views={["day", "month", "year"]} sx={{ marginBottom: 1, width: "100%" }} />
-        <DateTimePicker label="Devolução" views={["day", "month", "year"]} sx={{ marginBottom: 1, width: "100%" }} />
-      </Stack>
+      <DateTimePicker disablePast label="Retirada" sx={{ marginBottom: 2, width: "100%" }} />
+      <DateTimePicker disablePast label="Devolução" sx={{ marginBottom: 2, width: "100%" }} />
 
       <Button fullWidth disableElevation variant="contained">
         Encontrar
