@@ -5,7 +5,9 @@ import Icon from "@mui/material/Icon"
 import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
 import TextField from "@mui/material/TextField"
-import Box from "@mui/material/Box"
+import FormControl from "@mui/material/FormControl"
+import Typography from "@mui/material/Typography"
+import Container from "@mui/material/Container"
 import Button from "@mui/material/Button"
 
 import { AuthService } from "~/services"
@@ -25,17 +27,29 @@ export function AuthPage() {
   }
 
   return (
-    <>
-      <Box component="form" autoComplete="off" onSubmit={handleSubmit}>
-        <TextField fullWidth required label="Email" placeholder="Digite seu email" onChange={handleEmail} />
+    <Container sx={{ paddingY: 4 }}>
+      <Typography variant="h6" component="h1" gutterBottom>
+        Seja bem-vindo!
+      </Typography>
+
+      <FormControl onSubmit={handleSubmit} fullWidth component="form">
+        <TextField
+          onChange={handleEmail}
+          fullWidth
+          required
+          label="Email"
+          placeholder="Digite seu email"
+          sx={{ marginBottom: 2 }}
+        />
 
         <TextField
+          onChange={handlePassword}
           fullWidth
           required
           label="Senha"
           placeholder="Digite sua senha"
           type={showPassword ? "text" : "password"}
-          onChange={handlePassword}
+          sx={{ marginBottom: 4 }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -47,8 +61,10 @@ export function AuthPage() {
           }}
         />
 
-        <Button type="submit">Sign in</Button>
-      </Box>
-    </>
+        <Button type="submit" variant="contained" disableElevation>
+          Entrar
+        </Button>
+      </FormControl>
+    </Container>
   )
 }
