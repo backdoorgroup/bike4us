@@ -5,6 +5,8 @@ import Box from "@mui/material/Box"
 import { SearchCard, SearchHeader, ListingCarousel, ListingCard } from "~/components"
 
 export function HomePage() {
+  const cards = new Array(12).fill(0)
+
   return (
     <>
       <Box sx={{ bgcolor: "primary.main", color: "common.white", paddingY: 4 }}>
@@ -19,11 +21,11 @@ export function HomePage() {
             Anúncios recentes
           </Typography>
         </Container>
-        <Container>
-          <ListingCarousel>
-            <ListingCard />
-          </ListingCarousel>
-        </Container>
+        <ListingCarousel component={Container}>
+          {cards.map((_, id) => (
+            <ListingCard key={id} />
+          ))}
+        </ListingCarousel>
       </Box>
     </>
   )

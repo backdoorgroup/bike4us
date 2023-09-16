@@ -1,15 +1,9 @@
-import type { ReactNode } from "react"
+import Stack, { type StackProps } from "@mui/material/Stack"
 
-import Stack from "@mui/material/Stack"
-
-interface Props {
-  children?: ReactNode
-}
-
-export function ListingCarousel({ children }: Props) {
+export function ListingCarousel(props: StackProps) {
   return (
-    <Stack direction="row" overflow="auto" gap="16px">
-      {children}
+    <Stack sx={{ flexDirection: "row", overflow: "auto", gap: "16px" }} {...props}>
+      {props.children}
     </Stack>
   )
 }
