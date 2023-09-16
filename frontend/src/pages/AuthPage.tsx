@@ -28,7 +28,7 @@ export function AuthPage() {
 
   return (
     <Container sx={{ paddingY: 4 }}>
-      <Typography variant="h6" component="h1" gutterBottom>
+      <Typography gutterBottom variant="h5" component="h1" textAlign="center" fontWeight="500">
         Seja bem-vindo!
       </Typography>
 
@@ -61,9 +61,10 @@ export function AuthPage() {
           }}
         />
 
-        <Button type="submit" variant="contained" disableElevation>
+        <Button type="submit" variant="contained" disableElevation sx={{ marginBottom: 1 }}>
           Entrar
         </Button>
+        <Button disableElevation>Criar conta</Button>
       </FormControl>
     </Container>
   )
