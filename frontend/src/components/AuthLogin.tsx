@@ -12,23 +12,27 @@ import Button from "@mui/material/Button"
 import { AuthService } from "~/services"
 
 export function AuthLogin() {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [user, setUser] = useState({
+    email: "",
+    password: ""
+  })
   const [showPassword, setShowPassword] = useState(false)
 
   const toggleShowPassword = () => {
     setShowPassword((showPassword) => !showPassword)
   }
-  const handleEmail: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setEmail(event.target.value)
-  }
-  const handlePassword: ChangeEventHandler<HTMLInputElement> = (event) => {
-    setPassword(event.target.value)
+  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+    const { name, value } = event.target
+
+    setUser((previous) => ({
+      ...previous,
+      [name]: value
+    }))
   }
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault()
 
-    await AuthService.signIn.emailAndPassword(email, password)
+    await AuthService.signIn.emailAndPassword(user.email, user.password)
   }
 
   return (
@@ -39,7 +43,9 @@ export function AuthLogin() {
 
       <FormControl onSubmit={handleSubmit} fullWidth component="form">
         <TextField
-          onChange={handleEmail}
+          onChange={handleChange}
+          value={user.email}
+          name="email"
           fullWidth
           required
           label="Email"
@@ -48,7 +54,9 @@ export function AuthLogin() {
         />
 
         <TextField
-          onChange={handlePassword}
+          onChange={handleChange}
+          value={user.password}
+          name="password"
           fullWidth
           required
           label="Senha"
