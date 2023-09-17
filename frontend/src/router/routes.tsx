@@ -21,7 +21,7 @@ export const routes: RouteObject[] = [
           {
             path: "*",
             index: true,
-            element: <Navigate to={{ pathname: "/auth/entrar" }} />
+            element: <Navigate to="/auth/entrar" />
           },
           {
             path: "entrar",
