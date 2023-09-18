@@ -177,7 +177,7 @@ export function AuthRegister() {
           fullWidth
           label="Complemento"
           placeholder="Digite o complemento"
-          sx={{ marginBottom: 2 }}
+          sx={{ marginBottom: 4 }}
         />
 
         <Button type="submit" variant="contained" disableElevation sx={{ marginBottom: 1 }}>

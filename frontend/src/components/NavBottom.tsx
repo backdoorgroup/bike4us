@@ -9,7 +9,16 @@ export function NavBottom() {
 
   return (
     <BottomNavigation
-      sx={{ borderTop: 1, borderColor: "lightgray", position: "fixed", bottom: 0, left: 0, right: 0 }}
+      sx={{
+        borderTop: 1,
+        borderColor: "lightgray",
+        position: "fixed",
+        backgroundColor: "background.paper",
+        zIndex: 1100,
+        bottom: 0,
+        left: 0,
+        right: 0
+      }}
       component="footer"
       showLabels
       value={value}
