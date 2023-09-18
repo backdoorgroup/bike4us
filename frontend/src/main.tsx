@@ -1,5 +1,3 @@
-// import "~/assets/main.scss" // Enable if you want Tailwind
-
 import { App } from "~/app"
 
 import { createRoot } from "react-dom/client"
