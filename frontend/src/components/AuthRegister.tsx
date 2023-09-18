@@ -83,10 +83,10 @@ export function AuthRegister() {
         />
 
         <Button type="submit" variant="contained" disableElevation sx={{ marginBottom: 1 }}>
-          Entrar
+          Cadastrar
         </Button>
 
-        <Button disableElevation>Criar conta</Button>
+        <Button disableElevation>Já tenho cadastro</Button>
       </FormControl>
     </>
   )
