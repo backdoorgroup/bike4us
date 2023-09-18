@@ -70,7 +70,7 @@ export function AuthRegister() {
           label="Senha"
           placeholder="Digite sua senha"
           type={showPassword ? "text" : "password"}
-          sx={{ marginBottom: 2 }}
+          sx={{ marginBottom: 4 }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
