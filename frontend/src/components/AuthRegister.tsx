@@ -56,10 +56,6 @@ export function AuthRegister() {
         Cadastre-se e conheça a plataforma
       </Typography>
 
-      <pre>{JSON.stringify(user, null, 2)}</pre>
-
-      <pre>{JSON.stringify(address, null, 2)}</pre>
-
       <FormControl onSubmit={handleSubmit} fullWidth component="form">
         <TextField
           onChange={handleChangeUser}
@@ -125,8 +121,64 @@ export function AuthRegister() {
           label="Estado"
           placeholder="Selecione seu Estado"
           sx={{ marginBottom: 2 }}>
-          <MenuItem value="AC">Acre</MenuItem>
+          <MenuItem value="SP">São Paulo</MenuItem>
         </TextField>
+
+        <TextField
+          onChange={handleChangeAddress}
+          value={address.city}
+          select
+          name="city"
+          fullWidth
+          required
+          label="Cidade"
+          placeholder="Selecione sua Cidade"
+          sx={{ marginBottom: 2 }}>
+          <MenuItem value="JAC">Jacareí</MenuItem>
+        </TextField>
+
+        <TextField
+          onChange={handleChangeAddress}
+          value={address.neighborhood}
+          name="neighborhood"
+          fullWidth
+          required
+          label="Bairro"
+          placeholder="Digite seu Bairro"
+          sx={{ marginBottom: 2 }}
+        />
+
+        <TextField
+          onChange={handleChangeAddress}
+          value={address.street}
+          name="street"
+          fullWidth
+          required
+          label="Rua"
+          placeholder="Digite sua Rua"
+          sx={{ marginBottom: 2 }}
+        />
+
+        <TextField
+          onChange={handleChangeAddress}
+          value={address.number}
+          name="number"
+          fullWidth
+          required
+          label="Número"
+          placeholder="Digite o número de seu endereço"
+          sx={{ marginBottom: 2 }}
+        />
+
+        <TextField
+          onChange={handleChangeAddress}
+          value={address.complement}
+          name="complement"
+          fullWidth
+          label="Complemento"
+          placeholder="Digite o complemento"
+          sx={{ marginBottom: 2 }}
+        />
 
         <Button type="submit" variant="contained" disableElevation sx={{ marginBottom: 1 }}>
           Cadastrar
