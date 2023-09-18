@@ -1,16 +1,14 @@
-import type { ChangeEvent, FormEventHandler } from "react"
+import type { ChangeEventHandler, FormEventHandler } from "react"
 import { useState } from "react"
 
 import Icon from "@mui/material/Icon"
 import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
 import TextField from "@mui/material/TextField"
-import Select from "@mui/material/Select"
 import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
-import { Menu } from "@mui/material"
 
 export function AuthRegister() {
   const [user, setUser] = useState({
@@ -32,7 +30,7 @@ export function AuthRegister() {
   const toggleShowPassword = () => {
     setShowPassword((showPassword) => !showPassword)
   }
-  const handleChangeUser = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleChangeUser: ChangeEventHandler<HTMLInputElement> = (event) => {
     const { name, value } = event.target
 
     setUser((previous) => ({
@@ -40,7 +38,7 @@ export function AuthRegister() {
       [name]: value
     }))
   }
-  const handleChangeAddress = (event: ChangeEvent<HTMLInputElement>): void => {
+  const handleChangeAddress: ChangeEventHandler<HTMLInputElement> = (event) => {
     const { name, value } = event.target
 
     setAddress((previous) => ({
@@ -117,9 +115,10 @@ export function AuthRegister() {
           sx={{ marginBottom: 2 }}
         />
 
-        <Select
+        <TextField
           onChange={handleChangeAddress}
           value={address.state}
+          select
           name="state"
           fullWidth
           required
@@ -127,7 +126,7 @@ export function AuthRegister() {
           placeholder="Selecione seu Estado"
           sx={{ marginBottom: 2 }}>
           <MenuItem value="AC">Acre</MenuItem>
-        </Select>
+        </TextField>
 
         <Button type="submit" variant="contained" disableElevation sx={{ marginBottom: 1 }}>
           Cadastrar
