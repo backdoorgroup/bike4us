@@ -1,13 +1,16 @@
-import type { ChangeEventHandler, FormEventHandler } from "react"
+import type { ChangeEvent, FormEventHandler } from "react"
 import { useState } from "react"
 
 import Icon from "@mui/material/Icon"
 import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
 import TextField from "@mui/material/TextField"
+import Select from "@mui/material/Select"
+import MenuItem from "@mui/material/MenuItem"
 import FormControl from "@mui/material/FormControl"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
+import { Menu } from "@mui/material"
 
 export function AuthRegister() {
   const [user, setUser] = useState({
@@ -15,15 +18,32 @@ export function AuthRegister() {
     name: "",
     password: ""
   })
+  const [address, setAddress] = useState({
+    zipcode: "",
+    state: "",
+    city: "",
+    neighborhood: "",
+    street: "",
+    number: "",
+    complement: ""
+  })
   const [showPassword, setShowPassword] = useState(false)
 
   const toggleShowPassword = () => {
     setShowPassword((showPassword) => !showPassword)
   }
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+  const handleChangeUser = (event: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target
 
     setUser((previous) => ({
+      ...previous,
+      [name]: value
+    }))
+  }
+  const handleChangeAddress = (event: ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = event.target
+
+    setAddress((previous) => ({
       ...previous,
       [name]: value
     }))
@@ -38,9 +58,13 @@ export function AuthRegister() {
         Cadastre-se e conheça a plataforma
       </Typography>
 
+      <pre>{JSON.stringify(user, null, 2)}</pre>
+
+      <pre>{JSON.stringify(address, null, 2)}</pre>
+
       <FormControl onSubmit={handleSubmit} fullWidth component="form">
         <TextField
-          onChange={handleChange}
+          onChange={handleChangeUser}
           value={user.name}
           name="name"
           fullWidth
@@ -51,7 +75,7 @@ export function AuthRegister() {
         />
 
         <TextField
-          onChange={handleChange}
+          onChange={handleChangeUser}
           value={user.email}
           name="email"
           fullWidth
@@ -62,7 +86,7 @@ export function AuthRegister() {
         />
 
         <TextField
-          onChange={handleChange}
+          onChange={handleChangeUser}
           value={user.password}
           name="password"
           fullWidth
@@ -81,6 +105,29 @@ export function AuthRegister() {
             )
           }}
         />
+
+        <TextField
+          onChange={handleChangeAddress}
+          value={address.zipcode}
+          name="zipcode"
+          fullWidth
+          required
+          label="CEP"
+          placeholder="Digite seu CEP"
+          sx={{ marginBottom: 2 }}
+        />
+
+        <Select
+          onChange={handleChangeAddress}
+          value={address.state}
+          name="state"
+          fullWidth
+          required
+          label="Estado"
+          placeholder="Selecione seu Estado"
+          sx={{ marginBottom: 2 }}>
+          <MenuItem value="AC">Acre</MenuItem>
+        </Select>
 
         <Button type="submit" variant="contained" disableElevation sx={{ marginBottom: 1 }}>
           Cadastrar
