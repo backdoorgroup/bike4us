@@ -37,7 +37,7 @@ export function AuthLogin() {
 
   return (
     <>
-      <Typography gutterBottom variant="h5" component="h1" textAlign="center" fontWeight="500">
+      <Typography variant="h5" component="h1" textAlign="center" fontWeight="500" mb={4}>
         Seja bem-vindo!
       </Typography>
 
