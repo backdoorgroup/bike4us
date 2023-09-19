@@ -69,7 +69,10 @@ export function NavBar() {
                   <ListItemAvatar>
                     <Avatar src={user?.photoURL || ""}>{user?.displayName?.charAt(0)}</Avatar>
                   </ListItemAvatar>
-                  <ListItemText primary={user?.displayName || "Usuário sem nome"} secondary={user?.email} />
+                  <ListItemText
+                    primary={user?.displayName || "Usuário sem nome"}
+                    secondary={user?.email || "Usuário sem email"}
+                  />
                 </ListItem>
                 <Divider />
                 <ListItem disablePadding>
