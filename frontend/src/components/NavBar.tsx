@@ -61,7 +61,7 @@ export function NavBar() {
               </Typography>
             </Toolbar>
           </AppBar>
-          <List>
+          <List disablePadding>
             {user?.uid && (
               <ListItem>
                 <ListItemAvatar>
