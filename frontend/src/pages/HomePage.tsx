@@ -2,7 +2,7 @@ import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import Box from "@mui/material/Box"
 
-import { SearchCard, SearchHeader, ListingCarousel, ListingCard } from "~/components"
+import { SearchCard, SearchHeader, ListingCarousel, ListingCard } from "@/components"
 
 export function HomePage() {
   const cards = new Array(12).fill(0)

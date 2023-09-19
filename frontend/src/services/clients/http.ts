@@ -1,6 +1,6 @@
 import axios from "axios"
 
-import { useUserStore } from "~/stores"
+import { useUserStore } from "@/stores"
 
 export const http = axios.create({
   baseURL: "http://localhost:8000/api/v1"

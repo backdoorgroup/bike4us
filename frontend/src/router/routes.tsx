@@ -1,9 +1,9 @@
 import type { RouteObject } from "react-router-dom"
 import { Navigate } from "react-router-dom"
 
-import { LandingLayout } from "~/layouts"
-import { HomePage, AuthPage } from "~/pages"
-import { AuthLogin, AuthRegister } from "~/components"
+import { LandingLayout } from "@/layouts"
+import { HomePage, AuthPage } from "@/pages"
+import { AuthLogin, AuthRegister } from "@/components"
 
 export const routes: RouteObject[] = [
   {

@@ -16,7 +16,7 @@ import ListItemText from "@mui/material/ListItemText"
 import ListItemButton from "@mui/material/ListItemButton"
 import ListItemIcon from "@mui/material/ListItemIcon"
 
-import { useUserStore } from "~/stores"
+import { useUserStore } from "@/stores"
 
 export function NavBar() {
   const { user } = useUserStore()

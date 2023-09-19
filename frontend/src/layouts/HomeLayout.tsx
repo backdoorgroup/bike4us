@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box"
 import { Outlet } from "react-router-dom"
 
-import { NavBar, NavBottom } from "~/components"
+import { NavBar, NavBottom } from "@/components"
 
 export function LandingLayout() {
   return (

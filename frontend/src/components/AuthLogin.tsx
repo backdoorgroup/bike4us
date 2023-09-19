@@ -9,7 +9,7 @@ import FormControl from "@mui/material/FormControl"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 
-import { AuthService } from "~/services"
+import { AuthService } from "@/services"
 
 export function AuthLogin() {
   const [user, setUser] = useState({

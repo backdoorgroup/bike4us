@@ -13,7 +13,7 @@ import { default as dateFnsLocale } from "date-fns/locale/pt-BR"
 import { StrictMode } from "react"
 import { RouterProvider as Router } from "react-router-dom"
 
-import { router } from "~/router"
+import { router } from "@/router"
 
 const theme = createTheme(
   {
