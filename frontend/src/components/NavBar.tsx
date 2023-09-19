@@ -15,6 +15,7 @@ import ListItemAvatar from "@mui/material/ListItemAvatar"
 import ListItemText from "@mui/material/ListItemText"
 import ListItemButton from "@mui/material/ListItemButton"
 import ListItemIcon from "@mui/material/ListItemIcon"
+import Divider from "@mui/material/Divider"
 
 import { useUserStore } from "@/stores"
 
@@ -63,12 +64,15 @@ export function NavBar() {
           </AppBar>
           <List disablePadding>
             {user?.uid && (
-              <ListItem>
-                <ListItemAvatar>
-                  <Avatar src={user?.photoURL || ""}>{user?.displayName?.charAt(0)}</Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={user?.displayName || "Usuário sem nome"} secondary={user?.email} />
-              </ListItem>
+              <>
+                <ListItem>
+                  <ListItemAvatar>
+                    <Avatar src={user?.photoURL || ""}>{user?.displayName?.charAt(0)}</Avatar>
+                  </ListItemAvatar>
+                  <ListItemText primary={user?.displayName || "Usuário sem nome"} secondary={user?.email} />
+                </ListItem>
+                <Divider />
+              </>
             )}
             {user?.uid && (
               <ListItem disablePadding>
