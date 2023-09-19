@@ -4,7 +4,7 @@ import BottomNavigation from "@mui/material/BottomNavigation"
 import BottomNavigationAction from "@mui/material/BottomNavigationAction"
 import Icon from "@mui/material/Icon"
 
-export function NavBottom() {
+export function AppNavBottom() {
   const [value, setValue] = useState(0)
 
   return (

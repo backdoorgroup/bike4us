@@ -1,16 +1,16 @@
 import Box from "@mui/material/Box"
 import { Outlet } from "react-router-dom"
 
-import { NavBar, NavBottom } from "@/components"
+import { AppNavBar, AppNavBottom } from "@/components"
 
 export function LandingLayout() {
   return (
     <>
-      <NavBar />
+      <AppNavBar />
       <Box component="main" sx={{ marginBottom: 7 }}>
         <Outlet />
       </Box>
-      <NavBottom />
+      <AppNavBottom />
     </>
   )
 }

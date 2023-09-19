@@ -19,7 +19,7 @@ import Typography from "@mui/material/Typography"
 
 import { useUserStore } from "@/stores"
 
-export function NavBar() {
+export function AppNavBar() {
   const { user } = useUserStore()
   const [open, setOpen] = useState(false)
 
