@@ -72,17 +72,15 @@ export function NavBar() {
                   <ListItemText primary={user?.displayName || "Usuário sem nome"} secondary={user?.email} />
                 </ListItem>
                 <Divider />
+                <ListItem disablePadding>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <Icon>logout</Icon>
+                    </ListItemIcon>
+                    <ListItemText primary="Sair" />
+                  </ListItemButton>
+                </ListItem>
               </>
-            )}
-            {user?.uid && (
-              <ListItem disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <Icon>logout</Icon>
-                  </ListItemIcon>
-                  <ListItemText primary="Sair" />
-                </ListItemButton>
-              </ListItem>
             )}
             {!user?.uid && (
               <ListItem disablePadding>
