@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Link as RouterLink } from "react-router-dom"
 
 import AppBar from "@mui/material/AppBar"
+import Avatar from "@mui/material/Avatar"
 import Toolbar from "@mui/material/Toolbar"
 import Icon from "@mui/material/Icon"
 import IconButton from "@mui/material/IconButton"
@@ -10,12 +11,15 @@ import Typography from "@mui/material/Typography"
 import Link from "@mui/material/Link"
 import List from "@mui/material/List"
 import ListItem from "@mui/material/ListItem"
+import ListItemAvatar from "@mui/material/ListItemAvatar"
 import ListItemText from "@mui/material/ListItemText"
 import ListItemButton from "@mui/material/ListItemButton"
 import ListItemIcon from "@mui/material/ListItemIcon"
-import Divider from "@mui/material/Divider"
+
+import { useUserStore } from "~/stores"
 
 export function NavBar() {
+  const { user } = useUserStore()
   const [open, setOpen] = useState(false)
 
   const handleClickOpen = () => {
@@ -57,24 +61,35 @@ export function NavBar() {
               </Typography>
             </Toolbar>
           </AppBar>
-          <List disablePadding>
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <Icon>login</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Entrar" />
-              </ListItemButton>
-            </ListItem>
-            <Divider />
-            <ListItem disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  <Icon>logout</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Sair" />
-              </ListItemButton>
-            </ListItem>
+          <List>
+            {user?.uid && (
+              <ListItem>
+                <ListItemAvatar>
+                  <Avatar src={user?.photoURL || ""}>{user?.displayName?.charAt(0)}</Avatar>
+                </ListItemAvatar>
+                <ListItemText primary={user?.displayName || "Usuário sem nome"} secondary={user?.email} />
+              </ListItem>
+            )}
+            {user?.uid && (
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon>logout</Icon>
+                  </ListItemIcon>
+                  <ListItemText primary="Sair" />
+                </ListItemButton>
+              </ListItem>
+            )}
+            {!user?.uid && (
+              <ListItem disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <Icon>login</Icon>
+                  </ListItemIcon>
+                  <ListItemText primary="Entrar" />
+                </ListItemButton>
+              </ListItem>
+            )}
           </List>
         </Dialog>
       </Toolbar>
