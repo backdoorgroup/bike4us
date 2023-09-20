@@ -1,6 +1,10 @@
 import type { RegisterOptions } from "react-hook-form"
 
-export const RequiredFieldText = "Campo obrigatório"
+const RequiredFieldText = "Campo obrigatório"
+
+export const NameValidation: RegisterOptions = {
+  required: RequiredFieldText
+}
 
 export const EmailValidation: RegisterOptions = {
   required: RequiredFieldText

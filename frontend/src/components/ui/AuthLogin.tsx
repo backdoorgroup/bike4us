@@ -23,12 +23,7 @@ interface Form {
 export function AuthLogin() {
   const navigate = useNavigate()
 
-  const form = useForm<Form>({
-    defaultValues: {
-      email: "",
-      password: ""
-    }
-  })
+  const form = useForm<Form>()
 
   const [showPassword, setShowPassword] = useState(false)
 
