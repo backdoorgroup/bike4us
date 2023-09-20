@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
-import { Link as RouterLink } from "react-router-dom"
+import { Link as RouterLink, useNavigate } from "react-router-dom"
 
 import Button from "@mui/material/Button"
 import FormControl from "@mui/material/FormControl"
@@ -20,6 +20,8 @@ interface Form {
 }
 
 export function AuthLogin() {
+  const navigate = useNavigate()
+
   const form = useForm<Form>({
     defaultValues: {
       email: "",
@@ -36,6 +38,8 @@ export function AuthLogin() {
   const handleSubmit = async ({ email, password }: Form) => {
     // TODO: tratar os erros de forma amigável pro usuário que vem dessa chamada usando o AuthErrorCodes do módulo "firebase/auth"
     await AuthService.signIn.emailAndPassword(email, password)
+
+    navigate("/")
   }
 
   return (
