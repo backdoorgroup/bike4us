@@ -17,9 +17,6 @@ import { router } from "@/router"
 
 const theme = createTheme(
   {
-    palette: {
-      mode: "light"
-    },
     components: {
       MuiIcon: {
         defaultProps: {
