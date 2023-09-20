@@ -20,8 +20,6 @@ interface Form {
   password: string
 }
 
-// TODO: usar DTOs pra poder ter validação igual tanto no login quanto no cadastro
-
 export function AuthLogin() {
   const navigate = useNavigate()
 
