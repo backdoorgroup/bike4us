@@ -72,6 +72,8 @@ export function AuthLogin() {
                 </InputAdornment>
               )
             }}
+            error={!!form.formState.errors.password}
+            helperText={form.formState.errors.password?.message}
             {...form.register("password", PasswordValidation)}
           />
         </Stack>
