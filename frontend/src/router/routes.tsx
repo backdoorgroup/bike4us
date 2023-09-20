@@ -2,7 +2,7 @@ import type { RouteObject } from "react-router-dom"
 import { Navigate } from "react-router-dom"
 
 import { LandingLayout } from "@/layouts"
-import { HomePage, AuthPage } from "@/pages"
+import { HomePage, AuthPage, ErrorPage } from "@/pages"
 import { AuthLogin, AuthRegister } from "@/components"
 
 export const routes: RouteObject[] = [
@@ -15,6 +15,11 @@ export const routes: RouteObject[] = [
         element: <HomePage />
       },
       {
+        path: "*",
+        element: <ErrorPage />
+      },
+      {
+        // TODO: desabilitar essa rota para quando o usuário está autenticado
         path: "auth",
         element: <AuthPage />,
         children: [
