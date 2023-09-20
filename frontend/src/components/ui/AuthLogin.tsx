@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { useForm } from "react-hook-form"
 
 import { Link as RouterLink } from "react-router-dom"
 
@@ -11,11 +12,30 @@ import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 
+import { AuthService } from "@/services"
+
+interface Form {
+  email: string
+  password: string
+}
+
 export function AuthLogin() {
+  const form = useForm<Form>({
+    defaultValues: {
+      email: "",
+      password: ""
+    }
+  })
+
   const [showPassword, setShowPassword] = useState(false)
 
   const toggleShowPassword = () => {
     setShowPassword((showPassword) => !showPassword)
+  }
+
+  const handleSubmit = async ({ email, password }: Form) => {
+    // TODO: tratar os erros de forma amigável pro usuário que vem dessa chamada usando o AuthErrorCodes do módulo "firebase/auth"
+    await AuthService.signIn.emailAndPassword(email, password)
   }
 
   return (
@@ -24,16 +44,21 @@ export function AuthLogin() {
         Seja bem-vindo!
       </Typography>
 
-      <FormControl component="form" fullWidth noValidate>
+      <FormControl component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
         <Stack gap={2} marginBottom={4}>
-          <TextField name="email" label="Email" placeholder="Digite seu email" fullWidth required />
+          <TextField
+            label="Email"
+            placeholder="Digite seu email"
+            error={!!form.formState.errors.email}
+            helperText={form.formState.errors.email?.message}
+            {...form.register("email", {
+              required: "Campo obrigatório"
+            })}
+          />
 
           <TextField
-            name="password"
             label="Senha"
             placeholder="Digite sua senha"
-            fullWidth
-            required
             type={showPassword ? "text" : "password"}
             InputProps={{
               endAdornment: (
@@ -44,6 +69,9 @@ export function AuthLogin() {
                 </InputAdornment>
               )
             }}
+            {...form.register("password", {
+              required: "Campo obrigatório"
+            })}
           />
         </Stack>
 
