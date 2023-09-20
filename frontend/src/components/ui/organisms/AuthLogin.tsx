@@ -1,40 +1,21 @@
-import type { ChangeEventHandler, FormEventHandler } from "react"
 import { useState } from "react"
 
 import { Link as RouterLink } from "react-router-dom"
 
+import Button from "@mui/material/Button"
+import FormControl from "@mui/material/FormControl"
 import Icon from "@mui/material/Icon"
 import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
+import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
-import FormControl from "@mui/material/FormControl"
 import Typography from "@mui/material/Typography"
-import Button from "@mui/material/Button"
-
-import { AuthService } from "@/services"
 
 export function AuthLogin() {
-  const [user, setUser] = useState({
-    email: "",
-    password: ""
-  })
   const [showPassword, setShowPassword] = useState(false)
 
   const toggleShowPassword = () => {
     setShowPassword((showPassword) => !showPassword)
-  }
-  const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
-    const { name, value } = event.target
-
-    setUser((previous) => ({
-      ...previous,
-      [name]: value
-    }))
-  }
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
-    event.preventDefault()
-
-    await AuthService.signIn.emailAndPassword(user.email, user.password)
   }
 
   return (
@@ -43,46 +24,38 @@ export function AuthLogin() {
         Seja bem-vindo!
       </Typography>
 
-      <FormControl onSubmit={handleSubmit} fullWidth component="form">
-        <TextField
-          onChange={handleChange}
-          value={user.email}
-          name="email"
-          fullWidth
-          required
-          label="Email"
-          placeholder="Digite seu email"
-          sx={{ marginBottom: 2 }}
-        />
+      <FormControl component="form" fullWidth noValidate>
+        <Stack gap={2} marginBottom={4}>
+          <TextField name="email" label="Email" placeholder="Digite seu email" fullWidth required />
 
-        <TextField
-          onChange={handleChange}
-          value={user.password}
-          name="password"
-          fullWidth
-          required
-          label="Senha"
-          placeholder="Digite sua senha"
-          type={showPassword ? "text" : "password"}
-          sx={{ marginBottom: 4 }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton onClick={toggleShowPassword}>
-                  <Icon>{showPassword ? "visibility_off" : "visibility"}</Icon>
-                </IconButton>
-              </InputAdornment>
-            )
-          }}
-        />
+          <TextField
+            name="password"
+            label="Senha"
+            placeholder="Digite sua senha"
+            fullWidth
+            required
+            type={showPassword ? "text" : "password"}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={toggleShowPassword}>
+                    <Icon>{showPassword ? "visibility_off" : "visibility"}</Icon>
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
+        </Stack>
 
-        <Button type="submit" variant="contained" disableElevation sx={{ marginBottom: 1 }}>
-          Entrar
-        </Button>
+        <Stack gap={1}>
+          <Button type="submit" variant="contained" disableElevation>
+            Entrar
+          </Button>
 
-        <Button disableElevation component={RouterLink} to="/auth/cadastrar">
-          Criar conta
-        </Button>
+          <Button disableElevation component={RouterLink} to="/auth/cadastrar">
+            Criar conta
+          </Button>
+        </Stack>
       </FormControl>
     </>
   )
