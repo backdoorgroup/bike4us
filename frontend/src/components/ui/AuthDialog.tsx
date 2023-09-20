@@ -73,7 +73,11 @@ export function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClos
 
         {!user?.uid && (
           <ListItem disablePadding>
-            <ListItemButton component={RouterLink} onClick={handleSignIn} to="/auth" sx={{ color: "text.primary" }}>
+            <ListItemButton
+              component={RouterLink}
+              onClick={handleSignIn}
+              to="/auth/entrar"
+              sx={{ color: "text.primary" }}>
               <ListItemIcon>
                 <Icon>login</Icon>
               </ListItemIcon>

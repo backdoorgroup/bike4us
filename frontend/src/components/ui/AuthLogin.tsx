@@ -1,6 +1,8 @@
 import type { ChangeEventHandler, FormEventHandler } from "react"
 import { useState } from "react"
 
+import { Link as RouterLink } from "react-router-dom"
+
 import Icon from "@mui/material/Icon"
 import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
@@ -78,7 +80,9 @@ export function AuthLogin() {
           Entrar
         </Button>
 
-        <Button disableElevation>Criar conta</Button>
+        <Button disableElevation component={RouterLink} to="/auth/cadastrar">
+          Criar conta
+        </Button>
       </FormControl>
     </>
   )

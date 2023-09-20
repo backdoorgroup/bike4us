@@ -1,6 +1,8 @@
 import type { ChangeEventHandler, FormEventHandler } from "react"
 import { useState } from "react"
 
+import { Link as RouterLink } from "react-router-dom"
+
 import Icon from "@mui/material/Icon"
 import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
@@ -184,7 +186,9 @@ export function AuthRegister() {
           Cadastrar
         </Button>
 
-        <Button disableElevation>Já tenho cadastro</Button>
+        <Button disableElevation component={RouterLink} to="/auth/entrar">
+          Já estou cadastrado
+        </Button>
       </FormControl>
     </>
   )
