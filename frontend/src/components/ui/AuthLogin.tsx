@@ -13,6 +13,7 @@ import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 
 import { AuthService } from "@/services"
+import { EmailValidation, PasswordValidation } from "@/constants"
 
 interface Form {
   email: string
@@ -57,9 +58,7 @@ export function AuthLogin() {
             placeholder="Digite seu email"
             error={!!form.formState.errors.email}
             helperText={form.formState.errors.email?.message}
-            {...form.register("email", {
-              required: "Campo obrigatório"
-            })}
+            {...form.register("email", EmailValidation)}
           />
 
           <TextField
@@ -75,9 +74,7 @@ export function AuthLogin() {
                 </InputAdornment>
               )
             }}
-            {...form.register("password", {
-              required: "Campo obrigatório"
-            })}
+            {...form.register("password", PasswordValidation)}
           />
         </Stack>
 
