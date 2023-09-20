@@ -7,10 +7,15 @@ import Link from "@mui/material/Link"
 import Toolbar from "@mui/material/Toolbar"
 
 import { AuthDialog } from "@/components"
+import { AuthService } from "@/services"
+import { useUserStore } from "@/stores"
 
 export function AppNavBar() {
+  const { user } = useUserStore()
+
   const [open, setOpen] = useState(false)
 
+  const handleSignOut = () => AuthService.signOut()
   const handleOpenDialog = () => setOpen(true)
   const handleCloseDialog = () => setOpen(false)
 
@@ -29,7 +34,7 @@ export function AppNavBar() {
         <Icon sx={{ fontSize: 24, height: 24, width: 24 }} onClick={handleOpenDialog}>
           account_circle
         </Icon>
-        <AuthDialog open={open} handleClose={handleCloseDialog} />
+        <AuthDialog user={user} open={open} handleSignOut={handleSignOut} handleClose={handleCloseDialog} />
       </Toolbar>
     </AppBar>
   )

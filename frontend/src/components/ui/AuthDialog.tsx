@@ -1,3 +1,5 @@
+import type { User } from "firebase/auth"
+
 import AppBar from "@mui/material/AppBar"
 import Avatar from "@mui/material/Avatar"
 import Dialog from "@mui/material/Dialog"
@@ -13,16 +15,14 @@ import ListItemText from "@mui/material/ListItemText"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
 
-import { useUserStore } from "@/stores"
-
 interface Props {
+  user: User | null
   open: boolean
+  handleSignOut: () => void
   handleClose: () => void
 }
 
-export function AuthDialog({ open, handleClose }: Props) {
-  const { user } = useUserStore()
-
+export function AuthDialog({ user, open, handleSignOut, handleClose }: Props) {
   return (
     <Dialog fullScreen open={open} onClose={handleClose}>
       <AppBar
@@ -58,7 +58,7 @@ export function AuthDialog({ open, handleClose }: Props) {
             <Divider />
 
             <ListItem disablePadding>
-              <ListItemButton>
+              <ListItemButton onClick={handleSignOut}>
                 <ListItemIcon>
                   <Icon>logout</Icon>
                 </ListItemIcon>
