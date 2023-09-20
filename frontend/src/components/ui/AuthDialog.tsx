@@ -1,5 +1,7 @@
 import type { User } from "firebase/auth"
 
+import { Link as RouterLink } from "react-router-dom"
+
 import AppBar from "@mui/material/AppBar"
 import Avatar from "@mui/material/Avatar"
 import Dialog from "@mui/material/Dialog"
@@ -18,11 +20,12 @@ import Typography from "@mui/material/Typography"
 interface Props {
   user: User | null
   open: boolean
+  handleSignIn: () => void
   handleSignOut: () => void
   handleClose: () => void
 }
 
-export function AuthDialog({ user, open, handleSignOut, handleClose }: Props) {
+export function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClose }: Props) {
   return (
     <Dialog fullScreen open={open} onClose={handleClose}>
       <AppBar
@@ -70,7 +73,7 @@ export function AuthDialog({ user, open, handleSignOut, handleClose }: Props) {
 
         {!user?.uid && (
           <ListItem disablePadding>
-            <ListItemButton>
+            <ListItemButton component={RouterLink} onClick={handleSignIn} to="/auth" sx={{ color: "text.primary" }}>
               <ListItemIcon>
                 <Icon>login</Icon>
               </ListItemIcon>

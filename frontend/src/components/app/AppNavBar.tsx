@@ -15,9 +15,17 @@ export function AppNavBar() {
 
   const [open, setOpen] = useState(false)
 
-  const handleSignOut = () => AuthService.signOut()
   const handleOpenDialog = () => setOpen(true)
   const handleCloseDialog = () => setOpen(false)
+
+  const handleSignIn = () => {
+    handleCloseDialog()
+  }
+  const handleSignOut = async () => {
+    await AuthService.signOut()
+
+    handleCloseDialog()
+  }
 
   return (
     <AppBar
@@ -34,7 +42,13 @@ export function AppNavBar() {
         <Icon sx={{ fontSize: 24, height: 24, width: 24 }} onClick={handleOpenDialog}>
           account_circle
         </Icon>
-        <AuthDialog user={user} open={open} handleSignOut={handleSignOut} handleClose={handleCloseDialog} />
+        <AuthDialog
+          user={user}
+          open={open}
+          handleSignIn={handleSignIn}
+          handleSignOut={handleSignOut}
+          handleClose={handleCloseDialog}
+        />
       </Toolbar>
     </AppBar>
   )
