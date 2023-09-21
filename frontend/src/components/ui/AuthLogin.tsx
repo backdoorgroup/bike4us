@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { Link as RouterLink, useNavigate } from "react-router-dom"
 
 import Button from "@mui/material/Button"
+import Divider from "@mui/material/Divider"
 import FormControl from "@mui/material/FormControl"
 import Icon from "@mui/material/Icon"
 import IconButton from "@mui/material/IconButton"
@@ -12,8 +13,10 @@ import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 
-import { AuthService } from "@/services"
+import GoogleIcon from "@mui/icons-material/Google"
+
 import { EmailValidation, PasswordValidation } from "@/constants"
+import { AuthService } from "@/services"
 
 interface Form {
   email: string
@@ -37,6 +40,8 @@ export function AuthLogin() {
 
     navigate("/")
   }
+
+  const loginWithGoogle = async () => {}
 
   return (
     <>
@@ -73,7 +78,7 @@ export function AuthLogin() {
           />
         </Stack>
 
-        <Stack gap={1}>
+        <Stack gap={1} mb={2}>
           <Button type="submit" variant="contained" disableElevation>
             Entrar
           </Button>
@@ -82,6 +87,16 @@ export function AuthLogin() {
             Criar conta
           </Button>
         </Stack>
+
+        <Divider sx={{ mb: 2 }}>
+          <Typography variant="caption" sx={{ color: "text.secondary" }}>
+            ou entre com
+          </Typography>
+        </Divider>
+
+        <Button disableElevation variant="outlined" onClick={loginWithGoogle} startIcon={<GoogleIcon />}>
+          Entrar com o Google
+        </Button>
       </FormControl>
     </>
   )
