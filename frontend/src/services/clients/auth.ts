@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app"
-import { getAuth, setPersistence, browserLocalPersistence, GoogleAuthProvider } from "firebase/auth"
+import { getAuth, browserLocalPersistence, GoogleAuthProvider } from "firebase/auth"
 
 import { settings } from "@config"
 import { useUserStore } from "@/stores"
@@ -18,6 +18,6 @@ const app = initializeApp({
 export const authClient = getAuth(app)
 export const googleProvider = new GoogleAuthProvider()
 
-setPersistence(authClient, browserLocalPersistence)
-
+authClient.useDeviceLanguage()
+authClient.setPersistence(browserLocalPersistence)
 authClient.onAuthStateChanged((user) => setUser(user))
