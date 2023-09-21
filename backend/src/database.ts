@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm"
 
-import { settings } from "src/settings"
+import { settings } from "@/settings"
 
 export const dataSource = new DataSource({
   type: "postgres",
@@ -11,6 +11,6 @@ export const dataSource = new DataSource({
   username: settings.DB_USER,
   password: settings.DB_PASSWORD,
 
-  entities: ["src/**/models.ts"],
+  entities: ["@/**/models.ts"],
   synchronize: settings.EXPRESS_MODE === "dev"
 })

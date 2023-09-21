@@ -1,9 +1,9 @@
 import type { Request, Response, NextFunction } from "express"
 import type { UserRecord } from "firebase-admin/auth"
 
-import { HttpStatus } from "lib/http"
+import { HttpStatus } from "@lib/http"
 
-import { auth } from "src/auth/services"
+import { auth } from "@/auth/services"
 
 export const identity = async function (req: Request, res: Response, next: NextFunction) {
   try {

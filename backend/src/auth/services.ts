@@ -1,6 +1,6 @@
 import admin from "firebase-admin"
 
-import { settings } from "src/settings"
+import { settings } from "@/settings"
 
 const client = admin.initializeApp({
   credential: admin.credential.cert({
