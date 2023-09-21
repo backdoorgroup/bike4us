@@ -24,5 +24,5 @@ export const bootstrap = () => {
   app.use("/api/v1/", router)
 
   // Server
-  app.listen(settings.EXPRESS_PORT)
+  app.listen(settings.EXPRESS_PORT, settings.EXPRESS_HOST)
 }
