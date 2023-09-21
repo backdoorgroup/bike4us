@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction } from "express"
 import type { UserRecord } from "firebase-admin/auth"
 
-import { HttpStatus } from "lib/helpers"
+import { HttpStatus } from "lib/http"
 
 import { auth } from "src/auth/services"
 
