@@ -1,7 +1,10 @@
-import { settings } from "@config"
-
 import { initializeApp } from "firebase/app"
 import { getAuth, setPersistence, browserLocalPersistence, GoogleAuthProvider } from "firebase/auth"
+
+import { settings } from "@config"
+import { useUserStore } from "@/stores"
+
+const { setUser } = useUserStore.getState()
 
 const app = initializeApp({
   apiKey: settings.FB_API_KEY,
@@ -16,3 +19,5 @@ export const authClient = getAuth(app)
 export const googleProvider = new GoogleAuthProvider()
 
 setPersistence(authClient, browserLocalPersistence)
+
+authClient.onAuthStateChanged((user) => setUser(user))
