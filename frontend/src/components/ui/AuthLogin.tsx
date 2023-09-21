@@ -41,7 +41,11 @@ export function AuthLogin() {
     navigate("/")
   }
 
-  const loginWithGoogle = async () => {}
+  const handleGoogleClick = async () => {
+    await AuthService.signInWithGooglePopup()
+
+    navigate("/")
+  }
 
   return (
     <>
@@ -94,7 +98,7 @@ export function AuthLogin() {
           </Typography>
         </Divider>
 
-        <Button disableElevation variant="outlined" onClick={loginWithGoogle} startIcon={<GoogleIcon />}>
+        <Button disableElevation variant="outlined" onClick={handleGoogleClick} startIcon={<GoogleIcon />}>
           Entrar com o Google
         </Button>
       </FormControl>
