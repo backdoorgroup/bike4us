@@ -2,11 +2,11 @@ import axios from "axios"
 
 import { useUserStore } from "@/stores"
 
-export const http = axios.create({
+export const httpClient = axios.create({
   baseURL: "http://localhost:8000/api/v1"
 })
 
-http.interceptors.request.use(
+httpClient.interceptors.request.use(
   async function (config) {
     const { user } = useUserStore.getState()
     const token = await user?.getIdToken()
@@ -20,7 +20,7 @@ http.interceptors.request.use(
   }
 )
 
-http.interceptors.response.use(
+httpClient.interceptors.response.use(
   function (response) {
     return response
   },
