@@ -5,6 +5,10 @@ import { LandingLayout } from "@/layouts"
 import { HomePage, AuthPage, ErrorPage } from "@/pages"
 import { AuthLogin, AuthRegister } from "@/components"
 
+import { useUserStore } from "@/stores"
+
+const { user } = useUserStore.getState()
+
 export const routes: RouteObject[] = [
   {
     path: "/",
@@ -19,14 +23,13 @@ export const routes: RouteObject[] = [
         element: <ErrorPage />
       },
       {
-        // TODO: desabilitar essa rota para quando o usuário está autenticado
         path: "auth",
-        element: <AuthPage />,
+        element: !user?.uid ? <AuthPage /> : <Navigate to="/" replace />,
         children: [
           {
             path: "*",
             index: true,
-            element: <Navigate to="/auth/entrar" />
+            element: <Navigate to="/auth/entrar" replace />
           },
           {
             path: "entrar",
