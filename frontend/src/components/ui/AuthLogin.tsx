@@ -36,7 +36,7 @@ export function AuthLogin() {
 
   const handleSubmit = async ({ email, password }: Form) => {
     // TODO: tratar os erros de forma amigável pro usuário que vem dessa chamada usando o AuthErrorCodes do módulo "firebase/auth"
-    await AuthService.signIn.emailAndPassword(email, password)
+    await AuthService.signInWithEmailAndPassword(email, password)
 
     navigate("/")
   }
