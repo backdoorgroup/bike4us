@@ -7,8 +7,10 @@
     "strictPropertyInitialization": false,
 
     "paths": {
-      "src/*": ["./src/*"],
-      "lib/*": ["./lib/*"]
+      "@": ["./src"],
+      "@/*": ["./src/*"],
+      "@lib": ["./lib"],
+      "@lib/*": ["./lib/*"]
     }
   }
 }
