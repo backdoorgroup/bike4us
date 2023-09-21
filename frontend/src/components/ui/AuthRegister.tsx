@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
-import { Link as RouterLink } from "react-router-dom"
+import { Link as RouterLink, useNavigate } from "react-router-dom"
 
 import Icon from "@mui/material/Icon"
 import IconButton from "@mui/material/IconButton"
@@ -12,15 +12,17 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 
-import { EmailValidation, PasswordValidation, NameValidation } from "@/constants"
+import { AuthService } from "@/services"
+import { EmailValidation, PasswordValidation } from "@/constants"
 
 interface Form {
   email: string
-  name: string
   password: string
 }
 
 export function AuthRegister() {
+  const navigate = useNavigate()
+
   const form = useForm<Form>()
 
   const [showPassword, setShowPassword] = useState(false)
@@ -29,7 +31,11 @@ export function AuthRegister() {
     setShowPassword((showPassword) => !showPassword)
   }
 
-  const handleSubmit = async () => {}
+  const handleSubmit = async ({ email, password }: Form) => {
+    await AuthService.createUserWithEmailAndPassword(email, password)
+
+    navigate("/")
+  }
 
   return (
     <>
@@ -39,14 +45,6 @@ export function AuthRegister() {
 
       <FormControl component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
         <Stack gap={2} marginBottom={4}>
-          <TextField
-            label="Nome"
-            placeholder="Digite seu nome"
-            error={!!form.formState.errors.name}
-            helperText={form.formState.errors.name?.message}
-            {...form.register("name", NameValidation)}
-          />
-
           <TextField
             label="Email"
             placeholder="Digite seu email"

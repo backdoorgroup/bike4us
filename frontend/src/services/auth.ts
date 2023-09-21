@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
+import { signInWithEmailAndPassword, signInWithPopup, signOut, createUserWithEmailAndPassword } from "firebase/auth"
 
 import { authClient, googleProvider } from "@/services/clients"
 import { useUserStore } from "@/stores"
@@ -16,5 +16,8 @@ export const AuthService = {
   },
   signOut: async () => {
     await signOut(authClient)
+  },
+  createUserWithEmailAndPassword: async (email: string, password: string) => {
+    await createUserWithEmailAndPassword(authClient, email, password)
   }
 }
