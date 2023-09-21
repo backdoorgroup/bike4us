@@ -1,5 +1,5 @@
 import type { RouteObject } from "react-router-dom"
-import { Navigate, redirect } from "react-router-dom"
+import { Navigate } from "react-router-dom"
 
 import { LandingLayout } from "@/layouts"
 import { HomePage, AuthPage, ErrorPage } from "@/pages"
