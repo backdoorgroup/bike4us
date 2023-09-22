@@ -32,6 +32,6 @@ export const bootstrap = () => {
 
   // Server
   app.listen(settings.EXPRESS_PORT, settings.EXPRESS_HOST, () => {
-    logger.info(`Server is running on ${settings.EXPRESS_HOST}:${settings.EXPRESS_PORT}`)
+    logger.info(`Server is running on http://${settings.EXPRESS_HOST}:${settings.EXPRESS_PORT}`)
   })
 }
