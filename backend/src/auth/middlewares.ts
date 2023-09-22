@@ -1,9 +1,9 @@
-import type { Request, Response, NextFunction } from "express"
+import type { NextFunction, Request, Response } from "express"
 import type { UserRecord } from "firebase-admin/auth"
 
-import { HttpStatus } from "@lib/http"
-
 import { auth } from "@/auth/services"
+import { UnauthorizedException } from "@/exceptions"
+import { HttpStatus } from "@lib/http"
 
 export const identity = async function (req: Request, res: Response, next: NextFunction) {
   try {
@@ -18,17 +18,17 @@ export const identity = async function (req: Request, res: Response, next: NextF
     req.user = {} as UserRecord
   }
 
-  return next()
+  next()
 }
 
 export const authenticated = function (req: Request, res: Response, next: NextFunction) {
   const user = req.user
 
   if (user?.uid) {
-    return next()
+    next()
   }
 
-  res.status(HttpStatus.Unauthorized).json({ message: "Unauthorized" })
+  res.status(HttpStatus.Unauthorized).json(UnauthorizedException)
 
-  return next()
+  next()
 }
