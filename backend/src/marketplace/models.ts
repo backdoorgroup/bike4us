@@ -1,5 +1,15 @@
 import type { UUID } from "crypto"
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, Check, OneToMany, ManyToOne } from "typeorm"
+import {
+  Entity,
+  BaseEntity,
+  PrimaryGeneratedColumn,
+  Column,
+  Check,
+  OneToMany,
+  ManyToOne,
+  CreateDateColumn,
+  UpdateDateColumn
+} from "typeorm"
 
 import type { TListingStatus } from "@/marketplace/constants"
 import { ListingStatusEnum } from "@/marketplace/constants"
@@ -11,6 +21,12 @@ export class Listing extends BaseEntity {
 
   @Column({ type: "uuid" })
   ownerUid: UUID
+
+  @CreateDateColumn({ type: "timestamptz" })
+  createdAt: Date
+
+  @UpdateDateColumn({ type: "timestamptz", nullable: true, default: null })
+  updatedAt: Date
 
   @Column({ type: "varchar", length: 128 })
   title: string
