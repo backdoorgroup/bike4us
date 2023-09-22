@@ -12,5 +12,7 @@ export const dataSource = new DataSource({
   password: settings.DB_PASSWORD,
 
   entities: ["./**/models.ts"],
-  synchronize: settings.EXPRESS_MODE === "dev"
+  synchronize: settings.EXPRESS_MODE === "dev",
+
+  useUTC: true
 })
