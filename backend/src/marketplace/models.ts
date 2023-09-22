@@ -1,4 +1,4 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, Check } from "typeorm"
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, Check, OneToMany, ManyToOne } from "typeorm"
 
 import type { TListingStatus } from "@/marketplace/constants"
 import { ListingStatusEnum } from "@/marketplace/constants"
@@ -24,10 +24,25 @@ export class Listing extends BaseEntity {
   @Column({ type: "enum", enum: ListingStatusEnum, default: ListingStatusEnum.Available })
   status: TListingStatus
 
+  @OneToMany(() => ListingPicture, (picture) => picture.listing)
+  pictures: ListingPicture[]
+
   // marca
   // cor
   // categoria/tipo da bicicleta
   // material
   // tamanho do quadro
   // tamanho do aro
+}
+
+@Entity()
+export class ListingPicture extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number
+
+  @ManyToOne(() => Listing, (listing) => listing.pictures, { nullable: false })
+  listing: Listing
+
+  @Column({ type: "varchar", length: 512 })
+  picturePath: string
 }
