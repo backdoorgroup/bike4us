@@ -1,13 +1,13 @@
-import helmet from "helmet"
 import cors from "cors"
 import express from "express"
+import helmet from "helmet"
 import pino from "pino-http"
 
 import { identity } from "@/auth/middlewares"
-import { logger } from "@/logger"
 import { dataSource } from "@/database"
-import { settings } from "@/settings"
+import { logger } from "@/logger"
 import { router } from "@/router"
+import { settings } from "@/settings"
 
 export const bootstrap = () => {
   const app = express()
