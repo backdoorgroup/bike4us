@@ -1,4 +1,4 @@
-import { DataSource, BaseEntity, PrimaryGeneratedColumn, Entity } from "typeorm"
+import { DataSource } from "typeorm"
 
 import { settings } from "@/settings"
 
@@ -11,12 +11,6 @@ export const dataSource = new DataSource({
   username: settings.DB_USER,
   password: settings.DB_PASSWORD,
 
-  entities: ["@/**/models.ts"],
+  entities: ["./**/models.ts"],
   synchronize: settings.EXPRESS_MODE === "dev"
 })
-
-@Entity()
-export class Model extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number
-}
