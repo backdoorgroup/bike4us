@@ -11,3 +11,9 @@ export const UnauthorizedException = {
   message: "Unauthorized",
   detail: "You need to be authorized to this resource."
 } satisfies Exception
+
+export const BadRequestException = {
+  status: HttpStatus.BadRequest,
+  message: "Bad Request",
+  detail: "Some of the data that you have sent is invalid."
+} satisfies Exception
