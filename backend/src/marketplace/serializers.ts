@@ -9,6 +9,5 @@ export const serializeListing = (listing: Listing) => ({
   description: listing.description,
   hourPricing: listing.hourPricing,
   status: listing.status,
-  pictures: listing.pictures,
-  rentals: listing.rentals
+  pictures: listing.pictures
 })

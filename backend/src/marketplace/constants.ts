@@ -1,6 +1,5 @@
 export const ListingStatusEnum = {
-  Available: "available",
-  Rented: "rented"
+  Available: "available"
 } as const
 
 export type TListingStatus = (typeof ListingStatusEnum)[keyof typeof ListingStatusEnum]
