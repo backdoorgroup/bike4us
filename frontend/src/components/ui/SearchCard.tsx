@@ -14,7 +14,7 @@ export function SearchCard() {
         Encontre seu anunciado
       </Typography>
 
-      <Stack gap={2} mb={4}>
+      <Stack mb={4}>
         <TextField
           fullWidth
           label="Buscar"
