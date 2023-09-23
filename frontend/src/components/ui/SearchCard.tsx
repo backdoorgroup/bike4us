@@ -2,8 +2,6 @@ import Icon from "@mui/material/Icon"
 import TextField from "@mui/material/TextField"
 import InputAdornment from "@mui/material/InputAdornment"
 
-import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker"
-
 import Card from "@mui/material/Card"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
@@ -29,8 +27,6 @@ export function SearchCard() {
             )
           }}
         />
-        <DateTimePicker disablePast label="Retirada" sx={{ width: "100%" }} />
-        <DateTimePicker disablePast label="Devolução" sx={{ width: "100%" }} />
       </Stack>
 
       <Button fullWidth disableElevation variant="contained">
