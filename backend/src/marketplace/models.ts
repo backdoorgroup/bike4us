@@ -1,15 +1,4 @@
-import type { UUID } from "crypto"
-import {
-  Entity,
-  BaseEntity,
-  PrimaryGeneratedColumn,
-  Column,
-  Check,
-  OneToMany,
-  ManyToOne,
-  CreateDateColumn,
-  UpdateDateColumn
-} from "typeorm"
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, Check, OneToMany, ManyToOne } from "typeorm"
 
 import type { TListingStatus } from "@/marketplace/constants"
 import { ListingStatusEnum } from "@/marketplace/constants"
@@ -20,12 +9,12 @@ export class Listing extends BaseEntity {
   id: number
 
   @Column({ type: "uuid" })
-  ownerUid: UUID
+  ownerUid: string
 
-  @CreateDateColumn({ type: "timestamptz" })
+  @Column({ type: "timestamptz", update: false })
   createdAt: Date
 
-  @UpdateDateColumn({ type: "timestamptz", nullable: true, default: null })
+  @Column({ type: "timestamptz", nullable: true, default: null })
   updatedAt: Date
 
   @Column({ type: "varchar", length: 128 })
@@ -43,9 +32,6 @@ export class Listing extends BaseEntity {
 
   @OneToMany(() => ListingPicture, (picture) => picture.listing)
   pictures: ListingPicture[]
-
-  @OneToMany(() => Rental, (rental) => rental.listing)
-  rentals: Rental[]
 
   // marca
   // cor
@@ -65,22 +51,4 @@ export class ListingPicture extends BaseEntity {
 
   @Column({ type: "varchar", length: 512 })
   picturePath: string
-}
-
-@Entity()
-export class Rental extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number
-
-  @ManyToOne(() => Listing, (listing) => listing.rentals, { nullable: false })
-  listing: Listing
-
-  @Column({ type: "uuid" })
-  tenantUid: UUID
-
-  @Column({ type: "timestamptz" })
-  checkIn: Date
-
-  @Column({ type: "timestamptz" })
-  checkOut: Date
 }
