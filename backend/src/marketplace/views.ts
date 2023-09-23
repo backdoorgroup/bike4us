@@ -1,21 +1,28 @@
 import { Router } from "express"
 
+import { paginate } from "@/utils"
 import { BadRequestException } from "@/exceptions"
 
 import { HttpStatus } from "@lib/http"
 
-import { CreateListingSchema } from "@/marketplace/schemas"
+import { CreateListingSchema, GetListingSchema } from "@/marketplace/schemas"
 import { serializeListing } from "@/marketplace/serializers"
 import { getListings, createListing } from "@/marketplace/services"
 
 export const router = Router()
 
 router.get("/listings", async (req, res) => {
-  // TODO: isso aqui precisa de paginação
-  const query = await getListings()
-  const listings = query.map((listing) => serializeListing(listing))
+  try {
+    const params = GetListingSchema.parse(req.query)
 
-  res.status(HttpStatus.Ok).json({ listings })
+    const query = await getListings()
+    const paginated = paginate(query, params.page, params.perPage)
+    const listings = paginated.map((listing) => serializeListing(listing))
+
+    res.status(HttpStatus.Ok).json({ listings, count: query.length })
+  } catch (error) {
+    res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
 })
 
 router.post("/listings", async (req, res) => {
