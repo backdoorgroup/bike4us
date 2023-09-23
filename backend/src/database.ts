@@ -1,3 +1,4 @@
+import path from "path"
 import { DataSource } from "typeorm"
 
 import { settings } from "@/settings"
@@ -12,8 +13,13 @@ export const dataSource = new DataSource({
   username: settings.DB_USER,
   password: settings.DB_PASSWORD,
 
-  entities: ["./**/models.ts"],
-  synchronize: settings.EXPRESS_MODE === "dev",
+  entities: [path.join(__dirname, "./**/models.ts")],
 
+  logger: "file",
+  logging: settings.EXPRESS_MODE === "dev",
+  synchronize: settings.EXPRESS_MODE === "dev",
+  dropSchema: settings.EXPRESS_MODE === "dev",
+
+  ssl: settings.EXPRESS_MODE === "prod",
   useUTC: true
 })
