@@ -43,7 +43,7 @@ Cada entrega foi realizada a partir da criação de uma branch neste repositóri
 <span id="backlogs">
 
 ## 🎯 Backlogs
-![banner]()  
+![banner](https://github.com/backdoorgroup/bike4us/blob/linguanotto-patch-1/imagens/backlog.png)  
 
 <span id="evolução">
 
