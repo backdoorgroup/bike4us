@@ -37,9 +37,9 @@ router.get("/listings/:id", async (req, res) => {
     res.status(HttpStatus.Ok).json(listing)
   } catch (error) {
     if (error instanceof ZodError) {
-      return res.status(HttpStatus.BadRequest).json(BadRequestException)
+      res.status(HttpStatus.BadRequest).json(BadRequestException)
     } else if (error instanceof EntityNotFoundError) {
-      return res.status(HttpStatus.NotFound).json(NotFoundException)
+      res.status(HttpStatus.NotFound).json(NotFoundException)
     }
   }
 })
