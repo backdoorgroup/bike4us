@@ -1,16 +1,15 @@
 import Box from "@mui/material/Box"
 import { Outlet } from "react-router-dom"
 
-import { AppNavBar, AppNavBottom } from "@/components"
+import { AppNavBar } from "@/components"
 
-export function HomeLayout() {
+export function BasicLayout() {
   return (
     <>
       <AppNavBar />
       <Box component="main">
         <Outlet />
       </Box>
-      <AppNavBottom />
     </>
   )
 }

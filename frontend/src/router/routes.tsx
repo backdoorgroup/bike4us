@@ -2,7 +2,7 @@ import type { RouteObject } from "react-router-dom"
 import { Navigate } from "react-router-dom"
 
 import { AuthLogin, AuthRegister } from "@/components"
-import { LandingLayout } from "@/layouts"
+import { HomeLayout, BasicLayout } from "@/layouts"
 import { AnnouncePage, AuthPage, ErrorPage, HomePage } from "@/pages"
 
 import { useUserStore } from "@/stores"
@@ -12,12 +12,27 @@ const { user } = useUserStore.getState()
 export const routes: RouteObject[] = [
   {
     path: "/",
-    element: <LandingLayout />,
+    element: <HomeLayout />,
     children: [
       {
         index: true,
         element: <HomePage />
       },
+
+      {
+        path: "anunciar",
+        element: user?.uid ? <AnnouncePage /> : <Navigate to="/auth" replace />
+      },
+      {
+        path: "*",
+        element: <ErrorPage />
+      }
+    ]
+  },
+  {
+    path: "/",
+    element: <BasicLayout />,
+    children: [
       {
         path: "auth",
         element: !user?.uid ? <AuthPage /> : <Navigate to="/" replace />,
@@ -25,7 +40,7 @@ export const routes: RouteObject[] = [
           {
             path: "*",
             index: true,
-            element: <Navigate to="/auth/entrar" replace />
+            element: <Navigate to="entrar" replace />
           },
           {
             path: "entrar",
@@ -36,14 +51,6 @@ export const routes: RouteObject[] = [
             element: <AuthRegister />
           }
         ]
-      },
-      {
-        path: "anunciar",
-        element: user?.uid ? <AnnouncePage /> : <Navigate to="/auth" replace />
-      },
-      {
-        path: "*",
-        element: <ErrorPage />
       }
     ]
   }
