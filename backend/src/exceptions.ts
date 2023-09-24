@@ -22,4 +22,4 @@ export const NotFoundException = {
   status: HttpStatus.NotFound,
   message: "Not Found",
   detail: "The resource that you are looking for does not exist."
-}
+} satisfies Exception
