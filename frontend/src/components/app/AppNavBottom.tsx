@@ -15,9 +15,9 @@ const NavigationPaths = Object.values(NavigationEnum)
 type TNavigation = (typeof NavigationEnum)[keyof typeof NavigationEnum]
 
 export function AppNavBottom() {
-  const location = useLocation()
+  const { pathname } = useLocation()
 
-  const [path, setPath] = useState(location.pathname)
+  const [path, setPath] = useState(pathname)
 
   const handleChange = (_: SyntheticEvent, path: TNavigation) => {
     if (!NavigationPaths.includes(path)) return
