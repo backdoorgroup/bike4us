@@ -19,10 +19,10 @@ export function AppNavBottom() {
 
   const [page, setPage] = useState(location.pathname)
 
-  const handleChange = (_: SyntheticEvent, value: TNavigation) => {
-    if (!NavigationPaths.includes(value)) return
+  const handleChange = (_: SyntheticEvent, path: TNavigation) => {
+    if (!NavigationPaths.includes(path)) return
 
-    setPage(value)
+    setPage(path)
   }
 
   return (
