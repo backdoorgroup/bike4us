@@ -1,4 +1,6 @@
 import { Router } from "express"
+import { ZodError } from "zod"
+import { EntityNotFoundError } from "typeorm"
 
 import { paginate } from "@/utils"
 import { BadRequestException, NotFoundException } from "@/exceptions"
@@ -34,8 +36,11 @@ router.get("/listings/:id", async (req, res) => {
 
     res.status(HttpStatus.Ok).json(listing)
   } catch (error) {
-    if (error?.name === "EntityNotFoundError") return res.status(HttpStatus.NotFound).json(NotFoundException)
-    else return res.status(HttpStatus.BadRequest).json(BadRequestException)
+    if (error instanceof ZodError) {
+      return res.status(HttpStatus.BadRequest).json(BadRequestException)
+    } else if (error instanceof EntityNotFoundError) {
+      return res.status(HttpStatus.NotFound).json(NotFoundException)
+    }
   }
 })
 
