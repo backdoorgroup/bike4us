@@ -3,6 +3,8 @@ import { Listing } from "@/marketplace/models"
 
 export const getListings = async () => await Listing.find()
 
+export const getListing = async (id: number) => await Listing.findOneByOrFail({ id })
+
 export const createListing = async ({ ownerUid, title, description, hourPricing }: TCreateListingSchema) => {
   const listing = new Listing()
 

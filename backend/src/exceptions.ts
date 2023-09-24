@@ -17,3 +17,9 @@ export const BadRequestException = {
   message: "Bad Request",
   detail: "Some of the data that you have sent is invalid."
 } satisfies Exception
+
+export const NotFoundException = {
+  status: HttpStatus.NotFound,
+  message: "Not Found",
+  detail: "The resource that you are looking for does not exist."
+}
