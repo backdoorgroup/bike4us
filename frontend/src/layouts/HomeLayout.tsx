@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box"
 import { Outlet } from "react-router-dom"
 
-import { AppNavBar } from "@/components"
+import { AppNavBar, AppNavBottom } from "@/components"
 
 export function LandingLayout() {
   return (
@@ -10,6 +10,7 @@ export function LandingLayout() {
       <Box component="main">
         <Outlet />
       </Box>
+      <AppNavBottom />
     </>
   )
 }
