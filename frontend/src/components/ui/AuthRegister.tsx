@@ -15,7 +15,7 @@ import Button from "@mui/material/Button"
 import { AuthService } from "@/services"
 import { EmailValidation, PasswordValidation } from "@/constants"
 
-interface Form {
+export interface RegisterForm {
   email: string
   password: string
 }
@@ -23,7 +23,7 @@ interface Form {
 export function AuthRegister() {
   const navigate = useNavigate()
 
-  const form = useForm<Form>()
+  const form = useForm<RegisterForm>()
 
   const [showPassword, setShowPassword] = useState(false)
 
@@ -31,7 +31,7 @@ export function AuthRegister() {
     setShowPassword((showPassword) => !showPassword)
   }
 
-  const handleSubmit = async ({ email, password }: Form) => {
+  const handleSubmit = async ({ email, password }: RegisterForm) => {
     await AuthService.createUserWithEmailAndPassword(email, password)
 
     navigate("/")
