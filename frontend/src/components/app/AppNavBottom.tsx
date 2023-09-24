@@ -17,12 +17,12 @@ type TNavigation = (typeof NavigationEnum)[keyof typeof NavigationEnum]
 export function AppNavBottom() {
   const location = useLocation()
 
-  const [page, setPage] = useState(location.pathname)
+  const [path, setPath] = useState(location.pathname)
 
   const handleChange = (_: SyntheticEvent, path: TNavigation) => {
     if (!NavigationPaths.includes(path)) return
 
-    setPage(path)
+    setPath(path)
   }
 
   return (
@@ -30,7 +30,7 @@ export function AppNavBottom() {
       sx={{ borderTop: 1, borderColor: "lightgray", position: "fixed", bottom: 0, left: 0, right: 0 }}
       component="footer"
       showLabels
-      value={page}
+      value={path}
       onChange={handleChange}>
       <BottomNavigationAction
         label="Encontrar"
