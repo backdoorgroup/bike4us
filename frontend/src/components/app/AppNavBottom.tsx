@@ -1,6 +1,6 @@
 import type { SyntheticEvent } from "react"
 import { useState } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import BottomNavigation from "@mui/material/BottomNavigation"
 import BottomNavigationAction from "@mui/material/BottomNavigationAction"
@@ -14,9 +14,7 @@ const NavigationEnum = {
 type TNavigation = (typeof NavigationEnum)[keyof typeof NavigationEnum]
 
 export function AppNavBottom() {
-  const location = useLocation()
-
-  const [page, setPage] = useState<TNavigation>(location.pathname as TNavigation)
+  const [page, setPage] = useState<TNavigation>(NavigationEnum.Find)
 
   const handleChange = (_: SyntheticEvent, value: TNavigation) => {
     if (!Object.values(NavigationEnum).includes(value)) return
