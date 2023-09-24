@@ -1,15 +1,15 @@
 import { Router } from "express"
-import { ZodError } from "zod"
 import { EntityNotFoundError } from "typeorm"
+import { ZodError } from "zod"
 
-import { paginate } from "@/utils"
 import { BadRequestException, NotFoundException } from "@/exceptions"
+import { paginate } from "@/utils"
 
 import { HttpStatus } from "@lib/http"
 
-import { CreateListingSchema, GetListingsSchema, GetListingSchema } from "@/marketplace/schemas"
+import { CreateListingSchema, GetListingSchema, GetListingsSchema } from "@/marketplace/schemas"
 import { serializeListing } from "@/marketplace/serializers"
-import { getListings, getListing, createListing } from "@/marketplace/services"
+import { createListing, getListing, getListings } from "@/marketplace/services"
 
 export const router = Router()
 
