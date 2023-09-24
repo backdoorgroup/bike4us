@@ -22,27 +22,25 @@ export const routes: RouteObject[] = [
         path: "*",
         element: <ErrorPage />
       },
-      !user?.uid
-        ? {
-            path: "auth",
-            element: <AuthPage />,
-            children: [
-              {
-                path: "*",
-                index: true,
-                element: <Navigate to="/auth/entrar" replace />
-              },
-              {
-                path: "entrar",
-                element: <AuthLogin />
-              },
-              {
-                path: "cadastrar",
-                element: <AuthRegister />
-              }
-            ]
+      {
+        path: "auth",
+        element: !user?.uid ? <AuthPage /> : <Navigate to="/" replace />,
+        children: [
+          {
+            path: "*",
+            index: true,
+            element: <Navigate to="/auth/entrar" replace />
+          },
+          {
+            path: "entrar",
+            element: <AuthLogin />
+          },
+          {
+            path: "cadastrar",
+            element: <AuthRegister />
           }
-        : {}
+        ]
+      }
     ]
   }
 ]
