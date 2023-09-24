@@ -1,5 +1,5 @@
 import path from "path"
-import { DataSource } from "typeorm"
+import { BaseEntity, DataSource, PrimaryGeneratedColumn } from "typeorm"
 
 import { settings } from "@/settings"
 
@@ -23,3 +23,8 @@ export const dataSource = new DataSource({
   ssl: settings.EXPRESS_MODE === "prod",
   useUTC: true
 })
+
+export class Model extends BaseEntity {
+  @PrimaryGeneratedColumn()
+  id: number
+}

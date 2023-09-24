@@ -1,13 +1,12 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, Check, OneToMany, ManyToOne } from "typeorm"
+import { Entity, Column, Check, OneToMany, ManyToOne } from "typeorm"
+
+import { Model } from "@/database"
 
 import type { TListingStatus } from "@/marketplace/constants"
 import { ListingStatusEnum } from "@/marketplace/constants"
 
 @Entity()
-export class Listing extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number
-
+export class Listing extends Model {
   @Column({ type: "uuid" })
   ownerUid: string
 
@@ -42,10 +41,7 @@ export class Listing extends BaseEntity {
 }
 
 @Entity()
-export class ListingPicture extends BaseEntity {
-  @PrimaryGeneratedColumn()
-  id: number
-
+export class ListingPicture extends Model {
   @ManyToOne(() => Listing, (listing) => listing.pictures, { nullable: false })
   listing: Listing
 
