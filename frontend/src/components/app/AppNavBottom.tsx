@@ -6,6 +6,10 @@ import BottomNavigation from "@mui/material/BottomNavigation"
 import BottomNavigationAction from "@mui/material/BottomNavigationAction"
 import Icon from "@mui/material/Icon"
 
+interface Props {
+  basic?: boolean
+}
+
 const NavigationEnum = {
   Find: "/",
   Announce: "/anunciar",
@@ -14,7 +18,7 @@ const NavigationEnum = {
 const NavigationPaths = Object.values(NavigationEnum)
 type TNavigation = (typeof NavigationEnum)[keyof typeof NavigationEnum]
 
-export function AppNavBottom() {
+export function AppNavBottom({ basic }: Props) {
   const { pathname } = useLocation()
 
   const [path, setPath] = useState(pathname)
@@ -27,7 +31,15 @@ export function AppNavBottom() {
 
   return (
     <BottomNavigation
-      sx={{ borderTop: 1, borderColor: "lightgray", position: "fixed", bottom: 0, left: 0, right: 0 }}
+      sx={{
+        borderTop: 1,
+        borderColor: "lightgray",
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        display: basic ? "none" : null
+      }}
       component="footer"
       showLabels
       value={path}

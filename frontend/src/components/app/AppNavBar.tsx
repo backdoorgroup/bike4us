@@ -10,7 +10,11 @@ import { AuthDialog } from "@/components"
 import { AuthService } from "@/services"
 import { useUserStore } from "@/stores"
 
-export function AppNavBar() {
+interface Props {
+  basic?: boolean
+}
+
+export function AppNavBar({ basic }: Props) {
   const { user } = useUserStore()
 
   const [open, setOpen] = useState(false)
@@ -39,16 +43,20 @@ export function AppNavBar() {
           <Icon fontSize="inherit">directions_bike</Icon>
         </Link>
 
-        <Icon sx={{ fontSize: 24, height: 24, width: 24 }} onClick={handleOpenDialog}>
-          account_circle
-        </Icon>
-        <AuthDialog
-          user={user}
-          open={open}
-          handleSignIn={handleSignIn}
-          handleSignOut={handleSignOut}
-          handleClose={handleCloseDialog}
-        />
+        {!basic && (
+          <>
+            <Icon sx={{ fontSize: 24, height: 24, width: 24 }} onClick={handleOpenDialog}>
+              account_circle
+            </Icon>
+            <AuthDialog
+              user={user}
+              open={open}
+              handleSignIn={handleSignIn}
+              handleSignOut={handleSignOut}
+              handleClose={handleCloseDialog}
+            />
+          </>
+        )}
       </Toolbar>
     </AppBar>
   )

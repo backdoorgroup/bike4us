@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom"
 import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "@/router/loaders"
 
 import { AuthLogin, AuthRegister } from "@/components"
-import { BasicLayout, HomeLayout } from "@/layouts"
+import { HomeLayout } from "@/layouts"
 import { AnnouncePage, AuthPage, ErrorPage, HomePage, ProfilePage } from "@/pages"
 
 export const routes: RouteObject[] = [
@@ -28,16 +28,6 @@ export const routes: RouteObject[] = [
         loader: redirectUnauthorizedLoader
       },
       {
-        path: "*",
-        element: <ErrorPage />
-      }
-    ]
-  },
-  {
-    path: "/",
-    element: <BasicLayout />,
-    children: [
-      {
         path: "auth",
         element: <AuthPage />,
         loader: redirectAuthorizedLoader,
@@ -56,6 +46,10 @@ export const routes: RouteObject[] = [
             element: <AuthRegister />
           }
         ]
+      },
+      {
+        path: "*",
+        element: <ErrorPage />
       }
     ]
   }
