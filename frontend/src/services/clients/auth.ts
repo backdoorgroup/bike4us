@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app"
-import { getAuth, browserLocalPersistence, GoogleAuthProvider } from "firebase/auth"
+import { GoogleAuthProvider, browserLocalPersistence, getAuth } from "firebase/auth"
 
-import { settings } from "@config"
 import { useUserStore } from "@/stores"
+import { settings } from "@config"
 
 const { setUser } = useUserStore.getState()
 

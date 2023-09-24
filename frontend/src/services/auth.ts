@@ -1,4 +1,4 @@
-import { signInWithEmailAndPassword, signInWithPopup, signOut, createUserWithEmailAndPassword } from "firebase/auth"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
 
 import { authClient, googleProvider } from "@/services/clients"
 
