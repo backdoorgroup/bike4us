@@ -1,7 +1,6 @@
+import type { User } from "firebase/auth"
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-
-import type { User } from "firebase/auth"
 
 interface State {
   user: User | null

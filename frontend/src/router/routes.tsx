@@ -1,13 +1,11 @@
 import type { RouteObject } from "react-router-dom"
 import { Navigate } from "react-router-dom"
 
+import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "@/router/loaders"
+
 import { AuthLogin, AuthRegister } from "@/components"
-import { HomeLayout, BasicLayout } from "@/layouts"
-import { AnnouncePage, AuthPage, ErrorPage, HomePage } from "@/pages"
-
-import { useUserStore } from "@/stores"
-
-const { user } = useUserStore.getState()
+import { BasicLayout, HomeLayout } from "@/layouts"
+import { AnnouncePage, AuthPage, ErrorPage, HomePage, ProfilePage } from "@/pages"
 
 export const routes: RouteObject[] = [
   {
@@ -21,7 +19,13 @@ export const routes: RouteObject[] = [
 
       {
         path: "anunciar",
-        element: user?.uid ? <AnnouncePage /> : <Navigate to="/auth" replace />
+        element: <AnnouncePage />,
+        loader: redirectUnauthorizedLoader
+      },
+      {
+        path: "perfil",
+        element: <ProfilePage />,
+        loader: redirectUnauthorizedLoader
       },
       {
         path: "*",
@@ -35,7 +39,8 @@ export const routes: RouteObject[] = [
     children: [
       {
         path: "auth",
-        element: !user?.uid ? <AuthPage /> : <Navigate to="/" replace />,
+        element: <AuthPage />,
+        loader: redirectAuthorizedLoader,
         children: [
           {
             path: "*",
