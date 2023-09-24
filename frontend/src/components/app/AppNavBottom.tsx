@@ -9,7 +9,7 @@ import Icon from "@mui/material/Icon"
 const NavigationEnum = {
   Find: "/",
   Announce: "/anunciar",
-  MyAnnounces: "/perfil"
+  Profile: "/perfil"
 } as const
 type TNavigation = (typeof NavigationEnum)[keyof typeof NavigationEnum]
 
@@ -46,8 +46,8 @@ export function AppNavBottom() {
       <BottomNavigationAction
         label="Anúncios"
         component={Link}
-        to={NavigationEnum.MyAnnounces}
-        value={NavigationEnum.MyAnnounces}
+        to={NavigationEnum.Profile}
+        value={NavigationEnum.Profile}
         icon={<Icon>grid_view</Icon>}
       />
     </BottomNavigation>
