@@ -46,6 +46,7 @@ router.get("/listings/:id", async (req, res) => {
 
 router.post("/listings", async (req, res) => {
   try {
+    req.body["ownerUid"] = req.user.uid
     const body = CreateListingSchema.parse(req.body)
 
     const listing = await createListing(body)

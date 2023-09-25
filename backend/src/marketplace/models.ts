@@ -7,7 +7,7 @@ import { ListingStatusEnum } from "@/marketplace/constants"
 
 @Entity()
 export class Listing extends Model {
-  @Column({ type: "uuid" })
+  @Column({ type: "varchar", length: 128 })
   ownerUid: string
 
   @Column({ type: "timestamptz", update: false })

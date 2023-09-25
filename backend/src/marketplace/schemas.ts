@@ -3,7 +3,7 @@ import { z } from "zod"
 import { PaginationSchema } from "@/schemas"
 
 export const CreateListingSchema = z.object({
-  ownerUid: z.string().uuid(),
+  ownerUid: z.string().min(1).max(128),
   description: z.string().min(1).max(2048),
   title: z.string().min(1).max(128),
   hourPricing: z.number().int().positive()
