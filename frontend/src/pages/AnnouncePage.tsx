@@ -7,13 +7,7 @@ import FormControl from "@mui/material/FormControl"
 import Stack from "@mui/material/Stack"
 import Button from "@mui/material/Button"
 
-import { TitleValidation, DescriptionValidation, HourPricingValidation } from "@/constants"
-
-export interface ListingForm {
-  hourPricing: number
-  description: string
-  title: string
-}
+import { TitleValidation, DescriptionValidation, HourPricingValidation, ListingForm } from "@/schemas"
 
 export function AnnouncePage() {
   const form = useForm<ListingForm>()

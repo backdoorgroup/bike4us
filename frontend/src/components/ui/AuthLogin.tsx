@@ -15,13 +15,8 @@ import Typography from "@mui/material/Typography"
 
 import GoogleIcon from "@mui/icons-material/Google"
 
-import { EmailValidation, PasswordValidation } from "@/constants"
+import { EmailValidation, PasswordValidation, LoginForm } from "@/schemas"
 import { AuthService } from "@/services"
-
-export interface LoginForm {
-  email: string
-  password: string
-}
 
 export function AuthLogin() {
   const navigate = useNavigate()

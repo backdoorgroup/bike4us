@@ -7,6 +7,16 @@ const MinimumLengthPattern = /^.{8,}$/ // Precisa ter no mínimo 8 caracteres
 const MaximumLengthPattern = /^.{0,64}$/ // Pode ter no máximo 64 caracteres
 const EntirelyNumericPattern = /^\d+$/ // Não pode ser totalmente numérico
 
+export interface LoginForm {
+  email: string
+  password: string
+}
+
+export interface RegisterForm {
+  email: string
+  password: string
+}
+
 export const NameValidation: RegisterOptions = {
   required: RequiredFieldText
 }

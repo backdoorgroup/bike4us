@@ -13,12 +13,7 @@ import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 
 import { AuthService } from "@/services"
-import { EmailValidation, PasswordValidation } from "@/constants"
-
-export interface RegisterForm {
-  email: string
-  password: string
-}
+import { EmailValidation, PasswordValidation, RegisterForm } from "@/schemas"
 
 export function AuthRegister() {
   const navigate = useNavigate()
