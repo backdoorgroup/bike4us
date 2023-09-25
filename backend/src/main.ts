@@ -7,7 +7,7 @@ import express from "express"
 import helmet from "helmet"
 import pino from "pino-http"
 
-import { identity } from "@/auth/middlewares"
+import { identity, authenticated } from "@/auth/middlewares"
 import { dataSource } from "@/database"
 import { logger } from "@/logger"
 import { router } from "@/router"
@@ -30,6 +30,7 @@ export const bootstrap = () => {
   app.use(helmet())
 
   app.use(identity)
+  app.use(authenticated)
 
   // Routing
   app.use("/api/v1/", router)

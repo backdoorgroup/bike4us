@@ -18,6 +18,7 @@ export const dataSource = new DataSource({
   logger: "file",
   logging: settings.EXPRESS_DEV,
   synchronize: settings.EXPRESS_DEV,
+  dropSchema: settings.DB_DROP_SCHEMA,
 
   ssl: settings.EXPRESS_PROD,
   useUTC: true
