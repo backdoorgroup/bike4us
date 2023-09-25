@@ -51,7 +51,7 @@ Cada entrega foi realizada a partir da criação de uma branch neste repositóri
 <span id="evolução">
 
 ## 📅 Evolução do projeto:
-![banner]() 
+Em breve Atualizações
 → [Voltar ao topo](#topo)
     
 <span id="tecnologias">
