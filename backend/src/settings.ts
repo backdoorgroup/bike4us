@@ -2,22 +2,52 @@ const env = process.env
 
 export const settings = {
   // Express
-  EXPRESS_PORT: parseInt(env.EXPRESS_PORT!) || 8000,
-  EXPRESS_HOST: env.EXPRESS_HOST || "0.0.0.0",
-  EXPRESS_MODE: env.EXPRESS_MODE || "dev",
+  get EXPRESS_PORT() {
+    return parseInt(env.EXPRESS_PORT!) || 8000
+  },
+  get EXPRESS_HOST() {
+    return env.EXPRESS_HOST || "0.0.0.0"
+  },
+  get EXPRESS_MODE() {
+    return env.EXPRESS_MODE || "dev"
+  },
+  get EXPRESS_DEV() {
+    return settings.EXPRESS_MODE === "dev"
+  },
+  get EXPRESS_PROD() {
+    return settings.EXPRESS_MODE === "prod"
+  },
 
   // Database Connection
-  DB_NAME: env.DB_NAME || "postgres",
-  DB_USER: env.DB_USER || "postgres",
-  DB_PASSWORD: env.DB_PASSWORD || "postgres",
-  DB_HOST: env.DB_HOST || "localhost",
-  DB_PORT: parseInt(env.DB_PORT!) || 5432,
+  get DB_NAME() {
+    return env.DB_NAME || "postgres"
+  },
+  get DB_USER() {
+    return env.DB_USER || "postgres"
+  },
+  get DB_PASSWORD() {
+    return env.DB_PASSWORD || "postgres"
+  },
+  get DB_HOST() {
+    return env.DB_HOST || "localhost"
+  },
+  get DB_PORT() {
+    return parseInt(env.DB_PORT!) || 5432
+  },
 
   // Database Configuration
-  DB_DROP_SCHEMA: env.DB_DROP_SCHEMA === "true" || false,
+  get DB_DROP_SCHEMA() {
+    return env.DB_DROP_SCHEMA === "true" || false
+  },
 
   // Firebase
-  FB_PROJECT_ID: env.FB_PROJECT_ID,
-  FB_CLIENT_EMAIL: env.FB_CLIENT_EMAIL,
-  FB_PRIVATE_KEY: env.FB_PRIVATE_KEY
+  get FB_PROJECT_ID() {
+    return env.FB_PROJECT_ID
+  },
+  get FB_CLIENT_EMAIL() {
+    return env.FB_CLIENT_EMAIL
+  },
+  get FB_PRIVATE_KEY() {
+    return env.FB_PRIVATE_KEY
+  }
 } as const

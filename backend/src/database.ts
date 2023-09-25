@@ -16,10 +16,10 @@ export const dataSource = new DataSource({
   entities: [path.join(__dirname, "**/models.{ts,js}")],
 
   logger: "file",
-  logging: settings.EXPRESS_MODE === "dev",
-  synchronize: settings.EXPRESS_MODE === "dev",
+  logging: settings.EXPRESS_DEV,
+  synchronize: settings.EXPRESS_DEV,
 
-  ssl: settings.EXPRESS_MODE === "prod",
+  ssl: settings.EXPRESS_PROD,
   useUTC: true
 })
 
