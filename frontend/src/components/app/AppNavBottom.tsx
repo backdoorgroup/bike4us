@@ -12,8 +12,7 @@ interface Props {
 
 const NavigationEnum = {
   Find: "/",
-  Announce: "/anunciar",
-  Profile: "/perfil"
+  Announce: "/anunciar"
 } as const
 const NavigationPaths = Object.values(NavigationEnum)
 type TNavigation = (typeof NavigationEnum)[keyof typeof NavigationEnum]
@@ -58,13 +57,14 @@ export function AppNavBottom({ basic }: Props) {
         value={NavigationEnum.Announce}
         icon={<Icon>add_circle_outline</Icon>}
       />
-      <BottomNavigationAction
+      {/* TODO: ter uma página de perfil, pra ver o perfil do usuário e os anúncios dele */}
+      {/* <BottomNavigationAction
         label="Anúncios"
         component={Link}
         to={NavigationEnum.Profile}
         value={NavigationEnum.Profile}
         icon={<Icon>grid_view</Icon>}
-      />
+      /> */}
     </BottomNavigation>
   )
 }

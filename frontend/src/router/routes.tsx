@@ -5,7 +5,7 @@ import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "@/router/l
 
 import { AuthLogin, AuthRegister } from "@/components"
 import { HomeLayout } from "@/layouts"
-import { AnnouncePage, AuthPage, ErrorPage, HomePage, ProfilePage } from "@/pages"
+import { AnnouncePage, AuthPage, ErrorPage, HomePage } from "@/pages"
 
 export const routes: RouteObject[] = [
   {
@@ -22,11 +22,7 @@ export const routes: RouteObject[] = [
         element: <AnnouncePage />,
         loader: redirectUnauthorizedLoader
       },
-      {
-        path: "perfil",
-        element: <ProfilePage />,
-        loader: redirectUnauthorizedLoader
-      },
+
       {
         path: "auth",
         element: <AuthPage />,
