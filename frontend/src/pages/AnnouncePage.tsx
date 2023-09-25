@@ -52,6 +52,7 @@ export function AnnouncePage() {
             helperText={form.formState.errors.description?.message}
             {...form.register("description", DescriptionValidation)}
           />
+          {/* TODO: restringir isso daqui a número inteiros sem sinal e positivos */}
           <TextField
             label="Preço por hora"
             placeholder="Digite o preço por hora de seu anúncio"
