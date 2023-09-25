@@ -7,7 +7,7 @@ import express from "express"
 import helmet from "helmet"
 import pino from "pino-http"
 
-import { identity, authenticated } from "@/auth/middlewares"
+import { identity, authenticated } from "@/profile/middlewares"
 import { dataSource } from "@/database"
 import { logger } from "@/logger"
 import { router } from "@/router"

@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express"
 import type { UserRecord } from "firebase-admin/auth"
 
-import { auth } from "@/auth/services"
+import { auth } from "@/profile/services"
 import { UnauthorizedException } from "@/exceptions"
 import { HttpStatus } from "@lib/http"
 
