@@ -1,5 +1,4 @@
-import type { SyntheticEvent } from "react"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
 
 import BottomNavigation from "@mui/material/BottomNavigation"
@@ -14,19 +13,14 @@ const NavigationEnum = {
   Find: "/",
   Announce: "/anunciar"
 } as const
-const NavigationPaths = Object.values(NavigationEnum)
-type TNavigation = (typeof NavigationEnum)[keyof typeof NavigationEnum]
 
 export function AppNavBottom({ basic }: Props) {
   const { pathname } = useLocation()
-
   const [path, setPath] = useState(pathname)
 
-  const handleChange = (_: SyntheticEvent, path: TNavigation) => {
-    if (!NavigationPaths.includes(path)) return
-
-    setPath(path)
-  }
+  useEffect(() => {
+    return setPath(pathname)
+  }, [pathname])
 
   return (
     <BottomNavigation
@@ -41,8 +35,7 @@ export function AppNavBottom({ basic }: Props) {
       }}
       component="footer"
       showLabels
-      value={path}
-      onChange={handleChange}>
+      value={path}>
       <BottomNavigationAction
         label="Encontrar"
         component={Link}

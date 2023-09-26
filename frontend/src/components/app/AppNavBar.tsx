@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Link as RouterLink } from "react-router-dom"
+import { Link as RouterLink, useNavigate } from "react-router-dom"
 
 import AppBar from "@mui/material/AppBar"
 import Icon from "@mui/material/Icon"
@@ -16,6 +16,7 @@ interface Props {
 
 export function AppNavBar({ basic }: Props) {
   const { user } = useUserStore()
+  const navigate = useNavigate()
 
   const [open, setOpen] = useState(false)
 
@@ -28,6 +29,7 @@ export function AppNavBar({ basic }: Props) {
   const handleSignOut = async () => {
     await AuthService.signOut()
 
+    navigate("/")
     handleCloseDialog()
   }
 
