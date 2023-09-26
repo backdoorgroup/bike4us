@@ -2,8 +2,8 @@ import { Entity, Column, Check, OneToMany, ManyToOne } from "typeorm"
 
 import { Model } from "@/database"
 
-import type { TListingStatus } from "@/marketplace/constants"
-import { ListingStatusEnum } from "@/marketplace/constants"
+import type { TListingStatus } from "@/listings/constants"
+import { ListingStatusEnum } from "@/listings/constants"
 
 @Entity()
 export class Listing extends Model {

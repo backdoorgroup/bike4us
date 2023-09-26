@@ -1,4 +1,4 @@
-import { Listing } from "@/marketplace/models"
+import { Listing } from "@/listings/models"
 
 export const serializeListing = (listing: Listing) => ({
   id: listing.id,

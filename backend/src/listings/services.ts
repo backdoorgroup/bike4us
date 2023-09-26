@@ -1,5 +1,5 @@
-import type { TCreateListingSchema } from "@/marketplace/schemas"
-import { Listing } from "@/marketplace/models"
+import type { TCreateListingSchema } from "@/listings/schemas"
+import { Listing } from "@/listings/models"
 
 export const getListings = async () => await Listing.find()
 

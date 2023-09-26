@@ -8,7 +8,7 @@ import Stack from "@mui/material/Stack"
 import Button from "@mui/material/Button"
 
 import { TitleValidation, DescriptionValidation, HourPricingValidation, ListingForm } from "@/schemas"
-import { MarketplaceService } from "@/services"
+import { ListingsServices } from "@/services"
 
 export function AnnouncePage() {
   const form = useForm<ListingForm>()
@@ -19,7 +19,7 @@ export function AnnouncePage() {
      *  2. Vai pra página do anúncio criado
      */
 
-    await MarketplaceService.createListing(listing)
+    await ListingsServices.createListing(listing)
   }
 
   return (

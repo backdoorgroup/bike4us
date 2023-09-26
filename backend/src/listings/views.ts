@@ -7,13 +7,13 @@ import { paginate } from "@/utils"
 
 import { HttpStatus } from "@lib/http"
 
-import { CreateListingSchema, GetListingSchema, GetListingsSchema } from "@/marketplace/schemas"
-import { serializeListing } from "@/marketplace/serializers"
-import { createListing, getListing, getListings } from "@/marketplace/services"
+import { CreateListingSchema, GetListingSchema, GetListingsSchema } from "@/listings/schemas"
+import { serializeListing } from "@/listings/serializers"
+import { createListing, getListing, getListings } from "@/listings/services"
 
 export const router = Router()
 
-router.get("/listings", async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const params = GetListingsSchema.parse(req.query)
 
@@ -27,7 +27,7 @@ router.get("/listings", async (req, res) => {
   }
 })
 
-router.get("/listings/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const params = GetListingSchema.parse(req.params)
 
@@ -44,7 +44,7 @@ router.get("/listings/:id", async (req, res) => {
   }
 })
 
-router.post("/listings", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     req.body["ownerUid"] = req.user.uid
     const body = CreateListingSchema.parse(req.body)

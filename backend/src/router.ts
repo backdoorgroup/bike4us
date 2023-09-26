@@ -1,7 +1,7 @@
 import { Router } from "express"
 
-import { router as marketplaceRouter } from "@/marketplace/views"
+import { router as listingsRouter } from "@/listings/views"
 
 export const router = Router()
 
-router.use("/marketplace", marketplaceRouter)
+router.use("/listings", listingsRouter)
