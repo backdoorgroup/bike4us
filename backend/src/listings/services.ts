@@ -1,7 +1,7 @@
 import type { TCreateListingSchema } from "@/listings/schemas"
 import { Listing } from "@/listings/models"
 
-export const getListings = async () => await Listing.find()
+export const getListings = async () => await Listing.createQueryBuilder().orderBy("Listing.createdAt", "DESC").getMany()
 
 export const getListing = async (id: number) => await Listing.findOneByOrFail({ id })
 
