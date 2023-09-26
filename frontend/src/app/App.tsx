@@ -9,7 +9,7 @@ import { ptBR as muiLocale } from "@mui/material/locale"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"
 import { ptBR as muixLocale } from "@mui/x-date-pickers/locales"
-import { default as dateFnsLocale } from "date-fns/locale/pt-BR"
+import dateFnsLocale from "date-fns/locale/pt-BR"
 
 import { StrictMode } from "react"
 import { RouterProvider as Router } from "react-router-dom"

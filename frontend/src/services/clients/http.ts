@@ -9,6 +9,9 @@ export const httpClient = axios.create({
 httpClient.interceptors.request.use(
   async function (config) {
     const { user } = useUserStore.getState()
+
+    if (!user?.getIdToken) return config
+
     const token = await user?.getIdToken()
 
     if (token) config.headers.Authorization = `Bearer ${token}`
