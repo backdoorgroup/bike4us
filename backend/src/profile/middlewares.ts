@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express"
 import type { UserRecord } from "firebase-admin/auth"
 
-import { auth } from "@/profile/services"
+import { verifyIdToken, getUser } from "@/profile/services"
 import { UnauthorizedException } from "@/exceptions"
 import { HttpStatus } from "@lib/http"
 
@@ -10,8 +10,8 @@ export const identity = async function (req: Request, res: Response, next: NextF
     const header = req.header("authorization") as string
     const token = header.replace("Bearer", "").trim()
 
-    const decodedToken = await auth.verifyIdToken(token)
-    const user = await auth.getUser(decodedToken.uid)
+    const decodedToken = await verifyIdToken(token)
+    const user = await getUser(decodedToken.uid)
 
     req.user = user
   } catch (error) {

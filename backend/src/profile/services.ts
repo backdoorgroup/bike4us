@@ -10,4 +10,8 @@ const client = admin.initializeApp({
   })
 })
 
-export const auth = client.auth()
+const auth = client.auth()
+
+export const verifyIdToken = async (token: string) => await auth.verifyIdToken(token)
+
+export const getUser = async (uid: string) => await auth.getUser(uid)
