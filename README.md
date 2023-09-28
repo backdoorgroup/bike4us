@@ -1,6 +1,6 @@
 # Bike 4 Us
 
-> Plataforma WEB para locação de bicicletas peer-to-peer.
+> Plataforma web para locação de bicicletas peer-to-peer.
 
 ## Membros
 
