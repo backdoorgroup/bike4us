@@ -12,6 +12,7 @@ import { serializeListing } from "@/listings/serializers"
 import { createListing, getListing, getListings } from "@/listings/services"
 
 export const router = Router()
+export const authenticatedRouter = Router()
 
 router.get("/", async (req, res) => {
   try {
@@ -44,7 +45,7 @@ router.get("/:id", async (req, res) => {
   }
 })
 
-router.post("/", async (req, res) => {
+authenticatedRouter.post("/", async (req, res) => {
   try {
     req.body["ownerUid"] = req.user.uid
     const body = CreateListingSchema.parse(req.body)

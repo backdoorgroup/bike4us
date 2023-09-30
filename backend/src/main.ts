@@ -9,7 +9,7 @@ import express from "express"
 import helmet from "helmet"
 import morgan from "morgan"
 
-import { identity, authenticated } from "@/profile/middlewares"
+import { identity } from "@/profile/middlewares"
 import { dataSource } from "@/database"
 import { logger } from "@/logger"
 import { router } from "@/router"
@@ -35,7 +35,6 @@ export const bootstrap = () => {
   app.use(helmet())
 
   app.use(identity)
-  app.use(authenticated)
 
   // Routing
   app.use("/api/v1/", router)

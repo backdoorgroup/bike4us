@@ -24,9 +24,6 @@ export const identity = async function (req: Request, res: Response, next: NextF
 
 export const authenticated = function (req: Request, res: Response, next: NextFunction) {
   const user = req.user
-  const method = req.method.toLowerCase()
-
-  if (method.includes("get") || method.includes("head")) return next()
 
   if (!user?.uid) return res.status(HttpStatus.Unauthorized).json(UnauthorizedException)
 
