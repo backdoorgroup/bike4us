@@ -20,6 +20,7 @@ export const bootstrap = () => {
   dataSource.initialize()
 
   // Middlewares
+  app.use("/static", express.static(path.join(__dirname, "/static")))
   app.use(
     pino({
       logger
