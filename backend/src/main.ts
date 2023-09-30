@@ -2,10 +2,12 @@ import "reflect-metadata"
 import "tsconfig-paths/register"
 import "dotenv/config"
 
+import path from "path"
+
 import cors from "cors"
 import express from "express"
 import helmet from "helmet"
-import pino from "pino-http"
+import morgan from "morgan"
 
 import { identity, authenticated } from "@/profile/middlewares"
 import { dataSource } from "@/database"
@@ -22,8 +24,10 @@ export const bootstrap = () => {
   // Middlewares
   app.use("/static", express.static(path.join(__dirname, "/static")))
   app.use(
-    pino({
-      logger
+    morgan("tiny", {
+      stream: {
+        write: (message) => logger.http(message.trim())
+      }
     })
   )
   app.use(express.json())
