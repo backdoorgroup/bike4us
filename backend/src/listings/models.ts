@@ -31,13 +31,6 @@ export class Listing extends Model {
 
   @OneToMany(() => ListingPicture, (picture) => picture.listing)
   pictures: ListingPicture[]
-
-  // marca
-  // cor
-  // categoria/tipo da bicicleta
-  // material
-  // tamanho do quadro
-  // tamanho do aro
 }
 
 @Entity()
