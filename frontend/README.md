@@ -3,9 +3,9 @@
 ## Como rodar o projeto?
 
 1. Entre na pasta `frontend`
-2. Instalar as dependências `npm install`
-3. Peça a alguém as credenciais do firebase e colocar num arquivo `.env`
+2. Instale as dependências com o comando `npm install`
+3. Peça ao grupo o arquivo `.env`
    > Esse arquivo deve ficar na raiz da pasta `frontend`
-4. Rodar o projeto com `npm run dev`
+4. Rode o projeto com o comando `npm run dev`
 
 ## TODO: colocar um link de um vídeo rodando o projeto
