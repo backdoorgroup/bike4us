@@ -11,6 +11,7 @@
      > A máquina da Fatec já tem um Postgres instalado.
 4. Peça ao grupo o arquivo `.env`
    > Esse arquivo deve ficar na raiz da pasta `backend`
+   > Você pode conhecer mais da estrutura das variáveis de ambiente olhando o arquivo `.env.example`
 5. Rode o projeto com o comando `npm run dev`
 
 ## TODO: colocar um link de um vídeo rodando o projeto
