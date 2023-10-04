@@ -5,7 +5,7 @@
 1. Entre na pasta `backend`
 2. Instale as dependências com o comando `npm install`
 3. Peça ao grupo o arquivo `.env`
-   > Esse arquivo deve ficar na raiz da pasta `backend`
+   > Esse arquivo deve ficar na raiz da pasta `backend`  
    > Você pode conhecer mais da estrutura das variáveis de ambiente olhando o arquivo `.env.example`
 4. Suba um banco `Postgres` na versão `14`
    - Você pode fazer usando [`Docker`](https://docs.docker.com/engine/install/)
