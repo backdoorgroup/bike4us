@@ -33,7 +33,7 @@
       <td>Dev</td>
     </tr>
     <tr>
-      <td>Danielle Sismon</td>
+      <td>Danielle Sismonn</td>
       <td>Dev</td>
     </tr>
     <tr>
@@ -41,7 +41,7 @@
       <td>Dev</td>
     </tr>
     <tr>
-      <td>Rafael Estevam</td>
+      <td>Rafael Estevam de Siqueira</td>
       <td>Dev</td>
     </tr>
   </tbody>
