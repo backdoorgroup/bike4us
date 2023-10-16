@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form"
 
+import Alert, { type AlertColor as TSeverity } from "@mui/material/Alert"
+import Collapse from "@mui/material/Collapse"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
 import TextField from "@mui/material/TextField"
@@ -15,6 +17,7 @@ export function AnnouncePage() {
   const form = useForm<ListingForm>()
 
   const [loading, setLoading] = useState(false)
+  const [alert, setAlert] = useState<{ title: string; severity: TSeverity }>()
 
   const handleSubmit = async (listing: ListingForm) => {
     try {
@@ -27,8 +30,15 @@ export function AnnouncePage() {
 
       await ListingsServices.createListing(listing)
 
-      // eslint-disable-next-line no-empty
-    } catch (e) {
+      setAlert({
+        title: "Seu anúncio foi criado com sucesso!",
+        severity: "success"
+      })
+    } catch (error) {
+      setAlert({
+        title: "Ocorreu um erro ao criar seu anúncio",
+        severity: "error"
+      })
     } finally {
       setLoading(false)
     }
@@ -42,6 +52,10 @@ export function AnnouncePage() {
 
       <FormControl component="form" fullWidth noValidate autoComplete="off" onSubmit={form.handleSubmit(handleSubmit)}>
         <Stack gap={2} marginBottom={4}>
+          <Collapse in={!!alert?.title} unmountOnExit>
+            <Alert severity={alert?.severity}>{alert?.title}</Alert>
+          </Collapse>
+
           <TextField
             label="Título"
             placeholder="Digite o título de seu anúncio"
