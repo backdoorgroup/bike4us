@@ -4,27 +4,27 @@ import subSeconds from "date-fns/subSeconds"
 import dateFnsLocale from "date-fns/locale/pt-BR"
 
 import Container from "@mui/material/Container"
-import Box from "@mui/material/Box"
 import Stack from "@mui/material/Stack"
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
+// import Box from "@mui/material/Box"
 
-import { SearchCard, SearchHeader } from "@/components"
+// import { SearchCard, SearchHeader } from "@/components"
 
 export function HomePage() {
   const listings: unknown = useLoaderData()
 
   return (
     <>
-      <Box sx={{ bgcolor: "primary.main", color: "common.white", paddingY: 2 }}>
+      {/* <Box sx={{ bgcolor: "primary.main", color: "common.white", paddingY: 2 }}>
         <Container>
           <Stack gap={2}>
             <SearchHeader />
             <SearchCard />
           </Stack>
         </Container>
-      </Box>
+      </Box> */}
       <Container sx={{ paddingY: 2 }}>
         <Typography variant="h6" component="h3" gutterBottom>
           Anúncios recentes
