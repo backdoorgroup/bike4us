@@ -28,9 +28,9 @@ export function HomePage() {
         <Typography variant="h6" component="h3" gutterBottom>
           Anúncios recentes
         </Typography>
-        <Stack sx={{ flexDirection: "row", overflow: "scroll", gap: "16px" }}>
+        <Stack sx={{ flexDirection: "row", overflowX: "scroll", gap: "16px" }}>
           {listings.map((listing) => (
-            <Card variant="outlined" key={listing.id}>
+            <Card variant="outlined" key={listing.id} sx={{ minWidth: 130, maxWidth: 130 }}>
               <CardContent>
                 <Typography variant="h6" gutterBottom>
                   R$ {listing.hourPricing}
