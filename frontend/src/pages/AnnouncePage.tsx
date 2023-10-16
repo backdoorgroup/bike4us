@@ -9,17 +9,29 @@ import Button from "@mui/material/Button"
 
 import { TitleValidation, DescriptionValidation, HourPricingValidation, ListingForm } from "@/schemas"
 import { ListingsServices } from "@/services"
+import { useState } from "react"
 
 export function AnnouncePage() {
   const form = useForm<ListingForm>()
 
-  const handleSubmit = async (listing: ListingForm) => {
-    /*
-     *  1. Post pro backend que cria o anúncio
-     *  2. Vai pra página do anúncio criado
-     */
+  const [loading, setLoading] = useState(false)
 
-    await ListingsServices.createListing(listing)
+  const handleSubmit = async (listing: ListingForm) => {
+    try {
+      /*
+       *  1. Post pro backend que cria o anúncio
+       *  2. Vai pra página do anúncio criado
+       */
+
+      setLoading(true)
+
+      await ListingsServices.createListing(listing)
+
+      // eslint-disable-next-line no-empty
+    } catch (e) {
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -57,7 +69,7 @@ export function AnnouncePage() {
           />
         </Stack>
 
-        <Button type="submit" variant="contained" disableElevation>
+        <Button type="submit" variant="contained" disabled={loading} disableElevation>
           Anunciar
         </Button>
       </FormControl>
