@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom"
-import { formatDistance, subMinutes } from "date-fns"
+import formatDistanceToNow from "date-fns/formatDistanceToNow"
+import subSeconds from "date-fns/subSeconds"
 import dateFnsLocale from "date-fns/locale/pt-BR"
 
 import Container from "@mui/material/Container"
@@ -45,12 +46,12 @@ export function HomePage() {
                       textTransform: "capitalize"
                     }
                   }}>
-                  {formatDistance(
-                    subMinutes(new Date(listing.createdAt), new Date(listing.createdAt).getDay()),
-                    new Date(),
+                  {formatDistanceToNow(
+                    subSeconds(new Date(listing.createdAt), new Date(listing.createdAt).getSeconds()),
                     {
                       locale: dateFnsLocale,
-                      addSuffix: true
+                      addSuffix: true,
+                      includeSeconds: true
                     }
                   )}
                 </Typography>
