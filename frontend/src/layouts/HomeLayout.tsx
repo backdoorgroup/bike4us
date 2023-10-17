@@ -11,7 +11,7 @@ export function HomeLayout() {
   return (
     <>
       <AppNavBar basic={basic} />
-      <Box component="main">
+      <Box component="main" sx={{ paddingBottom: 7 }}>
         <Outlet />
       </Box>
       <AppNavBottom basic={basic} />
