@@ -13,7 +13,6 @@ export interface ListingForm {
   color: string
   description: string
   hourPricing: number
-
 }
 
 export const TitleValidation: RegisterOptions = {
