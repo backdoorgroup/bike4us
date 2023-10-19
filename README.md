@@ -1,6 +1,23 @@
-# Bike 4 Us
+<span id="topo">
+<div align="center">
+    
+![banner](img/logo.png)
 
-> Plataforma web para locação de bicicletas peer-to-peer.
+</div>
+
+<p align="center">
+    <a href="#sobre">Sobre</a>  |  
+    <a href="#backlogs">Backlogs</a>  |  
+    <a href="#tecnologias">Tecnologias</a>  |  
+    <a href="#equipe">Equipe</a>
+</p>   
+
+  
+<span id="sobre">
+
+# Bike4Us
+
+> Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicicletas, conectando proprietários de bicicletas com pessoas que desejam alugá-las. Nosso objetivo é simplificar o processo de locação de bicicletas, proporcionando uma plataforma fácil de usar para encontrar a bicicleta perfeita para suas necessidades.
 
 ## Membros
 
