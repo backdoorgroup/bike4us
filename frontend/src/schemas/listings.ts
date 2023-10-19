@@ -7,10 +7,9 @@ export interface ListingForm {
   type: string
   quadro: string
   aro: number
-  time: string
   condition: string
   brand: string
-  color: string
+  material: string
   description: string
   hourPricing: number
 }
@@ -32,7 +31,7 @@ export const AroValidation: RegisterOptions = {
   valueAsNumber: true
 }
 
-export const TimeValidation: RegisterOptions = {
+export const MaterialValidation: RegisterOptions = {
   required: RequiredFieldText
 }
 
@@ -41,10 +40,6 @@ export const ConditionValidation: RegisterOptions = {
 }
 
 export const BrandValidation: RegisterOptions = {
-  required: RequiredFieldText
-}
-
-export const ColorValidation: RegisterOptions = {
   required: RequiredFieldText
 }
 

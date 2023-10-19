@@ -21,12 +21,11 @@ import {
   TypeValidation,
   QuadroValidation,
   AroValidation,
-  TimeValidation,
   ConditionValidation,
   BrandValidation,
-  ColorValidation,
   DescriptionValidation,
   HourPricingValidation,
+  MaterialValidation,
   ListingForm
 } from "@/schemas"
 import { ListingsServices } from "@/services"
@@ -88,7 +87,7 @@ export function AnnouncePage() {
       </Typography>
 
       <FormControl component="form" fullWidth noValidate autoComplete="off" onSubmit={form.handleSubmit(handleSubmit)}>
-        <Stack gap={2} marginBottom={4}>
+        <Stack gap={4} marginBottom={4}>
           <Collapse in={!!alert?.title} unmountOnExit>
             <Alert severity={alert?.severity}>{alert?.title}</Alert>
           </Collapse>
@@ -145,80 +144,90 @@ export function AnnouncePage() {
             ))}
           </Stack>
 
-          <TextField
-            label="Título"
-            placeholder="Digite o título de seu anúncio"
-            error={!!form.formState.errors.title}
-            helperText={form.formState.errors.title?.message}
-            {...form.register("title", TitleValidation)}
-          />
-          <TextField
-            label="Tipo de bicicleta"
-            placeholder="Ex: Mountain bike/MTB, BMX, Speed, Infantil, Passeio, Urbano, Elétrica, etc…"
-            error={!!form.formState.errors.type}
-            helperText={form.formState.errors.type?.message}
-            {...form.register("type", TypeValidation)}
-          />
-          <TextField
-            label="Quadro"
-            placeholder="Ex: S (15” - 16”), M (16” - 18”), L (19”), XL (21”)"
-            error={!!form.formState.errors.quadro}
-            helperText={form.formState.errors.quadro?.message}
-            {...form.register("quadro", QuadroValidation)}
-          />
-          <TextField
-            label="Aro"
-            placeholder="Ex: 12”, 16”, 20”, 24”, 26”"
-            error={!!form.formState.errors.aro}
-            helperText={form.formState.errors.aro?.message}
-            {...form.register("aro", AroValidation)}
-          />
-          <TextField
-            label="Tempo de uso"
-            placeholder="Digite o tempo de uso de sua bicicleta"
-            error={!!form.formState.errors.time}
-            helperText={form.formState.errors.time?.message}
-            {...form.register("time", TimeValidation)}
-          />
-          <TextField
-            label="Condição"
-            placeholder="Digite a condição de sua bicicleta"
-            error={!!form.formState.errors.condition}
-            helperText={form.formState.errors.condition?.message}
-            {...form.register("condition", ConditionValidation)}
-          />
-          <TextField
-            label="Marca"
-            placeholder="Digite a marca de sua bicicleta"
-            error={!!form.formState.errors.brand}
-            helperText={form.formState.errors.brand?.message}
-            {...form.register("brand", BrandValidation)}
-          />
-          <TextField
-            label="Cor"
-            placeholder="Digite a cor de sua bicicleta"
-            error={!!form.formState.errors.color}
-            helperText={form.formState.errors.color?.message}
-            {...form.register("color", ColorValidation)}
-          />
-          <TextField
-            label="Descrição"
-            placeholder="Digite a descrição de seu anúncio"
-            multiline
-            minRows={3}
-            maxRows={5}
-            error={!!form.formState.errors.description}
-            helperText={form.formState.errors.description?.message}
-            {...form.register("description", DescriptionValidation)}
-          />
-          {/* TODO: restringir isso daqui a número inteiros sem sinal e positivos */}
-          <TextField
-            label="Preço por hora"
-            placeholder="Digite o preço por hora de seu anúncio"
-            error={!!form.formState.errors.hourPricing}
-            helperText={form.formState.errors.hourPricing?.message}
-            {...form.register("hourPricing", HourPricingValidation)}
-          />
+          <Stack gap={2}>
+            <Box textAlign="center">
+              <Typography variant="h6" lineHeight="0.8">
+                Obrigatórios
+              </Typography>
+              <Typography variant="caption">Seja o mais descritivo possível</Typography>
+            </Box>
+            <TextField
+              label="Título"
+              placeholder="Digite o título de seu anúncio"
+              error={!!form.formState.errors.title}
+              helperText={form.formState.errors.title?.message}
+              {...form.register("title", TitleValidation)}
+            />
+            {/* TODO: restringir isso daqui a número inteiros sem sinal e positivos */}
+            <TextField
+              label="Preço por hora"
+              placeholder="Digite o preço por hora de seu anúncio"
+              error={!!form.formState.errors.hourPricing}
+              helperText={form.formState.errors.hourPricing?.message}
+              {...form.register("hourPricing", HourPricingValidation)}
+            />
+            <TextField
+              label="Condição"
+              placeholder="Digite a condição de sua bicicleta"
+              error={!!form.formState.errors.condition}
+              helperText={form.formState.errors.condition?.message}
+              {...form.register("condition", ConditionValidation)}
+            />
+          </Stack>
+
+          <Stack gap={2}>
+            <Box textAlign="center">
+              <Typography variant="h6" lineHeight="0.8">
+                Mais detalhes
+              </Typography>
+              <Typography variant="caption">Coloque mais detalhes sobre sua bicicleta</Typography>
+            </Box>
+            <TextField
+              label="Tipo de bicicleta"
+              placeholder="Ex: Mountain bike/MTB, BMX, Speed, Infantil, Passeio, Urbano, Elétrica, etc…"
+              error={!!form.formState.errors.type}
+              helperText={form.formState.errors.type?.message}
+              {...form.register("type", TypeValidation)}
+            />
+            <TextField
+              label="Marca"
+              placeholder="Digite a marca de sua bicicleta"
+              error={!!form.formState.errors.brand}
+              helperText={form.formState.errors.brand?.message}
+              {...form.register("brand", BrandValidation)}
+            />
+            <TextField
+              label="Quadro"
+              placeholder="Ex: S (15” - 16”), M (16” - 18”), L (19”), XL (21”)"
+              error={!!form.formState.errors.quadro}
+              helperText={form.formState.errors.quadro?.message}
+              {...form.register("quadro", QuadroValidation)}
+            />
+            <TextField
+              label="Aro"
+              placeholder="Ex: 12”, 16”, 20”, 24”, 26”"
+              error={!!form.formState.errors.aro}
+              helperText={form.formState.errors.aro?.message}
+              {...form.register("aro", AroValidation)}
+            />
+            <TextField
+              label="Material"
+              error={!!form.formState.errors.material}
+              helperText={form.formState.errors.material?.message}
+              {...form.register("material", MaterialValidation)}
+            />
+
+            <TextField
+              label="Descrição"
+              placeholder="Digite a descrição de seu anúncio"
+              multiline
+              minRows={3}
+              maxRows={5}
+              error={!!form.formState.errors.description}
+              helperText={form.formState.errors.description?.message}
+              {...form.register("description", DescriptionValidation)}
+            />
+          </Stack>
         </Stack>
 
         <Button type="submit" variant="contained" disabled={loading} disableElevation>
