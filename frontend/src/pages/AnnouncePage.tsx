@@ -33,11 +33,19 @@ import { ListingsServices } from "@/services"
 
 const imageSize = 128
 
-const Conditions = {
+const Condition = {
   New: "Novo",
   UsedLikeNew: "Usado - Em estado de novo",
   UsedGood: "Usado - Em boas condições",
   UsedFair: "Usado - Em condições razoáveis"
+} as const
+
+const BikeType = {
+  MTB: "Mountain Bike (MTB)",
+  BMX: "BMX",
+  Urban: "Bicicleta urbana",
+  Electric: "Bicicleta elétrica",
+  Cruiser: "Bicicleta de passeio"
 } as const
 
 const HiddenInput = styled("input")({
@@ -182,7 +190,7 @@ export function AnnouncePage() {
               error={!!form.formState.errors.condition}
               helperText={form.formState.errors.condition?.message}
               {...form.register("condition", ConditionValidation)}>
-              {Object.entries(Conditions).map(([value, title], index) => (
+              {Object.entries(Condition).map(([value, title], index) => (
                 <MenuItem value={value} key={index}>
                   {title}
                 </MenuItem>
@@ -198,12 +206,18 @@ export function AnnouncePage() {
               <Typography variant="caption">Coloque mais detalhes sobre sua bicicleta</Typography>
             </Box>
             <TextField
+              select
+              defaultValue=""
               label="Tipo de bicicleta"
-              placeholder="Ex: Mountain bike/MTB, BMX, Speed, Infantil, Passeio, Urbano, Elétrica, etc…"
               error={!!form.formState.errors.type}
               helperText={form.formState.errors.type?.message}
-              {...form.register("type", TypeValidation)}
-            />
+              {...form.register("type", TypeValidation)}>
+              {Object.entries(BikeType).map(([value, title], index) => (
+                <MenuItem value={value} key={index}>
+                  {title}
+                </MenuItem>
+              ))}
+            </TextField>
             <TextField
               label="Marca"
               placeholder="Digite a marca de sua bicicleta"
