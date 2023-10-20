@@ -69,6 +69,13 @@ const WheelSize = {
   "29": '29"'
 } as const
 
+const Material = {
+  Aluminum: "Alumínio",
+  CarbonFiber: "Fibra de carbono",
+  Steel: "Aço",
+  Titanium: "Titânio"
+} as const
+
 const HiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -276,11 +283,18 @@ export function AnnouncePage() {
               ))}
             </TextField>
             <TextField
+              select
+              defaultValue=""
               label="Material"
               error={!!form.formState.errors.material}
               helperText={form.formState.errors.material?.message}
-              {...form.register("material", MaterialValidation)}
-            />
+              {...form.register("material", MaterialValidation)}>
+              {Object.entries(Material).map(([value, title], index) => (
+                <MenuItem value={value} key={index}>
+                  {title}
+                </MenuItem>
+              ))}
+            </TextField>
 
             <TextField
               label="Descrição"
