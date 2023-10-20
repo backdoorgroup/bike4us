@@ -18,17 +18,17 @@ import Stack from "@mui/material/Stack"
 import Button from "@mui/material/Button"
 
 import {
-  TitleValidation,
-  TypeValidation,
-  QuadroValidation,
-  AroValidation,
-  ConditionValidation,
+  ListingForm,
   BrandValidation,
+  ConditionValidation,
   DescriptionValidation,
+  FrameSizeValidation,
   HourPricingValidation,
   MaterialValidation,
-  ListingForm
-} from "@/schemas"
+  TitleValidation,
+  TypeValidation,
+  WheelSizeValidation
+} from "@/schemas/listings"
 import { ListingsServices } from "@/services"
 
 const imageSize = 128
@@ -214,16 +214,16 @@ export function AnnouncePage() {
             <TextField
               label="Quadro"
               placeholder="Ex: S (15” - 16”), M (16” - 18”), L (19”), XL (21”)"
-              error={!!form.formState.errors.quadro}
-              helperText={form.formState.errors.quadro?.message}
-              {...form.register("quadro", QuadroValidation)}
+              error={!!form.formState.errors.frameSize}
+              helperText={form.formState.errors.frameSize?.message}
+              {...form.register("frameSize", FrameSizeValidation)}
             />
             <TextField
               label="Aro"
               placeholder="Ex: 12”, 16”, 20”, 24”, 26”"
-              error={!!form.formState.errors.aro}
-              helperText={form.formState.errors.aro?.message}
-              {...form.register("aro", AroValidation)}
+              error={!!form.formState.errors.wheelSize}
+              helperText={form.formState.errors.wheelSize?.message}
+              {...form.register("wheelSize", WheelSizeValidation)}
             />
             <TextField
               label="Material"
