@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import styled from "@mui/material/styles/styled"
 
 import Alert, { type AlertColor as TSeverity } from "@mui/material/Alert"
+import MenuItem from "@mui/material/MenuItem"
 import Box from "@mui/material/Box"
 import ButtonBase from "@mui/material/ButtonBase"
 import Icon from "@mui/material/Icon"
@@ -31,6 +32,13 @@ import {
 import { ListingsServices } from "@/services"
 
 const imageSize = 128
+
+const Conditions = {
+  New: "Novo",
+  UsedLikeNew: "Usado - Em estado de novo",
+  UsedGood: "Usado - Em boas condições",
+  UsedFair: "Usado - Em condições razoáveis"
+} as const
 
 const HiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -146,7 +154,7 @@ export function AnnouncePage() {
 
           <Stack gap={2}>
             <Box textAlign="center">
-              <Typography variant="h6" lineHeight="0.8">
+              <Typography variant="h6" lineHeight="1">
                 Obrigatórios
               </Typography>
               <Typography variant="caption">Seja o mais descritivo possível</Typography>
@@ -167,17 +175,24 @@ export function AnnouncePage() {
               {...form.register("hourPricing", HourPricingValidation)}
             />
             <TextField
+              select
+              defaultValue=""
               label="Condição"
               placeholder="Digite a condição de sua bicicleta"
               error={!!form.formState.errors.condition}
               helperText={form.formState.errors.condition?.message}
-              {...form.register("condition", ConditionValidation)}
-            />
+              {...form.register("condition", ConditionValidation)}>
+              {Object.entries(Conditions).map(([value, title], index) => (
+                <MenuItem value={value} key={index}>
+                  {title}
+                </MenuItem>
+              ))}
+            </TextField>
           </Stack>
 
           <Stack gap={2}>
             <Box textAlign="center">
-              <Typography variant="h6" lineHeight="0.8">
+              <Typography variant="h6" lineHeight="1">
                 Mais detalhes
               </Typography>
               <Typography variant="caption">Coloque mais detalhes sobre sua bicicleta</Typography>
