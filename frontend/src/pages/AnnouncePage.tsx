@@ -48,6 +48,27 @@ const BikeType = {
   Cruiser: "Bicicleta de passeio"
 } as const
 
+const FrameSize = {
+  S: '15" - 16" (S)',
+  M: '16" - 18" (M)',
+  L: '19" (L)',
+  XL: '21" (XL)'
+} as const
+
+const WheelSize = {
+  "12": '12"',
+  "14": '14"',
+  "16": '16"',
+  "20": '20"',
+  "22": '22"',
+  "24": '24"',
+  "26": '26"',
+  "27": '27"',
+  "27.5": '27.5"',
+  "28": '28"',
+  "29": '29"'
+} as const
+
 const HiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -225,20 +246,35 @@ export function AnnouncePage() {
               helperText={form.formState.errors.brand?.message}
               {...form.register("brand", BrandValidation)}
             />
+
             <TextField
+              select
+              defaultValue=""
               label="Quadro"
               placeholder="Ex: S (15” - 16”), M (16” - 18”), L (19”), XL (21”)"
               error={!!form.formState.errors.frameSize}
               helperText={form.formState.errors.frameSize?.message}
-              {...form.register("frameSize", FrameSizeValidation)}
-            />
+              {...form.register("frameSize", FrameSizeValidation)}>
+              {Object.entries(FrameSize).map(([value, title], index) => (
+                <MenuItem value={value} key={index}>
+                  {title}
+                </MenuItem>
+              ))}
+            </TextField>
             <TextField
+              select
+              defaultValue=""
               label="Aro"
               placeholder="Ex: 12”, 16”, 20”, 24”, 26”"
               error={!!form.formState.errors.wheelSize}
               helperText={form.formState.errors.wheelSize?.message}
-              {...form.register("wheelSize", WheelSizeValidation)}
-            />
+              {...form.register("wheelSize", WheelSizeValidation)}>
+              {Object.entries(WheelSize).map(([value, title], index) => (
+                <MenuItem value={value} key={index}>
+                  {title}
+                </MenuItem>
+              ))}
+            </TextField>
             <TextField
               label="Material"
               error={!!form.formState.errors.material}
