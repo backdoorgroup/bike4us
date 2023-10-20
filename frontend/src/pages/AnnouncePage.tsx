@@ -34,25 +34,25 @@ import { ListingsServices } from "@/services"
 const imageSize = 128
 
 const Condition = {
-  New: "Novo",
-  UsedLikeNew: "Usado - Em estado de novo",
-  UsedGood: "Usado - Em boas condições",
-  UsedFair: "Usado - Em condições razoáveis"
+  "new": "Novo",
+  "used-like-new": "Usado - Em estado de novo",
+  "used-good": "Usado - Em boas condições",
+  "used-fair": "Usado - Em condições razoáveis"
 } as const
 
 const BikeType = {
-  MTB: "Mountain Bike (MTB)",
-  BMX: "BMX",
-  Urban: "Bicicleta urbana",
-  Electric: "Bicicleta elétrica",
-  Cruiser: "Bicicleta de passeio"
+  mtb: "Mountain Bike (MTB)",
+  bmx: "BMX",
+  urban: "Bicicleta urbana",
+  electric: "Bicicleta elétrica",
+  cruiser: "Bicicleta de passeio"
 } as const
 
 const FrameSize = {
-  S: '15" - 16" (S)',
-  M: '16" - 18" (M)',
-  L: '19" (L)',
-  XL: '21" (XL)'
+  s: '15" - 16" (S)',
+  m: '16" - 18" (M)',
+  l: '19" (L)',
+  xl: '21" (XL)'
 } as const
 
 const WheelSize = {
@@ -70,10 +70,10 @@ const WheelSize = {
 } as const
 
 const Material = {
-  Aluminum: "Alumínio",
-  CarbonFiber: "Fibra de carbono",
-  Steel: "Aço",
-  Titanium: "Titânio"
+  "aluminum": "Alumínio",
+  "carbon-fiber": "Fibra de carbono",
+  "steel": "Aço",
+  "titanium": "Titânio"
 } as const
 
 const HiddenInput = styled("input")({
