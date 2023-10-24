@@ -116,11 +116,20 @@ export function AnnouncePage() {
             <Alert severity={alert?.severity}>{alert?.title}</Alert>
           </Collapse>
 
-          <AnnounceImageUpload
-            picture={picture}
-            error={form.formState.errors.picture}
-            register={form.register("picture", PictureValidation)}
-          />
+          <Stack gap={2}>
+            <Box textAlign="center">
+              <Typography variant="h6" lineHeight="1">
+                Foto
+              </Typography>
+              <Typography variant="caption">Esta será a capa de seu anúncio</Typography>
+            </Box>
+
+            <AnnounceImageUpload
+              picture={picture}
+              error={form.formState.errors.picture}
+              register={form.register("picture", PictureValidation)}
+            />
+          </Stack>
 
           <Stack gap={2}>
             <Box textAlign="center">
