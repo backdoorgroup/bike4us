@@ -1,6 +1,7 @@
 import type { RegisterOptions } from "react-hook-form"
 
 const RequiredFieldText = "Campo obrigatório"
+const RequiredImageText = "É necessário colocar uma imagem"
 
 export interface ListingForm {
   title: string
@@ -13,6 +14,7 @@ export interface ListingForm {
   wheelSize: number
   material: string
   description: string
+  picture: FileList
 }
 
 // Required
@@ -23,6 +25,10 @@ export const TitleValidation: RegisterOptions = {
 export const HourPricingValidation: RegisterOptions = {
   required: RequiredFieldText,
   valueAsNumber: true
+}
+
+export const PictureValidation: RegisterOptions = {
+  required: RequiredImageText
 }
 
 export const ConditionValidation: RegisterOptions = {

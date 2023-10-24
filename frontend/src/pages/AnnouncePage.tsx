@@ -1,14 +1,9 @@
-import { ChangeEventHandler, useState } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
-
-import styled from "@mui/material/styles/styled"
 
 import Alert, { type AlertColor as TSeverity } from "@mui/material/Alert"
 import MenuItem from "@mui/material/MenuItem"
 import Box from "@mui/material/Box"
-import ButtonBase from "@mui/material/ButtonBase"
-import Icon from "@mui/material/Icon"
-import ImageListItem from "@mui/material/ImageListItem"
 import Collapse from "@mui/material/Collapse"
 import Typography from "@mui/material/Typography"
 import Container from "@mui/material/Container"
@@ -27,11 +22,11 @@ import {
   MaterialValidation,
   TitleValidation,
   TypeValidation,
+  PictureValidation,
   WheelSizeValidation
 } from "@/schemas/listings"
 import { ListingsServices } from "@/services"
-
-const imageSize = 128
+import { AnnounceImageUpload } from "@/components"
 
 const Condition = {
   "new": "Novo",
@@ -76,22 +71,11 @@ const Material = {
   "titanium": "Titânio"
 } as const
 
-const HiddenInput = styled("input")({
-  clip: "rect(0 0 0 0)",
-  clipPath: "inset(50%)",
-  height: 1,
-  overflow: "hidden",
-  position: "absolute",
-  bottom: 0,
-  left: 0,
-  whiteSpace: "nowrap",
-  width: 1
-})
-
 export function AnnouncePage() {
   const form = useForm<ListingForm>()
 
-  const [images, setImages] = useState<File[]>([])
+  const picture = form.watch("picture")?.item(0)
+
   const [loading, setLoading] = useState(false)
   const [alert, setAlert] = useState<{ title: string; severity: TSeverity }>()
 
@@ -120,10 +104,6 @@ export function AnnouncePage() {
     }
   }
 
-  const handleImage: ChangeEventHandler<HTMLInputElement> = (e) => {
-    setImages([...images, ...(e.target.files ?? [])])
-  }
-
   return (
     <Container sx={{ paddingY: 4 }}>
       <Typography variant="h5" component="h1" textAlign="center" fontWeight="500" mb={4}>
@@ -136,57 +116,11 @@ export function AnnouncePage() {
             <Alert severity={alert?.severity}>{alert?.title}</Alert>
           </Collapse>
 
-          <Stack sx={{ overflowX: "auto", flexDirection: "row" }} gap={2}>
-            <ButtonBase
-              component="label"
-              sx={{
-                minHeight: imageSize,
-                maxHeight: imageSize,
-                minWidth: imageSize,
-                maxWidth: imageSize,
-                border: 1,
-                borderRadius: 1,
-                borderColor: "primary.main",
-                borderStyle: "dashed",
-                color: "primary.main"
-              }}>
-              <Box sx={{ fontSize: 32, textAlign: "center" }}>
-                <Icon fontSize="inherit">add_a_photo</Icon>
-
-                <Typography variant="subtitle2" component="p">
-                  Adicionar fotos
-                </Typography>
-
-                <Typography variant="caption" component="p" fontSize="10px">
-                  Somente JPG, JPEG e PNG
-                </Typography>
-              </Box>
-
-              <HiddenInput type="file" accept="image/png, image/jpeg, image/jpg" onChange={handleImage} />
-            </ButtonBase>
-
-            {Object.values(images).map((image, index) => (
-              <ImageListItem
-                key={index}
-                sx={{
-                  borderRadius: 1,
-                  overflow: "hidden",
-                  minWidth: imageSize,
-                  maxWidth: imageSize
-                }}>
-                <img
-                  src={URL.createObjectURL(image)}
-                  loading="lazy"
-                  style={{
-                    minWidth: imageSize,
-                    maxWidth: imageSize,
-                    minHeight: imageSize,
-                    maxHeight: imageSize
-                  }}
-                />
-              </ImageListItem>
-            ))}
-          </Stack>
+          <AnnounceImageUpload
+            picture={picture}
+            error={form.formState.errors.picture}
+            register={form.register("picture", PictureValidation)}
+          />
 
           <Stack gap={2}>
             <Box textAlign="center">
@@ -308,7 +242,6 @@ export function AnnouncePage() {
             />
           </Stack>
         </Stack>
-
         <Button type="submit" variant="contained" disabled={loading} disableElevation>
           Anunciar
         </Button>

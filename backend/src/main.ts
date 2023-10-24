@@ -2,8 +2,6 @@ import "reflect-metadata"
 import "tsconfig-paths/register"
 import "dotenv/config"
 
-import path from "path"
-
 import cors from "cors"
 import express from "express"
 import helmet from "helmet"
@@ -22,7 +20,7 @@ export const bootstrap = () => {
   dataSource.initialize()
 
   // Middlewares
-  app.use("/static", express.static(path.join(__dirname, "/static")))
+  // app.use("/static", express.static(settings.EXPRESS_STATIC_PATH)) // TODO: voltar isso aqui quando o backend começar a servir os arquivos estáticos.
   app.use(
     morgan("tiny", {
       stream: {
@@ -30,6 +28,7 @@ export const bootstrap = () => {
       }
     })
   )
+  app.use(express.urlencoded({ extended: true }))
   app.use(express.json())
   app.use(cors())
   app.use(helmet())

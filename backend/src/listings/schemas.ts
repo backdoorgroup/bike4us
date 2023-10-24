@@ -6,7 +6,8 @@ export const CreateListingSchema = z.object({
   ownerUid: z.string().min(1).max(128),
   description: z.string().min(1).max(2048),
   title: z.string().min(1).max(128),
-  hourPricing: z.number().int().positive()
+  hourPricing: z.coerce.number().int().positive(),
+  picturePath: z.string().min(1).max(512)
 })
 export type TCreateListingSchema = z.infer<typeof CreateListingSchema>
 
