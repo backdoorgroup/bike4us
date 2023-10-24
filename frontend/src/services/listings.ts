@@ -8,6 +8,8 @@ const transform = (params: { [key: string]: any }) => {
   const formData = new FormData()
 
   Object.entries(params).forEach(([key, value]) => {
+    if (!value || !key) return
+
     formData.append(key, value)
   })
 
