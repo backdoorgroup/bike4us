@@ -7,6 +7,7 @@ import { paginate } from "@/utils"
 
 import { HttpStatus } from "@lib/http"
 
+import { upload } from "@/listings/middlewares"
 import { CreateListingSchema, GetListingSchema, GetListingsSchema } from "@/listings/schemas"
 import { serializeListing } from "@/listings/serializers"
 import { createListing, getListing, getListings } from "@/listings/services"
@@ -43,9 +44,11 @@ router.get("/:id", async (req, res) => {
   }
 })
 
-authenticatedRouter.post("/", async (req, res) => {
+authenticatedRouter.post("/", upload.single("picture"), async (req, res) => {
+  req.body["ownerUid"] = req.user.uid
+  req.body["picturePath"] = req.file?.filename
+
   try {
-    req.body["ownerUid"] = req.user.uid
     const body = CreateListingSchema.parse(req.body)
 
     const listing = await createListing(body)

@@ -1,3 +1,5 @@
+import path from "path"
+
 const env = process.env
 
 export const settings = {
@@ -16,6 +18,9 @@ export const settings = {
   },
   get EXPRESS_PROD() {
     return settings.EXPRESS_MODE === "prod"
+  },
+  get EXPRESS_STATIC_PATH() {
+    return path.join(__dirname, "/static")
   },
 
   // Database Connection
