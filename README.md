@@ -82,6 +82,18 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
   </tbody>
 </table>
 
+<a href="">📑<strong>Documentação</strong></a>   
+
+📌Status do Projeto: **Em Andamento** 
+
+### 🏁 Entregas de Sprints
+
+| Sprint | Previsão de Entrega | Status           | Histórico |
+|:--:|:----------:|:-------------------|:-------------------------------------------------:|
+| 01 | 28/09/2023 | Finalizada     |  [ver relatório](https://github.com/backdoorgroup/bike4us/blob/fran/readme/docs/sprints/SPRINT1.md) |
+| 02 | 26/10/2023 | Iniciada     | [ver relatório](https://github.com/projetoPDali/Sprint-2) | 
+| 03 | Sem Data Prevista |  Não Iniciada   | [Relatório - Ainda não disponivel]() |
+
 → [Voltar ao topo](#topo)
 
 <span id="backlogs">
@@ -131,7 +143,7 @@ Critérios de aceite:
 - O cadastro do usuário pode ser realizado usando autenticação do Google para maior conveniência.
 - Após o cadastro com sucesso, o usuário deve poder fazer login na plataforma usando as credenciais fornecidas durante o cadastro.
 
-\*\*Cadastro de Bicicleta:
+**Cadastro de Bicicleta:**
 
 História:
 
