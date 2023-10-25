@@ -1,25 +1,24 @@
 <span id="topo">
 <div align="center">
-    
-![banner](img/logo.png)
+
+![banner](./docs/assets/logo.png)
 
 </div>
 
 <p align="center">
-    <a href="#sobre">Sobre</a>  |  
-    <a href="#backlogs">Backlogs</a>  |  
-    <a href="#tecnologias">Tecnologias</a>  |  
+    <a href="#sobre">Sobre</a>  |
+    <a href="#backlogs">Backlogs</a>  |
+    <a href="#tecnologias">Tecnologias</a>  |
     <a href="#equipe">Equipe</a>
-</p>   
+</p>
 
-  
 <span id="sobre">
 
 # Bike4Us
 
 Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicicletas, conectando proprietários de bicicletas com pessoas que desejam alugá-las. Nosso objetivo é simplificar o processo de locação de bicicletas, proporcionando uma plataforma fácil de usar para encontrar a bicicleta perfeita para suas necessidades.
 
-> Método Ágil SCRUM: Eficiência e Colaboração Impulsionam o Sucesso do Bike4Us! 
+> Método Ágil SCRUM: Eficiência e Colaboração Impulsionam o Sucesso do Bike4Us!
 
 <table>
   <tbody>
@@ -83,30 +82,28 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
   </tbody>
 </table>
 
-
 → [Voltar ao topo](#topo)
 
 <span id="backlogs">
 
-
 # 🎯 Backlog & User Stories
 
- ## 📌 Requisitos
+## 📌 Requisitos
 
 <strong>Funcionais:</strong>
 
 - O usuário deverá se cadastrar para usar a ferramenta;
 - O usuário poderá cadastrar bicicletas fornecendo fotos, modelo, tipo (speed, MTB, BMX, passeio etc.), descrição e outros dados importantes para a identificação da bicicleta;
-A locação poderá ser por dia ou hora;
+  A locação poderá ser por dia ou hora;
 - O mesmo usuário poderá ser locador e locatário;
 - O usuário gerencia os parâmetros da locação de cada bicicleta fornecendo disponibilidade
-e valor;
+  e valor;
 - O usuário poderá consultar as bicicletas disponíveis para locação fornecendo: distância, cidade, bairro, data e horário, preço, tipo etc.
 - O usuário não precisará estar logado para consultar, mas precisará estar logado para obter o contato do locador. A comunicação entre o proprietário e interessado não será de responsabilidade da aplicação;
 - O usuário deverá estar logado para cadastrar/alterar dados das bicicletas.
 - O locatário poderá ser avaliado pelo locador e vice-versa, gerando uma pontuação de 0 a 5 estrelas.
 
- <strong>Não Funcionais:</strong>
+<strong>Não Funcionais:</strong>
 
 - Documentação no GitHub;
 - Processo Scrum;
@@ -116,7 +113,7 @@ e valor;
 - Front-end: React TypeScript, HTML e CSS;
 - Armazenamento: SGBD PostgreSQL;
 - A autenticação de usuário deverá ser por alguma conta de serviço, como Google, Facebook
-ou outro.
+  ou outro.
 
 ## 📌 User Stories
 
@@ -134,7 +131,7 @@ Critérios de aceite:
 - O cadastro do usuário pode ser realizado usando autenticação do Google para maior conveniência.
 - Após o cadastro com sucesso, o usuário deve poder fazer login na plataforma usando as credenciais fornecidas durante o cadastro.
 
-**Cadastro de Bicicleta:
+\*\*Cadastro de Bicicleta:
 
 História:
 
@@ -145,7 +142,6 @@ Como usuário, desejo cadastrar minha bicicleta no aplicativo fornecendo informa
 - O proprietário da bicicleta deve poder cadastrar sua bicicleta no aplicativo.
 - Durante o cadastro, o proprietário deve fornecer informações básicas da bicicleta, como modelo, tipo, preço, marca e fotos.
 - O cadastro pode incluir outros detalhes relevantes da bicicleta para facilitar a escolha dos interessados.
-
 
 ### Prioridade Média
 
@@ -173,7 +169,6 @@ Critérios de aceite:
 - Após cadastrar a bicicleta no aplicativo, o proprietário deve poder definir a disponibilidade da bicicleta para aluguel.
 - O proprietário deve poder estabelecer o valor por hora ou dia para o aluguel da bicicleta.
 
-
 ### Prioridade Baixa:
 
 **Avaliação da Experiência de Aluguel:**
@@ -189,6 +184,8 @@ Critérios de aceite:
 - A avaliação será opcional e não permitirá a inclusão de comentários além da pontuação.
 - As pontuações atribuídas serão visíveis publicamente para outros usuários, fornecendo uma ideia da qualidade das transações anteriores.
 
-## Vídeos de apresentação
+## Sprints
 
-[Apresentação da Sprint 1](https://www.youtube.com/watch?v=Q6sC1Ibycmo)
+<!-- Quando fazer o merge dessa branch na main, você vai precisar trocar `fran/readme` por `main` na URL -->
+
+[Sprint 1](https://github.com/backdoorgroup/bike4us/blob/fran/readme/docs/sprints/SPRINT1.md)
