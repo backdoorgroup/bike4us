@@ -19,8 +19,7 @@
 
 Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicicletas, conectando proprietários de bicicletas com pessoas que desejam alugá-las. Nosso objetivo é simplificar o processo de locação de bicicletas, proporcionando uma plataforma fácil de usar para encontrar a bicicleta perfeita para suas necessidades.
 
-> Método Ágil usado: SCRUM.
-> Eficiência e Colaboração Impulsionam o Sucesso do Bike4Us! 
+> Método Ágil SCRUM: Eficiência e Colaboração Impulsionam o Sucesso do Bike4Us! 
 
 <table>
   <tbody>
@@ -36,7 +35,6 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>Professor P2</td>
       <td>Arley Ferreira de Souza</td>
     </tr>
-    <tr>
   </tbody>
 </table>
 
@@ -93,7 +91,7 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
 
 # 🎯 Backlog & User Stories
 
- # 📌 Requisitos
+ ## 📌 Requisitos
 
 <strong>Funcionais:</strong>
 
@@ -120,11 +118,11 @@ e valor;
 - A autenticação de usuário deverá ser por alguma conta de serviço, como Google, Facebook
 ou outro.
 
-# 📌 User Stories
+## 📌 User Stories
 
-## Prioridade Alta
+### Prioridade Alta
 
-### Cadastro de Usuário:
+**Cadastro de Usuário:**
 
 História:
 
@@ -136,20 +134,20 @@ Critérios de aceite:
 - O cadastro do usuário pode ser realizado usando autenticação do Google para maior conveniência.
 - Após o cadastro com sucesso, o usuário deve poder fazer login na plataforma usando as credenciais fornecidas durante o cadastro.
 
-**Cadastro de Bicicleta:**
+**Cadastro de Bicicleta:
 
 História:
 
 Como usuário, desejo cadastrar minha bicicleta no aplicativo fornecendo informações básicas, como modelo, tipo, preço, marca e fotos.
 
-Critérios de aceite:
+**Critérios de aceite:**
 
 - O proprietário da bicicleta deve poder cadastrar sua bicicleta no aplicativo.
 - Durante o cadastro, o proprietário deve fornecer informações básicas da bicicleta, como modelo, tipo, preço, marca e fotos.
 - O cadastro pode incluir outros detalhes relevantes da bicicleta para facilitar a escolha dos interessados.
 
 
-**Prioridade Média**
+### Prioridade Média
 
 **Filtro e Visualização de Bicicletas Disponíveis:**
 
@@ -176,7 +174,7 @@ Critérios de aceite:
 - O proprietário deve poder estabelecer o valor por hora ou dia para o aluguel da bicicleta.
 
 
-**Prioridade Baixa:**
+### Prioridade Baixa:
 
 **Avaliação da Experiência de Aluguel:**
 
