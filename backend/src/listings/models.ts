@@ -1,9 +1,22 @@
-import { Entity, Column, Check } from "typeorm"
+import { Check, Column, Entity } from "typeorm"
 
 import { Model } from "@/database"
-
-import type { TListingStatus, TListingConditionEnum, TListingTypeEnum, TListingFrameSizeEnum, TListingWheelSizeEnum, TListingMaterialEnum } from "@/listings/constants"
-import { ListingStatusEnum, ListingConditionEnum, ListingTypeEnum, ListingFrameSizeEnum, ListingWheelSizeEnum, ListingMaterialEnum } from "@/listings/constants"
+import type {
+  TListingConditionEnum,
+  TListingFrameSizeEnum,
+  TListingMaterialEnum,
+  TListingStatus,
+  TListingTypeEnum,
+  TListingWheelSizeEnum
+} from "@/listings/constants"
+import {
+  ListingConditionEnum,
+  ListingFrameSizeEnum,
+  ListingMaterialEnum,
+  ListingStatusEnum,
+  ListingTypeEnum,
+  ListingWheelSizeEnum
+} from "@/listings/constants"
 
 @Entity()
 export class Listing extends Model {
@@ -13,7 +26,7 @@ export class Listing extends Model {
   @Column({ type: "timestamptz", update: false })
   createdAt: Date
 
-  @Column({ type: "timestamptz", nullable: true, default: null })
+  @Column({ type: "timestamptz", nullable: true })
   updatedAt: Date
 
   @Column({ type: "varchar", length: 128 })
@@ -44,10 +57,9 @@ export class Listing extends Model {
   @Column({ type: "enum", enum: ListingFrameSizeEnum })
   frameSize: TListingFrameSizeEnum
 
-  @Column({ type: "enum", enum: ListingWheelSizeEnum })
+  @Column({ type: "enum", enum: Object.values(ListingWheelSizeEnum) })
   wheelSize: TListingWheelSizeEnum
 
   @Column({ type: "enum", enum: ListingMaterialEnum })
   material: TListingMaterialEnum
-
 }

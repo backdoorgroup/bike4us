@@ -66,7 +66,7 @@ const WheelSize = {
 
 const Material = {
   "aluminum": "Alumínio",
-  "carbon-fiber": "Fibra de carbono",
+  "carbon-fiber": "Fibra de Carbono",
   "steel": "Aço",
   "titanium": "Titânio"
 } as const
@@ -201,7 +201,6 @@ export function AnnouncePage() {
               select
               defaultValue=""
               label="Quadro"
-              placeholder="Ex: S (15” - 16”), M (16” - 18”), L (19”), XL (21”)"
               error={!!form.formState.errors.frameSize}
               helperText={form.formState.errors.frameSize?.message}
               {...form.register("frameSize", FrameSizeValidation)}>
@@ -215,7 +214,6 @@ export function AnnouncePage() {
               select
               defaultValue=""
               label="Aro"
-              placeholder="Ex: 12”, 16”, 20”, 24”, 26”"
               error={!!form.formState.errors.wheelSize}
               helperText={form.formState.errors.wheelSize?.message}
               {...form.register("wheelSize", WheelSizeValidation)}>
