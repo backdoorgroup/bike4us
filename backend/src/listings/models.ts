@@ -1,4 +1,4 @@
-import { Check, Column, Entity } from "typeorm"
+import { Column, Entity } from "typeorm"
 
 import { Model } from "@/database"
 import type {
