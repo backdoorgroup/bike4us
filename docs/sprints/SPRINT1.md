@@ -27,6 +27,6 @@
 
 -Ferramenta de Gerenciamento de Projetos: Trello
 
-<img src="https://github.com/projetoPDali/projetoPDali/blob/main/img/trello-kanbam.jpg" /> 
+![banner](./docs/assets/trello.png)
 
 [Apresentação da Sprint 1](https://www.youtube.com/watch?v=Q6sC1Ibycmo)
