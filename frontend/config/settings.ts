@@ -16,5 +16,19 @@ export const settings = {
   },
   get FB_APP_ID() {
     return import.meta.env._FB_APP_ID
+  },
+
+  get FRONTEND_URL() {
+    return new URL(import.meta.url).origin
+  },
+  get BACKEND_URL() {
+    return import.meta.env._BACKEND_URL || "http://localhost:8000/"
+  },
+
+  get API_URL() {
+    return this.BACKEND_URL + "api/v1/"
+  },
+  get STATIC_URL() {
+    return this.BACKEND_URL + "static/"
   }
 } as const

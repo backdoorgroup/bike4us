@@ -1,9 +1,10 @@
 import axios from "axios"
 
 import { useUserStore } from "@/stores"
+import { settings } from "@config"
 
 export const httpClient = axios.create({
-  baseURL: "http://localhost:8000/api/v1"
+  baseURL: settings.API_URL
 })
 
 httpClient.interceptors.request.use(
