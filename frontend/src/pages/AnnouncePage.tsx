@@ -28,6 +28,7 @@ import {
 import { ListingsServices } from "@/services"
 import { AnnounceImageUpload } from "@/components"
 
+// TODO: Talvez mover isso pra um arquivo separado
 const Condition = {
   "new": "Novo",
   "used-like-new": "Usado - Em estado de novo",

@@ -17,7 +17,7 @@ export const routes: RouteObject[] = [
         index: true,
         element: <HomePage />,
         loader: async () => {
-          const { data } = await ListingsServices.getListings()
+          const data = await ListingsServices.getListings()
 
           return data.listings
         }
