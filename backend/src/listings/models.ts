@@ -36,7 +36,6 @@ export class Listing extends Model {
   description?: string
 
   @Column({ type: "integer" })
-  @Check(`"hourPricing" > 0`)
   hourPricing: number
 
   @Column({ type: "enum", enum: ListingStatusEnum, default: ListingStatusEnum.Available })
