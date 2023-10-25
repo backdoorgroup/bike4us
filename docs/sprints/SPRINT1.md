@@ -25,8 +25,10 @@
 ## :chart_with_upwards_trend: Resumo
 
 
--Ferramenta de Gerenciamento de Projetos: Trello
+- Ferramenta de Gerenciamento de Projetos: Trello
 
 <img src="https://github.com/backdoorgroup/bike4us/blob/fran/readme/docs/assets/trello.png" /> 
+
+- O quadro Kanban no Trello serve para visualizar e gerenciar nossas tarefas de forma eficiente. Ele fornece uma visão geral de nossos fluxos de trabalho, permite que as equipes colaborem, movam tarefas de coluna em coluna (como "A fazer", "Fazendo" e "Done"), atribuam responsáveis e priorizem o trabalho de maneira organizada. Isso ajuda a manter o controle das atividades, melhorar a produtividade e garantir que todos estejam alinhados com as metas do projeto.
 
 [Apresentação da Sprint 1](https://www.youtube.com/watch?v=Q6sC1Ibycmo)
