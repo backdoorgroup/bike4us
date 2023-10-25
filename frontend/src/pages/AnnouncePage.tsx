@@ -24,7 +24,7 @@ import {
   TypeValidation,
   PictureValidation,
   WheelSizeValidation
-} from "@/schemas/listings"
+} from "@/forms"
 import { ListingsServices } from "@/services"
 import { AnnounceImageUpload } from "@/components"
 

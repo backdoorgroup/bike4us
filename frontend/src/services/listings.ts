@@ -1,7 +1,7 @@
 import { httpClient } from "@/services/clients"
 
 import { transform } from "@/utils"
-import { ListingForm } from "@/schemas"
+import { ListingForm } from "@/forms"
 
 const createListing = async (listing: ListingForm) => {
   const form = transform({

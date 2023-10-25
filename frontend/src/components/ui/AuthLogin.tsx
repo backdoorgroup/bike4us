@@ -15,7 +15,7 @@ import Typography from "@mui/material/Typography"
 
 import GoogleIcon from "@mui/icons-material/Google"
 
-import { EmailValidation, PasswordValidation, LoginForm } from "@/schemas"
+import { EmailValidation, PasswordValidation, LoginForm } from "@/forms"
 import { AuthService } from "@/services"
 
 export function AuthLogin() {
