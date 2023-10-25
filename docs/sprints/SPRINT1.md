@@ -3,8 +3,8 @@
 <h1 align="center">Sprint 1: 04/09/2023 a 27/09/2023</h1>
 
 <p align="center">
-    <a href="#objetivos">Objetivos da sprint</a> |
-    <a href="#Resumo do trabalho da equipe">Resumo do trabalho da equipe</a> |
+    <a href="#objetivos">Objetivos</a> |
+    <a href="#Resumo">Resumo</a> |
     <a href="#entregas">Entregas</a> |
     <a href="#documentação">Documentação</a>
 </p>
@@ -12,10 +12,21 @@
 <span id="objetivos">
     
 ## :dart: Objetivos da Sprint
-- Protótipo
-- Estruturação do Back-end
-- Modelagem do banco de dados
-- Estruturação do banco de dados
 
+- Protótipo/Design
+- Integração consulta de bicicletas
+- Integração cadastro bicicletas
+- Modelagem de banco de dados
+- Integração cadastro usuário
+- Integração login
+
+<span id="Resumo">
+    
+## :chart_with_upwards_trend: Resumo
+
+
+-Ferramenta de Gerenciamento de Projetos: Trello
+
+<img src="https://github.com/projetoPDali/projetoPDali/blob/main/img/trello-kanbam.jpg" /> 
 
 [Apresentação da Sprint 1](https://www.youtube.com/watch?v=Q6sC1Ibycmo)
