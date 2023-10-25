@@ -91,6 +91,7 @@ export function AnnouncePage() {
 
       await ListingsServices.createListing(listing)
 
+      // TODO: fazer a parte que cria um link que da pra redirecionar pra pagina do anuncio criado
       setAlert({
         title: "Seu anúncio foi criado com sucesso!",
         severity: "success"
