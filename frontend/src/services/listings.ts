@@ -1,20 +1,7 @@
 import { httpClient } from "@/services/clients"
+
+import { transform } from "@/utils"
 import { ListingForm } from "@/schemas"
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const transform = (params: { [key: string]: any }) => {
-  params = params || {}
-
-  const formData = new FormData()
-
-  Object.entries(params).forEach(([key, value]) => {
-    if (!value || !key) return
-
-    formData.append(key, value)
-  })
-
-  return formData
-}
 
 const createListing = async (listing: ListingForm) => {
   const form = transform({
