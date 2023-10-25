@@ -20,7 +20,7 @@ export const bootstrap = () => {
   dataSource.initialize()
 
   // Middlewares
-  // app.use("/static", express.static(settings.EXPRESS_STATIC_PATH)) // TODO: voltar isso aqui quando o backend começar a servir os arquivos estáticos.
+  app.use("/static", express.static(settings.EXPRESS_STATIC_PATH))
   app.use(
     morgan("tiny", {
       stream: {
