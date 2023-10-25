@@ -1,8 +1,55 @@
 export const ListingStatusEnum = {
   Available: "available"
 } as const
-
 export type TListingStatus = (typeof ListingStatusEnum)[keyof typeof ListingStatusEnum]
+
+export const ListingConditionEnum = {
+  New: "new",
+  UsedLikeNew: "used-like-new", 
+  UsedGood: "used-good",
+  UsedFair: "used-fair"
+} as const
+export type TListingConditionEnum = (typeof ListingConditionEnum)[keyof typeof ListingConditionEnum]
+
+export const ListingTypeEnum = {
+ Mtb: "mtb",
+ Bmx: "bmx",
+ Urban: "urban",
+ Eletric: "electric",
+ Cruiser: "cruiser"
+} as const
+export type TListingTypeEnum = (typeof ListingTypeEnum)[keyof typeof ListingTypeEnum]
+
+export const ListingFrameSizeEnum = {
+ S: "s",
+ M: "m",
+ L: "l",
+ XL: "xl"
+} as const
+export type TListingFrameSizeEnum = (typeof ListingFrameSizeEnum)[keyof typeof ListingFrameSizeEnum]
+
+export const ListingWheelSizeEnum = {
+  "12": '12',
+  "14": '14',
+  "16": '16',
+  "20": '20',
+  "22": '22',
+  "24": '24',
+  "26": '26',
+  "27": '27',
+  "27.5": '27.5',
+  "28": '28',
+  "29": '29'
+} as const
+export type TListingWheelSizeEnum = (typeof ListingWheelSizeEnum)[keyof typeof ListingWheelSizeEnum]
+
+export const ListingMaterialEnum = {
+ Aluminum: "aluminum",
+ CarbonFiber: "carbon-fiber",
+ Steel: "steel",
+ Titanium: "titanium"
+} as const
+export type TListingMaterialEnum = (typeof ListingMaterialEnum)[keyof typeof ListingMaterialEnum]
 
 export const AllowedMimetypesMap = {
   png: "image/png",
