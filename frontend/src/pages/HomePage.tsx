@@ -36,14 +36,11 @@ export function HomePage() {
                     textTransform: "capitalize"
                   }
                 }}>
-                {formatDistanceToNow(
-                  subSeconds(new Date(listing.createdAt), new Date(listing.createdAt).getSeconds()),
-                  {
-                    locale: dateFnsLocale,
-                    addSuffix: true,
-                    includeSeconds: true
-                  }
-                )}
+                {formatDistanceToNow(subSeconds(listing.createdAt, listing.createdAt.getSeconds()), {
+                  locale: dateFnsLocale,
+                  addSuffix: true,
+                  includeSeconds: true
+                })}
               </Typography>
             </CardContent>
           </Card>
