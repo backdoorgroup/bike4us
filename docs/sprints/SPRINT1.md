@@ -27,6 +27,6 @@
 
 -Ferramenta de Gerenciamento de Projetos: Trello
 
-![banner](./docs/assets/trello.png)
+<img src="https://github.com/backdoorgroup/bike4us/blob/fran/readme/docs/assets/trello.png" /> 
 
 [Apresentação da Sprint 1](https://www.youtube.com/watch?v=Q6sC1Ibycmo)
