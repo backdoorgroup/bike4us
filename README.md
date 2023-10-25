@@ -17,7 +17,28 @@
 
 # Bike4Us
 
-> Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicicletas, conectando proprietários de bicicletas com pessoas que desejam alugá-las. Nosso objetivo é simplificar o processo de locação de bicicletas, proporcionando uma plataforma fácil de usar para encontrar a bicicleta perfeita para suas necessidades.
+Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicicletas, conectando proprietários de bicicletas com pessoas que desejam alugá-las. Nosso objetivo é simplificar o processo de locação de bicicletas, proporcionando uma plataforma fácil de usar para encontrar a bicicleta perfeita para suas necessidades.
+
+> Método Ágil usado: SCRUM.
+> Eficiência e Colaboração Impulsionam o Sucesso do Bike4Us! 
+
+<table>
+  <tbody>
+    <tr>
+      <td>Cliente</td>
+      <td>Emerson Marques (Gen Apps)</td>
+    </tr>
+    <tr>
+      <td>Período/Curso</td>
+      <td>2º DSM</td>
+    </tr>
+    <tr>
+      <td>Professor P2</td>
+      <td>Arley Ferreira de Souza</td>
+    </tr>
+    <tr>
+  </tbody>
+</table>
 
 ## Membros
 
@@ -64,14 +85,17 @@
   </tbody>
 </table>
 
+
+→ [Voltar ao topo](#topo)
+
 <span id="backlogs">
 
 
 # 🎯 Backlog & User Stories
 
- ## 📌 Requisitos
+ # 📌 Requisitos
 
-<strong>Funcionais:</strong><
+<strong>Funcionais:</strong>
 
 - O usuário deverá se cadastrar para usar a ferramenta;
 - O usuário poderá cadastrar bicicletas fornecendo fotos, modelo, tipo (speed, MTB, BMX, passeio etc.), descrição e outros dados importantes para a identificação da bicicleta;
@@ -84,7 +108,7 @@ e valor;
 - O usuário deverá estar logado para cadastrar/alterar dados das bicicletas.
 - O locatário poderá ser avaliado pelo locador e vice-versa, gerando uma pontuação de 0 a 5 estrelas.
 
- Não Funcionais:
+ <strong>Não Funcionais:</strong>
 
 - Documentação no GitHub;
 - Processo Scrum;
@@ -96,11 +120,11 @@ e valor;
 - A autenticação de usuário deverá ser por alguma conta de serviço, como Google, Facebook
 ou outro.
 
-## 📌 User Stories
+# 📌 User Stories
 
-**Prioridade Alta**
+## Prioridade Alta
 
-**Cadastro de Usuário:**
+### Cadastro de Usuário:
 
 História:
 
