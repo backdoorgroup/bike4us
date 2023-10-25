@@ -33,7 +33,7 @@ export class Listing extends Model {
   title: string
 
   @Column({ type: "varchar", length: 2048, nullable: true })
-  description: string
+  description?: string
 
   @Column({ type: "integer" })
   @Check(`"hourPricing" > 0`)

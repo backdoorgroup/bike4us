@@ -2,11 +2,17 @@ import { z } from "zod"
 
 import { PaginationSchema } from "@/schemas"
 
-import { ListingConditionEnum, ListingFrameSizeEnum, ListingMaterialEnum, ListingWheelSizeEnum, ListingTypeEnum } from "@/listings/constants"
+import {
+  ListingConditionEnum,
+  ListingFrameSizeEnum,
+  ListingMaterialEnum,
+  ListingWheelSizeEnum,
+  ListingTypeEnum
+} from "@/listings/constants"
 
 export const CreateListingSchema = z.object({
   ownerUid: z.string().min(1).max(128),
-  description: z.string().min(1).max(2048),
+  description: z.string().min(1).max(2048).optional(),
   title: z.string().min(1).max(128),
   hourPricing: z.coerce.number().int().positive(),
   picturePath: z.string().min(1).max(512),

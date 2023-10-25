@@ -37,23 +37,23 @@ export const ConditionValidation: RegisterOptions = {
 
 // More details
 export const TypeValidation: RegisterOptions = {
-  //
+  required: RequiredFieldText
 }
 
 export const BrandValidation: RegisterOptions = {
-  //
+  required: RequiredFieldText
 }
 
 export const FrameSizeValidation: RegisterOptions = {
-  //
+  required: RequiredFieldText
 }
 
 export const WheelSizeValidation: RegisterOptions = {
-  //
+  required: RequiredFieldText
 }
 
 export const MaterialValidation: RegisterOptions = {
-  //
+  required: RequiredFieldText
 }
 
 export const DescriptionValidation: RegisterOptions = {
