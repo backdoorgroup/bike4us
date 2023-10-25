@@ -7,7 +7,7 @@ export const Listing = z.object({
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date().optional(),
   title: z.string(),
-  description: z.string().optional().nullable(),
+  description: z.coerce.string().optional(),
   hourPricing: z.number(),
   status: z.string(),
   picturePath: z.string(),
