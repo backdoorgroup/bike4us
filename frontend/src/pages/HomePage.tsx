@@ -6,6 +6,7 @@ import dateFnsLocale from "date-fns/locale/pt-BR"
 import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import Card from "@mui/material/Card"
+import CardMedia from "@mui/material/CardMedia"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
 
@@ -22,6 +23,7 @@ export function HomePage() {
       <Stack sx={{ flexDirection: "row", overflowX: "auto", gap: "16px" }}>
         {listings.map((listing) => (
           <Card variant="outlined" key={listing.id} sx={{ minWidth: 130, maxWidth: 130 }}>
+            <CardMedia component="img" image={listing.picturePath} />
             <CardContent>
               <Typography variant="h6" gutterBottom>
                 R$ {listing.hourPricing}

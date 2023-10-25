@@ -1,5 +1,7 @@
 import { z } from "zod"
 
+import { settings } from "@config"
+
 // TODO: colocar validação nas enumerações
 export const Listing = z.object({
   id: z.number(),
@@ -10,7 +12,7 @@ export const Listing = z.object({
   description: z.coerce.string().optional(),
   hourPricing: z.number(),
   status: z.string(),
-  picturePath: z.string(),
+  picturePath: z.string().transform((picturePath) => settings.STATIC_URL + picturePath),
   brand: z.string(),
   condition: z.string(),
   type: z.string(),
