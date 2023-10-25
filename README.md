@@ -196,8 +196,29 @@ Critérios de aceite:
 - A avaliação será opcional e não permitirá a inclusão de comentários além da pontuação.
 - As pontuações atribuídas serão visíveis publicamente para outros usuários, fornecendo uma ideia da qualidade das transações anteriores.
 
-## Sprints
+
+<span id="tecnologias">
+
+## 🛠️ Tecnologias
+
+
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white) 
+![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
+![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
+![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white)
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
+
+
+→ [Voltar ao topo](#topo)
+
+
 
 <!-- Quando fazer o merge dessa branch na main, você vai precisar trocar `fran/readme` por `main` na URL -->
 
-[Sprint 1](https://github.com/backdoorgroup/bike4us/blob/fran/readme/docs/sprints/SPRINT1.md)
+
