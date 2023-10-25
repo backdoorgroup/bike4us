@@ -25,6 +25,7 @@ export function AppNavBottom({ basic }: Props) {
   return (
     <BottomNavigation
       sx={{
+        zIndex: 1,
         borderTop: 1,
         borderColor: "lightgray",
         position: "fixed",

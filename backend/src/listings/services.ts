@@ -10,12 +10,24 @@ export const createListing = async ({
   title,
   description,
   hourPricing,
-  picturePath
+  picturePath,
+  type,
+  brand,
+  material,
+  wheelSize,
+  frameSize,
+  condition
 }: TCreateListingSchema) => {
   const listing = new Listing()
 
   listing.ownerUid = ownerUid
   listing.title = title
+  listing.type = type
+  listing.material = material
+  listing.brand = brand
+  listing.frameSize = frameSize
+  listing.wheelSize = wheelSize
+  listing.condition = condition
   listing.description = description
   listing.hourPricing = hourPricing
   listing.picturePath = picturePath
