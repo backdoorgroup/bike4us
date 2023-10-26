@@ -42,7 +42,4 @@ https://www.youtube.com/watch?v=Q6sC1Ibycmo
 ```
 [Vídeo de Apresentação: Sprint 1](https://www.youtube.com/watch?v=Q6sC1Ibycmo) 
 
-   
-   
-
 → [Voltar ao Topo](#topo)   

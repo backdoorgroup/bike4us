@@ -7,9 +7,9 @@
 
 <p align="center">
     <a href="#sobre">Sobre</a>  |
+    <a href="#equipe">Equipe</a> |
     <a href="#backlogs">Backlogs</a>  |
-    <a href="#tecnologias">Tecnologias</a>  |
-    <a href="#equipe">Equipe</a>
+    <a href="#tecnologias">Tecnologias</a>  
 </p>
 
 <span id="sobre">
@@ -37,64 +37,74 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
   </tbody>
 </table>
 
-## Membros
+<span id="equipe">
+
+## Equipe
 
 <table>
   <thead>
     <tr>
       <th>Membro</th>
       <th>Cargo</th>
+      <th>LinkedIn & GitHub</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>Lucas Braz</td>
       <td>Product Owner</td>
+      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)]() [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)]()</td>
     </tr>
     <tr>
       <td>Franciele Chesere</td>
       <td>Scrum Master</td>
+      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](www.linkedin.com/in/franciele-m-chesere-605974274) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/ChesereF)</td>
     </tr>
     <tr>
       <td>João Procópio</td>
       <td>Dev</td>
+      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/joao-procopio) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/joaoprocopio/)</td>
     </tr>
     <tr>
       <td>Larissa Candido</td>
       <td>Dev</td>
+      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)]() [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)]()</td>
     </tr>
     <tr>
       <td>Thiago Nathan</td>
       <td>Dev</td>
+      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)]() [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)]()</td>
     </tr>
     <tr>
-      <td>Danielle Sismonn</td>
+      <td>Danielle Sismon</td>
       <td>Dev</td>
+      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/danielle-sismon-%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%F0%9F%8C%88-392b239b/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/DanielleSismon)</td>
     </tr>
     <tr>
       <td>Matheus Santo</td>
       <td>Dev</td>
+       <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/matheus-sergio-faria-santo-76284433/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/matheussanto2)</td>
     </tr>
     <tr>
       <td>Rafael Estevam de Siqueira</td>
       <td>Dev</td>
+      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/rafael-estevam-0b2654272/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/rafaelres)</td>
     </tr>
   </tbody>
 </table>
 
-<a href="">📑<strong>Documentação</strong></a>   
 
 📌Status do Projeto: **Em Andamento** 
 
-### 🏁 Entregas de Sprints
+### Entregas de Sprints
 
 | Sprint | Previsão de Entrega | Status           | Histórico |
 |:--:|:----------:|:-------------------|:-------------------------------------------------:|
-| 01 | 28/09/2023 | Finalizada     |  [ver relatório](https://github.com/backdoorgroup/bike4us/blob/fran/readme/docs/sprints/SPRINT1.md) |
-| 02 | 26/10/2023 | Iniciada     | [ver relatório](https://github.com/backdoorgroup/bike4us/blob/fran/readme/docs/sprints/SPRINT2.md) | 
-| 03 | Sem Data Prevista |  Não Iniciada   | [Relatório - Ainda não disponivel]() |
+| 01 | 28/09/2023 | Finalizada     |  [Ver Relatório](https://github.com/backdoorgroup/bike4us/blob/fran/readme/docs/sprints/SPRINT1.md) |
+| 02 | 26/10/2023 | Iniciada     | [Ver Relatório](https://github.com/backdoorgroup/bike4us/blob/fran/readme/docs/sprints/SPRINT2.md) | 
+| 03 | Sem Data Prevista |  Não Iniciada   | [Relatório - Ainda não Disponível]() |
 
-→ [Voltar ao topo](#topo)
+→ [Voltar ao Topo](#topo)
 
 <span id="backlogs">
 
@@ -216,9 +226,3 @@ Critérios de aceite:
 
 
 → [Voltar ao topo](#topo)
-
-
-
-<!-- Quando fazer o merge dessa branch na main, você vai precisar trocar `fran/readme` por `main` na URL -->
-
-
