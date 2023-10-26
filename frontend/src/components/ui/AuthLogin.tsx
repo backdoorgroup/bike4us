@@ -16,7 +16,7 @@ import Typography from "@mui/material/Typography"
 import GoogleIcon from "@mui/icons-material/Google"
 
 import { EmailValidation, PasswordValidation, LoginForm } from "@/forms"
-import { AuthService } from "@/services"
+import { AuthServices } from "@/services"
 
 export function AuthLogin() {
   const navigate = useNavigate()
@@ -31,13 +31,13 @@ export function AuthLogin() {
 
   const handleSubmit = async ({ email, password }: LoginForm) => {
     // TODO: tratar os erros de forma amigável pro usuário que vem dessa chamada usando o AuthErrorCodes do módulo "firebase/auth"
-    await AuthService.signInWithEmailAndPassword(email, password)
+    await AuthServices.signInWithEmailAndPassword(email, password)
 
     navigate("/")
   }
 
   const handleGoogleClick = async () => {
-    await AuthService.signInWithGooglePopup()
+    await AuthServices.signInWithGooglePopup()
 
     navigate("/")
   }

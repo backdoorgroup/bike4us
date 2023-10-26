@@ -9,7 +9,7 @@ export const Listing = z.object({
   createdAt: z.coerce.date(),
   updatedAt: z.coerce.date().optional(),
   title: z.string(),
-  description: z.coerce.string().optional(),
+  description: z.string().optional().nullable(),
   hourPricing: z.number(),
   status: z.string(),
   picturePath: z.string().transform((picturePath) => settings.STATIC_URL + picturePath),

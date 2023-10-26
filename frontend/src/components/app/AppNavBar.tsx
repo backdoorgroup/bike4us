@@ -7,7 +7,7 @@ import Link from "@mui/material/Link"
 import Toolbar from "@mui/material/Toolbar"
 
 import { AuthDialog } from "@/components"
-import { AuthService } from "@/services"
+import { AuthServices } from "@/services"
 import { useUserStore } from "@/stores"
 
 interface Props {
@@ -27,7 +27,7 @@ export function AppNavBar({ basic }: Props) {
     handleCloseDialog()
   }
   const handleSignOut = async () => {
-    await AuthService.signOut()
+    await AuthServices.signOut()
 
     navigate("/")
     handleCloseDialog()

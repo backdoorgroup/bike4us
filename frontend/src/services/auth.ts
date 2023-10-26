@@ -2,7 +2,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithP
 
 import { authClient, googleProvider } from "@/services/clients"
 
-export const AuthService = {
+export const AuthServices = {
   signInWithEmailAndPassword: async (email: string, password: string) => {
     return await signInWithEmailAndPassword(authClient, email, password)
   },

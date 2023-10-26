@@ -12,7 +12,7 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 
-import { AuthService } from "@/services"
+import { AuthServices } from "@/services"
 import { EmailValidation, PasswordValidation, RegisterForm } from "@/forms"
 
 export function AuthRegister() {
@@ -27,7 +27,7 @@ export function AuthRegister() {
   }
 
   const handleSubmit = async ({ email, password }: RegisterForm) => {
-    await AuthService.createUserWithEmailAndPassword(email, password)
+    await AuthServices.createUserWithEmailAndPassword(email, password)
 
     navigate("/")
   }
