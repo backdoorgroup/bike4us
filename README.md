@@ -41,57 +41,17 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
 
 ## Equipe
 
-<table>
-  <thead>
-    <tr>
-      <th>Membro</th>
-      <th>Cargo</th>
-      <th>LinkedIn & GitHub</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Lucas Braz</td>
-      <td>Product Owner</td>
-      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)]() [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)]()</td>
-    </tr>
-    <tr>
-      <td>Franciele Chesere</td>
-      <td>Scrum Master</td>
-      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](www.linkedin.com/in/franciele-m-chesere-605974274) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/ChesereF)</td>
-    </tr>
-    <tr>
-      <td>João Procópio</td>
-      <td>Dev</td>
-      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/joao-procopio) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/joaoprocopio/)</td>
-    </tr>
-    <tr>
-      <td>Larissa Candido</td>
-      <td>Dev</td>
-      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)]() [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)]()</td>
-    </tr>
-    <tr>
-      <td>Thiago Nathan</td>
-      <td>Dev</td>
-      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)]() [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)]()</td>
-    </tr>
-    <tr>
-      <td>Danielle Sismon</td>
-      <td>Dev</td>
-      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/danielle-sismon-%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%F0%9F%8C%88-392b239b/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/DanielleSismon)</td>
-    </tr>
-    <tr>
-      <td>Matheus Santo</td>
-      <td>Dev</td>
-       <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/matheus-sergio-faria-santo-76284433/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/matheussanto2)</td>
-    </tr>
-    <tr>
-      <td>Rafael Estevam de Siqueira</td>
-      <td>Dev</td>
-      <td>[![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/rafael-estevam-0b2654272/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/rafaelres)</td>
-    </tr>
-  </tbody>
-</table>
+    
+|    Membro    | Cargo                                  |                                                                                                                                                      LinkedIn & GitHub                                                                                                                                                      |
+| :-----------: | :------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|   Lucas Braz    | Product Owner  |           [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)]() [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)]() |
+| Franciele Chesere  | Scrum Master  |      [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](www.linkedin.com/in/franciele-m-chesere-605974274) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/ChesereF) |
+| João Procópio | Dev Team  |  [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/joao-procopio) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/joaoprocopio/) | 
+| Larissa Candido | Dev Team   |  [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)]() [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/Thiagombs23)| 
+| Thiago Nathan | Dev Team   |  [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)]() [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/Thiagombs23)| 
+| Danielle Sismon | Dev Team   | [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/danielle-sismon-%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%F0%9F%8C%88-392b239b/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/DanielleSismon)| 
+| Matheus Santo | Dev Team   | [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/matheus-sergio-faria-santo-76284433/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/matheussanto2)| 
+| Rafael Estevam de Siqueira | Dev Team   |  [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/rafael-estevam-0b2654272/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/rafaelres)| 
 
 
 📌Status do Projeto: **Em Andamento** 
