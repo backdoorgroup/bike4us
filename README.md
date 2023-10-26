@@ -37,6 +37,8 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
   </tbody>
 </table>
 
+📌Status do Projeto: **Em Andamento**
+
 <span id="equipe">
 
 ## Equipe
@@ -54,7 +56,7 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
 | Rafael Estevam de Siqueira | Dev Team   |  [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/rafael-estevam-0b2654272/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/rafaelres)| 
 
 
-📌Status do Projeto: **Em Andamento** 
+
 
 ### Entregas de Sprints
 
