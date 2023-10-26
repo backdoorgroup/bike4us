@@ -1,7 +1,7 @@
 <span id="topo">
 <div align="center">
 
-![banner](./docs/assets/logo2.png)
+![banner](./docs/assets/logo3.png)
 
 </div>
 
