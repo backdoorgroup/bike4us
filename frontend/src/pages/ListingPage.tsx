@@ -29,14 +29,14 @@ export function ListingPage() {
         <Stack gap={2}>
           <Box>
             <Typography variant="caption" sx={{ color: "text.secondary" }}>
-              {Condition[listing?.condition]}
+              {Condition[listing.condition]}
             </Typography>
 
-            <Typography>{listing?.title}</Typography>
+            <Typography>{listing.title}</Typography>
           </Box>
 
           <ImageListItem sx={{ borderRadius: 1, overflow: "hidden" }}>
-            <img src={listing?.picturePath} style={{ height: 288 }} />
+            <img src={listing.picturePath} style={{ height: 288 }} />
           </ImageListItem>
 
           <Box>
@@ -44,14 +44,14 @@ export function ListingPage() {
               <Box component="span" pr={0.75}>
                 R$
               </Box>
-              <Box component="span">{listing?.hourPricing}</Box>
+              <Box component="span">{listing.hourPricing}</Box>
             </Box>
             <Typography variant="subtitle2" sx={{ ml: 0.25, fontWeight: 400, color: "text.secondary" }}>
               Por hora
             </Typography>
           </Box>
 
-          {listing?.createdAt && (
+          {listing.createdAt && (
             <Typography variant="subtitle2" sx={{ ml: 0.25, fontWeight: 400, color: "text.secondary" }}>
               Anunciado em {format(listing.createdAt, "dd/MM")} às&nbsp;
               {format(listing.createdAt, "HH:mm", { locale: dateFnsLocale })}
@@ -63,7 +63,7 @@ export function ListingPage() {
         <Container sx={{ paddingY: 4 }}>
           <Stack gap={2}>
             <Typography variant="h6">Descrição</Typography>
-            <Typography component="pre">{listing?.description}</Typography>
+            <Typography component="pre">{listing.description}</Typography>
           </Stack>
         </Container>
       )}
@@ -76,25 +76,25 @@ export function ListingPage() {
               <TableBody>
                 <TableRow sx={{ bgcolor: "action.hover" }}>
                   <TableCell variant="head">Tipo de Bicicleta</TableCell>
-                  <TableCell>{BikeType[listing?.type]}</TableCell>
+                  <TableCell>{BikeType[listing.type]}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell variant="head">Marca</TableCell>
-                  <TableCell>{listing?.brand}</TableCell>
+                  <TableCell>{listing.brand}</TableCell>
                 </TableRow>
                 <TableRow sx={{ bgcolor: "action.hover" }}>
                   <TableCell variant="head">Quadro</TableCell>
-                  <TableCell>{FrameSize[listing?.frameSize]}</TableCell>
+                  <TableCell>{FrameSize[listing.frameSize]}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell variant="head">Aro</TableCell>
-                  <TableCell>{WheelSize[listing?.wheelSize]}</TableCell>
+                  <TableCell>{WheelSize[listing.wheelSize]}</TableCell>
                 </TableRow>
                 <TableRow sx={{ bgcolor: "action.hover" }}>
                   <TableCell variant="head" sx={{ borderBottom: 0 }}>
                     Material
                   </TableCell>
-                  <TableCell sx={{ borderBottom: 0 }}>{Material[listing?.material]}</TableCell>
+                  <TableCell sx={{ borderBottom: 0 }}>{Material[listing.material]}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
