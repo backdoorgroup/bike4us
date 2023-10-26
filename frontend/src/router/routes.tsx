@@ -5,8 +5,7 @@ import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "@/router/l
 
 import { AuthLogin, AuthRegister } from "@/components"
 import { HomeLayout } from "@/layouts"
-import { AnnouncePage, AuthPage, ErrorPage, HomePage } from "@/pages"
-import { ListingsServices } from "@/services"
+import { AnnouncePage, AuthPage, ErrorPage, HomePage, ListingPage } from "@/pages"
 
 export const routes: RouteObject[] = [
   {
@@ -15,12 +14,12 @@ export const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <HomePage />,
-        loader: async () => {
-          const data = await ListingsServices.getListings()
+        element: <HomePage />
+      },
 
-          return data.listings
-        }
+      {
+        path: "anuncios/:id",
+        element: <ListingPage />
       },
 
       {

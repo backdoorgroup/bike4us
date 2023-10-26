@@ -21,6 +21,13 @@ export const ListingsServices = {
 
     return parsed
   },
+  getListing: async (id: number | string) => {
+    const response = await httpClient.get(`/listings/${id}`)
+
+    const parsed = Listing.parse(response.data)
+
+    return parsed
+  },
   getListings: async () => {
     const response = await httpClient.get("/listings")
 
