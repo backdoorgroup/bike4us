@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useLoaderData, useParams } from "react-router-dom"
 
 import format from "date-fns/format"
 import dateFnsLocale from "date-fns/locale/pt-BR"
@@ -20,25 +20,8 @@ import Typography from "@mui/material/Typography"
 import type { TListing } from "@/services/schemas"
 import { Condition, BikeType, FrameSize, WheelSize, Material } from "@/services/schemas"
 
-import { ListingsServices } from "@/services"
-
 export function ListingPage() {
-  const [listing, setListing] = useState<TListing>()
-
-  const params = useParams()
-
-  useEffect(() => {
-    const getListing = async () => {
-      if (!params.id) return
-
-      const data = await ListingsServices.getListing(params.id)
-
-      setListing(data)
-    }
-
-    getListing()
-  }, [params.id])
-  // TODO: deixar bonitinho
+  const listing = useLoaderData() as TListing
 
   return (
     <Stack divider={<Divider />}>

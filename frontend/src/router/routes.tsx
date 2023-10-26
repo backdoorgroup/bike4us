@@ -1,11 +1,12 @@
 import type { RouteObject } from "react-router-dom"
-import { Navigate } from "react-router-dom"
+import { Navigate, redirect } from "react-router-dom"
 
 import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "@/router/loaders"
 
 import { AuthLogin, AuthRegister } from "@/components"
 import { HomeLayout } from "@/layouts"
 import { AnnouncePage, AuthPage, ErrorPage, HomePage, ListingPage } from "@/pages"
+import { ListingsServices } from "@/services"
 
 export const routes: RouteObject[] = [
   {
@@ -14,12 +15,30 @@ export const routes: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <HomePage />
+        element: <HomePage />,
+        loader: async () => {
+          const data = await ListingsServices.getListings()
+
+          return data.listings
+        }
       },
 
       {
         path: "anuncios/:id",
-        element: <ListingPage />
+        element: <ListingPage />,
+        loader: async ({ params }) => {
+          if (!params.id) return redirect("/")
+
+          try {
+            const data = await ListingsServices.getListing(params.id)
+
+            return data
+          } catch (error) {
+            return redirect("/")
+          }
+
+          return null
+        }
       },
 
       {

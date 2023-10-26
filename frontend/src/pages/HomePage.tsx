@@ -1,25 +1,15 @@
-import { useEffect, useState } from "react"
+import { useLoaderData } from "react-router-dom"
 
 import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
-import type { TListings } from "@/services/schemas"
+import { TListings } from "@/services/schemas"
+
 import { ListingCard } from "@/components"
-import { ListingsServices } from "@/services"
 
 export function HomePage() {
-  const [listings, setListings] = useState<TListings>([])
-
-  useEffect(() => {
-    const getListings = async () => {
-      const data = await ListingsServices.getListings()
-
-      setListings(data.listings)
-    }
-
-    getListings()
-  }, [])
+  const listings = useLoaderData() as TListings
 
   return (
     <>
