@@ -80,7 +80,7 @@ export function ListingPage() {
         <Container sx={{ paddingY: 4 }}>
           <Stack gap={2}>
             <Typography variant="h6">Descrição</Typography>
-            <Typography>{listing?.description}</Typography>
+            <Typography component="pre">{listing?.description}</Typography>
           </Stack>
         </Container>
       )}

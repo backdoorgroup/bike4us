@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { useNavigate } from "react-router-dom"
 
 import Alert, { type AlertColor as TSeverity } from "@mui/material/Alert"
 import MenuItem from "@mui/material/MenuItem"
@@ -38,22 +39,15 @@ export function AnnouncePage() {
   const [loading, setLoading] = useState(false)
   const [alert, setAlert] = useState<{ title: string; severity: TSeverity }>()
 
+  const navigate = useNavigate()
+
   const handleSubmit = async (listing: ListingForm) => {
     try {
-      /*
-       *  1. Post pro backend que cria o anúncio
-       *  2. Vai pra página do anúncio criado
-       */
-
       setLoading(true)
 
-      await ListingsServices.createListing(listing)
+      const data = await ListingsServices.createListing(listing)
 
-      // TODO: fazer a parte que cria um link que da pra redirecionar pra pagina do anuncio criado
-      setAlert({
-        title: "Seu anúncio foi criado com sucesso!",
-        severity: "success"
-      })
+      navigate(`/anuncios/${data.id}`)
     } catch (error) {
       setAlert({
         title: "Ocorreu um erro ao criar seu anúncio",
