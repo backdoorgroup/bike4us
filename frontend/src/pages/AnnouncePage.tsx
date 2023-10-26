@@ -166,6 +166,17 @@ export function AnnouncePage() {
             </TextField>
             <TextField
               select
+              SelectProps={{
+                MenuProps: {
+                  slotProps: {
+                    paper: {
+                      sx: {
+                        maxHeight: 192
+                      }
+                    }
+                  }
+                }
+              }}
               defaultValue=""
               label="Aro"
               error={!!form.formState.errors.wheelSize}
