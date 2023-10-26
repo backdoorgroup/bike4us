@@ -17,8 +17,10 @@ import ImageListItem from "@mui/material/ImageListItem"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
+import type { TListing } from "@/services/schemas"
+import { Condition, BikeType, FrameSize, WheelSize, Material } from "@/services/schemas"
+
 import { ListingsServices } from "@/services"
-import { TListing } from "@/services/schemas"
 
 export function ListingPage() {
   const [listing, setListing] = useState<TListing>()
@@ -44,7 +46,7 @@ export function ListingPage() {
         <Stack gap={2}>
           <Box>
             <Typography variant="caption" sx={{ color: "text.secondary" }}>
-              {listing?.condition}
+              {Condition[listing?.condition]}
             </Typography>
 
             <Typography>{listing?.title}</Typography>
@@ -91,7 +93,7 @@ export function ListingPage() {
               <TableBody>
                 <TableRow sx={{ bgcolor: "action.hover" }}>
                   <TableCell variant="head">Tipo de Bicicleta</TableCell>
-                  <TableCell>{listing?.type}</TableCell>
+                  <TableCell>{BikeType[listing?.type]}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell variant="head">Marca</TableCell>
@@ -99,17 +101,17 @@ export function ListingPage() {
                 </TableRow>
                 <TableRow sx={{ bgcolor: "action.hover" }}>
                   <TableCell variant="head">Quadro</TableCell>
-                  <TableCell>{listing?.frameSize}</TableCell>
+                  <TableCell>{FrameSize[listing?.frameSize]}</TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell variant="head">Aro</TableCell>
-                  <TableCell>{listing?.wheelSize}</TableCell>
+                  <TableCell>{WheelSize[listing?.wheelSize]}</TableCell>
                 </TableRow>
                 <TableRow sx={{ bgcolor: "action.hover" }}>
                   <TableCell variant="head" sx={{ borderBottom: 0 }}>
                     Material
                   </TableCell>
-                  <TableCell sx={{ borderBottom: 0 }}>{listing?.material}</TableCell>
+                  <TableCell sx={{ borderBottom: 0 }}>{Material[listing?.material]}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
