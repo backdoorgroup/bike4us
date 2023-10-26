@@ -58,7 +58,7 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
 
 
 
-### Entregas de Sprints
+## Entregas de Sprints
 
 | Sprint | Previsão de Entrega | Status           | Histórico |
 |:--:|:----------:|:-------------------|:-------------------------------------------------:|
