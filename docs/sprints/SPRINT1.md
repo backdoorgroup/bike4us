@@ -42,4 +42,6 @@ https://www.youtube.com/watch?v=Q6sC1Ibycmo
 ```
 [Vídeo de Apresentação: Sprint 1](https://www.youtube.com/watch?v=Q6sC1Ibycmo) 
 
+Voltar Para: <a href="https://github.com/backdoorgroup/bike4us/blob/main/README.md"><strong>Documentação</strong></a> 
+
 → [Voltar ao Topo](#topo)   

@@ -38,6 +38,7 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
 </table>
 
 📌Status do Projeto: **Em Andamento**
+<a href="">📌<strong>Documentação</strong></a>  
 
 <span id="equipe">
 
@@ -62,8 +63,8 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
 
 | Sprint | Previsão de Entrega | Status           | Histórico |
 |:--:|:----------:|:-------------------|:-------------------------------------------------:|
-| 01 | 28/09/2023 | Finalizada     |  [Ver Relatório](https://github.com/backdoorgroup/bike4us/blob/fran/readme/docs/sprints/SPRINT1.md) |
-| 02 | 26/10/2023 | Iniciada     | [Ver Relatório](https://github.com/backdoorgroup/bike4us/blob/fran/readme/docs/sprints/SPRINT2.md) | 
+| 01 | 28/09/2023 | Finalizada     |  [Ver Relatório](https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT1.md) |
+| 02 | 26/10/2023 | Iniciada     | [Ver Relatório](https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT2.md) | 
 | 03 | Sem Data Prevista |  Não Iniciada   | [Relatório - Ainda não Disponível]() |
 
 → [Voltar ao Topo](#topo)
