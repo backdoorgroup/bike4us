@@ -171,7 +171,7 @@ export function AnnouncePage() {
                   slotProps: {
                     paper: {
                       sx: {
-                        maxHeight: 192
+                        maxHeight: 208
                       }
                     }
                   }
