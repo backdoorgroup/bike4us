@@ -1,6 +1,7 @@
 import { z } from "zod"
 
 import { settings } from "@config"
+import { extractEnum } from "@/utils"
 
 export const Condition = {
   "new": "Novo",
@@ -45,7 +46,6 @@ export const Material = {
   "titanium": "Titânio"
 } as const
 
-// TODO: colocar validação nas enumerações
 export const Listing = z.object({
   id: z.number(),
   ownerUid: z.string(),
@@ -57,11 +57,11 @@ export const Listing = z.object({
   status: z.string(),
   picturePath: z.string().transform((picturePath) => settings.STATIC_URL + picturePath),
   brand: z.string(),
-  condition: z.string(),
-  type: z.string(),
-  frameSize: z.string(),
-  wheelSize: z.string(),
-  material: z.string()
+  condition: extractEnum(Condition),
+  type: extractEnum(BikeType),
+  frameSize: extractEnum(FrameSize),
+  wheelSize: extractEnum(WheelSize),
+  material: extractEnum(Material)
 })
 export type TListing = z.infer<typeof Listing>
 

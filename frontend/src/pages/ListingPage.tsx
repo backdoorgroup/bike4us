@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react"
-import { useLoaderData, useParams } from "react-router-dom"
+import { useLoaderData } from "react-router-dom"
 
 import format from "date-fns/format"
 import dateFnsLocale from "date-fns/locale/pt-BR"
