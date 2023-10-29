@@ -9,7 +9,6 @@ import { HttpStatus } from "@lib/http"
 
 import { upload } from "@/listings/middlewares"
 import { CreateListingSchema, CreateOrderSchema, GetListingSchema, GetListingsSchema } from "@/listings/schemas"
-import { serializeListing, serializeOrder } from "@/listings/serializers"
 import { createListing, createOrder, getListing, getListings } from "@/listings/services"
 
 export const router = Router()
@@ -20,8 +19,7 @@ router.get("/", async (req, res) => {
     const params = GetListingsSchema.parse(req.query)
 
     const query = await getListings()
-    const paginated = paginate(query, params.page, params.perPage)
-    const listings = paginated.map((listing) => serializeListing(listing))
+    const listings = paginate(query, params.page, params.perPage)
 
     res.status(HttpStatus.Ok).json({ listings, count: query.length })
   } catch (error) {
@@ -33,8 +31,7 @@ router.get("/:id", async (req, res) => {
   try {
     const params = GetListingSchema.parse(req.params)
 
-    const query = await getListing(params.id)
-    const listing = serializeListing(query)
+    const listing = await getListing(params.id)
 
     res.status(HttpStatus.Ok).json(listing)
   } catch (error) {
@@ -55,9 +52,7 @@ authenticatedRouter.post("/:id/order", async (req, res) => {
     const listing = await getListing(params.id)
     const order = await createOrder(listing, params)
 
-    const serialized = serializeOrder(order)
-
-    res.status(HttpStatus.Ok).json(serialized)
+    res.status(HttpStatus.Ok).json(order)
   } catch (error) {
     if (error instanceof ZodError) return res.status(HttpStatus.BadRequest).json(BadRequestException)
 
@@ -74,9 +69,8 @@ authenticatedRouter.post("/", upload.single("picture"), async (req, res) => {
     })
 
     const listing = await createListing(body)
-    const serialized = serializeListing(listing)
 
-    res.status(HttpStatus.Ok).json(serialized)
+    res.status(HttpStatus.Ok).json(listing)
   } catch (error) {
     res.status(HttpStatus.BadRequest).json(BadRequestException)
   }

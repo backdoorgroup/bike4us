@@ -1,9 +1,10 @@
 import type { TCreateListingSchema, TCreateOrderSchema } from "@/listings/schemas"
 import { Listing, Order } from "@/listings/models"
 
-export const getListings = async () => await Listing.createQueryBuilder().orderBy("Listing.createdAt", "DESC").getMany()
+export const getListings = async () => await Listing.find({ order: { createdAt: "desc" }, relations: { orders: true } })
 
-export const getListing = async (id: number) => await Listing.findOneByOrFail({ id })
+export const getListing = async (id: number) =>
+  await Listing.findOneOrFail({ where: { id }, relations: { orders: true } })
 
 export const createListing = async (data: TCreateListingSchema) => {
   const listing = new Listing()
