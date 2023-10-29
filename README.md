@@ -125,8 +125,7 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>Larissa Candido</td>
       <td>Dev Team</td>
       <td>
-        <!-- Não tem LinkedIn -->
-        <a>
+        <a href="https://www.linkedin.com/in/larissa-candido-70b199298/">
           <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
         </a>
       </td>
