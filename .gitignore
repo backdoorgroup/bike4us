@@ -131,3 +131,6 @@ dist
 
 # static files
 static
+
+# vite
+.vite

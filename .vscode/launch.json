@@ -5,7 +5,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Debug Backend",
+      "name": "Launch Backend",
       "type": "node",
       "request": "launch",
       "console": "integratedTerminal",
@@ -13,6 +13,16 @@
       "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
       "program": "${workspaceFolder}/backend/node_modules/.bin/tsx",
       "args": ["watch", "${workspaceFolder}/backend/src/main.ts"]
+    },
+    {
+      "name": "Launch Frontend",
+      "type": "node",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "cwd": "${workspaceFolder}/frontend",
+      "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+      "program": "${workspaceFolder}/frontend/node_modules/.bin/vite",
+      "args": ["dev"]
     }
   ]
 }
