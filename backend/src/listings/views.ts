@@ -8,9 +8,9 @@ import { paginate } from "@/utils"
 import { HttpStatus } from "@lib/http"
 
 import { upload } from "@/listings/middlewares"
-import { CreateListingSchema, GetListingSchema, GetListingsSchema } from "@/listings/schemas"
-import { serializeListing } from "@/listings/serializers"
-import { createListing, getListing, getListings } from "@/listings/services"
+import { CreateListingSchema, CreateOrderSchema, GetListingSchema, GetListingsSchema } from "@/listings/schemas"
+import { serializeListing, serializeOrder } from "@/listings/serializers"
+import { createListing, createOrder, getListing, getListings } from "@/listings/services"
 
 export const router = Router()
 export const authenticatedRouter = Router()
@@ -44,12 +44,34 @@ router.get("/:id", async (req, res) => {
   }
 })
 
-authenticatedRouter.post("/", upload.single("picture"), async (req, res) => {
-  req.body["ownerUid"] = req.user.uid
-  req.body["picturePath"] = req.file?.filename
-
+authenticatedRouter.post("/:id/order", async (req, res) => {
   try {
-    const body = CreateListingSchema.parse(req.body)
+    const params = CreateOrderSchema.parse({
+      id: req.params.id,
+      ownerUid: req.user.uid,
+      ...req.body
+    })
+
+    const listing = await getListing(params.id)
+    const order = await createOrder(listing, params)
+
+    const serialized = serializeOrder(order)
+
+    res.status(HttpStatus.Ok).json(serialized)
+  } catch (error) {
+    if (error instanceof ZodError) return res.status(HttpStatus.BadRequest).json(BadRequestException)
+
+    if (error instanceof EntityNotFoundError) return res.status(HttpStatus.NotFound).json(NotFoundException)
+  }
+})
+
+authenticatedRouter.post("/", upload.single("picture"), async (req, res) => {
+  try {
+    const body = CreateListingSchema.parse({
+      ownerUid: req.user.uid,
+      picturePath: req.file?.filename,
+      ...req.body
+    })
 
     const listing = await createListing(body)
     const serialized = serializeListing(listing)

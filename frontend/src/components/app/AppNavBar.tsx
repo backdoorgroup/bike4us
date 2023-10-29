@@ -32,6 +32,9 @@ export function AppNavBar({ basic }: Props) {
     navigate("/")
     handleCloseDialog()
   }
+  const handleOrders = () => {
+    handleCloseDialog()
+  }
 
   return (
     <AppBar
@@ -56,6 +59,7 @@ export function AppNavBar({ basic }: Props) {
               handleSignIn={handleSignIn}
               handleSignOut={handleSignOut}
               handleClose={handleCloseDialog}
+              handleOrders={handleOrders}
             />
           </>
         )}

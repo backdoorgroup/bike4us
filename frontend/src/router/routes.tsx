@@ -36,8 +36,6 @@ export const routes: RouteObject[] = [
           } catch (error) {
             return redirect("/")
           }
-
-          return null
         }
       },
 

@@ -1,37 +1,37 @@
-import type { TCreateListingSchema } from "@/listings/schemas"
-import { Listing } from "@/listings/models"
+import type { TCreateListingSchema, TCreateOrderSchema } from "@/listings/schemas"
+import { Listing, Order } from "@/listings/models"
 
 export const getListings = async () => await Listing.createQueryBuilder().orderBy("Listing.createdAt", "DESC").getMany()
 
 export const getListing = async (id: number) => await Listing.findOneByOrFail({ id })
 
-export const createListing = async ({
-  ownerUid,
-  title,
-  description,
-  hourPricing,
-  picturePath,
-  type,
-  brand,
-  material,
-  wheelSize,
-  frameSize,
-  condition
-}: TCreateListingSchema) => {
+export const createListing = async (data: TCreateListingSchema) => {
   const listing = new Listing()
 
-  listing.ownerUid = ownerUid
-  listing.title = title
-  listing.type = type
-  listing.material = material
-  listing.brand = brand
-  listing.frameSize = frameSize
-  listing.wheelSize = wheelSize
-  listing.condition = condition
-  listing.description = description
-  listing.hourPricing = hourPricing
-  listing.picturePath = picturePath
   listing.createdAt = new Date()
+  listing.ownerUid = data.ownerUid
+  listing.title = data.title
+  listing.type = data.type
+  listing.material = data.material
+  listing.brand = data.brand
+  listing.frameSize = data.frameSize
+  listing.wheelSize = data.wheelSize
+  listing.condition = data.condition
+  listing.description = data.description
+  listing.hourPricing = data.hourPricing
+  listing.picturePath = data.picturePath
 
   return await listing.save()
+}
+
+export const createOrder = async (listing: Listing, data: TCreateOrderSchema) => {
+  const order = new Order()
+
+  order.createdAt = new Date()
+  order.listing = listing
+  order.from = data.from
+  order.to = data.to
+  order.ownerUid = data.ownerUid
+
+  return await order.save()
 }
