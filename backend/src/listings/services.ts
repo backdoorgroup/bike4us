@@ -1,10 +1,11 @@
+import type { FindManyOptions, FindOneOptions } from "typeorm"
+
 import type { TCreateListingSchema, TCreateOrderSchema } from "@/listings/schemas"
 import { Listing, Order } from "@/listings/models"
 
-export const getListings = async () => await Listing.find({ order: { createdAt: "desc" }, relations: { orders: true } })
+export const getListings = async (options?: FindManyOptions<Listing>) => await Listing.find(options)
 
-export const getListing = async (id: number) =>
-  await Listing.findOneOrFail({ where: { id }, relations: { orders: true } })
+export const getListing = async (options: FindOneOptions<Listing>) => await Listing.findOneOrFail(options)
 
 export const createListing = async (data: TCreateListingSchema) => {
   const listing = new Listing()
@@ -32,7 +33,7 @@ export const createOrder = async (listing: Listing, data: TCreateOrderSchema) =>
   order.listing = listing
   order.from = data.from
   order.to = data.to
-  order.ownerUid = data.ownerUid
+  order.ordererUid = data.ordererUid
 
   return await order.save()
 }

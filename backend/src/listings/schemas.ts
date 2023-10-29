@@ -34,9 +34,9 @@ export const GetListingSchema = z.object({
 export const CreateOrderSchema = z
   .object({
     id: z.coerce.number().int().positive(),
-    ownerUid: z.string().min(1).max(128),
+    ordererUid: z.string().min(1).max(128),
     from: z.coerce.date(),
     to: z.coerce.date()
   })
-  .refine((input) => input.from < input.to) // Essa linha serve pra garantir que a data de início seja menor que data de fim
+  .refine((input) => input.from < input.to) // Garante que a data de retirada seja menor que data de devolução. Você não pode devolver a bike sem antes ter pego ela.
 export type TCreateOrderSchema = z.infer<typeof CreateOrderSchema>

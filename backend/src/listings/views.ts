@@ -18,7 +18,7 @@ router.get("/", async (req, res) => {
   try {
     const params = GetListingsSchema.parse(req.query)
 
-    const query = await getListings()
+    const query = await getListings({ order: { createdAt: "desc" } })
     const listings = paginate(query, params.page, params.perPage)
 
     res.status(HttpStatus.Ok).json({ listings, count: query.length })
@@ -31,7 +31,7 @@ router.get("/:id", async (req, res) => {
   try {
     const params = GetListingSchema.parse(req.params)
 
-    const listing = await getListing(params.id)
+    const listing = await getListing({ where: { id: params.id } })
 
     res.status(HttpStatus.Ok).json(listing)
   } catch (error) {
@@ -45,11 +45,11 @@ authenticatedRouter.post("/:id/order", async (req, res) => {
   try {
     const params = CreateOrderSchema.parse({
       id: req.params.id,
-      ownerUid: req.user.uid,
+      ordererUid: req.user.uid,
       ...req.body
     })
 
-    const listing = await getListing(params.id)
+    const listing = await getListing({ where: { id: params.id } })
     const order = await createOrder(listing, params)
 
     res.status(HttpStatus.Ok).json(order)

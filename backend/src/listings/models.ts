@@ -75,7 +75,7 @@ export class Order extends Model {
   createdAt: Date
 
   @Column({ type: "varchar", length: 128 })
-  ownerUid: string
+  ordererUid: string
 
   @Column({ type: "timestamptz" })
   from: Date
