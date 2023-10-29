@@ -1,15 +1,11 @@
 <span id="topo">
+
 <div align="center">
-
-![banner](./docs/assets/logo2.png)
-
+  <img src="./docs/assets/logo2.png" />
 </div>
 
 <p align="center">
-    <a href="#sobre">Sobre</a>  |
-    <a href="#equipe">Equipe</a> |
-    <a href="#backlogs">Backlogs</a>  |
-    <a href="#tecnologias">Tecnologias</a>  
+  <a href="#sobre">Sobre</a> | <a href="#equipe">Equipe</a> | <a href="#backlogs">Backlogs</a>  | <a href="#tecnologias">Tecnologias</a>
 </p>
 
 <span id="sobre">
@@ -23,15 +19,15 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
 <table>
   <tbody>
     <tr>
-      <td>Cliente</td>
+      <th>Cliente</th>
       <td>Emerson Marques (Gen Apps)</td>
     </tr>
     <tr>
-      <td>Período/Curso</td>
+      <th>Período/Curso</th>
       <td>2º DSM</td>
     </tr>
     <tr>
-      <td>Professor P2</td>
+      <th>Professor P2</th>
       <td>Arley Ferreira de Souza</td>
     </tr>
   </tbody>
@@ -39,34 +35,182 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
 
 📌Status do Projeto: **Em Andamento**
 
-<a href="">📌<strong>Documentação</strong></a>  
+<a href="">📌<strong>Documentação</strong></a>
 
 <span id="equipe">
 
 ## Equipe
 
-    
-|    Membro    | Cargo                                  |                                                                                                                                                      LinkedIn & GitHub                                                                                                                                                      |
-| :-----------: | :------------------------------------ | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|   Lucas Braz    | Product Owner  |           [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)]() [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)]() |
-| Franciele Chesere  | Scrum Master  |      [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/franciele-m-chesere-605974274/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/ChesereF) |
-| João Procópio | Dev Team  |  [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/joao-procopio) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/joaoprocopio/) | 
-| Larissa Candido | Dev Team   |  [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/larissa-candido-70b199298/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/larixyz)| 
-| Thiago Nathan | Dev Team   |  [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)]() [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)]()| 
-| Danielle Sismon | Dev Team   | [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/danielle-sismon-%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%F0%9F%8C%88-392b239b/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/DanielleSismon)| 
-| Matheus Santo | Dev Team   | [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/matheus-sergio-faria-santo-76284433/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/matheussanto2)| 
-| Rafael Estevam de Siqueira | Dev Team   |  [![Linkedin Badge](https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white)](https://www.linkedin.com/in/rafael-estevam-0b2654272/) [![GitHub Badge](https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white)](https://github.com/rafaelres)| 
-
-
-
+<table>
+  <thead>
+    <tr>
+      <th>Membro</th>
+      <th>Cargo</th>
+      <th>LinkedIn</th>
+      <th>GitHub</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Lucas Braz</td>
+      <td>Product Owner</td>
+      <td>
+        <a href="https://www.linkedin.com/in/lucas-braz-dias/">
+          <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/lucasbdias">
+          <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Franciele Chesere</td>
+      <td>Scrum Master</td>
+      <td>
+        <a href="https://www.linkedin.com/in/franciele-m-chesere-605974274/">
+          <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/ChesereF">
+          <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>João Procópio</td>
+      <td>Dev Team</td>
+      <td>
+        <a href="https://www.linkedin.com/in/joao-procopio/">
+          <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/joaoprocopio/">
+          <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Rafael Estevam</td>
+      <td>Dev Team</td>
+      <td>
+        <a href="https://www.linkedin.com/in/rafael-estevam-0b2654272/">
+          <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/rafaelres">
+          <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Matheus Santo</td>
+      <td>Dev Team</td>
+      <td>
+        <a href="https://www.linkedin.com/in/matheus-sergio-faria-santo-76284433/">
+          <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/matheussanto2">
+          <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Larissa Candido</td>
+      <td>Dev Team</td>
+      <td>
+        <!-- Não tem LinkedIn -->
+        <a>
+          <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/larissaxyz">
+          <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Danielle Sismon</td>
+      <td>Dev Team</td>
+      <td>
+        <a href="https://www.linkedin.com/in/danielle-sismon-%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%F0%9F%8C%88-392b239b/">
+          <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/DanielleSismon">
+          <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>Thiago Nathan</td>
+      <td>Dev Team</td>
+      <td>
+        <a>
+          <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
+        </a>
+      </td>
+      <td>
+        <a href="https://github.com/Nathanthiago">
+          <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 ## Entregas de Sprints
 
-| Sprint | Previsão de Entrega | Status           | Histórico |
-|:--:|:----------:|:-------------------|:-------------------------------------------------:|
-| 01 | 28/09/2023 | Finalizada     |  [Ver Relatório](https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT1.md) |
-| 02 | 26/10/2023 | Iniciada     | [Ver Relatório](https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT2.md) | 
-| 03 | Sem Data Prevista |  Não Iniciada   | [Relatório - Ainda não Disponível]() |
+<table>
+  <thead>
+    <tr>
+      <th>Sprint</th>
+      <th>Previsão de Entrega</th>
+      <th>Status</th>
+      <th>Histórico</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>01</td>
+      <td>28/09/2023</td>
+      <td>Finalizada</td>
+      <td>
+        <a href="https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT1.md">
+          Ver Relatório
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>02</td>
+      <td>26/10/2023</td>
+      <td>Iniciada</td>
+      <td>
+        <a href="https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT2.md">
+          Ver Relatório
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td>03</td>
+      <td>Sem Data Prevista</td>
+      <td>Não Iniciada</td>
+      <td>
+        <a>
+          Relatório - Ainda não Disponível
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 → [Voltar ao Topo](#topo)
 
@@ -155,7 +299,7 @@ Critérios de aceite:
 - Após cadastrar a bicicleta no aplicativo, o proprietário deve poder definir a disponibilidade da bicicleta para aluguel.
 - O proprietário deve poder estabelecer o valor por hora ou dia para o aluguel da bicicleta.
 
-### Prioridade Baixa:
+### Prioridade Baixa
 
 **Avaliação da Experiência de Aluguel:**
 
@@ -170,11 +314,9 @@ Critérios de aceite:
 - A avaliação será opcional e não permitirá a inclusão de comentários além da pontuação.
 - As pontuações atribuídas serão visíveis publicamente para outros usuários, fornecendo uma ideia da qualidade das transações anteriores.
 
-
 <span id="tecnologias">
 
 ## 🛠️ Tecnologias
-
 
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
@@ -182,11 +324,10 @@ Critérios de aceite:
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white) 
+![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)
 ![Swagger](https://img.shields.io/badge/-Swagger-%23Clojure?style=for-the-badge&logo=swagger&logoColor=white)
 ![Figma](https://img.shields.io/badge/figma-%23F24E1E.svg?style=for-the-badge&logo=figma&logoColor=white)
 ![Canva](https://img.shields.io/badge/Canva-%2300C4CC.svg?style=for-the-badge&logo=Canva&logoColor=white)
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white)
-
 
 → [Voltar ao topo](#topo)
