@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box"
-import { Outlet, useLocation } from "react-router-dom"
+import { Outlet, ScrollRestoration, useLocation } from "react-router-dom"
 
 import { AppNavBar, AppNavBottom } from "@/components"
 
@@ -10,6 +10,7 @@ export function HomeLayout() {
 
   return (
     <>
+      <ScrollRestoration />
       <AppNavBar basic={basic} />
       <Box component="main" sx={{ paddingBottom: 7 }}>
         <Outlet />
