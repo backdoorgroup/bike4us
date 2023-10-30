@@ -29,13 +29,13 @@ router.get("/", async (req, res) => {
 
 router.post("/", authenticated(), upload.single("picture"), async (req, res) => {
   try {
-    const body = CreateListingSchema.parse({
+    const params = CreateListingSchema.parse({
       ownerUid: req.user.uid,
       picturePath: req.file?.filename,
       ...req.body
     })
 
-    const listing = await createListing(body)
+    const listing = await createListing(params)
 
     return res.status(HttpStatus.Ok).json(listing)
   } catch (error) {
