@@ -35,7 +35,7 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
 
 📌Status do Projeto: **Em Andamento**
 
-<a href="">📌<strong>Documentação</strong></a>
+<a>📌<strong>Documentação</strong></a>
 
 <span id="equipe">
 
@@ -55,12 +55,12 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>Lucas Braz</td>
       <td>Product Owner</td>
       <td>
-        <a href="https://www.linkedin.com/in/lucas-braz-dias/">
+        <a href="https://www.linkedin.com/in/lucas-braz-dias/" target="_blank">
           <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
         </a>
       </td>
       <td>
-        <a href="https://github.com/lucasbdias">
+        <a href="https://github.com/lucasbdias" target="_blank">
           <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
         </a>
       </td>
@@ -69,12 +69,12 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>Franciele Chesere</td>
       <td>Scrum Master</td>
       <td>
-        <a href="https://www.linkedin.com/in/franciele-m-chesere-605974274/">
+        <a href="https://www.linkedin.com/in/franciele-m-chesere-605974274/" target="_blank">
           <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
         </a>
       </td>
       <td>
-        <a href="https://github.com/ChesereF">
+        <a href="https://github.com/ChesereF" target="_blank">
           <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
         </a>
       </td>
@@ -83,12 +83,12 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>João Procópio</td>
       <td>Dev Team</td>
       <td>
-        <a href="https://www.linkedin.com/in/joao-procopio/">
+        <a href="https://www.linkedin.com/in/joao-procopio/" target="_blank">
           <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
         </a>
       </td>
       <td>
-        <a href="https://github.com/joaoprocopio/">
+        <a href="https://github.com/joaoprocopio/" target="_blank">
           <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
         </a>
       </td>
@@ -97,12 +97,12 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>Rafael Estevam</td>
       <td>Dev Team</td>
       <td>
-        <a href="https://www.linkedin.com/in/rafael-estevam-0b2654272/">
+        <a href="https://www.linkedin.com/in/rafael-estevam-0b2654272/" target="_blank">
           <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
         </a>
       </td>
       <td>
-        <a href="https://github.com/rafaelres">
+        <a href="https://github.com/rafaelres" target="_blank">
           <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
         </a>
       </td>
@@ -111,12 +111,12 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>Matheus Santo</td>
       <td>Dev Team</td>
       <td>
-        <a href="https://www.linkedin.com/in/matheus-sergio-faria-santo-76284433/">
+        <a href="https://www.linkedin.com/in/matheus-sergio-faria-santo-76284433/" target="_blank">
           <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
         </a>
       </td>
       <td>
-        <a href="https://github.com/matheussanto2">
+        <a href="https://github.com/matheussanto2" target="_blank">
           <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
         </a>
       </td>
@@ -125,12 +125,12 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>Larissa Candido</td>
       <td>Dev Team</td>
       <td>
-        <a href="https://www.linkedin.com/in/larissa-candido-70b199298/">
+        <a href="https://www.linkedin.com/in/larissa-candido-70b199298/" target="_blank">
           <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
         </a>
       </td>
       <td>
-        <a href="https://github.com/larissaxyz">
+        <a href="https://github.com/larissaxyz" target="_blank">
           <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
         </a>
       </td>
@@ -139,12 +139,12 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>Danielle Sismon</td>
       <td>Dev Team</td>
       <td>
-        <a href="https://www.linkedin.com/in/danielle-sismon-%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%F0%9F%8C%88-392b239b/">
+        <a href="https://www.linkedin.com/in/danielle-sismon-%F0%9F%8F%B3%EF%B8%8F%E2%80%8D%F0%9F%8C%88-392b239b/" target="_blank">
           <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
         </a>
       </td>
       <td>
-        <a href="https://github.com/DanielleSismon">
+        <a href="https://github.com/DanielleSismon" target="_blank">
           <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
         </a>
       </td>
@@ -158,7 +158,7 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
         </a>
       </td>
       <td>
-        <a href="https://github.com/Nathanthiago">
+        <a href="https://github.com/Nathanthiago" target="_blank">
           <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
         </a>
       </td>
@@ -183,7 +183,7 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>28/09/2023</td>
       <td>Finalizada</td>
       <td>
-        <a href="https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT1.md">
+        <a href="https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT1.md" target="_blank">
           Ver Relatório
         </a>
       </td>
@@ -193,7 +193,7 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>26/10/2023</td>
       <td>Iniciada</td>
       <td>
-        <a href="https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT2.md">
+        <a href="https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT2.md" target="_blank">
           Ver Relatório
         </a>
       </td>
