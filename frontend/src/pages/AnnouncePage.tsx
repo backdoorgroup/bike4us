@@ -45,9 +45,9 @@ export function AnnouncePage() {
     try {
       setLoading(true)
 
-      const data = await ListingsServices.createListing(listing)
+      const { id } = await ListingsServices.createListing(listing)
 
-      navigate(`/anuncios/${data.id}`)
+      navigate(`/anuncios/${id}`)
     } catch (error) {
       setAlert({
         title: "Ocorreu um erro ao criar seu anúncio",

@@ -1,3 +1,5 @@
+import { RouterProvider } from "react-router-dom"
+
 import StyledEngineProvider from "@mui/material/StyledEngineProvider"
 import CssBaseline from "@mui/material/CssBaseline"
 
@@ -10,9 +12,6 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"
 import { ptBR as muixLocale } from "@mui/x-date-pickers/locales"
 import dateFnsLocale from "date-fns/locale/pt-BR"
-
-import { StrictMode } from "react"
-import { RouterProvider as Router } from "react-router-dom"
 
 import { router } from "@/router"
 
@@ -36,18 +35,16 @@ const theme = createTheme(
 
 export function App() {
   return (
-    <StrictMode>
-      <StyledEngineProvider>
-        <ThemeProvider theme={theme}>
-          <LocalizationProvider
-            dateAdapter={AdapterDateFns}
-            adapterLocale={dateFnsLocale}
-            localeText={muixLocale.components.MuiLocalizationProvider.defaultProps.localeText}>
-            <CssBaseline />
-            <Router router={router} />
-          </LocalizationProvider>
-        </ThemeProvider>
-      </StyledEngineProvider>
-    </StrictMode>
+    <StyledEngineProvider>
+      <ThemeProvider theme={theme}>
+        <LocalizationProvider
+          dateAdapter={AdapterDateFns}
+          adapterLocale={dateFnsLocale}
+          localeText={muixLocale.components.MuiLocalizationProvider.defaultProps.localeText}>
+          <CssBaseline />
+          <RouterProvider router={router} />
+        </LocalizationProvider>
+      </ThemeProvider>
+    </StyledEngineProvider>
   )
 }

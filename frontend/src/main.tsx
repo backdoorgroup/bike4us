@@ -1,8 +1,13 @@
-import { App } from "@/app"
-
+import { StrictMode } from "react"
 import { createRoot } from "react-dom/client"
+
+import { App } from "@/app"
 
 const rootEl = document.getElementById("__react")!
 const root = createRoot(rootEl)
 
-root.render(<App />)
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+)
