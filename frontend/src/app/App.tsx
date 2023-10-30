@@ -1,19 +1,22 @@
 import { RouterProvider } from "react-router-dom"
 
-import StyledEngineProvider from "@mui/material/StyledEngineProvider"
 import CssBaseline from "@mui/material/CssBaseline"
-
-import createTheme from "@mui/material/styles/createTheme"
-import ThemeProvider from "@mui/material/styles/ThemeProvider"
+import StyledEngineProvider from "@mui/material/StyledEngineProvider"
 import teal from "@mui/material/colors/teal"
 import { ptBR as muiLocale } from "@mui/material/locale"
-
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
+import ThemeProvider from "@mui/material/styles/ThemeProvider"
+import createTheme from "@mui/material/styles/createTheme"
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { ptBR as muixLocale } from "@mui/x-date-pickers/locales"
 import dateFnsLocale from "date-fns/locale/pt-BR"
+import setDefaultOptions from "date-fns/setDefaultOptions"
 
 import { router } from "@/router"
+
+setDefaultOptions({
+  locale: dateFnsLocale
+})
 
 const theme = createTheme(
   {

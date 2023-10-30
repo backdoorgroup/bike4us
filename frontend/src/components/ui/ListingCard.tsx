@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
 import subSeconds from "date-fns/subSeconds"
-import dateFnsLocale from "date-fns/locale/pt-BR"
 
 import Card from "@mui/material/Card"
 import CardActionArea from "@mui/material/CardActionArea"
@@ -26,16 +25,14 @@ export function ListingCard({ listing }: { listing: TListing }) {
           <Typography
             variant="caption"
             component="p"
+            // TODO: isso aqui me motiva a não usar mais `sx`, talvez refatorar o projeto todo pra usar .scss files, o código fica extremamente feio e bagunçado
             sx={{
               ":first-letter": {
                 textTransform: "capitalize"
               },
               "color": "text.secondary"
             }}>
-            {/* TODO: isso aqui me motiva a não usar mais `sx`, talvez refatorar o projeto todo pra usar .scss files, o código fica extremamente feio e bagunçado */}
-            {/* TODO: mover o locale pra um lugar global */}
             {formatDistanceToNow(subSeconds(listing.createdAt, listing.createdAt.getSeconds()), {
-              locale: dateFnsLocale,
               addSuffix: true,
               includeSeconds: true
             })}

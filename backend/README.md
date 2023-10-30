@@ -14,5 +14,3 @@
    - Caso você esteja usando a máquina da Fatec você não precisa se preocupar com esse passo.
      > A máquina da Fatec já tem um Postgres instalado.
 5. Rode o projeto com o comando `npm run dev`
-
-## TODO: colocar um link de um vídeo rodando o projeto

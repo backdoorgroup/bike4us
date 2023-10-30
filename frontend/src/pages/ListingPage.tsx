@@ -1,7 +1,6 @@
 import { useLoaderData } from "react-router-dom"
 
 import format from "date-fns/format"
-import dateFnsLocale from "date-fns/locale/pt-BR"
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
@@ -52,7 +51,7 @@ export function ListingPage() {
 
           <Typography variant="subtitle2" sx={{ ml: 0.25, fontWeight: 400, color: "text.secondary" }}>
             Anunciado em {format(listing.createdAt, "dd/MM")} às&nbsp;
-            {format(listing.createdAt, "HH:mm", { locale: dateFnsLocale })}
+            {format(listing.createdAt, "HH:mm")}
           </Typography>
         </Stack>
       </Container>
