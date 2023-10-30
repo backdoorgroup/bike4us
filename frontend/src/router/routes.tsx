@@ -3,9 +3,9 @@ import { Navigate, redirect } from "react-router-dom"
 
 import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "@/router/loaders"
 
-import { AuthLogin, AuthRegister, ProfileOrders } from "@/components"
+import { AuthLogin, AuthRegister } from "@/components"
 import { HomeLayout } from "@/layouts"
-import { AnnouncePage, AuthPage, ErrorPage, HomePage, ListingPage, ProfilePage } from "@/pages"
+import { AnnouncePage, AuthPage, ErrorPage, HomePage, ListingPage } from "@/pages"
 import { ListingsServices } from "@/services"
 
 export const routes: RouteObject[] = [
@@ -62,23 +62,6 @@ export const routes: RouteObject[] = [
           {
             path: "cadastrar",
             element: <AuthRegister />
-          }
-        ]
-      },
-
-      {
-        path: "perfil",
-        element: <ProfilePage />,
-        loader: redirectUnauthorizedLoader,
-        children: [
-          {
-            path: "pedidos",
-            loader: async () => {
-              const data = await ListingsServices.getOrders()
-
-              return data.orders
-            },
-            element: <ProfileOrders />
           }
         ]
       },

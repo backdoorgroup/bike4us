@@ -72,20 +72,3 @@ export const ListingsResponse = z.object({
   listings: Listings,
   count: z.number()
 })
-
-export const Order = z.object({
-  id: z.number(),
-  listing: Listing,
-  to: z.coerce.date(),
-  from: z.coerce.date(),
-  ordererUid: z.string()
-})
-export type TOrder = z.infer<typeof Order>
-
-export const Orders = z.array(Order)
-export type TOrders = z.infer<typeof Orders>
-
-export const OrdersResponse = z.object({
-  orders: Orders,
-  count: z.number()
-})

@@ -17,21 +17,6 @@ export interface ListingForm {
   description: string
 }
 
-export interface ListingOrderForm {
-  from: Date // Data de retirada
-  to: Date // Data de devolução
-}
-
-export const OrderFromValidation: RegisterOptions = {
-  required: RequiredFieldText,
-  validate: (value, values) => value < values.to || "Deve ser maior que a data de Devolução"
-}
-
-export const OrderToValidation: RegisterOptions = {
-  required: RequiredFieldText,
-  validate: (value, values) => value > values.from || "Deve ser menor que a data de Retirada"
-}
-
 // Required
 export const PictureValidation: RegisterOptions = {
   required: RequiredImageText

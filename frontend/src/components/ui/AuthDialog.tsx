@@ -24,10 +24,9 @@ interface Props {
   handleSignIn: () => void
   handleSignOut: () => void
   handleClose: () => void
-  handleOrders: () => void
 }
 
-export function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClose, handleOrders }: Props) {
+export function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClose }: Props) {
   return (
     <Dialog fullScreen open={open} onClose={handleClose}>
       <AppBar
@@ -58,15 +57,6 @@ export function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClos
                 primary={user?.displayName || "Usuário sem nome"}
                 secondary={user?.email || "Usuário sem email"}
               />
-            </ListItem>
-
-            <ListItem disablePadding>
-              <ListItemButton component={Link} onClick={handleOrders} to="/perfil/pedidos">
-                <ListItemIcon>
-                  <Icon>schedule</Icon>
-                </ListItemIcon>
-                <ListItemText primary="Pedidos recebidos" />
-              </ListItemButton>
             </ListItem>
 
             <ListItem disablePadding>
