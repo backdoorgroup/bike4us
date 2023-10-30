@@ -25,37 +25,35 @@ export function ListingPage() {
   return (
     <Stack divider={<Divider />}>
       <Container sx={{ paddingY: 4 }}>
-        <Stack gap={4}>
-          <Stack gap={2}>
-            <Box>
-              <Typography variant="caption" sx={{ color: "text.secondary" }}>
-                {Condition[listing.condition]}
-              </Typography>
-
-              <Typography>{listing.title}</Typography>
-            </Box>
-
-            <ImageListItem sx={{ borderRadius: 1, overflow: "hidden" }}>
-              <img src={listing.picturePath} style={{ height: 288 }} />
-            </ImageListItem>
-
-            <Box>
-              <Typography variant="h4">
-                <Box component="span" pr={0.75}>
-                  R$
-                </Box>
-                <Box component="span">{listing.hourPricing}</Box>
-              </Typography>
-              <Typography variant="subtitle2" sx={{ ml: 0.25, fontWeight: 400, color: "text.secondary" }}>
-                Por hora
-              </Typography>
-            </Box>
-
-            <Typography variant="subtitle2" sx={{ ml: 0.25, fontWeight: 400, color: "text.secondary" }}>
-              Anunciado em {format(listing.createdAt, "dd/MM")} às&nbsp;
-              {format(listing.createdAt, "HH:mm", { locale: dateFnsLocale })}
+        <Stack gap={2}>
+          <Box>
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              {Condition[listing.condition]}
             </Typography>
-          </Stack>
+
+            <Typography>{listing.title}</Typography>
+          </Box>
+
+          <ImageListItem sx={{ borderRadius: 1, overflow: "hidden" }}>
+            <img src={listing.picturePath} style={{ height: 288 }} />
+          </ImageListItem>
+
+          <Box>
+            <Typography variant="h4">
+              <Box component="span" pr={0.75}>
+                R$
+              </Box>
+              <Box component="span">{listing.hourPricing}</Box>
+            </Typography>
+            <Typography variant="subtitle2" sx={{ ml: 0.25, fontWeight: 400, color: "text.secondary" }}>
+              Por hora
+            </Typography>
+          </Box>
+
+          <Typography variant="subtitle2" sx={{ ml: 0.25, fontWeight: 400, color: "text.secondary" }}>
+            Anunciado em {format(listing.createdAt, "dd/MM")} às&nbsp;
+            {format(listing.createdAt, "HH:mm", { locale: dateFnsLocale })}
+          </Typography>
         </Stack>
       </Container>
 
