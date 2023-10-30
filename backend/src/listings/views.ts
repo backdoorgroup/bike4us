@@ -1,6 +1,5 @@
 import { Router } from "express"
 import { EntityNotFoundError } from "typeorm"
-import { ZodError } from "zod"
 
 import { BadRequestException, NotFoundException } from "@/exceptions"
 import { paginate } from "@/utils"
@@ -35,9 +34,11 @@ router.get("/:id", async (req, res) => {
 
     res.status(HttpStatus.Ok).json(listing)
   } catch (error) {
-    if (error instanceof ZodError) return res.status(HttpStatus.BadRequest).json(BadRequestException)
+    if (error instanceof EntityNotFoundError) {
+      return res.status(HttpStatus.NotFound).json(NotFoundException)
+    }
 
-    if (error instanceof EntityNotFoundError) return res.status(HttpStatus.NotFound).json(NotFoundException)
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
 })
 
@@ -50,13 +51,20 @@ authenticatedRouter.post("/:id/order", async (req, res) => {
     })
 
     const listing = await getListing({ where: { id: params.id } })
+
+    if (listing.ownerUid === params.ordererUid) {
+      throw new Error()
+    }
+
     const order = await createOrder(listing, params)
 
     res.status(HttpStatus.Ok).json(order)
   } catch (error) {
-    if (error instanceof ZodError) return res.status(HttpStatus.BadRequest).json(BadRequestException)
+    if (error instanceof EntityNotFoundError) {
+      return res.status(HttpStatus.NotFound).json(NotFoundException)
+    }
 
-    if (error instanceof EntityNotFoundError) return res.status(HttpStatus.NotFound).json(NotFoundException)
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
 })
 
