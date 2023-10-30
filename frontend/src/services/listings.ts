@@ -1,8 +1,8 @@
 import { httpClient } from "@/services/clients"
-import { ListingResponse, Listing } from "@/services/schemas"
+import { ListingsResponse, Listing } from "@/services/schemas"
 
 import { transform } from "@/utils"
-import { ListingForm } from "@/forms"
+import type { ListingForm } from "@/forms"
 
 export const ListingsServices = {
   createListing: async (listing: ListingForm) => {
@@ -31,7 +31,7 @@ export const ListingsServices = {
   getListings: async () => {
     const response = await httpClient.get("/listings")
 
-    const parsed = ListingResponse.parse(response.data)
+    const parsed = ListingsResponse.parse(response.data)
 
     return parsed
   }

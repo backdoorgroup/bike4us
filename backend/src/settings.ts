@@ -44,6 +44,15 @@ export const settings = {
   get DB_DROP_SCHEMA() {
     return (env.DB_DROP_SCHEMA === "true" && settings.EXPRESS_DEV) || false
   },
+  get DB_SYNCHRONIZE() {
+    return settings.EXPRESS_DEV
+  },
+  get DB_LOGGING() {
+    return settings.EXPRESS_DEV
+  },
+  get DB_SSL() {
+    return settings.EXPRESS_PROD
+  },
 
   // Firebase
   get FB_PROJECT_ID() {

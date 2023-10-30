@@ -1,6 +1,6 @@
 import type { User } from "firebase/auth"
 
-import { Link as RouterLink } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 import AppBar from "@mui/material/AppBar"
 import Avatar from "@mui/material/Avatar"
@@ -16,6 +16,7 @@ import ListItemIcon from "@mui/material/ListItemIcon"
 import ListItemText from "@mui/material/ListItemText"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
+import Stack from "@mui/material/Stack"
 
 interface Props {
   user: User | null
@@ -47,7 +48,7 @@ export function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClos
 
       <List disablePadding>
         {user?.uid && (
-          <>
+          <Stack direction="column" divider={<Divider />}>
             <ListItem>
               <ListItemAvatar>
                 <Avatar src={user?.photoURL || ""}>{user?.displayName?.charAt(0)}</Avatar>
@@ -58,8 +59,6 @@ export function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClos
               />
             </ListItem>
 
-            <Divider />
-
             <ListItem disablePadding>
               <ListItemButton onClick={handleSignOut}>
                 <ListItemIcon>
@@ -68,16 +67,12 @@ export function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClos
                 <ListItemText primary="Sair" />
               </ListItemButton>
             </ListItem>
-          </>
+          </Stack>
         )}
 
         {!user?.uid && (
           <ListItem disablePadding>
-            <ListItemButton
-              component={RouterLink}
-              onClick={handleSignIn}
-              to="/auth/entrar"
-              sx={{ color: "text.primary" }}>
+            <ListItemButton component={Link} onClick={handleSignIn} to="/auth/entrar" sx={{ color: "text.primary" }}>
               <ListItemIcon>
                 <Icon>login</Icon>
               </ListItemIcon>

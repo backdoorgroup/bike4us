@@ -26,9 +26,7 @@ export const CreateListingSchema = z.object({
 export type TCreateListingSchema = z.infer<typeof CreateListingSchema>
 
 export const GetListingsSchema = PaginationSchema.extend({})
-export type TGetListingsSchema = z.infer<typeof GetListingsSchema>
 
 export const GetListingSchema = z.object({
   id: z.coerce.number().int().positive()
 })
-export type TGetListingSchema = z.infer<typeof GetListingSchema>

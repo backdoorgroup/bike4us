@@ -26,12 +26,3 @@ httpClient.interceptors.request.use(
     return Promise.reject(error)
   }
 )
-
-httpClient.interceptors.response.use(
-  function (response) {
-    return response
-  },
-  function (error) {
-    return Promise.reject(error)
-  }
-)

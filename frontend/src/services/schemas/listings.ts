@@ -68,6 +68,7 @@ export type TListing = z.infer<typeof Listing>
 export const Listings = z.array(Listing)
 export type TListings = z.infer<typeof Listings>
 
-export const ListingResponse = z.object({
-  listings: Listings
+export const ListingsResponse = z.object({
+  listings: Listings,
+  count: z.number()
 })

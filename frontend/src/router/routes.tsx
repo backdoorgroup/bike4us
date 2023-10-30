@@ -36,8 +36,6 @@ export const routes: RouteObject[] = [
           } catch (error) {
             return redirect("/")
           }
-
-          return null
         }
       },
 
@@ -67,6 +65,7 @@ export const routes: RouteObject[] = [
           }
         ]
       },
+
       {
         path: "*",
         element: <ErrorPage />
