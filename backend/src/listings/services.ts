@@ -7,21 +7,21 @@ export const getListings = async (options?: FindManyOptions<Listing>) => await L
 
 export const getListing = async (options: FindOneOptions<Listing>) => await Listing.findOneOrFail(options)
 
-export const createListing = async (data: TCreateListingSchema) => {
+export const createListing = async (schema: TCreateListingSchema) => {
   const listing = new Listing()
 
   listing.createdAt = new Date()
-  listing.ownerUid = data.ownerUid
-  listing.title = data.title
-  listing.type = data.type
-  listing.material = data.material
-  listing.brand = data.brand
-  listing.frameSize = data.frameSize
-  listing.wheelSize = data.wheelSize
-  listing.condition = data.condition
-  listing.description = data.description
-  listing.hourPricing = data.hourPricing
-  listing.picturePath = data.picturePath
+  listing.ownerUid = schema.ownerUid
+  listing.title = schema.title
+  listing.type = schema.type
+  listing.material = schema.material
+  listing.brand = schema.brand
+  listing.frameSize = schema.frameSize
+  listing.wheelSize = schema.wheelSize
+  listing.condition = schema.condition
+  listing.description = schema.description
+  listing.hourPricing = schema.hourPricing
+  listing.picturePath = schema.picturePath
 
   return await listing.save()
 }
