@@ -1,5 +1,6 @@
 import axios from "axios"
 
+import { authClient } from "@/services/clients"
 import { useUserStore } from "@/stores"
 import { settings } from "@config"
 
@@ -9,6 +10,8 @@ export const httpClient = axios.create({
 
 httpClient.interceptors.request.use(
   async function (config) {
+    await authClient.authStateReady()
+
     const { user } = useUserStore.getState()
 
     if (!user?.getIdToken) return config
