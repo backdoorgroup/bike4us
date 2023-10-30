@@ -28,17 +28,25 @@ import type { ListingOrderForm } from "@/forms"
 import { OrderFromValidation, OrderToValidation } from "@/forms"
 import { ListingsServices } from "@/services"
 import { useUserStore } from "@/stores"
+import { useState } from "react"
 
 export function ListingPage() {
+  const [loading, setLoading] = useState(false)
+
   const listing = useLoaderData() as TListing
+  const { user } = useUserStore()
 
   const form = useForm<ListingOrderForm>()
   const from = form.watch("from")
 
-  const { user } = useUserStore()
-
   const handleSubmit = async ({ to, from }: ListingOrderForm) => {
-    await ListingsServices.orderListing(listing.id, { to, from })
+    try {
+      setLoading(true)
+
+      await ListingsServices.orderListing(listing.id, { to, from })
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -78,8 +86,8 @@ export function ListingPage() {
 
           {Boolean(user?.uid && listing.ownerUid !== user?.uid) && (
             <FormControl component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
-              <Stack gap={4}>
-                <Stack gap={2}>
+              <Stack gap={2}>
+                <Stack direction="row" gap={2}>
                   <Controller
                     name="from"
                     control={form.control}
@@ -89,10 +97,12 @@ export function ListingPage() {
                         label="Retirada"
                         disablePast
                         reduceAnimations
+                        readOnly={loading}
                         minutesStep={5}
                         disabled={field.disabled}
                         onChange={(event) => field.onChange(event)}
                         slotProps={{ textField: { error: !!fieldState.error, helperText: fieldState.error?.message } }}
+                        sx={{ flexGrow: 1 }}
                       />
                     )}
                   />
@@ -106,17 +116,19 @@ export function ListingPage() {
                         label="Devolução"
                         disablePast
                         reduceAnimations
+                        readOnly={loading}
                         minutesStep={5}
                         minDateTime={from}
                         disabled={field.disabled}
                         onChange={(event) => field.onChange(event)}
                         slotProps={{ textField: { error: !!fieldState.error, helperText: fieldState.error?.message } }}
+                        sx={{ flexGrow: 1 }}
                       />
                     )}
                   />
                 </Stack>
 
-                <Button variant="contained" type="submit" disableElevation>
+                <Button variant="contained" type="submit" disableElevation disabled={loading}>
                   Realizar um pedido
                 </Button>
               </Stack>

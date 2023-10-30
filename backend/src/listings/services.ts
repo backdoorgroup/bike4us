@@ -26,6 +26,8 @@ export const createListing = async (data: TCreateListingSchema) => {
   return await listing.save()
 }
 
+export const getOrders = async (options?: FindManyOptions<Order>) => await Order.find(options)
+
 export const createOrder = async (listing: Listing, data: TCreateOrderSchema) => {
   const order = new Order()
 
