@@ -32,8 +32,7 @@ export const bootstrap = () => {
   app.use(express.json())
   app.use(cors())
   app.use(helmet())
-
-  app.use(identity)
+  app.use(identity())
 
   // Routing
   app.use("/api/v1/", router)

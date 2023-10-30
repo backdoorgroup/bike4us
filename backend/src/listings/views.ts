@@ -33,7 +33,7 @@ router.get("/", async (req, res) => {
   }
 })
 
-router.post("/", authenticated, upload.single("picture"), async (req, res) => {
+router.post("/", authenticated(), upload.single("picture"), async (req, res) => {
   try {
     const body = CreateListingSchema.parse({
       ownerUid: req.user.uid,
@@ -49,7 +49,7 @@ router.post("/", authenticated, upload.single("picture"), async (req, res) => {
   }
 })
 
-router.get("/:id", async (req, res) => {
+router.get("/:id(\\d+)", async (req, res) => {
   try {
     const params = GetListingSchema.parse({
       ...req.params
@@ -67,7 +67,7 @@ router.get("/:id", async (req, res) => {
   }
 })
 
-router.post("/:id/order", authenticated, async (req, res) => {
+router.post("/:id/order", authenticated(), async (req, res) => {
   try {
     const params = CreateOrderSchema.parse({
       id: req.params.id,
@@ -93,7 +93,7 @@ router.post("/:id/order", authenticated, async (req, res) => {
   }
 })
 
-router.get("/orders", authenticated, async (req, res) => {
+router.get("/orders", authenticated(), async (req, res) => {
   try {
     const params = GetOrdersSchema.parse({
       ownerUid: req.user.uid,
