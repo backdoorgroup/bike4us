@@ -1,7 +1,7 @@
 import type { FindManyOptions, FindOneOptions } from "typeorm"
 
-import type { TCreateListingSchema, TCreateOrderSchema } from "@/listings/schemas"
-import { Listing, Order } from "@/listings/models"
+import type { TCreateListingSchema } from "@/listings/schemas"
+import { Listing } from "@/listings/models"
 
 export const getListings = async (options?: FindManyOptions<Listing>) => await Listing.find(options)
 
@@ -24,18 +24,4 @@ export const createListing = async (data: TCreateListingSchema) => {
   listing.picturePath = data.picturePath
 
   return await listing.save()
-}
-
-export const getOrders = async (options?: FindManyOptions<Order>) => await Order.find(options)
-
-export const createOrder = async (listing: Listing, data: TCreateOrderSchema) => {
-  const order = new Order()
-
-  order.createdAt = new Date()
-  order.listing = listing
-  order.from = data.from
-  order.to = data.to
-  order.ordererUid = data.ordererUid
-
-  return await order.save()
 }

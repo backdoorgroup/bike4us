@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm"
+import { Column, Entity } from "typeorm"
 
 import { Model } from "@/database"
 import type {
@@ -61,25 +61,4 @@ export class Listing extends Model {
 
   @Column({ type: "enum", enum: ListingMaterialEnum })
   material: TListingMaterialEnum
-
-  @OneToMany(() => Order, (order) => order.listing)
-  orders: Order[]
-}
-
-@Entity()
-export class Order extends Model {
-  @ManyToOne(() => Listing, (listing) => listing.orders)
-  listing: Listing
-
-  @Column({ type: "timestamptz", update: false })
-  createdAt: Date
-
-  @Column({ type: "varchar", length: 128 })
-  ordererUid: string
-
-  @Column({ type: "timestamptz" })
-  from: Date
-
-  @Column({ type: "timestamptz" })
-  to: Date
 }

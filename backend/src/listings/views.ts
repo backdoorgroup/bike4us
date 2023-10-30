@@ -9,14 +9,8 @@ import { HttpStatus } from "@lib/http"
 import { authenticated } from "@/profile/middlewares"
 
 import { upload } from "@/listings/middlewares"
-import {
-  CreateListingSchema,
-  CreateOrderSchema,
-  GetListingSchema,
-  GetListingsSchema,
-  GetOrdersSchema
-} from "@/listings/schemas"
-import { createListing, createOrder, getListing, getListings, getOrders } from "@/listings/services"
+import { CreateListingSchema, GetListingSchema, GetListingsSchema } from "@/listings/schemas"
+import { createListing, getListing, getListings } from "@/listings/services"
 
 export const router = Router()
 
@@ -49,7 +43,7 @@ router.post("/", authenticated(), upload.single("picture"), async (req, res) => 
   }
 })
 
-router.get("/:id(\\d+)", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const params = GetListingSchema.parse({
       ...req.params
@@ -63,52 +57,6 @@ router.get("/:id(\\d+)", async (req, res) => {
       return res.status(HttpStatus.NotFound).json(NotFoundException)
     }
 
-    return res.status(HttpStatus.BadRequest).json(BadRequestException)
-  }
-})
-
-router.post("/:id/order", authenticated(), async (req, res) => {
-  try {
-    const params = CreateOrderSchema.parse({
-      id: req.params.id,
-      ordererUid: req.user.uid,
-      ...req.body
-    })
-
-    const listing = await getListing({ where: { id: params.id } })
-
-    if (listing.ownerUid === params.ordererUid) {
-      throw new Error()
-    }
-
-    const order = await createOrder(listing, params)
-
-    return res.status(HttpStatus.Ok).json(order)
-  } catch (error) {
-    if (error instanceof EntityNotFoundError) {
-      return res.status(HttpStatus.NotFound).json(NotFoundException)
-    }
-
-    return res.status(HttpStatus.BadRequest).json(BadRequestException)
-  }
-})
-
-router.get("/orders", authenticated(), async (req, res) => {
-  try {
-    const params = GetOrdersSchema.parse({
-      ownerUid: req.user.uid,
-      ...req.query
-    })
-
-    const query = await getOrders({
-      where: { listing: { ownerUid: params.ownerUid } },
-      relations: { listing: true }
-    })
-
-    const orders = paginate(query, params.page, params.perPage)
-
-    return res.status(HttpStatus.Ok).json({ orders, count: query.length })
-  } catch (error) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
 })
