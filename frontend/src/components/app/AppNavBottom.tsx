@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Link, useLocation } from "react-router-dom"
+import { NavLink, useLocation } from "react-router-dom"
 
 import BottomNavigation from "@mui/material/BottomNavigation"
 import BottomNavigationAction from "@mui/material/BottomNavigationAction"
@@ -39,14 +39,14 @@ export function AppNavBottom({ basic }: Props) {
       value={path}>
       <BottomNavigationAction
         label="Encontrar"
-        component={Link}
+        component={NavLink}
         to={NavigationEnum.Find}
         value={NavigationEnum.Find}
         icon={<Icon>search</Icon>}
       />
       <BottomNavigationAction
         label="Anunciar"
-        component={Link}
+        component={NavLink}
         to={NavigationEnum.Announce}
         value={NavigationEnum.Announce}
         icon={<Icon>add_circle_outline</Icon>}
@@ -54,7 +54,7 @@ export function AppNavBottom({ basic }: Props) {
       {/* TODO: ter uma página de perfil, pra ver o perfil do usuário e os anúncios dele */}
       {/* <BottomNavigationAction
         label="Anúncios"
-        component={Link}
+        component={NavLink}
         to={NavigationEnum.Profile}
         value={NavigationEnum.Profile}
         icon={<Icon>grid_view</Icon>}
