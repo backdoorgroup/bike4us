@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
-import { Link as RouterLink, useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import Button from "@mui/material/Button"
 import Divider from "@mui/material/Divider"
@@ -82,7 +82,7 @@ export function AuthLogin() {
             Entrar
           </Button>
 
-          <Button disableElevation component={RouterLink} to="/auth/cadastrar">
+          <Button disableElevation component={Link} to="/auth/cadastrar">
             Criar conta
           </Button>
         </Stack>
