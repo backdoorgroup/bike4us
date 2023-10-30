@@ -14,7 +14,7 @@ export function HomePage() {
   return (
     <>
       {Boolean(listings.length) && (
-        <Container sx={{ paddingY: 2 }}>
+        <Container sx={{ paddingY: 4 }}>
           <Typography variant="h6" component="h3" gutterBottom>
             Anúncios recentes
           </Typography>
