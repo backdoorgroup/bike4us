@@ -4,7 +4,16 @@ import { Navigate, redirect } from "react-router-dom"
 import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "@/router/loaders"
 
 import { HomeLayout } from "@/layouts"
-import { AnnouncePage, ErrorPage, HomePage, ListingPage, AuthLoginPage, AuthRegisterPage, SearchPage } from "@/pages"
+import {
+  AnnouncePage,
+  ErrorPage,
+  HomePage,
+  ListingPage,
+  AuthLoginPage,
+  AuthRegisterPage,
+  SearchPage,
+  ProfilePage
+} from "@/pages"
 import { ListingsServices, SearchServices } from "@/services"
 
 export const routes: RouteObject[] = [
@@ -82,6 +91,11 @@ export const routes: RouteObject[] = [
             element: <AuthRegisterPage />
           }
         ]
+      },
+
+      {
+        path: "perfil",
+        element: <ProfilePage />
       },
 
       {
