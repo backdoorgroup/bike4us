@@ -49,15 +49,7 @@ export default function AuthDialog({
       <List disablePadding className="ad-list">
         {user?.uid && (
           <>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar src={user?.photoURL || ""}>{user?.displayName?.charAt(0)}</Avatar>
-              </ListItemAvatar>
-
-              <ListItemText
-                primary={user?.displayName || "Usuário sem nome"}
-                secondary={user?.email || "Usuário sem email"}
-              />
+            <ListItem disablePadding>
               <ListItemButton component={Link} onClick={handleProfile} to="perfil">
                 <ListItemAvatar>
                   <Avatar src={user?.photoURL || ""}>{user?.displayName?.charAt(0)}</Avatar>
