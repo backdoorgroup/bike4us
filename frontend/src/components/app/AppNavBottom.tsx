@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react"
 import { NavLink, useLocation } from "react-router-dom"
 
 import BottomNavigation from "@mui/material/BottomNavigation"
@@ -16,11 +15,6 @@ const NavigationEnum = {
 
 export function AppNavBottom({ basic }: Props) {
   const { pathname } = useLocation()
-  const [path, setPath] = useState(pathname)
-
-  useEffect(() => {
-    return setPath(pathname)
-  }, [pathname])
 
   return (
     <BottomNavigation
@@ -36,7 +30,7 @@ export function AppNavBottom({ basic }: Props) {
       }}
       component="footer"
       showLabels
-      value={path}>
+      value={pathname}>
       <BottomNavigationAction
         label="Encontrar"
         component={NavLink}
