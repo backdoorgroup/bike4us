@@ -1,0 +1,16 @@
+.app-nav-bar {
+  position: sticky;
+  background-color: var(--mui-palette-common-white);
+  border: 1px solid var(--mui-palette-divider);
+
+  .anb-toolbar {
+    justify-content: space-between;
+
+    .anbt-action {
+      color: var(--mui-palette-text-primary);
+      font-size: 24px;
+      height: 24px;
+      width: 24px;
+    }
+  }
+}

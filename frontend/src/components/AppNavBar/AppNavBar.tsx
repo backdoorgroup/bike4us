@@ -1,3 +1,5 @@
+import "./AppNavBar.scss"
+
 import { useState } from "react"
 import { Link as RouterLink, useNavigate } from "react-router-dom"
 
@@ -34,21 +36,18 @@ export default function AppNavBar({ basic }: Props) {
   }
 
   return (
-    <AppBar
-      component="header"
-      position="sticky"
-      elevation={0}
-      sx={{ borderBottom: 1, borderColor: "lightgray", bgcolor: "common.white" }}>
-      <Toolbar sx={{ justifyContent: "space-between" }}>
-        <Link component={RouterLink} to="/" sx={{ fontSize: 24, height: 24, width: 24, color: "text.primary" }}>
+    <AppBar className="app-nav-bar" component="header" elevation={0}>
+      <Toolbar className="anb-toolbar">
+        <Link className="anbt-action" component={RouterLink} to="/">
           <Icon fontSize="inherit">directions_bike</Icon>
         </Link>
 
         {!basic && (
           <>
-            <Icon sx={{ fontSize: 24, height: 24, width: 24, color: "text.primary" }} onClick={handleOpenDialog}>
+            <Icon className="anbt-action" onClick={handleOpenDialog}>
               account_circle
             </Icon>
+
             <AuthDialog
               user={user}
               open={open}
