@@ -26,7 +26,7 @@ interface Props {
   handleClose: () => void
 }
 
-export function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClose }: Props) {
+export default function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClose }: Props) {
   return (
     <Dialog fullScreen open={open} onClose={handleClose}>
       <AppBar
