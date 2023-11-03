@@ -1,3 +1,5 @@
+import "./AuthDialog.scss"
+
 import type { User } from "firebase/auth"
 
 import { Link } from "react-router-dom"
@@ -28,21 +30,14 @@ interface Props {
 
 export default function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClose }: Props) {
   return (
-    <Dialog fullScreen open={open} onClose={handleClose}>
-      <AppBar
-        component="header"
-        position="sticky"
-        color="inherit"
-        elevation={0}
-        sx={{ borderBottom: 1, borderColor: "lightgray" }}>
-        <Toolbar>
+    <Dialog className="auth-dialog" fullScreen open={open} onClose={handleClose}>
+      <AppBar className="ad-app-bar" component="header" position="sticky" color="inherit" elevation={0}>
+        <Toolbar className="adab-toolbar">
           <IconButton edge="start" color="inherit" onClick={handleClose}>
             <Icon>close</Icon>
           </IconButton>
 
-          <Typography sx={{ ml: 2 }} variant="h6">
-            Conta
-          </Typography>
+          <Typography variant="h6">Conta</Typography>
         </Toolbar>
       </AppBar>
 

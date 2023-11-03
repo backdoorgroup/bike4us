@@ -1,0 +1,9 @@
+.auth-dialog {
+  .ad-app-bar {
+    border-bottom: 1px solid var(--mui-palette-divider);
+
+    .adab-toolbar {
+      gap: 24px;
+    }
+  }
+}
