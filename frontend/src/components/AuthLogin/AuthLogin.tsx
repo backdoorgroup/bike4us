@@ -1,3 +1,5 @@
+import "./AuthLogin.scss"
+
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
@@ -18,7 +20,7 @@ import GoogleIcon from "@mui/icons-material/Google"
 import { EmailValidation, PasswordValidation, LoginForm } from "@/forms"
 import { AuthServices } from "@/services"
 
-export function AuthLogin() {
+export default function AuthLogin() {
   const navigate = useNavigate()
 
   const form = useForm<LoginForm>()
