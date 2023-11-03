@@ -1,3 +1,5 @@
+import "./AuthRegister.scss"
+
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 
@@ -15,7 +17,7 @@ import Button from "@mui/material/Button"
 import { AuthServices } from "@/services"
 import { EmailValidation, PasswordValidation, RegisterForm } from "@/forms"
 
-export function AuthRegister() {
+export default function AuthRegister() {
   const navigate = useNavigate()
 
   const form = useForm<RegisterForm>()
