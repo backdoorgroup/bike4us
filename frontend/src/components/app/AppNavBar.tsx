@@ -37,9 +37,8 @@ export function AppNavBar({ basic }: Props) {
     <AppBar
       component="header"
       position="sticky"
-      color="inherit"
       elevation={0}
-      sx={{ borderBottom: 1, borderColor: "lightgray" }}>
+      sx={{ borderBottom: 1, borderColor: "lightgray", bgcolor: "common.white" }}>
       <Toolbar sx={{ justifyContent: "space-between" }}>
         <Link component={RouterLink} to="/" sx={{ fontSize: 24, height: 24, width: 24, color: "text.primary" }}>
           <Icon fontSize="inherit">directions_bike</Icon>
@@ -47,7 +46,7 @@ export function AppNavBar({ basic }: Props) {
 
         {!basic && (
           <>
-            <Icon sx={{ fontSize: 24, height: 24, width: 24 }} onClick={handleOpenDialog}>
+            <Icon sx={{ fontSize: 24, height: 24, width: 24, color: "text.primary" }} onClick={handleOpenDialog}>
               account_circle
             </Icon>
             <AuthDialog

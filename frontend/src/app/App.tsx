@@ -1,11 +1,14 @@
 import { RouterProvider } from "react-router-dom"
 
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  experimental_extendTheme as extendTheme
+} from "@mui/material/styles"
+import teal from "@mui/material/colors/teal"
+
 import CssBaseline from "@mui/material/CssBaseline"
 import StyledEngineProvider from "@mui/material/StyledEngineProvider"
-import teal from "@mui/material/colors/teal"
 import { ptBR as muiLocale } from "@mui/material/locale"
-import ThemeProvider from "@mui/material/styles/ThemeProvider"
-import createTheme from "@mui/material/styles/createTheme"
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
 import { ptBR as muixLocale } from "@mui/x-date-pickers/locales"
@@ -18,11 +21,22 @@ setDefaultOptions({
   locale: dateFnsLocale
 })
 
-const theme = createTheme(
+const theme = extendTheme(
   {
-    palette: {
-      primary: {
-        main: teal[600]
+    colorSchemes: {
+      light: {
+        palette: {
+          primary: {
+            main: teal[700]
+          }
+        }
+      },
+      dark: {
+        palette: {
+          primary: {
+            main: teal[500]
+          }
+        }
       }
     },
     components: {
@@ -39,7 +53,7 @@ const theme = createTheme(
 export function App() {
   return (
     <StyledEngineProvider>
-      <ThemeProvider theme={theme}>
+      <CssVarsProvider theme={theme}>
         <LocalizationProvider
           dateAdapter={AdapterDateFns}
           adapterLocale={dateFnsLocale}
@@ -47,7 +61,7 @@ export function App() {
           <CssBaseline />
           <RouterProvider router={router} />
         </LocalizationProvider>
-      </ThemeProvider>
+      </CssVarsProvider>
     </StyledEngineProvider>
   )
 }
