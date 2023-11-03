@@ -11,6 +11,7 @@ import FormHelperText from "@mui/material/FormHelperText"
 import Box from "@mui/material/Box"
 import ButtonBase from "@mui/material/ButtonBase"
 
+// todo: converter pra scss
 const Input = styled("input")({
   clip: "rect(0 0 0 0)",
   clipPath: "inset(50%)",
@@ -25,7 +26,7 @@ const Input = styled("input")({
 
 const imageHeight = 192
 
-export function AnnounceImageUpload({
+export default function AnnounceImageUpload({
   picture,
   error,
   register
