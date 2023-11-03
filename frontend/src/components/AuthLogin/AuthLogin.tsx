@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 
 import Button from "@mui/material/Button"
+import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
 import FormControl from "@mui/material/FormControl"
 import Icon from "@mui/material/Icon"
@@ -17,7 +18,7 @@ import Typography from "@mui/material/Typography"
 
 import GoogleIcon from "@mui/icons-material/Google"
 
-import { EmailValidation, PasswordValidation, LoginForm } from "@/forms"
+import { EmailValidation, LoginForm, PasswordValidation } from "@/forms"
 import { AuthServices } from "@/services"
 
 export default function AuthLogin() {
@@ -45,7 +46,7 @@ export default function AuthLogin() {
   }
 
   return (
-    <>
+    <Container className="auth-login">
       <Typography variant="h5" component="h1" textAlign="center" fontWeight="500" mb={4}>
         Seja bem-vindo!
       </Typography>
@@ -99,6 +100,6 @@ export default function AuthLogin() {
           Entrar com o Google
         </Button>
       </FormControl>
-    </>
+    </Container>
   )
 }
