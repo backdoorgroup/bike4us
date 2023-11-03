@@ -25,36 +25,35 @@ export default function ListingPage() {
   return (
     <Stack className="listing-page" divider={<Divider />}>
       <Container className="lp-section">
-        <Stack className="lps-container">
-          <Box>
-            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+        <Stack className="lps-container lps-hero">
+          <Box className="lpsh-header">
+            <Typography className="lpshh-condition" variant="caption">
               {Condition[listing.condition]}
             </Typography>
 
             <Typography>{listing.title}</Typography>
           </Box>
 
-          <Box sx={{ borderRadius: 1, overflow: "hidden", height: 288 }}>
-            <img src={listing.picturePath} style={{ objectFit: "cover", height: "100%", width: "100%" }} />
+          <Box className="lpsh-image">
+            <img className="lpshi-content" src={listing.picturePath} />
           </Box>
 
-          <Box>
-            <Typography variant="h4">
-              <Box component="span" pr={0.75}>
+          <Box className="lpsh-information">
+            <Typography className="lpshi-pricing" variant="h4">
+              <Box className="lpship-currency" component="span">
                 R$
               </Box>
 
               <Box component="span">{listing.hourPricing}</Box>
             </Typography>
 
-            <Typography variant="subtitle2" sx={{ ml: 0.25, fontWeight: 400, color: "text.secondary" }}>
+            <Typography className="lpshi-caption" variant="subtitle2">
               Por hora
             </Typography>
           </Box>
 
-          <Typography variant="subtitle2" sx={{ ml: 0.25, fontWeight: 400, color: "text.secondary" }}>
-            Anunciado em {format(listing.createdAt, "dd/MM")} às&nbsp;
-            {format(listing.createdAt, "HH:mm")}
+          <Typography className="lpsh-date" variant="subtitle2">
+            Anunciado em {format(listing.createdAt, "dd/MM")} às&nbsp;{format(listing.createdAt, "HH:mm")}
           </Typography>
         </Stack>
       </Container>

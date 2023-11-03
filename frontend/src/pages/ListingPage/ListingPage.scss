@@ -6,5 +6,45 @@
     .lps-container {
       gap: 16px;
     }
+
+    .lps-hero {
+      .lpsh-header {
+        .lpshh-condition {
+          color: var(--mui-palette-text-secondary);
+        }
+      }
+
+      .lpsh-image {
+        border-radius: 4px;
+        overflow: hidden;
+        height: 288px;
+
+        .lpshi-content {
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .lpsh-information {
+        .lpshi-pricing {
+          .lpship-currency {
+            margin-right: 6px;
+          }
+        }
+
+        .lpshi-caption {
+          margin-left: 2px;
+          font-weight: 400;
+          color: var(--mui-palette-text-secondary);
+        }
+      }
+
+      .lpsh-date {
+        margin-left: 2px;
+        font-weight: 400;
+        color: var(--mui-palette-text-secondary);
+      }
+    }
   }
 }
