@@ -7,7 +7,6 @@ import format from "date-fns/format"
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
-import ImageListItem from "@mui/material/ImageListItem"
 import Paper from "@mui/material/Paper"
 import Stack from "@mui/material/Stack"
 import Table from "@mui/material/Table"
@@ -24,8 +23,8 @@ export default function ListingPage() {
   const listing = useLoaderData() as TListing
 
   return (
-    <Stack divider={<Divider />}>
-      <Container sx={{ paddingY: 4 }}>
+    <Stack className="listing-page" divider={<Divider />}>
+      <Container className="lp-section">
         <Stack gap={2}>
           <Box>
             <Typography variant="caption" sx={{ color: "text.secondary" }}>
@@ -35,9 +34,9 @@ export default function ListingPage() {
             <Typography>{listing.title}</Typography>
           </Box>
 
-          <ImageListItem sx={{ borderRadius: 1, overflow: "hidden" }}>
-            <img src={listing.picturePath} style={{ height: 288 }} />
-          </ImageListItem>
+          <Box sx={{ borderRadius: 1, overflow: "hidden", height: 288 }}>
+            <img src={listing.picturePath} style={{ objectFit: "cover", height: "100%", width: "100%" }} />
+          </Box>
 
           <Box>
             <Typography variant="h4">
@@ -60,41 +59,52 @@ export default function ListingPage() {
         </Stack>
       </Container>
 
-      <Container sx={{ paddingY: 4 }}>
+      <Container className="lp-section">
         <Stack gap={2}>
           <Typography variant="h6">Descrição</Typography>
+
           <Typography component="pre" sx={{ color: !listing?.description ? "text.secondary" : null }}>
             {listing?.description || "Ainda não há descrição para este anúncio"}
           </Typography>
         </Stack>
       </Container>
 
-      <Container sx={{ paddingY: 4 }}>
+      <Container className="lp-section">
         <Stack gap={2}>
           <Typography variant="h6">Detalhes</Typography>
+
           <TableContainer component={Paper} variant="outlined" sx={{ borderRadius: 1 }}>
             <Table size="small">
               <TableBody>
                 <TableRow sx={{ bgcolor: "action.hover" }}>
                   <TableCell variant="head">Tipo de Bicicleta</TableCell>
+
                   <TableCell>{BikeType[listing.type]}</TableCell>
                 </TableRow>
+
                 <TableRow>
                   <TableCell variant="head">Marca</TableCell>
+
                   <TableCell>{listing.brand}</TableCell>
                 </TableRow>
+
                 <TableRow sx={{ bgcolor: "action.hover" }}>
                   <TableCell variant="head">Quadro</TableCell>
+
                   <TableCell>{FrameSize[listing.frameSize]}</TableCell>
                 </TableRow>
+
                 <TableRow>
                   <TableCell variant="head">Aro</TableCell>
+
                   <TableCell>{WheelSize[listing.wheelSize]}</TableCell>
                 </TableRow>
+
                 <TableRow sx={{ bgcolor: "action.hover" }}>
                   <TableCell variant="head" sx={{ borderBottom: 0 }}>
                     Material
                   </TableCell>
+
                   <TableCell sx={{ borderBottom: 0 }}>{Material[listing.material]}</TableCell>
                 </TableRow>
               </TableBody>
