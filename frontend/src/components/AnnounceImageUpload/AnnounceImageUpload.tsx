@@ -3,8 +3,6 @@ import "./AnnounceImageUpload.scss"
 import type { FieldError, UseFormRegisterReturn } from "react-hook-form"
 import clsx from "clsx"
 
-import styled from "@mui/material/styles/styled"
-
 import Icon from "@mui/material/Icon"
 import Collapse from "@mui/material/Collapse"
 import Typography from "@mui/material/Typography"
@@ -12,19 +10,6 @@ import Stack from "@mui/material/Stack"
 import FormHelperText from "@mui/material/FormHelperText"
 import Box from "@mui/material/Box"
 import ButtonBase from "@mui/material/ButtonBase"
-
-// todo: converter pra scss
-const Input = styled("input")({
-  clip: "rect(0 0 0 0)",
-  clipPath: "inset(50%)",
-  height: 1,
-  overflow: "hidden",
-  position: "absolute",
-  bottom: 0,
-  left: 0,
-  whiteSpace: "nowrap",
-  width: 1
-})
 
 export default function AnnounceImageUpload({
   picture,
@@ -52,7 +37,7 @@ export default function AnnounceImageUpload({
           </Stack>
         )}
 
-        <Input accept="image/png, image/jpeg, image/jpg, image/webp" type="file" {...register} />
+        <input className="aiub-input" accept="image/png, image/jpeg, image/jpg, image/webp" type="file" {...register} />
       </ButtonBase>
 
       <Collapse in={!!error} unmountOnExit>
