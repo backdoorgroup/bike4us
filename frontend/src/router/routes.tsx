@@ -3,9 +3,8 @@ import { Navigate, redirect } from "react-router-dom"
 
 import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "@/router/loaders"
 
-import { AuthLogin, AuthRegister } from "@/components"
 import { HomeLayout } from "@/layouts"
-import { AnnouncePage, AuthPage, ErrorPage, HomePage, ListingPage } from "@/pages"
+import { AnnouncePage, ErrorPage, HomePage, ListingPage, AuthLoginPage, AuthRegisterPage } from "@/pages"
 import { ListingsServices } from "@/services"
 
 export const routes: RouteObject[] = [
@@ -47,7 +46,6 @@ export const routes: RouteObject[] = [
 
       {
         path: "auth",
-        element: <AuthPage />,
         loader: redirectAuthorizedLoader,
         children: [
           {
@@ -57,11 +55,11 @@ export const routes: RouteObject[] = [
           },
           {
             path: "entrar",
-            element: <AuthLogin />
+            element: <AuthLoginPage />
           },
           {
             path: "cadastrar",
-            element: <AuthRegister />
+            element: <AuthRegisterPage />
           }
         ]
       },

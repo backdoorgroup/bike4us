@@ -1,5 +1,6 @@
+export * from "./AuthLoginPage"
+export * from "./AuthRegisterPage"
 export * from "./AnnouncePage"
-export * from "./AuthPage"
 export * from "./ErrorPage"
 export * from "./HomePage"
 export * from "./ListingPage"
