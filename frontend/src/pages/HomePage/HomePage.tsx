@@ -62,7 +62,6 @@ export default function HomePage() {
                     </InputAdornment>
                   )
                 }}
-                error={!!form.formState.errors.query}
                 helperText={form.formState.errors.query?.message}
                 {...form.register("query", QueryValidation)}
               />
