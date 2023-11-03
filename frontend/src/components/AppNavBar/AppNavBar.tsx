@@ -14,7 +14,7 @@ interface Props {
   basic?: boolean
 }
 
-export function AppNavBar({ basic }: Props) {
+export default function AppNavBar({ basic }: Props) {
   const { user } = useUserStore()
   const navigate = useNavigate()
 

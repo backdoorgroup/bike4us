@@ -13,7 +13,7 @@ const NavigationEnum = {
   Announce: "/anunciar"
 } as const
 
-export function AppNavBottom({ basic }: Props) {
+export default function AppNavBottom({ basic }: Props) {
   const { pathname } = useLocation()
 
   return (

@@ -1,2 +1,3 @@
-export * from "./app"
+export * from "./AppNavBar"
+export * from "./AppNavBottom"
 export * from "./ui"
