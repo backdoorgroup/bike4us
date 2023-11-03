@@ -1,5 +1,6 @@
 import "./AnnouncePage.scss"
 
+import type { CompositionEvent } from "react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
@@ -28,7 +29,8 @@ import {
   TitleValidation,
   TypeValidation,
   PictureValidation,
-  WheelSizeValidation
+  WheelSizeValidation,
+  EntirelyNumericPattern
 } from "@/forms"
 import { ListingsServices } from "@/services"
 import { AnnounceImageUpload } from "@/components"
@@ -111,12 +113,20 @@ export default function AnnouncePage() {
               {...form.register("title", TitleValidation)}
             />
 
-            {/* TODO: restringir isso daqui a número inteiros sem sinal e positivos */}
             <TextField
               label="Preço por hora"
               placeholder="Digite o preço por hora de seu anúncio"
               error={!!form.formState.errors.hourPricing}
               helperText={form.formState.errors.hourPricing?.message}
+              onBeforeInput={(_event) => {
+                const event = _event as unknown as CompositionEvent
+                const value = event.data
+                const valid = EntirelyNumericPattern.test(value)
+
+                if (!valid) return event.preventDefault()
+
+                return valid
+              }}
               {...form.register("hourPricing", HourPricingValidation)}
             />
 

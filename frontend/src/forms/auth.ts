@@ -2,10 +2,10 @@ import type { RegisterOptions } from "react-hook-form"
 
 const RequiredFieldText = "Campo obrigatório"
 
-const ValidEmailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ // Precisa ser um email válido
-const MinimumLengthPattern = /^.{8,}$/ // Precisa ter no mínimo 8 caracteres
-const MaximumLengthPattern = /^.{0,64}$/ // Pode ter no máximo 64 caracteres
-const EntirelyNumericPattern = /^\d+$/ // Não pode ser totalmente numérico
+export const ValidEmailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ // Precisa ser um email válido
+export const MinimumLengthPattern = /^.{8,}$/ // Precisa ter no mínimo 8 caracteres
+export const MaximumLengthPattern = /^.{0,64}$/ // Pode ter no máximo 64 caracteres
+export const EntirelyNumericPattern = /^\d+$/ // Não pode ser totalmente numérico
 
 export interface LoginForm {
   email: string
