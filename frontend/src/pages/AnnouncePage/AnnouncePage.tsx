@@ -15,7 +15,7 @@ import FormControl from "@mui/material/FormControl"
 import Stack from "@mui/material/Stack"
 import Button from "@mui/material/Button"
 
-import { Condition, BikeType, FrameSize, WheelSize, Material } from "@/services/schemas"
+import { Condition, BikeType, FrameSize, WheelSize, Material } from "@/schemas"
 
 import {
   ListingForm,

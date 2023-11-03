@@ -1,5 +1,5 @@
 import { httpClient } from "@/services/clients"
-import { ListingsResponse, Listing } from "@/services/schemas"
+import { ListingsResponse, Listing } from "@/schemas"
 
 import { transform } from "@/utils"
 import type { ListingForm } from "@/forms"
