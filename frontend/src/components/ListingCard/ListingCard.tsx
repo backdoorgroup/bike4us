@@ -11,7 +11,7 @@ import Typography from "@mui/material/Typography"
 
 import { TListing } from "@/services/schemas"
 
-export function ListingCard({ listing }: { listing: TListing }) {
+export default function ListingCard({ listing }: { listing: TListing }) {
   return (
     <Card variant="outlined" key={listing.id} sx={{ minWidth: 256, maxWidth: 256 }}>
       <CardActionArea component={Link} to={`anuncios/${listing.id}`}>
