@@ -1,3 +1,5 @@
+import "./AnnouncePage.scss"
+
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate } from "react-router-dom"
@@ -31,7 +33,7 @@ import {
 import { ListingsServices } from "@/services"
 import { AnnounceImageUpload } from "@/components"
 
-export function AnnouncePage() {
+export default function AnnouncePage() {
   const form = useForm<ListingForm>()
 
   const picture = form.watch("picture")?.item(0)
