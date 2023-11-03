@@ -30,13 +30,13 @@ export default function HomePage() {
         </Box>
 
         <Card className="hps-card" variant="outlined">
-          <CardContent className="hpsc-content">
-            <Typography className="hpscc-title" variant="h6">
+          <CardContent className="hpsc-form">
+            <Typography className="hpscf-title" variant="h6">
               Encontre seu anunciado
             </Typography>
 
             <TextField
-              className="hpscc-field"
+              className="hpscf-field"
               fullWidth
               label="Buscar"
               placeholder="O que você procura?"
