@@ -15,6 +15,9 @@ import { ptBR as muixLocale } from "@mui/x-date-pickers/locales"
 import dateFnsLocale from "date-fns/locale/pt-BR"
 import setDefaultOptions from "date-fns/setDefaultOptions"
 
+import { CacheProvider } from "@emotion/react"
+import createCache from "@emotion/cache"
+
 import { router } from "@/router"
 
 setDefaultOptions({
@@ -50,18 +53,25 @@ const theme = extendTheme(
   muiLocale
 )
 
+const cache = createCache({
+  key: "css",
+  prepend: true
+})
+
 export default function App() {
   return (
-    <StyledEngineProvider injectFirst>
-      <CssVarsProvider theme={theme}>
-        <LocalizationProvider
-          dateAdapter={AdapterDateFns}
-          adapterLocale={dateFnsLocale}
-          localeText={muixLocale.components.MuiLocalizationProvider.defaultProps.localeText}>
-          <CssBaseline />
-          <RouterProvider router={router} />
-        </LocalizationProvider>
-      </CssVarsProvider>
-    </StyledEngineProvider>
+    <CacheProvider value={cache}>
+      <StyledEngineProvider injectFirst>
+        <CssVarsProvider theme={theme}>
+          <LocalizationProvider
+            dateAdapter={AdapterDateFns}
+            adapterLocale={dateFnsLocale}
+            localeText={muixLocale.components.MuiLocalizationProvider.defaultProps.localeText}>
+            <CssBaseline />
+            <RouterProvider router={router} />
+          </LocalizationProvider>
+        </CssVarsProvider>
+      </StyledEngineProvider>
+    </CacheProvider>
   )
 }
