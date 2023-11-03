@@ -59,7 +59,9 @@ export function ListingPage() {
       <Container sx={{ paddingY: 4 }}>
         <Stack gap={2}>
           <Typography variant="h6">Descrição</Typography>
-          <Typography component="pre">{listing.description || "Ainda não há descrição para este anúncio"}</Typography>
+          <Typography component="pre" sx={{ color: !listing?.description ? "text.secondary" : null }}>
+            {listing?.description || "Ainda não há descrição para este anúncio"}
+          </Typography>
         </Stack>
       </Container>
 
