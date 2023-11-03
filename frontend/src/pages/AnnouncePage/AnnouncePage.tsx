@@ -61,22 +61,29 @@ export default function AnnouncePage() {
   }
 
   return (
-    <Container sx={{ paddingY: 4 }}>
-      <Typography variant="h5" component="h1" textAlign="center" fontWeight="500" mb={4}>
+    <Container className="announce-page">
+      <Typography className="ap-title" variant="h5">
         O que você gostaria de anunciar?
       </Typography>
 
-      <FormControl component="form" fullWidth noValidate autoComplete="off" onSubmit={form.handleSubmit(handleSubmit)}>
-        <Stack gap={4} marginBottom={4}>
+      <FormControl
+        className="ap-form"
+        component="form"
+        fullWidth
+        noValidate
+        autoComplete="off"
+        onSubmit={form.handleSubmit(handleSubmit)}>
+        <Stack className="apf-sections">
           <Collapse in={!!alert?.title} unmountOnExit>
             <Alert severity={alert?.severity}>{alert?.title}</Alert>
           </Collapse>
 
-          <Stack gap={2}>
-            <Box textAlign="center">
-              <Typography variant="h6" lineHeight="1">
+          <Stack className="apfs-section">
+            <Box className="apfss-header">
+              <Typography className="apfssh-title" variant="h6">
                 Foto
               </Typography>
+
               <Typography variant="caption">Esta será a capa de seu anúncio</Typography>
             </Box>
 
@@ -87,13 +94,15 @@ export default function AnnouncePage() {
             />
           </Stack>
 
-          <Stack gap={2}>
-            <Box textAlign="center">
-              <Typography variant="h6" lineHeight="1">
+          <Stack className="apfs-section">
+            <Box className="apfss-header">
+              <Typography className="apfssh-title" variant="h6">
                 Obrigatórios
               </Typography>
+
               <Typography variant="caption">Seja o mais descritivo possível</Typography>
             </Box>
+
             <TextField
               label="Título"
               placeholder="Digite o título de seu anúncio"
@@ -101,6 +110,7 @@ export default function AnnouncePage() {
               helperText={form.formState.errors.title?.message}
               {...form.register("title", TitleValidation)}
             />
+
             {/* TODO: restringir isso daqui a número inteiros sem sinal e positivos */}
             <TextField
               label="Preço por hora"
@@ -109,6 +119,7 @@ export default function AnnouncePage() {
               helperText={form.formState.errors.hourPricing?.message}
               {...form.register("hourPricing", HourPricingValidation)}
             />
+
             <TextField
               select
               defaultValue=""
@@ -125,13 +136,15 @@ export default function AnnouncePage() {
             </TextField>
           </Stack>
 
-          <Stack gap={2}>
-            <Box textAlign="center">
-              <Typography variant="h6" lineHeight="1">
+          <Stack className="apfs-section">
+            <Box className="apfss-header">
+              <Typography className="apfssh-title" variant="h6">
                 Mais detalhes
               </Typography>
+
               <Typography variant="caption">Coloque mais detalhes sobre sua bicicleta</Typography>
             </Box>
+
             <TextField
               select
               defaultValue=""
@@ -145,6 +158,7 @@ export default function AnnouncePage() {
                 </MenuItem>
               ))}
             </TextField>
+
             <TextField
               label="Marca"
               placeholder="Digite a marca de sua bicicleta"
@@ -166,6 +180,7 @@ export default function AnnouncePage() {
                 </MenuItem>
               ))}
             </TextField>
+
             <TextField
               select
               SelectProps={{
@@ -190,6 +205,7 @@ export default function AnnouncePage() {
                 </MenuItem>
               ))}
             </TextField>
+
             <TextField
               select
               defaultValue=""
@@ -205,9 +221,9 @@ export default function AnnouncePage() {
             </TextField>
 
             <TextField
+              multiline
               label="Descrição"
               placeholder="Digite a descrição de seu anúncio"
-              multiline
               minRows={3}
               maxRows={5}
               error={!!form.formState.errors.description}
@@ -216,6 +232,7 @@ export default function AnnouncePage() {
             />
           </Stack>
         </Stack>
+
         <Button type="submit" variant="contained" disabled={loading} disableElevation>
           Anunciar
         </Button>

@@ -1,0 +1,29 @@
+.announce-page {
+  padding-top: 32px;
+  padding-bottom: 32px;
+
+  .ap-title {
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+
+  .ap-form {
+    .apf-sections {
+      gap: 32px;
+      margin-bottom: 32px;
+
+      .apfs-section {
+        gap: 16px;
+
+        .apfss-header {
+          text-align: center;
+
+          .apfssh-title {
+            line-height: 1;
+          }
+        }
+      }
+    }
+  }
+}
