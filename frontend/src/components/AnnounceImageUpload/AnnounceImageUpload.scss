@@ -1,10 +1,10 @@
 .announce-image-upload {
   .aiu-button {
     color: var(--mui-palette-text-primary);
+    border: 1px solid var(--mui-palette-action-disabled);
     height: 192px;
     width: 100%;
     gap: 8px;
-    border: 1px solid;
     border-radius: 4px;
     overflow: hidden;
     flex-direction: column;
@@ -55,6 +55,7 @@
 
     &.error {
       color: var(--mui-palette-error-main);
+      border-color: var(--mui-palette-error-main);
     }
   }
 }
