@@ -1,27 +1,27 @@
-.auth-login {
+.auth-login-page {
   padding-top: 32px;
   padding-bottom: 32px;
 
-  .al-title {
+  .alp-title {
     text-align: center;
     font-weight: 500;
     margin-bottom: 32px;
   }
 
-  .al-form {
-    .alf-fields {
+  .alp-form {
+    .alpf-fields {
       gap: 16px;
       margin-bottom: 32px;
     }
 
-    .alf-actions {
+    .alpf-actions {
       gap: 16px;
 
-      .alfa-top {
+      .alpfa-top {
         gap: 8px;
       }
 
-      .alfa-divider {
+      .alpfa-divider {
         color: var(--mui-palette-text-secondary);
       }
     }

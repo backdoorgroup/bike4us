@@ -46,13 +46,18 @@ export default function AuthLoginPage() {
   }
 
   return (
-    <Container className="auth-login">
-      <Typography className="al-title" variant="h5">
+    <Container className="auth-login-page">
+      <Typography className="alp-title" variant="h5">
         Seja bem-vindo!
       </Typography>
 
-      <FormControl className="al-form" component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
-        <Stack className="alf-fields">
+      <FormControl
+        className="alp-form"
+        component="form"
+        fullWidth
+        noValidate
+        onSubmit={form.handleSubmit(handleSubmit)}>
+        <Stack className="alpf-fields">
           <TextField
             label="Email"
             placeholder="Digite seu email"
@@ -80,8 +85,8 @@ export default function AuthLoginPage() {
           />
         </Stack>
 
-        <Stack className="alf-actions">
-          <Stack className="alfa-top">
+        <Stack className="alpf-actions">
+          <Stack className="alpfa-top">
             <Button type="submit" variant="contained" disableElevation>
               Entrar
             </Button>
@@ -91,7 +96,7 @@ export default function AuthLoginPage() {
             </Button>
           </Stack>
 
-          <Divider className="alfa-divider">
+          <Divider className="alpfa-divider">
             <Typography variant="caption">ou entre com</Typography>
           </Divider>
 
