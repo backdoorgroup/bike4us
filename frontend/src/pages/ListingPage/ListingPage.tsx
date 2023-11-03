@@ -69,42 +69,35 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
-        <Stack className="lps-container">
+        <Stack className="lps-container lps-details">
           <Typography variant="h6">Detalhes</Typography>
 
-          <TableContainer component={Paper} variant="outlined" sx={{ borderRadius: 1 }}>
+          <TableContainer className="lpsd-table-container" variant="outlined" component={Paper}>
             <Table size="small">
               <TableBody>
-                <TableRow sx={{ bgcolor: "action.hover" }}>
-                  <TableCell variant="head">Tipo de Bicicleta</TableCell>
-
+                <TableRow>
+                  <TableCell>Tipo de Bicicleta</TableCell>
                   <TableCell>{BikeType[listing.type]}</TableCell>
                 </TableRow>
 
                 <TableRow>
-                  <TableCell variant="head">Marca</TableCell>
-
+                  <TableCell>Marca</TableCell>
                   <TableCell>{listing.brand}</TableCell>
                 </TableRow>
 
-                <TableRow sx={{ bgcolor: "action.hover" }}>
-                  <TableCell variant="head">Quadro</TableCell>
-
+                <TableRow>
+                  <TableCell>Quadro</TableCell>
                   <TableCell>{FrameSize[listing.frameSize]}</TableCell>
                 </TableRow>
 
                 <TableRow>
-                  <TableCell variant="head">Aro</TableCell>
-
+                  <TableCell>Aro</TableCell>
                   <TableCell>{WheelSize[listing.wheelSize]}</TableCell>
                 </TableRow>
 
-                <TableRow sx={{ bgcolor: "action.hover" }}>
-                  <TableCell variant="head" sx={{ borderBottom: 0 }}>
-                    Material
-                  </TableCell>
-
-                  <TableCell sx={{ borderBottom: 0 }}>{Material[listing.material]}</TableCell>
+                <TableRow>
+                  <TableCell>Material</TableCell>
+                  <TableCell>{Material[listing.material]}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
