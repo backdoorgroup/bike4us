@@ -30,61 +30,65 @@ export default function HomePage() {
 
   return (
     <Box className="home-page">
-      <Container className="hp-section hp-search">
-        <Box className="hps-header">
-          <Typography variant="h6">Alugue uma bicicleta</Typography>
+      <Box className="hp-wrapper hp-search">
+        <Container className="hpw-container hps-container">
+          <Box className="hpsc-header">
+            <Typography variant="h6">Alugue uma bicicleta</Typography>
 
-          <Typography variant="body2">Descubra o padrão ouro em aluguel de bicicletas</Typography>
-        </Box>
+            <Typography variant="body2">Descubra o padrão ouro em aluguel de bicicletas</Typography>
+          </Box>
 
-        <Card className="hps-card" variant="outlined">
-          <FormControl
-            className="hpsc-form"
-            component="form"
-            fullWidth
-            noValidate
-            autoComplete="off"
-            onSubmit={form.handleSubmit(handleSubmit)}>
-            <Typography className="hpscf-title" variant="h6">
-              Encontre seu anunciado
-            </Typography>
-
-            <TextField
-              className="hpscf-field"
+          <Card className="hpsc-card" variant="outlined">
+            <FormControl
+              className="hpscc-form"
+              component="form"
               fullWidth
-              label="Buscar"
-              placeholder="O que você procura?"
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position="end">
-                    <Icon>search</Icon>
-                  </InputAdornment>
-                )
-              }}
-              error={!!form.formState.errors.query}
-              helperText={form.formState.errors.query?.message}
-              {...form.register("query", QueryValidation)}
-            />
+              noValidate
+              autoComplete="off"
+              onSubmit={form.handleSubmit(handleSubmit)}>
+              <Typography className="hpsccf-title" variant="h6">
+                Encontre seu anunciado
+              </Typography>
 
-            <Button fullWidth disableElevation variant="contained" type="submit">
-              Encontrar
-            </Button>
-          </FormControl>
-        </Card>
-      </Container>
+              <TextField
+                className="hpsccf-field"
+                fullWidth
+                label="Buscar"
+                placeholder="O que você procura?"
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <Icon>search</Icon>
+                    </InputAdornment>
+                  )
+                }}
+                error={!!form.formState.errors.query}
+                helperText={form.formState.errors.query?.message}
+                {...form.register("query", QueryValidation)}
+              />
+
+              <Button fullWidth disableElevation variant="contained" type="submit">
+                Encontrar
+              </Button>
+            </FormControl>
+          </Card>
+        </Container>
+      </Box>
 
       {!!listings.length && (
-        <Container className="hp-section">
-          <Typography variant="h6" gutterBottom>
-            Anúncios recentes
-          </Typography>
+        <Box className="hp-wrapper">
+          <Container className="hpw-container">
+            <Typography variant="h6" gutterBottom>
+              Anúncios recentes
+            </Typography>
 
-          <Stack className="hps-carousel">
-            {listings.map((listing) => (
-              <ListingCard key={listing.id} listing={listing} />
-            ))}
-          </Stack>
-        </Container>
+            <Stack className="hpw-carousel">
+              {listings.map((listing) => (
+                <ListingCard key={listing.id} listing={listing} />
+              ))}
+            </Stack>
+          </Container>
+        </Box>
       )}
     </Box>
   )

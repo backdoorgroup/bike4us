@@ -1,9 +1,11 @@
 .home-page {
-  .hp-section {
-    padding-top: 32px;
-    padding-bottom: 32px;
+  .hp-wrapper {
+    .hpw-container {
+      padding-top: 32px;
+      padding-bottom: 32px;
+    }
 
-    .hps-carousel {
+    .hpw-carousel {
       flex-direction: row;
       overflow-x: auto;
       gap: 16px;
@@ -14,20 +16,22 @@
     background-color: var(--mui-palette-primary-main);
     color: var(--mui-palette-common-white);
 
-    .hps-header {
-      margin-bottom: 16px;
-    }
+    .hps-container {
+      .hpsc-header {
+        margin-bottom: 16px;
+      }
 
-    .hps-card {
-      .hpsc-form {
-        padding: 16px 16px 24px 16px;
+      .hpsc-card {
+        .hpscc-form {
+          padding: 16px 16px 24px 16px;
 
-        .hpscf-title {
-          margin-bottom: 16px;
-        }
+          .hpsccf-title {
+            margin-bottom: 16px;
+          }
 
-        .hpscf-field {
-          margin-bottom: 32px;
+          .hpsccf-field {
+            margin-bottom: 32px;
+          }
         }
       }
     }
