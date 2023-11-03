@@ -97,7 +97,7 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
       <td>Rafael Estevam</td>
       <td>Dev Team</td>
       <td>
-        <a href="https://www.linkedin.com/in/rafael-estevam-0b2654272/" target="_blank">
+        <a href="https://www.linkedin.com/in/rafael-estevam-de-siqueira-77891423a/" target="_blank">
           <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
         </a>
       </td>
