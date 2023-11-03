@@ -1,0 +1,10 @@
+.error-page {
+  padding-top: 32px;
+  padding-bottom: 32px;
+  text-align: center;
+
+  .ep-icon {
+    color: var(--mui-palette-primary-main);
+    font-size: 64px;
+  }
+}
