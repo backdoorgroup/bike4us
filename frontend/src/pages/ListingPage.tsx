@@ -56,14 +56,12 @@ export function ListingPage() {
         </Stack>
       </Container>
 
-      {Boolean(listing?.description) && (
-        <Container sx={{ paddingY: 4 }}>
-          <Stack gap={2}>
-            <Typography variant="h6">Descrição</Typography>
-            <Typography component="pre">{listing.description}</Typography>
-          </Stack>
-        </Container>
-      )}
+      <Container sx={{ paddingY: 4 }}>
+        <Stack gap={2}>
+          <Typography variant="h6">Descrição</Typography>
+          <Typography component="pre">{listing.description || "Ainda não há descrição para este anúncio"}</Typography>
+        </Stack>
+      </Container>
 
       <Container sx={{ paddingY: 4 }}>
         <Stack gap={2}>
