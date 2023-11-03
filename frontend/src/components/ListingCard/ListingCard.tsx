@@ -1,3 +1,5 @@
+import "./ListingCard.scss"
+
 import { Link } from "react-router-dom"
 
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
@@ -13,25 +15,19 @@ import { TListing } from "@/services/schemas"
 
 export default function ListingCard({ listing }: { listing: TListing }) {
   return (
-    <Card variant="outlined" key={listing.id} sx={{ minWidth: 256, maxWidth: 256 }}>
-      <CardActionArea component={Link} to={`anuncios/${listing.id}`}>
-        <CardMedia component="img" height="160" image={listing.picturePath} />
-        <CardContent>
+    <Card className="listing-card" variant="outlined">
+      <CardActionArea className="lc-action" component={Link} to={`anuncios/${listing.id}`}>
+        <CardMedia className="lca-image" component="img" image={listing.picturePath} />
+
+        <CardContent className="lca-content">
           <Typography variant="h6" gutterBottom>
             R$ {listing.hourPricing}
             <Typography variant="caption">/hora</Typography>
           </Typography>
+
           <Typography gutterBottom>{listing.title}</Typography>
-          <Typography
-            variant="caption"
-            component="p"
-            // TODO: isso aqui me motiva a não usar mais `sx`, talvez refatorar o projeto todo pra usar .scss files, o código fica extremamente feio e bagunçado
-            sx={{
-              ":first-letter": {
-                textTransform: "capitalize"
-              },
-              "color": "text.secondary"
-            }}>
+
+          <Typography className="lcac-date" variant="caption" component="p">
             {formatDistanceToNow(subSeconds(listing.createdAt, listing.createdAt.getSeconds()), {
               addSuffix: true,
               includeSeconds: true
