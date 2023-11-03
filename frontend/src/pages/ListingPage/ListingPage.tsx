@@ -1,3 +1,5 @@
+import "./ListingPage.scss"
+
 import { useLoaderData } from "react-router-dom"
 
 import format from "date-fns/format"
@@ -18,7 +20,7 @@ import Typography from "@mui/material/Typography"
 import type { TListing } from "@/services/schemas"
 import { BikeType, Condition, FrameSize, Material, WheelSize } from "@/services/schemas"
 
-export function ListingPage() {
+export default function ListingPage() {
   const listing = useLoaderData() as TListing
 
   return (
@@ -42,8 +44,10 @@ export function ListingPage() {
               <Box component="span" pr={0.75}>
                 R$
               </Box>
+
               <Box component="span">{listing.hourPricing}</Box>
             </Typography>
+
             <Typography variant="subtitle2" sx={{ ml: 0.25, fontWeight: 400, color: "text.secondary" }}>
               Por hora
             </Typography>
