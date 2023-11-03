@@ -11,7 +11,7 @@ import CardMedia from "@mui/material/CardMedia"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
 
-import { TListing } from "@/schemas"
+import type { TListing } from "@/schemas"
 
 export default function ListingCard({ listing }: { listing: TListing }) {
   return (
