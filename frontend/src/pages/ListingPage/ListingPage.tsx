@@ -25,7 +25,7 @@ export default function ListingPage() {
   return (
     <Stack className="listing-page" divider={<Divider />}>
       <Container className="lp-section">
-        <Stack gap={2}>
+        <Stack className="lps-container">
           <Box>
             <Typography variant="caption" sx={{ color: "text.secondary" }}>
               {Condition[listing.condition]}
@@ -60,7 +60,7 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
-        <Stack gap={2}>
+        <Stack className="lps-container">
           <Typography variant="h6">Descrição</Typography>
 
           <Typography component="pre" sx={{ color: !listing?.description ? "text.secondary" : null }}>
@@ -70,7 +70,7 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
-        <Stack gap={2}>
+        <Stack className="lps-container">
           <Typography variant="h6">Detalhes</Typography>
 
           <TableContainer component={Paper} variant="outlined" sx={{ borderRadius: 1 }}>

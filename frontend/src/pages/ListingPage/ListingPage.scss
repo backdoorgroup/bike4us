@@ -2,5 +2,9 @@
   .lp-section {
     padding-bottom: 32px;
     padding-top: 32px;
+
+    .lps-container {
+      gap: 16px;
+    }
   }
 }
