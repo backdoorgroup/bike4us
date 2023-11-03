@@ -6,7 +6,6 @@ import clsx from "clsx"
 import styled from "@mui/material/styles/styled"
 
 import Icon from "@mui/material/Icon"
-import ImageListItem from "@mui/material/ImageListItem"
 import Collapse from "@mui/material/Collapse"
 import Typography from "@mui/material/Typography"
 import Stack from "@mui/material/Stack"
@@ -40,33 +39,16 @@ export default function AnnounceImageUpload({
     <Box className="announce-image-upload">
       <ButtonBase className={clsx("aiu-button", { error })} component="label">
         {picture instanceof File ? (
-          <ImageListItem sx={{ width: "100%" }}>
-            <img src={URL.createObjectURL(picture)} />
-          </ImageListItem>
+          <img className="aiub-image" src={URL.createObjectURL(picture)} />
         ) : (
-          <Stack alignItems="center" textAlign="center" color={error ? "error.main" : "text.primary"}>
-            <Box
-              sx={{
-                bgcolor: "action.hover",
-                borderRadius: "50%",
-                fontSize: 32,
-                width: 48,
-                height: 48,
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}>
-              <Icon fontSize="inherit">add_photo_alternate</Icon>
+          <Stack className={clsx("aiub-content", { error })}>
+            <Box className="aiubc-circle">
+              <Icon className="aiubcc-icon">add_photo_alternate</Icon>
             </Box>
-            <Box>
-              <Typography fontWeight={500} component="p">
-                Adicione uma foto
-              </Typography>
 
-              <Typography variant="caption" component="p">
-                Somente JPG, JPEG, PNG ou WEBP
-              </Typography>
-            </Box>
+            <Typography className="aiubc-title">Adicione uma foto</Typography>
+
+            <Typography variant="caption">Somente JPG, JPEG, PNG ou WEBP</Typography>
           </Stack>
         )}
 
@@ -74,7 +56,7 @@ export default function AnnounceImageUpload({
       </ButtonBase>
 
       <Collapse in={!!error} unmountOnExit>
-        <FormHelperText error>{error?.message}</FormHelperText>
+        <FormHelperText error={!!error}>{error?.message}</FormHelperText>
       </Collapse>
     </Box>
   )
