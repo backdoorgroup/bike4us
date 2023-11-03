@@ -50,7 +50,7 @@ const theme = extendTheme(
   muiLocale
 )
 
-export function App() {
+export default function App() {
   return (
     <StyledEngineProvider injectFirst>
       <CssVarsProvider theme={theme}>

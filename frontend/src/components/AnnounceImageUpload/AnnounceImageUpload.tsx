@@ -1,4 +1,7 @@
+import "./AnnounceImageUpload.scss"
+
 import type { FieldError, UseFormRegisterReturn } from "react-hook-form"
+import clsx from "clsx"
 
 import styled from "@mui/material/styles/styled"
 
@@ -24,8 +27,6 @@ const Input = styled("input")({
   width: 1
 })
 
-const imageHeight = 192
-
 export default function AnnounceImageUpload({
   picture,
   error,
@@ -36,19 +37,8 @@ export default function AnnounceImageUpload({
   error?: FieldError
 }) {
   return (
-    <Box>
-      <ButtonBase
-        component="label"
-        sx={{
-          height: imageHeight,
-          color: error ? "error.main" : "action.disabled",
-          border: 1,
-          borderRadius: 1,
-          overflow: "hidden",
-          width: "100%",
-          flexDirection: "column",
-          gap: 1
-        }}>
+    <Box className="announce-image-upload">
+      <ButtonBase className={clsx("aiu-button", { error })} component="label">
         {picture instanceof File ? (
           <ImageListItem sx={{ width: "100%" }}>
             <img src={URL.createObjectURL(picture)} />
