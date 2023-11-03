@@ -1,12 +1,13 @@
 import "./HomePage.scss"
 
 import { useLoaderData } from "react-router-dom"
+import { useForm } from "react-hook-form"
 
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Card from "@mui/material/Card"
-import CardContent from "@mui/material/CardContent"
 import Container from "@mui/material/Container"
+import FormControl from "@mui/material/FormControl"
 import Icon from "@mui/material/Icon"
 import InputAdornment from "@mui/material/InputAdornment"
 import Stack from "@mui/material/Stack"
@@ -14,11 +15,18 @@ import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 
 import type { TListingsResponse } from "@/schemas"
-
+import type { SearchForm } from "@/forms"
+import { QueryValidation } from "@/forms"
 import { ListingCard } from "@/components"
 
 export default function HomePage() {
   const { listings } = useLoaderData() as TListingsResponse
+
+  const form = useForm<SearchForm>()
+
+  const handleSubmit = ({ query }: SearchForm) => {
+    console.log(query)
+  }
 
   return (
     <Box className="home-page">
@@ -30,7 +38,13 @@ export default function HomePage() {
         </Box>
 
         <Card className="hps-card" variant="outlined">
-          <CardContent className="hpsc-form">
+          <FormControl
+            className="hpsc-form"
+            component="form"
+            fullWidth
+            noValidate
+            autoComplete="off"
+            onSubmit={form.handleSubmit(handleSubmit)}>
             <Typography className="hpscf-title" variant="h6">
               Encontre seu anunciado
             </Typography>
@@ -47,12 +61,15 @@ export default function HomePage() {
                   </InputAdornment>
                 )
               }}
+              error={!!form.formState.errors.query}
+              helperText={form.formState.errors.query?.message}
+              {...form.register("query", QueryValidation)}
             />
 
-            <Button fullWidth disableElevation variant="contained">
+            <Button fullWidth disableElevation variant="contained" type="submit">
               Encontrar
             </Button>
-          </CardContent>
+          </FormControl>
         </Card>
       </Container>
 
