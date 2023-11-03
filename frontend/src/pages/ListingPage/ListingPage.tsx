@@ -1,7 +1,7 @@
 import "./ListingPage.scss"
 
 import { useLoaderData } from "react-router-dom"
-
+import clsx from "clsx"
 import format from "date-fns/format"
 
 import Box from "@mui/material/Box"
@@ -59,10 +59,10 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
-        <Stack className="lps-container">
+        <Stack className="lps-container lps-description">
           <Typography variant="h6">Descrição</Typography>
 
-          <Typography component="pre" sx={{ color: !listing?.description ? "text.secondary" : null }}>
+          <Typography className={clsx("lpsd-content", { disabled: !listing?.description })} component="pre">
             {listing?.description || "Ainda não há descrição para este anúncio"}
           </Typography>
         </Stack>

@@ -46,5 +46,13 @@
         color: var(--mui-palette-text-secondary);
       }
     }
+
+    .lps-description {
+      .lpsd-content {
+        &.disabled {
+          color: var(--mui-palette-text-secondary);
+        }
+      }
+    }
   }
 }
