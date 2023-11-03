@@ -1,5 +1,8 @@
+import "./HomePage.scss"
+
 import { useLoaderData } from "react-router-dom"
 
+import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
@@ -8,23 +11,24 @@ import { TListings } from "@/services/schemas"
 
 import { ListingCard } from "@/components"
 
-export function HomePage() {
+export default function HomePage() {
   const listings = useLoaderData() as TListings
 
   return (
-    <>
-      {Boolean(listings.length) && (
-        <Container sx={{ paddingY: 4 }}>
-          <Typography variant="h6" component="h3" gutterBottom>
+    <Box className="home-page">
+      {!!listings.length && (
+        <Container className="hp-section">
+          <Typography variant="h6" gutterBottom>
             Anúncios recentes
           </Typography>
-          <Stack sx={{ flexDirection: "row", overflowX: "auto", gap: "16px" }}>
+
+          <Stack className="hps-carousel">
             {listings.map((listing) => (
               <ListingCard key={listing.id} listing={listing} />
             ))}
           </Stack>
         </Container>
       )}
-    </>
+    </Box>
   )
 }

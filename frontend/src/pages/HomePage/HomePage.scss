@@ -1,0 +1,12 @@
+.home-page {
+  .hp-section {
+    padding-top: 32px;
+    padding-bottom: 32px;
+
+    .hps-carousel {
+      flex-direction: row;
+      overflow-x: auto;
+      gap: 16px;
+    }
+  }
+}
