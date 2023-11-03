@@ -1,0 +1,21 @@
+.auth-register {
+  padding-top: 32px;
+  padding-bottom: 32px;
+
+  .ar-title {
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+
+  .ar-form {
+    .arf-fields {
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .arf-actions {
+      gap: 8px;
+    }
+  }
+}

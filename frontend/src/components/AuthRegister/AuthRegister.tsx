@@ -5,17 +5,18 @@ import { useForm } from "react-hook-form"
 
 import { Link as RouterLink, useNavigate } from "react-router-dom"
 
+import Button from "@mui/material/Button"
+import Container from "@mui/material/Container"
+import FormControl from "@mui/material/FormControl"
 import Icon from "@mui/material/Icon"
 import IconButton from "@mui/material/IconButton"
 import InputAdornment from "@mui/material/InputAdornment"
-import TextField from "@mui/material/TextField"
-import FormControl from "@mui/material/FormControl"
 import Stack from "@mui/material/Stack"
+import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
-import Button from "@mui/material/Button"
 
-import { AuthServices } from "@/services"
 import { EmailValidation, PasswordValidation, RegisterForm } from "@/forms"
+import { AuthServices } from "@/services"
 
 export default function AuthRegister() {
   const navigate = useNavigate()
@@ -35,13 +36,13 @@ export default function AuthRegister() {
   }
 
   return (
-    <>
-      <Typography variant="h5" component="h1" textAlign="center" fontWeight="500" mb={4}>
+    <Container className="auth-register">
+      <Typography className="ar-title" variant="h5">
         Cadastre-se e conheça mais da plataforma
       </Typography>
 
-      <FormControl component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
-        <Stack gap={2} marginBottom={4}>
+      <FormControl className="ar-form" component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
+        <Stack className="arf-fields">
           <TextField
             label="Email"
             placeholder="Digite seu email"
@@ -69,7 +70,7 @@ export default function AuthRegister() {
           />
         </Stack>
 
-        <Stack gap={1}>
+        <Stack className="arf-actions">
           <Button type="submit" variant="contained" disableElevation>
             Cadastrar
           </Button>
@@ -79,6 +80,6 @@ export default function AuthRegister() {
           </Button>
         </Stack>
       </FormControl>
-    </>
+    </Container>
   )
 }
