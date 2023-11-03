@@ -18,7 +18,6 @@ import ListItemIcon from "@mui/material/ListItemIcon"
 import ListItemText from "@mui/material/ListItemText"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
-import Stack from "@mui/material/Stack"
 
 interface Props {
   user: User | null
@@ -41,36 +40,41 @@ export default function AuthDialog({ user, open, handleSignIn, handleSignOut, ha
         </Toolbar>
       </AppBar>
 
-      <List disablePadding>
+      <List disablePadding className="ad-list">
         {user?.uid && (
-          <Stack direction="column" divider={<Divider />}>
+          <>
             <ListItem>
               <ListItemAvatar>
                 <Avatar src={user?.photoURL || ""}>{user?.displayName?.charAt(0)}</Avatar>
               </ListItemAvatar>
+
               <ListItemText
                 primary={user?.displayName || "Usuário sem nome"}
                 secondary={user?.email || "Usuário sem email"}
               />
             </ListItem>
 
+            <Divider />
+
             <ListItem disablePadding>
               <ListItemButton onClick={handleSignOut}>
                 <ListItemIcon>
                   <Icon>logout</Icon>
                 </ListItemIcon>
+
                 <ListItemText primary="Sair" />
               </ListItemButton>
             </ListItem>
-          </Stack>
+          </>
         )}
 
         {!user?.uid && (
           <ListItem disablePadding>
-            <ListItemButton component={Link} onClick={handleSignIn} to="/auth/entrar" sx={{ color: "text.primary" }}>
+            <ListItemButton component={Link} onClick={handleSignIn} to="/auth/entrar">
               <ListItemIcon>
                 <Icon>login</Icon>
               </ListItemIcon>
+
               <ListItemText primary="Entrar" />
             </ListItemButton>
           </ListItem>
