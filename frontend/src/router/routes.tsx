@@ -18,7 +18,7 @@ export const routes: RouteObject[] = [
         loader: async () => {
           const data = await ListingsServices.getListings()
 
-          return data.listings
+          return data
         }
       },
 

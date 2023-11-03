@@ -7,12 +7,12 @@ import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
-import { TListings } from "@/services/schemas"
+import type { TListingsResponse } from "@/services/schemas"
 
 import { ListingCard } from "@/components"
 
 export default function HomePage() {
-  const listings = useLoaderData() as TListings
+  const { listings } = useLoaderData() as TListingsResponse
 
   return (
     <Box className="home-page">
