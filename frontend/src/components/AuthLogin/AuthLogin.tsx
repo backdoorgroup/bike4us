@@ -47,12 +47,12 @@ export default function AuthLogin() {
 
   return (
     <Container className="auth-login">
-      <Typography variant="h5" component="h1" textAlign="center" fontWeight="500" mb={4}>
+      <Typography className="al-title" variant="h5">
         Seja bem-vindo!
       </Typography>
 
-      <FormControl component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
-        <Stack gap={2} marginBottom={4}>
+      <FormControl className="al-form" component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
+        <Stack className="alf-fields">
           <TextField
             label="Email"
             placeholder="Digite seu email"
@@ -80,25 +80,27 @@ export default function AuthLogin() {
           />
         </Stack>
 
-        <Stack gap={1} mb={2}>
-          <Button type="submit" variant="contained" disableElevation>
-            Entrar
-          </Button>
+        <Stack className="alf-actions">
+          <Stack className="alfa-top">
+            <Button type="submit" variant="contained" disableElevation>
+              Entrar
+            </Button>
 
-          <Button disableElevation component={Link} to="/auth/cadastrar">
-            Criar conta
+            <Button disableElevation component={Link} to="/auth/cadastrar">
+              Criar conta
+            </Button>
+          </Stack>
+
+          <Divider>
+            <Typography variant="caption" sx={{ color: "text.secondary" }}>
+              ou entre com
+            </Typography>
+          </Divider>
+
+          <Button disableElevation variant="outlined" onClick={handleGoogleClick} startIcon={<GoogleIcon />}>
+            Entrar com o Google
           </Button>
         </Stack>
-
-        <Divider sx={{ mb: 2 }}>
-          <Typography variant="caption" sx={{ color: "text.secondary" }}>
-            ou entre com
-          </Typography>
-        </Divider>
-
-        <Button disableElevation variant="outlined" onClick={handleGoogleClick} startIcon={<GoogleIcon />}>
-          Entrar com o Google
-        </Button>
       </FormControl>
     </Container>
   )

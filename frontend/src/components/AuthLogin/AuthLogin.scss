@@ -1,4 +1,25 @@
 .auth-login {
   padding-top: 32px;
   padding-bottom: 32px;
+
+  .al-title {
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+
+  .al-form {
+    .alf-fields {
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .alf-actions {
+      gap: 16px;
+
+      .alfa-top {
+        gap: 8px;
+      }
+    }
+  }
 }
