@@ -21,6 +21,7 @@ export const ListingsServices = {
 
     return parsed
   },
+
   getListing: async (id: number | string) => {
     const response = await httpClient.get(`/listings/${id}`)
 
@@ -28,6 +29,7 @@ export const ListingsServices = {
 
     return parsed
   },
+
   getListings: async () => {
     const response = await httpClient.get("/listings")
 
