@@ -52,7 +52,7 @@ const theme = extendTheme(
 
 export function App() {
   return (
-    <StyledEngineProvider>
+    <StyledEngineProvider injectFirst>
       <CssVarsProvider theme={theme}>
         <LocalizationProvider
           dateAdapter={AdapterDateFns}
