@@ -12,11 +12,7 @@ import { AuthDialog } from "@/components"
 import { AuthServices } from "@/services"
 import { useUserStore } from "@/stores"
 
-interface Props {
-  basic?: boolean
-}
-
-export default function AppNavBar({ basic }: Props) {
+export default function AppNavBar({ basic }: { basic?: boolean }) {
   const { user } = useUserStore()
   const navigate = useNavigate()
 

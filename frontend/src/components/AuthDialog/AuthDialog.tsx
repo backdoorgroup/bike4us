@@ -19,15 +19,19 @@ import ListItemText from "@mui/material/ListItemText"
 import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
 
-interface Props {
+export default function AuthDialog({
+  user,
+  open,
+  handleSignIn,
+  handleSignOut,
+  handleClose
+}: {
   user: User | null
   open: boolean
   handleSignIn: () => void
   handleSignOut: () => void
   handleClose: () => void
-}
-
-export default function AuthDialog({ user, open, handleSignIn, handleSignOut, handleClose }: Props) {
+}) {
   return (
     <Dialog className="auth-dialog" fullScreen open={open} onClose={handleClose}>
       <AppBar className="ad-app-bar" component="header" position="sticky" color="inherit" elevation={0}>
