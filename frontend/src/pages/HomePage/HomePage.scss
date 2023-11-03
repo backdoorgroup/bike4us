@@ -9,4 +9,25 @@
       gap: 16px;
     }
   }
+
+  .hp-search {
+    background-color: var(--mui-palette-primary-main);
+    color: var(--mui-palette-common-white);
+
+    .hps-header {
+      margin-bottom: 16px;
+    }
+
+    .hps-card {
+      .hpsc-content {
+        .hpscc-title {
+          margin-bottom: 8px;
+        }
+
+        .hpscc-field {
+          margin-bottom: 32px;
+        }
+      }
+    }
+  }
 }
