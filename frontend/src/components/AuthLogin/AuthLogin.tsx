@@ -91,10 +91,8 @@ export default function AuthLogin() {
             </Button>
           </Stack>
 
-          <Divider>
-            <Typography variant="caption" sx={{ color: "text.secondary" }}>
-              ou entre com
-            </Typography>
+          <Divider className="alfa-divider">
+            <Typography variant="caption">ou entre com</Typography>
           </Divider>
 
           <Button disableElevation variant="outlined" onClick={handleGoogleClick} startIcon={<GoogleIcon />}>
