@@ -15,7 +15,7 @@ export function HomeLayout() {
       <Box component="main" sx={{ paddingBottom: 7 }}>
         <Outlet />
       </Box>
-      <AppNavBottom basic={basic} />
+      {!basic && <AppNavBottom />}
     </>
   )
 }

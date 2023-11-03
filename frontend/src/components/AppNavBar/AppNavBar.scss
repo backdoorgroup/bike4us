@@ -1,7 +1,7 @@
 .app-nav-bar {
   position: sticky;
   background-color: var(--mui-palette-common-white);
-  border: 1px solid var(--mui-palette-divider);
+  border-bottom: 1px solid var(--mui-palette-divider);
 
   .anb-toolbar {
     justify-content: space-between;

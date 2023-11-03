@@ -1,36 +1,21 @@
+import "./AppNavBottom.scss"
+
 import { NavLink, useLocation } from "react-router-dom"
 
 import BottomNavigation from "@mui/material/BottomNavigation"
 import BottomNavigationAction from "@mui/material/BottomNavigationAction"
 import Icon from "@mui/material/Icon"
 
-interface Props {
-  basic?: boolean
-}
-
 const NavigationEnum = {
   Find: "/",
   Announce: "/anunciar"
 } as const
 
-export default function AppNavBottom({ basic }: Props) {
+export default function AppNavBottom() {
   const { pathname } = useLocation()
 
   return (
-    <BottomNavigation
-      sx={{
-        zIndex: 1,
-        borderTop: 1,
-        borderColor: "lightgray",
-        position: "fixed",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        display: basic ? "none" : null
-      }}
-      component="footer"
-      showLabels
-      value={pathname}>
+    <BottomNavigation className="app-nav-bottom" component="footer" showLabels value={pathname}>
       <BottomNavigationAction
         label="Encontrar"
         component={NavLink}
