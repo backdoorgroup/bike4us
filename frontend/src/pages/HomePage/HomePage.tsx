@@ -1,23 +1,23 @@
 import "./HomePage.scss"
 
-import { useLoaderData, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
+import { useLoaderData, useNavigate } from "react-router-dom"
 
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Card from "@mui/material/Card"
+import CardContent from "@mui/material/CardContent"
 import Container from "@mui/material/Container"
 import FormControl from "@mui/material/FormControl"
 import Icon from "@mui/material/Icon"
-import InputAdornment from "@mui/material/InputAdornment"
 import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 
-import type { TListingsResponse } from "@/schemas"
+import { ListingCard } from "@/components"
 import type { SearchForm } from "@/forms"
 import { QueryValidation } from "@/forms"
-import { ListingCard } from "@/components"
+import type { TListingsResponse } from "@/schemas"
 
 export default function HomePage() {
   const { listings } = useLoaderData() as TListingsResponse
@@ -42,37 +42,33 @@ export default function HomePage() {
           </Box>
 
           <Card className="hpsc-card" variant="outlined">
-            <FormControl
-              className="hpscc-form"
-              component="form"
-              fullWidth
-              noValidate
-              autoComplete="off"
-              onSubmit={form.handleSubmit(handleSubmit)}>
-              <Typography className="hpsccf-title" variant="h6">
-                Encontre seu anunciado
-              </Typography>
-
-              <TextField
-                className="hpsccf-field"
+            {/* TODO: refatorar o class naming dessa região */}
+            <CardContent>
+              <FormControl
+                className="hpscc-form"
+                component="form"
                 fullWidth
-                label="Buscar"
-                placeholder="O que você procura?"
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <Icon>search</Icon>
-                    </InputAdornment>
-                  )
-                }}
-                helperText={form.formState.errors.query?.message}
-                {...form.register("query", QueryValidation)}
-              />
+                noValidate
+                autoComplete="off"
+                onSubmit={form.handleSubmit(handleSubmit)}>
+                <Typography className="hpsccf-title" variant="h6">
+                  Encontre seu anunciado
+                </Typography>
 
-              <Button fullWidth disableElevation variant="contained" type="submit">
-                Encontrar
-              </Button>
-            </FormControl>
+                <TextField
+                  className="hpsccf-field"
+                  fullWidth
+                  label="Encontrar"
+                  placeholder="O que você procura?"
+                  helperText={form.formState.errors.query?.message}
+                  {...form.register("query", QueryValidation)}
+                />
+
+                <Button fullWidth disableElevation variant="contained" type="submit" endIcon={<Icon>search</Icon>}>
+                  Encontrar
+                </Button>
+              </FormControl>
+            </CardContent>
           </Card>
         </Container>
       </Box>
