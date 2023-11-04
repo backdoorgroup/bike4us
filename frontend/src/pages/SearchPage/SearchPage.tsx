@@ -83,7 +83,8 @@ export default function SearchPage() {
               </>
             )}
 
-            {!!listings.length && listings.map((listing) => <ListingCard key={listing.id} listing={listing} />)}
+            {!!listings.length &&
+              listings.map((listing) => <ListingCard key={listing.id} listing={listing} direction="column" />)}
           </Stack>
         </Container>
       </Box>

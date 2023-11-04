@@ -13,7 +13,19 @@ import Typography from "@mui/material/Typography"
 
 import type { TListing } from "@/schemas"
 
-export default function ListingCard({ listing }: { listing: TListing }) {
+const Directions = {
+  Row: "row",
+  Column: "column"
+} as const
+type TDirections = (typeof Directions)[keyof typeof Directions]
+
+export default function ListingCard({
+  listing,
+  direction = Directions.Row
+}: {
+  listing: TListing
+  direction?: TDirections
+}) {
   return (
     <Card className="listing-card" variant="outlined">
       <CardActionArea className="lc-action" component={Link} to={`anuncios/${listing.id}`}>
