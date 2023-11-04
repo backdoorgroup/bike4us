@@ -71,7 +71,7 @@ export default function SearchPage() {
             Resultados
           </Typography>
 
-          <Stack>
+          <Stack gap="16px">
             {!listings.length && (
               <>
                 <Typography sx={{ color: "text.secondary" }} gutterBottom>
