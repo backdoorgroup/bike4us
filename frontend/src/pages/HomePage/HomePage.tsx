@@ -1,6 +1,6 @@
 import "./HomePage.scss"
 
-import { useLoaderData } from "react-router-dom"
+import { useLoaderData, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 
 import Box from "@mui/material/Box"
@@ -21,11 +21,14 @@ import { ListingCard } from "@/components"
 
 export default function HomePage() {
   const { listings } = useLoaderData() as TListingsResponse
+  const navigate = useNavigate()
 
   const form = useForm<SearchForm>()
 
   const handleSubmit = ({ query }: SearchForm) => {
-    console.log(query)
+    const searchParams = new URLSearchParams({ query })
+
+    navigate(`/encontrar?${searchParams}`)
   }
 
   return (
