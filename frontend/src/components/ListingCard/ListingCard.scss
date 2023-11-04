@@ -3,6 +3,9 @@
   max-width: 256px;
 
   .lc-action {
+    display: flex;
+    justify-content: flex-start;
+
     .lca-image {
       height: 160px;
     }
@@ -14,6 +17,28 @@
         &::first-letter {
           text-transform: uppercase;
         }
+      }
+    }
+  }
+
+  &.full-width {
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  &.column {
+    .lc-action {
+      flex-direction: column;
+    }
+  }
+
+  &.row {
+    .lc-action {
+      flex-direction: row;
+
+      .lca-image {
+        width: 120px;
+        height: 120px;
       }
     }
   }

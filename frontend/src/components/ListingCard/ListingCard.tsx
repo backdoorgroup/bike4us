@@ -1,6 +1,7 @@
 import "./ListingCard.scss"
 
 import { Link } from "react-router-dom"
+import clsx from "clsx"
 
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
 import subSeconds from "date-fns/subSeconds"
@@ -21,14 +22,22 @@ type TDirections = (typeof Directions)[keyof typeof Directions]
 
 export default function ListingCard({
   listing,
-  direction = Directions.Row
+  fullWidth = false,
+  direction = Directions.Column
 }: {
   listing: TListing
+  fullWidth?: boolean
   direction?: TDirections
 }) {
   return (
-    <Card className="listing-card" variant="outlined">
-      <CardActionArea className="lc-action" component={Link} to={`/anuncios/${listing.id}`}>
+    <Card
+      className={clsx("listing-card", {
+        "full-width": fullWidth,
+        "row": direction === Directions.Row,
+        "column": direction === Directions.Column
+      })}
+      variant="outlined">
+      <CardActionArea className={"lc-action"} component={Link} to={`/anuncios/${listing.id}`}>
         <CardMedia className="lca-image" component="img" image={listing.picturePath} />
 
         <CardContent className="lca-content">
