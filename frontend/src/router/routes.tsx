@@ -4,8 +4,8 @@ import { Navigate, redirect } from "react-router-dom"
 import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "@/router/loaders"
 
 import { HomeLayout } from "@/layouts"
-import { AnnouncePage, ErrorPage, HomePage, ListingPage, AuthLoginPage, AuthRegisterPage } from "@/pages"
-import { ListingsServices } from "@/services"
+import { AnnouncePage, ErrorPage, HomePage, ListingPage, AuthLoginPage, AuthRegisterPage, SearchPage } from "@/pages"
+import { ListingsServices, SearchServices } from "@/services"
 
 export const routes: RouteObject[] = [
   {
@@ -32,7 +32,7 @@ export const routes: RouteObject[] = [
             const data = await ListingsServices.getListing(params.id)
 
             return data
-          } catch (error) {
+          } catch (_) {
             return redirect("/")
           }
         }
@@ -42,6 +42,26 @@ export const routes: RouteObject[] = [
         path: "anunciar",
         element: <AnnouncePage />,
         loader: redirectUnauthorizedLoader
+      },
+
+      {
+        path: "encontrar",
+        element: <SearchPage />,
+        loader: async ({ request: { url: _url } }) => {
+          const url = new URL(_url)
+          const searchParams = url.searchParams
+          const query = searchParams.get("query")
+
+          if (!query) return redirect("/")
+
+          try {
+            const data = await SearchServices.searchListings(query)
+
+            return data
+          } catch (_) {
+            return redirect("/")
+          }
+        }
       },
 
       {
