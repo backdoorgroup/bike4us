@@ -71,21 +71,24 @@ export default function SearchPage() {
             Resultados
           </Typography>
 
-          <Stack gap="16px">
-            {!listings.length && (
-              <>
-                <Typography sx={{ color: "text.secondary" }} gutterBottom>
-                  Não há resultados para esta busca.
-                </Typography>
-                <Link component={RouterLink} to="/" sx={{ color: "info.secondary" }}>
-                  Ir para a página inicial
-                </Link>
-              </>
-            )}
+          {!listings.length && (
+            <>
+              <Typography sx={{ color: "text.secondary" }} gutterBottom>
+                Não há resultados para esta busca.
+              </Typography>
+              <Link component={RouterLink} to="/" sx={{ color: "info.secondary" }}>
+                Ir para a página inicial
+              </Link>
+            </>
+          )}
 
-            {!!listings.length &&
-              listings.map((listing) => <ListingCard key={listing.id} listing={listing} direction="row" fullWidth />)}
-          </Stack>
+          {!!listings.length && (
+            <Stack gap="16px">
+              {listings.map((listing) => (
+                <ListingCard key={listing.id} listing={listing} direction="row" fullWidth />
+              ))}
+            </Stack>
+          )}
         </Container>
       </Box>
     </Box>
