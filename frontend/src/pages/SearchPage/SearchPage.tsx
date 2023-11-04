@@ -28,6 +28,8 @@ export default function SearchPage() {
   const form = useForm<SearchForm>({ defaultValues: { query: searchParams.get("query") || "" } })
 
   const handleSubmit = ({ query }: SearchForm) => {
+    if (query === searchParams.get("query") || !query) return
+
     setSearchParams({ query })
   }
 
