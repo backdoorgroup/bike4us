@@ -28,7 +28,7 @@ export default function ListingCard({
 }) {
   return (
     <Card className="listing-card" variant="outlined">
-      <CardActionArea className="lc-action" component={Link} to={`anuncios/${listing.id}`}>
+      <CardActionArea className="lc-action" component={Link} to={`/anuncios/${listing.id}`}>
         <CardMedia className="lca-image" component="img" image={listing.picturePath} />
 
         <CardContent className="lca-content">
