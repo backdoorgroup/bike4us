@@ -32,10 +32,10 @@ export default function SearchPage() {
   }
 
   return (
-    <Box>
-      <Box sx={{ bgcolor: "primary.main" }}>
-        <Container sx={{ paddingY: "32px" }}>
-          <Card>
+    <Box className="search-page">
+      <Box className="sp-wrapper sp-search">
+        <Container className="spw-container">
+          <Card variant="outlined">
             <CardContent>
               <Typography variant="h6" sx={{ marginBottom: "16px" }}>
                 Deseja refinar sua busca?
