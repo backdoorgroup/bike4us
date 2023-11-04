@@ -25,4 +25,18 @@
       }
     }
   }
+
+  .sp-results {
+    .spr-container {
+      .sprc-exception {
+        .sprce-title {
+          color: var(--mui-palette-text-secondary);
+        }
+      }
+
+      .sprc-list {
+        gap: 16px;
+      }
+    }
+  }
 }

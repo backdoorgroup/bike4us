@@ -65,25 +65,26 @@ export default function SearchPage() {
         </Container>
       </Box>
 
-      <Box>
-        <Container sx={{ paddingY: "32px" }}>
+      <Box className="sp-wrapper sp-results">
+        <Container className="spw-container spr-container">
           <Typography variant="h6" gutterBottom>
             Resultados
           </Typography>
 
           {!listings.length && (
-            <>
-              <Typography sx={{ color: "text.secondary" }} gutterBottom>
+            <Box className="sprc-exception">
+              <Typography className="sprce-title" gutterBottom>
                 Não há resultados para esta busca.
               </Typography>
-              <Link component={RouterLink} to="/" sx={{ color: "info.secondary" }}>
+
+              <Link component={RouterLink} to="/">
                 Ir para a página inicial
               </Link>
-            </>
+            </Box>
           )}
 
           {!!listings.length && (
-            <Stack gap="16px">
+            <Stack className="sprc-list">
               {listings.map((listing) => (
                 <ListingCard key={listing.id} listing={listing} direction="row" fullWidth />
               ))}
