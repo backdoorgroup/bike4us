@@ -33,8 +33,8 @@ export default function ListingCard({
     <Card
       className={clsx("listing-card", {
         "full-width": fullWidth,
-        "row": direction === Directions.Row,
-        "column": direction === Directions.Column
+        [Directions.Row]: direction === Directions.Row,
+        [Directions.Column]: direction === Directions.Column
       })}
       variant="outlined">
       <CardActionArea className={"lc-action"} component={Link} to={`/anuncios/${listing.id}`}>
