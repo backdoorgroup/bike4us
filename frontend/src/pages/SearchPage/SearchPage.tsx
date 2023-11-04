@@ -34,15 +34,15 @@ export default function SearchPage() {
   return (
     <Box className="search-page">
       <Box className="sp-wrapper sp-search">
-        <Container className="spw-container">
-          <Card variant="outlined">
-            <CardContent>
-              <Typography variant="h6" sx={{ marginBottom: "16px" }}>
+        <Container className="spw-container sps-container">
+          <Card className="spsc-card" variant="outlined">
+            <CardContent className="spscc-content">
+              <Typography className="spsccc-title" variant="h6">
                 Deseja refinar sua busca?
               </Typography>
 
               <FormControl
-                className="hpscc-form"
+                className="spsccc-form"
                 component="form"
                 fullWidth
                 noValidate
@@ -50,9 +50,9 @@ export default function SearchPage() {
                 onSubmit={form.handleSubmit(handleSubmit)}>
                 <TextField
                   fullWidth
+                  className="spscccf-field"
                   label="Encontrar"
                   placeholder="O que você procura?"
-                  sx={{ marginBottom: "32px" }}
                   {...form.register("query", QueryValidation)}
                 />
 
