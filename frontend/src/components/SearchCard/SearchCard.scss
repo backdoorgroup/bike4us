@@ -1,17 +1,16 @@
 .search-card {
-  padding: 16px;
-  padding-bottom: 24px;
+  .sc-content {
+    .scc-form {
+      .sccf-heading {
+        margin-bottom: 16px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
 
-  .sc-form {
-    .scf-heading {
-      margin-bottom: 16px;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .scf-field {
-      margin-bottom: 32px;
+      .sccf-field {
+        margin-bottom: 32px;
+      }
     }
   }
 }

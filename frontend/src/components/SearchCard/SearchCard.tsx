@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 
 import Button from "@mui/material/Button"
 import Card from "@mui/material/Card"
+import CardContent from "@mui/material/CardContent"
 import FormControl from "@mui/material/FormControl"
 import Icon from "@mui/material/Icon"
 import TextField from "@mui/material/TextField"
@@ -31,34 +32,36 @@ export default function SearchCard({
 
   return (
     <Card className="search-card" variant="outlined">
-      <FormControl
-        className="sc-form"
-        component="form"
-        fullWidth
-        noValidate
-        autoComplete="off"
-        onSubmit={form.handleSubmit(handleSubmit)}>
-        <Stack className="scf-heading">
-          <Typography variant="h6">{title}</Typography>
-
-          <IconButton color="primary" size="small">
-            <Icon>tune</Icon>
-          </IconButton>
-        </Stack>
-
-        <TextField
-          className="scf-field"
-          label="Encontrar"
-          placeholder="O que você procura?"
-          helperText={form.formState.errors.query?.message}
+      <CardContent className="sc-content">
+        <FormControl
+          className="scc-form"
+          component="form"
           fullWidth
-          {...form.register("query", QueryValidation)}
-        />
+          noValidate
+          autoComplete="off"
+          onSubmit={form.handleSubmit(handleSubmit)}>
+          <Stack className="sccf-heading">
+            <Typography variant="h6">{title}</Typography>
 
-        <Button fullWidth disableElevation variant="contained" type="submit" endIcon={<Icon>search</Icon>}>
-          Encontrar
-        </Button>
-      </FormControl>
+            <IconButton color="primary" size="small">
+              <Icon>tune</Icon>
+            </IconButton>
+          </Stack>
+
+          <TextField
+            className="sccf-field"
+            label="Encontrar"
+            placeholder="O que você procura?"
+            helperText={form.formState.errors.query?.message}
+            fullWidth
+            {...form.register("query", QueryValidation)}
+          />
+
+          <Button fullWidth disableElevation variant="contained" type="submit" endIcon={<Icon>search</Icon>}>
+            Encontrar
+          </Button>
+        </FormControl>
+      </CardContent>
     </Card>
   )
 }
