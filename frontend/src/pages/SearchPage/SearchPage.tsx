@@ -1,6 +1,5 @@
 import "./SearchPage.scss"
 
-import { useForm } from "react-hook-form"
 import { Link as RouterLink, useLoaderData, useSearchParams } from "react-router-dom"
 
 import Box from "@mui/material/Box"
@@ -18,8 +17,6 @@ export default function SearchPage() {
 
   const [searchParams, setSearchParams] = useSearchParams()
 
-  const form = useForm<SearchForm>({ defaultValues: { query: searchParams.get("query") || "" } })
-
   const handleSubmit = ({ query }: SearchForm) => {
     if (query === searchParams.get("query")) return
 
@@ -30,7 +27,7 @@ export default function SearchPage() {
     <Box className="search-page">
       <Box className="sp-wrapper sp-search">
         <Container className="spw-container">
-          <SearchCard title="Deseja refinar sua busca?" form={form} handleSubmit={handleSubmit} />
+          <SearchCard title="Deseja refinar sua busca?" searchParams={searchParams} handleSubmit={handleSubmit} />
         </Container>
       </Box>
 

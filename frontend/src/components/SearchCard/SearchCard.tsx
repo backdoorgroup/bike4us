@@ -1,6 +1,6 @@
 import "./SearchCard.scss"
 
-import { UseFormReturn } from "react-hook-form"
+import { useForm } from "react-hook-form"
 
 import Button from "@mui/material/Button"
 import Card from "@mui/material/Card"
@@ -15,13 +15,19 @@ import { QueryValidation } from "@/forms"
 
 export default function SearchCard({
   title,
-  form,
+  searchParams,
   handleSubmit
 }: {
   title: string
-  form: UseFormReturn<SearchForm>
+  searchParams?: URLSearchParams
   handleSubmit: (submitted: SearchForm) => void
 }) {
+  const form = useForm<SearchForm>({
+    defaultValues: {
+      query: searchParams?.get("query") || ""
+    }
+  })
+
   return (
     <Card className="search-card" variant="outlined">
       <CardContent className="sc-content">

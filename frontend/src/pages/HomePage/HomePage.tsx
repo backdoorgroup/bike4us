@@ -1,7 +1,6 @@
 import "./HomePage.scss"
 
 import { useLoaderData, useNavigate } from "react-router-dom"
-import { useForm } from "react-hook-form"
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
@@ -15,8 +14,6 @@ import type { TListingsResponse } from "@/schemas"
 export default function HomePage() {
   const { listings } = useLoaderData() as TListingsResponse
   const navigate = useNavigate()
-
-  const form = useForm<SearchForm>()
 
   const handleSubmit = ({ query }: SearchForm) => {
     const searchParams = new URLSearchParams({ query })
@@ -34,7 +31,7 @@ export default function HomePage() {
             <Typography variant="body2">Descubra o padrão ouro em aluguel de bicicletas</Typography>
           </Box>
 
-          <SearchCard title="Encontre seu anunciado" form={form} handleSubmit={handleSubmit} />
+          <SearchCard title="Encontre seu anunciado" handleSubmit={handleSubmit} />
         </Container>
       </Box>
 
