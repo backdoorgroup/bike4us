@@ -9,8 +9,6 @@ import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import FormControl from "@mui/material/FormControl"
 import Icon from "@mui/material/Icon"
-import IconButton from "@mui/material/IconButton"
-import Popover from "@mui/material/Popover"
 import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
@@ -33,14 +31,6 @@ export default function SearchCard({
     }
   })
 
-  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>()
-  const handleOpenMenu: MouseEventHandler<HTMLElement> = (event) => {
-    setAnchorEl(event.currentTarget)
-  }
-  const handleCloseMenu: MouseEventHandler<HTMLElement> = () => {
-    setAnchorEl(null)
-  }
-
   return (
     <Card className="search-card" variant="outlined">
       <CardContent className="sc-content">
@@ -53,20 +43,6 @@ export default function SearchCard({
           onSubmit={form.handleSubmit(handleSubmit)}>
           <Stack className="sccf-heading">
             <Typography variant="h6">{title}</Typography>
-
-            <IconButton onClick={handleOpenMenu} color="primary" size="small">
-              <Icon>tune</Icon>
-            </IconButton>
-
-            <Popover
-              anchorEl={anchorEl}
-              open={!!anchorEl}
-              onClose={handleCloseMenu}
-              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
-              transformOrigin={{ horizontal: "right", vertical: "top" }}
-              slotProps={{ paper: { variant: "outlined", sx: { paddingX: 2, paddingY: 3 } } }}>
-              <TextField />
-            </Popover>
           </Stack>
 
           <TextField
