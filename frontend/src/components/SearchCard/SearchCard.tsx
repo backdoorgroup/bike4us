@@ -9,6 +9,8 @@ import FormControl from "@mui/material/FormControl"
 import Icon from "@mui/material/Icon"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
+import IconButton from "@mui/material/IconButton"
+import Stack from "@mui/material/Stack"
 
 import type { SearchForm } from "@/forms"
 import { QueryValidation } from "@/forms"
@@ -38,9 +40,13 @@ export default function SearchCard({
           noValidate
           autoComplete="off"
           onSubmit={form.handleSubmit(handleSubmit)}>
-          <Typography className="sccf-title" variant="h6">
-            {title}
-          </Typography>
+          <Stack className="sccf-heading">
+            <Typography variant="h6">{title}</Typography>
+
+            <IconButton color="primary" size="small">
+              <Icon>tune</Icon>
+            </IconButton>
+          </Stack>
 
           <TextField
             className="sccf-field"

@@ -1,8 +1,11 @@
 .search-card {
   .sc-content {
     .scc-form {
-      .sccf-title {
+      .sccf-heading {
         margin-bottom: 16px;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
       }
 
       .sccf-field {
