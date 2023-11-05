@@ -1,7 +1,5 @@
 import "./SearchCard.scss"
 
-import type { MouseEventHandler } from "react"
-import { useState } from "react"
 import { useForm } from "react-hook-form"
 
 import Button from "@mui/material/Button"
