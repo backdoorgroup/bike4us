@@ -9,12 +9,11 @@ import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import FormControl from "@mui/material/FormControl"
 import Icon from "@mui/material/Icon"
+import IconButton from "@mui/material/IconButton"
+import Popover from "@mui/material/Popover"
+import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
-import IconButton from "@mui/material/IconButton"
-import Stack from "@mui/material/Stack"
-import Menu from "@mui/material/Menu"
-import MenuItem from "@mui/material/MenuItem"
 
 import type { SearchForm } from "@/forms"
 import { QueryValidation } from "@/forms"
@@ -59,11 +58,15 @@ export default function SearchCard({
               <Icon>tune</Icon>
             </IconButton>
 
-            <Menu anchorEl={anchorEl} open={!!anchorEl} onClose={handleCloseMenu}>
-              {/* <MenuItem>Profile</MenuItem>
-              <MenuItem>My account</MenuItem>
-              <MenuItem>Logout</MenuItem> */}
-            </Menu>
+            <Popover
+              anchorEl={anchorEl}
+              open={!!anchorEl}
+              onClose={handleCloseMenu}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              slotProps={{ paper: { variant: "outlined", sx: { paddingX: 2, paddingY: 3 } } }}>
+              <TextField />
+            </Popover>
           </Stack>
 
           <TextField
