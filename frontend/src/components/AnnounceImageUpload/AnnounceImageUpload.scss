@@ -37,6 +37,10 @@
           width: 100%;
         }
       }
+
+      &.hidden {
+        display: none;
+      }
     }
 
     .aius-button {
@@ -46,7 +50,8 @@
       gap: 8px;
       border-radius: 4px;
       padding: 8px;
-      width: 100%;
+      min-width: var(--announce-image-upload-width);
+      max-width: var(--announce-image-upload-width);
 
       .aiusb-input {
         height: 1px;
@@ -92,9 +97,9 @@
         border-color: var(--mui-palette-error-main);
       }
 
-      &.images {
-        min-width: var(--announce-image-upload-width);
-        max-width: var(--announce-image-upload-width);
+      &.full-width {
+        min-width: 100%;
+        max-width: 100%;
       }
 
       &.hidden {

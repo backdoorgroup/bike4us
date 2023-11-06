@@ -51,22 +51,24 @@ export default function AnnounceImageUpload({ control }: { control: Control<List
   return (
     <Box className="announce-image-upload">
       <Stack className="aiu-scrollable">
-        {!!pictures.length && (
-          <Stack className="aius-images">
-            {pictures.map((picture, index) => (
-              <Box key={index} className="aiusi-wrapper">
-                <IconButton className="aiusiw-button" color="inherit" size="small" onClick={() => handleRemove(index)}>
-                  <Icon>delete</Icon>
-                </IconButton>
+        <Stack className={clsx("aius-images", { hidden: !pictures.length })}>
+          {pictures.map((picture, index) => (
+            <Box key={index} className="aiusi-wrapper">
+              <IconButton className="aiusiw-button" color="inherit" size="small" onClick={() => handleRemove(index)}>
+                <Icon>delete</Icon>
+              </IconButton>
 
-                <img src={URL.createObjectURL(picture)} className="aiusiw-image" />
-              </Box>
-            ))}
-          </Stack>
-        )}
+              <img src={URL.createObjectURL(picture)} className="aiusiw-image" />
+            </Box>
+          ))}
+        </Stack>
 
         <ButtonBase
-          className={clsx("aius-button", { error, images: !!pictures.length, hidden: pictures.length >= 5 })}
+          className={clsx("aius-button", {
+            "error": !!error,
+            "hidden": pictures.length >= 5,
+            "full-width": !pictures.length
+          })}
           component="label">
           <Controller
             name="pictures"
@@ -85,7 +87,7 @@ export default function AnnounceImageUpload({ control }: { control: Control<List
             )}
           />
 
-          <Stack className={clsx("aiusb-container", { error })}>
+          <Stack className={clsx("aiusb-container", { error: !!error })}>
             <Box className="aiusbc-circle">
               <Icon className="aiusbcc-icon">add_photo_alternate</Icon>
             </Box>
