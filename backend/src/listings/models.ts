@@ -1,4 +1,4 @@
-import { Column, Entity } from "typeorm"
+import { Column, Entity, ManyToOne, OneToMany } from "typeorm"
 
 import { Model } from "@/database"
 import type {
@@ -41,9 +41,6 @@ export class Listing extends Model {
   @Column({ type: "enum", enum: ListingStatusEnum, default: ListingStatusEnum.Available })
   status: TListingStatus
 
-  @Column({ type: "varchar", length: 512, unique: true })
-  picturePath: string
-
   @Column({ type: "varchar", length: 512 })
   brand: string
 
@@ -61,4 +58,16 @@ export class Listing extends Model {
 
   @Column({ type: "enum", enum: ListingMaterialEnum })
   material: TListingMaterialEnum
+
+  @OneToMany(() => ListingPicture, (picture) => picture.listing, { cascade: true })
+  pictures: ListingPicture[]
+}
+
+@Entity()
+export class ListingPicture extends Model {
+  @ManyToOne(() => Listing, (listing) => listing.pictures)
+  listing: Listing
+
+  @Column({ type: "varchar", length: 512, unique: true })
+  path: string
 }

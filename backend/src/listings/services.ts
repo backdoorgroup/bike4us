@@ -1,7 +1,7 @@
 import type { FindManyOptions, FindOneOptions } from "typeorm"
 
 import type { TCreateListingSchema } from "@/listings/schemas"
-import { Listing } from "@/listings/models"
+import { Listing, ListingPicture } from "@/listings/models"
 
 export const getListings = async (options?: FindManyOptions<Listing>) => await Listing.find(options)
 
@@ -21,7 +21,14 @@ export const createListing = async (params: TCreateListingSchema) => {
   listing.condition = params.condition
   listing.description = params.description
   listing.hourPricing = params.hourPricing
-  listing.picturePath = params.picturePath
+  listing.pictures = params.pictures.map((picture) => {
+    const listingPicture = new ListingPicture()
+
+    listingPicture.listing = listing
+    listingPicture.path = picture.filename
+
+    return listingPicture
+  })
 
   return await listing.save()
 }

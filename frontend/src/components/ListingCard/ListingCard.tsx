@@ -12,7 +12,7 @@ import CardMedia from "@mui/material/CardMedia"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
 
-import type { TListing } from "@/schemas"
+import type { TListing, TListingPicture } from "@/schemas"
 
 const Directions = {
   Row: "row",
@@ -29,6 +29,8 @@ export default function ListingCard({
   fullWidth?: boolean
   direction?: TDirections
 }) {
+  const picture = listing.pictures.at(0) as TListingPicture
+
   return (
     <Card
       className={clsx("listing-card", {
@@ -38,7 +40,7 @@ export default function ListingCard({
       })}
       variant="outlined">
       <CardActionArea className={"lc-action"} component={Link} to={`/anuncios/${listing.id}`}>
-        <CardMedia className="lca-image" component="img" image={listing.picturePath} />
+        <CardMedia className="lca-image" component="img" image={picture.path} />
 
         <CardContent className="lca-content">
           <Typography variant="h6" gutterBottom>

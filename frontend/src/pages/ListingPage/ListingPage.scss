@@ -14,15 +14,17 @@
         }
       }
 
-      .lpsh-image {
-        border-radius: 4px;
-        overflow: hidden;
+      .lpsh-carousel {
+        overflow-x: scroll;
+        flex-direction: row;
         height: 288px;
+        gap: 16px;
 
-        .lpshi-content {
+        .lpshc-image {
           object-fit: cover;
-          height: 100%;
-          width: 100%;
+          border-radius: 4px;
+          min-width: 100%;
+          max-width: 100%;
         }
       }
 

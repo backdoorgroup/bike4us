@@ -28,7 +28,6 @@ import {
   MaterialValidation,
   TitleValidation,
   TypeValidation,
-  PictureValidation,
   WheelSizeValidation,
   EntirelyNumericPattern
 } from "@/forms"
@@ -36,12 +35,14 @@ import { ListingsServices } from "@/services"
 import { AnnounceImageUpload } from "@/components"
 
 export default function AnnouncePage() {
-  const form = useForm<ListingForm>()
-
-  const picture = form.watch("picture")?.item(0)
+  const form = useForm<ListingForm>({ defaultValues: { pictures: [] } })
 
   const [loading, setLoading] = useState(false)
-  const [alert, setAlert] = useState<{ title: string; severity: TSeverity }>()
+  const [alert, setAlert] = useState<{
+    /* TODO: trocar isso por um snackbar, tirar o alert */
+    title: string
+    severity: TSeverity
+  }>()
 
   const navigate = useNavigate()
 
@@ -83,17 +84,13 @@ export default function AnnouncePage() {
           <Stack className="apfs-section">
             <Box className="apfss-header">
               <Typography className="apfssh-title" variant="h6">
-                Foto
+                Fotos
               </Typography>
 
-              <Typography variant="caption">Esta será a capa de seu anúncio</Typography>
+              <Typography variant="caption">Você pode adicionar até 5 fotos</Typography>
             </Box>
 
-            <AnnounceImageUpload
-              picture={picture}
-              error={form.formState.errors.picture}
-              register={form.register("picture", PictureValidation)}
-            />
+            <AnnounceImageUpload control={form.control} />
           </Stack>
 
           <Stack className="apfs-section">

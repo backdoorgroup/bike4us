@@ -4,7 +4,7 @@ const RequiredFieldText = "Campo obrigatório"
 const RequiredImageText = "É necessário colocar uma imagem"
 
 export interface ListingForm {
-  picture: FileList
+  pictures: File[]
   title: string
   hourPricing: number
   condition: string
@@ -18,7 +18,7 @@ export interface ListingForm {
 }
 
 // Required
-export const PictureValidation: RegisterOptions = {
+export const PicturesValidation: RegisterOptions = {
   required: RequiredImageText
 }
 

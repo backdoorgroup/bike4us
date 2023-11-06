@@ -7,6 +7,7 @@ import { paginate } from "@/utils"
 import { HttpStatus } from "@lib/http"
 
 import { getListings } from "@/listings/services"
+import { serializeListing } from "@/listings/serializers"
 
 import { SearchListingsSchema } from "@/search/schemas"
 
@@ -17,16 +18,16 @@ router.get("/listings", async (req, res) => {
     const params = SearchListingsSchema.parse(req.query)
 
     const query = await getListings({
-      where: {
-        title: ILike(`%${params.query}%`)
-      },
-      order: {
-        createdAt: "desc"
-      }
+      where: { title: ILike(`%${params.query}%`) },
+      order: { createdAt: "desc" },
+      relations: { pictures: true }
     })
     const listings = paginate(query, params.page, params.perPage)
 
-    return res.status(HttpStatus.Ok).json({ listings, count: query.length })
+    return res.status(HttpStatus.Ok).json({
+      listings: listings.map(serializeListing),
+      count: query.length
+    })
   } catch (error) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }

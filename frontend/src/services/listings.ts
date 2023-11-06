@@ -1,21 +1,11 @@
 import { httpClient } from "@/services/clients"
 import { ListingsResponse, Listing } from "@/schemas"
 
-import { transform } from "@/utils"
 import type { ListingForm } from "@/forms"
 
 export const ListingsServices = {
   createListing: async (listing: ListingForm) => {
-    const form = transform({
-      ...listing,
-      picture: listing.picture.item(0)
-    })
-
-    const response = await httpClient.post("/listings", form, {
-      headers: {
-        "Content-Type": "multipart/form-data"
-      }
-    })
+    const response = await httpClient.postForm("/listings", listing)
 
     const parsed = Listing.parse(response.data)
 

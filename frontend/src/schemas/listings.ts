@@ -46,6 +46,12 @@ export const Material = {
   "titanium": "Titânio"
 } as const
 
+export const ListingPicture = z.object({
+  id: z.number(),
+  path: z.string().transform((path) => settings.STATIC_URL + path)
+})
+export type TListingPicture = z.infer<typeof ListingPicture>
+
 export const Listing = z.object({
   id: z.number(),
   ownerUid: z.string(),
@@ -55,7 +61,7 @@ export const Listing = z.object({
   description: z.string().optional().nullable(),
   hourPricing: z.number(),
   status: z.string(),
-  picturePath: z.string().transform((picturePath) => settings.STATIC_URL + picturePath),
+  pictures: z.array(ListingPicture),
   brand: z.string(),
   condition: extractEnum(Condition),
   type: extractEnum(BikeType),

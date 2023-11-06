@@ -34,9 +34,15 @@ export default function ListingPage() {
             <Typography>{listing.title}</Typography>
           </Box>
 
-          <Box className="lpsh-image">
-            <img className="lpshi-content" src={listing.picturePath} />
-          </Box>
+          {/*
+           * TODO: esse carousel tá meio merda fazer um melhor é bom
+           * https://mui.com/material-ui/react-stepper/#text-with-carousel-effect
+           */}
+          <Stack className="lpsh-carousel">
+            {listing.pictures.map((picture) => (
+              <img className="lpshc-image" key={picture.id} src={picture.path} />
+            ))}
+          </Stack>
 
           <Box className="lpsh-information">
             <Typography className="lpshi-pricing" variant="h4">

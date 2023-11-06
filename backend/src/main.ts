@@ -19,7 +19,7 @@ export const bootstrap = () => {
   // Database
   dataSource.initialize()
 
-  // Middlewares
+  // Third-party Middlewares
   app.use("/static", express.static(settings.EXPRESS_STATIC_PATH))
   app.use(
     morgan("tiny", {
@@ -32,6 +32,8 @@ export const bootstrap = () => {
   app.use(express.json())
   app.use(cors())
   app.use(helmet())
+
+  // Local Middlewares
   app.use(identity())
 
   // Routing

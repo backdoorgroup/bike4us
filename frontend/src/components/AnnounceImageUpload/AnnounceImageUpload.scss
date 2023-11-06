@@ -1,61 +1,105 @@
 .announce-image-upload {
-  .aiu-button {
-    color: var(--mui-palette-text-primary);
-    border: 1px solid var(--mui-palette-action-disabled);
-    height: 192px;
-    width: 100%;
-    gap: 8px;
-    border-radius: 4px;
-    overflow: hidden;
-    flex-direction: column;
+  --announce-image-upload-height: 160px;
+  --announce-image-upload-width: 160px;
+  --announce-image-upload-gap: 16px;
 
-    .aiub-image {
-      width: 100%;
-      object-fit: contain;
-    }
+  overflow-x: auto;
 
-    .aiub-input {
-      height: 1px;
-      width: 1px;
-      overflow: hidden;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      white-space: nowrap;
-      clip: rect(0 0 0 0);
-      clip-path: inset(50%);
-    }
+  .aiu-scrollable {
+    flex-direction: row;
+    gap: var(--announce-image-upload-gap);
+    height: var(--announce-image-upload-height);
 
-    .aiub-content {
-      align-items: center;
-      text-align: center;
+    .aius-images {
+      flex-direction: row;
+      gap: var(--announce-image-upload-gap);
 
-      .aiubc-circle {
-        background-color: var(--mui-palette-action-hover);
-        border-radius: 50%;
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      .aiusi-wrapper {
+        position: relative;
+        border-radius: 4px;
+        border: 1px solid var(--mui-palette-action-disabled);
+        overflow: hidden;
+        min-width: var(--announce-image-upload-width);
+        max-width: var(--announce-image-upload-width);
 
-        .aiubcc-icon {
-          font-size: 32px;
+        .aiusiw-button {
+          position: absolute;
+          right: 0;
+          top: 0;
+          margin-right: 8px;
+          margin-top: 8px;
+          background-color: white !important;
+        }
+
+        .aiusiw-image {
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
         }
       }
+    }
 
-      .aiubc-title {
-        font-weight: 500;
+    .aius-button {
+      flex-direction: column;
+      color: var(--mui-palette-text-primary);
+      border: 1px solid var(--mui-palette-action-disabled);
+      gap: 8px;
+      border-radius: 4px;
+      padding: 8px;
+      width: 100%;
+
+      .aiusb-input {
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        white-space: nowrap;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+      }
+
+      .aiusb-container {
+        align-items: center;
+        text-align: center;
+
+        .aiusbc-circle {
+          background-color: var(--mui-palette-action-hover);
+          border-radius: 50%;
+          width: 32px;
+          height: 32px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .aiusbcc-icon {
+            font-size: 24px;
+          }
+        }
+
+        .aiusbc-title {
+          font-weight: 500;
+        }
+
+        &.error {
+          color: var(--mui-palette-error-main);
+        }
       }
 
       &.error {
         color: var(--mui-palette-error-main);
+        border-color: var(--mui-palette-error-main);
       }
-    }
 
-    &.error {
-      color: var(--mui-palette-error-main);
-      border-color: var(--mui-palette-error-main);
+      &.images {
+        min-width: var(--announce-image-upload-width);
+        max-width: var(--announce-image-upload-width);
+      }
+
+      &.hidden {
+        display: none;
+      }
     }
   }
 }
