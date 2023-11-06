@@ -1,3 +1,4 @@
+// Database
 export const ListingStatusEnum = {
   Available: "available"
 } as const
@@ -51,6 +52,7 @@ export const ListingMaterialEnum = {
 } as const
 export type TListingMaterialEnum = (typeof ListingMaterialEnum)[keyof typeof ListingMaterialEnum]
 
+// Media
 export const AllowedMimetypesMap = {
   png: "image/png",
   jpg: "image/jpg",
@@ -62,3 +64,6 @@ export type TAllowedExtensions = keyof typeof AllowedMimetypesMap
 
 export const AllowedMimetypes = Object.values(AllowedMimetypesMap)
 export const AllowedExtensions = Object.keys(AllowedMimetypesMap)
+
+export const MaxFileSize = 5 * 1024 * 1024 // Value in bytes (5MB)
+export const MaxFiles = 5

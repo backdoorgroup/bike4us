@@ -4,32 +4,34 @@ import crypto from "crypto"
 import type { TAllowedMimetypes } from "@/listings/constants"
 
 import { settings } from "@/settings"
-import { AllowedMimetypes } from "@/listings/constants"
+import { AllowedMimetypes, MaxFileSize, MaxFiles } from "@/listings/constants"
 
 export const upload = multer({
-  fileFilter: (req, file, callback) => {
-    if (!req.user?.uid) {
-      callback(null, false)
-    }
-
+  fileFilter: (_req, file, callback) => {
     if (!AllowedMimetypes.includes(file.mimetype as TAllowedMimetypes)) {
       callback(null, false)
     }
 
     callback(null, true)
   },
+
   storage: multer.diskStorage({
-    destination: (req, file, cb) => {
+    destination: (_req, _file, cb) => {
       cb(null, settings.EXPRESS_STATIC_PATH)
     },
 
-    filename: (req, file, cb) => {
-      const extension = file.mimetype?.split("/")?.at(1)
+    filename: (_req, file, cb) => {
+      const extension = file.mimetype.split("/").at(1)
       const uuid = crypto.randomUUID()
 
       const filename = `${uuid}.${extension}`
 
       cb(null, filename)
     }
-  })
+  }),
+
+  limits: {
+    fileSize: MaxFileSize,
+    fields: MaxFiles
+  }
 })
