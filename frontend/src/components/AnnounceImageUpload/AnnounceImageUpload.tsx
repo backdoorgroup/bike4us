@@ -1,21 +1,22 @@
 import "./AnnounceImageUpload.scss"
 
-import type { Control } from "react-hook-form"
-import { Controller, useFieldArray, useWatch, useFormState } from "react-hook-form"
 import clsx from "clsx"
+import type { ChangeEventHandler } from "react"
+import { useMemo } from "react"
+import type { Control } from "react-hook-form"
+import { Controller, useFieldArray, useFormState, useWatch } from "react-hook-form"
 
-import Icon from "@mui/material/Icon"
-import Collapse from "@mui/material/Collapse"
-import Typography from "@mui/material/Typography"
-import Stack from "@mui/material/Stack"
-import FormHelperText from "@mui/material/FormHelperText"
 import Box from "@mui/material/Box"
 import ButtonBase from "@mui/material/ButtonBase"
+import Collapse from "@mui/material/Collapse"
+import FormHelperText from "@mui/material/FormHelperText"
+import Icon from "@mui/material/Icon"
+import IconButton from "@mui/material/IconButton"
+import Stack from "@mui/material/Stack"
+import Typography from "@mui/material/Typography"
 
 import type { ListingForm } from "@/forms"
 import { PicturesValidation } from "@/forms"
-import IconButton from "@mui/material/IconButton"
-import { ChangeEventHandler } from "react"
 
 export default function AnnounceImageUpload({ control }: { control: Control<ListingForm> }) {
   const formState = useFormState({
@@ -32,7 +33,7 @@ export default function AnnounceImageUpload({ control }: { control: Control<List
     control
   })
 
-  const error = formState.errors.pictures?.root
+  const error = useMemo(() => formState.errors.pictures?.root, [formState.errors.pictures?.root])
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const files = event.target.files as FileList
