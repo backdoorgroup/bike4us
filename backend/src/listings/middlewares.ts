@@ -32,6 +32,6 @@ export const upload = multer({
 
   limits: {
     fileSize: MaxFileSize,
-    fields: MaxFiles
+    files: MaxFiles
   }
 })
