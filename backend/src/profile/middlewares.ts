@@ -1,4 +1,4 @@
-import type { NextFunction, Request, Response } from "express"
+import type { RequestHandler } from "express"
 import type { UserRecord } from "firebase-admin/auth"
 
 import { UnauthorizedException } from "@/exceptions"
@@ -6,8 +6,8 @@ import { getUser, verifyIdToken } from "@/profile/services"
 
 import { HttpStatus } from "@lib/http"
 
-export const identity = () =>
-  async function (req: Request, res: Response, next: NextFunction) {
+export const identity = (): RequestHandler =>
+  async function (req, _res, next) {
     try {
       const header = req.header("authorization") as string
       const token = header.replace("Bearer", "").trim()
@@ -23,8 +23,8 @@ export const identity = () =>
     next()
   }
 
-export const authenticated = () =>
-  function (req: Request, res: Response, next: NextFunction) {
+export const authenticated = (): RequestHandler =>
+  function (req, res, next) {
     const user = req.user
 
     if (!user?.uid) return res.status(HttpStatus.Unauthorized).json(UnauthorizedException)
