@@ -15,26 +15,6 @@ import { serializeListing } from "@/listings/serializers"
 
 export const router = Router()
 
-function bubble_opt<T>(v: T[]) {
-  const last_arr_position = v.length - 1
-  let last_swap_position = last_arr_position - 1
-  let swap_pos = 0
-  while (swap_pos >= 0) {
-    swap_pos = -1
-    let j = 0
-    while (j <= last_swap_position) {
-      if (v[j] > v[j + 1]) {
-        const aux = v[j]
-        v[j] = v[j + 1]
-        v[j + 1] = aux
-        swap_pos = j
-      }
-      ++j
-    }
-    last_swap_position = swap_pos
-  }
-}
-
 router.get("/", async (req, res) => {
   try {
     const params = GetListingsSchema.parse(req.query)
