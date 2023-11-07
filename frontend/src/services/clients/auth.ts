@@ -1,10 +1,10 @@
 import { initializeApp } from "firebase/app"
 import { GoogleAuthProvider, browserLocalPersistence, getAuth } from "firebase/auth"
 
-import { useUserStore } from "@/stores"
+import { useAuthStore } from "@/stores"
 import { settings } from "@config"
 
-const { setUser } = useUserStore.getState()
+const { setUser } = useAuthStore.getState()
 
 const app = initializeApp({
   apiKey: settings.FB_API_KEY,
