@@ -51,54 +51,56 @@ export default function AnnounceImageUpload({ control }: { control: Control<List
 
   return (
     <Box className="announce-image-upload">
-      <Stack className="aiu-scrollable">
-        <Stack className={clsx("aius-images", { hidden: !pictures.length })}>
-          {pictures.map((picture, index) => (
-            <Box key={index} className="aiusi-wrapper">
-              <IconButton className="aiusiw-button" color="inherit" size="small" onClick={() => handleRemove(index)}>
-                <Icon>delete</Icon>
-              </IconButton>
+      <Box className="aiu-wrapper">
+        <Stack className="aiuw-scrollable">
+          <Stack className={clsx("aiuws-images", { hidden: !pictures.length })}>
+            {pictures.map((picture, index) => (
+              <Box key={index} className="aiuwsi-wrapper">
+                <IconButton className="aiuwsiw-button" color="inherit" size="small" onClick={() => handleRemove(index)}>
+                  <Icon>delete</Icon>
+                </IconButton>
 
-              <img src={URL.createObjectURL(picture)} className="aiusiw-image" />
-            </Box>
-          ))}
-        </Stack>
-
-        <ButtonBase
-          className={clsx("aius-button", {
-            "error": !!errors,
-            "hidden": pictures.length >= 5,
-            "full-width": !pictures.length
-          })}
-          component="label">
-          <Controller
-            name="pictures"
-            control={control}
-            rules={PicturesValidation}
-            render={(state) => (
-              <input
-                {...state.field}
-                className="aiusb-input"
-                accept="image/jpg, image/jpeg, image/png, image/webp"
-                type="file"
-                value=""
-                multiple
-                onChange={handleChange}
-              />
-            )}
-          />
-
-          <Stack className={clsx("aiusb-container", { error: !!errors })}>
-            <Box className="aiusbc-circle">
-              <Icon className="aiusbcc-icon">add_photo_alternate</Icon>
-            </Box>
-
-            <Typography className="aiusbc-title">Adicionar fotos</Typography>
-
-            <Typography variant="caption">Somente JPG/JPEG, PNG ou WEBP</Typography>
+                <img src={URL.createObjectURL(picture)} className="aiuwsiw-image" />
+              </Box>
+            ))}
           </Stack>
-        </ButtonBase>
-      </Stack>
+
+          <ButtonBase
+            className={clsx("aiuws-button", {
+              "error": !!errors,
+              "hidden": pictures.length >= 5,
+              "full-width": !pictures.length
+            })}
+            component="label">
+            <Controller
+              name="pictures"
+              control={control}
+              rules={PicturesValidation}
+              render={(state) => (
+                <input
+                  {...state.field}
+                  className="aiuwsb-input"
+                  accept="image/jpg, image/jpeg, image/png, image/webp"
+                  type="file"
+                  value=""
+                  multiple
+                  onChange={handleChange}
+                />
+              )}
+            />
+
+            <Stack className={clsx("aiuwsb-container", { error: !!errors })}>
+              <Box className="aiuwsbc-circle">
+                <Icon className="aiuwsbcc-icon">add_photo_alternate</Icon>
+              </Box>
+
+              <Typography className="aiuwsbc-title">Adicionar fotos</Typography>
+
+              <Typography variant="caption">Somente JPG/JPEG, PNG ou WEBP</Typography>
+            </Stack>
+          </ButtonBase>
+        </Stack>
+      </Box>
 
       <Collapse in={!!errors} unmountOnExit>
         <FormHelperText error={!!errors}>{errors?.message || errors?.root?.message}</FormHelperText>
