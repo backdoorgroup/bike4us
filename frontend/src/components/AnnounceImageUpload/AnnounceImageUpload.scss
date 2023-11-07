@@ -3,9 +3,8 @@
   --announce-image-upload-width: 160px;
   --announce-image-upload-gap: 16px;
 
-  overflow-x: auto;
-
   .aiu-scrollable {
+    overflow-x: auto;
     flex-direction: row;
     gap: var(--announce-image-upload-gap);
     height: var(--announce-image-upload-height);

@@ -33,7 +33,7 @@ export default function AnnounceImageUpload({ control }: { control: Control<List
     control
   })
 
-  const error = useMemo(() => formState.errors.pictures?.root, [formState.errors.pictures?.root])
+  const errors = useMemo(() => formState.errors.pictures, [formState.errors.pictures])
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     const files = event.target.files as FileList
@@ -66,7 +66,7 @@ export default function AnnounceImageUpload({ control }: { control: Control<List
 
         <ButtonBase
           className={clsx("aius-button", {
-            "error": !!error,
+            "error": !!errors,
             "hidden": pictures.length >= 5,
             "full-width": !pictures.length
           })}
@@ -88,7 +88,7 @@ export default function AnnounceImageUpload({ control }: { control: Control<List
             )}
           />
 
-          <Stack className={clsx("aiusb-container", { error: !!error })}>
+          <Stack className={clsx("aiusb-container", { error: !!errors })}>
             <Box className="aiusbc-circle">
               <Icon className="aiusbcc-icon">add_photo_alternate</Icon>
             </Box>
@@ -100,8 +100,8 @@ export default function AnnounceImageUpload({ control }: { control: Control<List
         </ButtonBase>
       </Stack>
 
-      <Collapse in={!!error} unmountOnExit>
-        <FormHelperText error={!!error}>{error?.message}</FormHelperText>
+      <Collapse in={!!errors} unmountOnExit>
+        <FormHelperText error={!!errors}>{errors?.message || errors?.root?.message}</FormHelperText>
       </Collapse>
     </Box>
   )
