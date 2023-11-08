@@ -1,7 +1,7 @@
-import { useUserStore } from "@/stores"
+import { useAuthStore } from "@/stores"
 
 export function ProfilePage() {
-  const { user } = useUserStore()
+  const { user } = useAuthStore()
   console.log(user)
   return (
     <div>
