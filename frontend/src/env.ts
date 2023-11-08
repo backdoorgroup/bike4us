@@ -1,4 +1,4 @@
-export const settings = {
+export const env = {
   get FB_API_KEY() {
     return import.meta.env._FB_API_KEY
   },
