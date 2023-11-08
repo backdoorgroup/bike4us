@@ -4,7 +4,7 @@ import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme
 } from "@mui/material/styles"
-import deepOrange from "@mui/material/colors/deepOrange"
+import orange from "@mui/material/colors/orange"
 
 import CssBaseline from "@mui/material/CssBaseline"
 import StyledEngineProvider from "@mui/material/StyledEngineProvider"
@@ -30,7 +30,7 @@ const theme = extendTheme(
       light: {
         palette: {
           primary: {
-            main: deepOrange[500]
+            main: orange[900]
           }
         }
       }
