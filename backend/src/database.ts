@@ -29,4 +29,4 @@ export class Model extends BaseEntity {
   id: number
 }
 
-export type ExtractInterface<T> = Pick<T, Exclude<keyof T, keyof BaseEntity>>
+export type ExtractModel<T> = Pick<T, Exclude<keyof T, keyof BaseEntity>>

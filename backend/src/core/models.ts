@@ -1,7 +1,7 @@
 import type { UserRecord } from "firebase-admin/auth"
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm"
 
-import type { ExtractInterface } from "~/database"
+import type { ExtractModel } from "~/database"
 import { Model } from "~/database"
 
 import type {
@@ -66,11 +66,11 @@ export class Listing extends Model {
   pictures: ListingPicture[] | IListingPicture[]
 }
 
-export interface IListing extends ExtractInterface<Listing> {
+export interface IListing extends ExtractModel<Listing> {
   owner?: UserRecord
 }
 
-export interface IListingPicture extends Omit<ExtractInterface<ListingPicture>, "listing"> {}
+export interface IListingPicture extends Omit<ExtractModel<ListingPicture>, "listing"> {}
 
 @Entity()
 export class ListingPicture extends Model {
