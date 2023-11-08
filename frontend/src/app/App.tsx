@@ -30,7 +30,7 @@ const theme = extendTheme(
       light: {
         palette: {
           primary: {
-            main: orange[800]
+            main: orange[900]
           }
         }
       }
