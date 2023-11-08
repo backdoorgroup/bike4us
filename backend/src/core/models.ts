@@ -1,6 +1,9 @@
+import type { UserRecord } from "firebase-admin/auth"
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm"
 
+import type { ExtractInterface } from "@/database"
 import { Model } from "@/database"
+
 import type {
   TListingConditionEnum,
   TListingFrameSizeEnum,
@@ -60,8 +63,15 @@ export class Listing extends Model {
   material: TListingMaterialEnum
 
   @OneToMany(() => ListingPicture, (picture) => picture.listing, { cascade: true })
-  pictures: ListingPicture[]
+  pictures: ListingPicture[] | IListingPicture[]
 }
+
+export interface IListing extends ExtractInterface<Listing> {
+  ownerUid: string
+  owner?: UserRecord
+}
+
+export interface IListingPicture extends Omit<ExtractInterface<ListingPicture>, "listing"> {}
 
 @Entity()
 export class ListingPicture extends Model {

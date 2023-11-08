@@ -1,6 +1,6 @@
-import { Listing, ListingPicture } from "@/core/models"
+import type { IListing, IListingPicture } from "@/core/models"
 
-export const serializeListing = (listing: Listing) => ({
+export const serializeListing = (listing: IListing): IListing => ({
   id: listing.id,
   ownerUid: listing.ownerUid,
   createdAt: listing.createdAt,
@@ -18,7 +18,7 @@ export const serializeListing = (listing: Listing) => ({
   pictures: listing.pictures.map(serializeListingPicture)
 })
 
-export const serializeListingPicture = (listingPicture: ListingPicture) => ({
+export const serializeListingPicture = (listingPicture: IListingPicture): IListingPicture => ({
   id: listingPicture.id,
   path: listingPicture.path
 })
