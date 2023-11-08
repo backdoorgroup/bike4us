@@ -67,7 +67,6 @@ export class Listing extends Model {
 }
 
 export interface IListing extends ExtractInterface<Listing> {
-  ownerUid: string
   owner?: UserRecord
 }
 
