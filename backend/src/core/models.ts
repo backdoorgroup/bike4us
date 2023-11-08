@@ -1,8 +1,8 @@
 import type { UserRecord } from "firebase-admin/auth"
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm"
 
-import type { ExtractInterface } from "@/database"
-import { Model } from "@/database"
+import type { ExtractInterface } from "~/database"
+import { Model } from "~/database"
 
 import type {
   TListingConditionEnum,
@@ -11,7 +11,7 @@ import type {
   TListingStatus,
   TListingTypeEnum,
   TListingWheelSizeEnum
-} from "@/core/constants"
+} from "~/core/constants"
 import {
   ListingConditionEnum,
   ListingFrameSizeEnum,
@@ -19,7 +19,7 @@ import {
   ListingStatusEnum,
   ListingTypeEnum,
   ListingWheelSizeEnum
-} from "@/core/constants"
+} from "~/core/constants"
 
 @Entity()
 export class Listing extends Model {

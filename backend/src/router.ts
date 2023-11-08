@@ -1,6 +1,6 @@
 import { Router } from "express"
 
-import { listingsRouter, searchRouter, profileRouter } from "@/core/views"
+import { listingsRouter, searchRouter, profileRouter } from "~/core/views"
 
 export const router = Router()
 

@@ -1,16 +1,16 @@
 import { Router } from "express"
 import { EntityNotFoundError, ILike } from "typeorm"
 
-import type { Paginated } from "@/pagination"
-import { paginate } from "@/pagination"
-import { BadRequestException, NotFoundException } from "@/exceptions"
+import type { Paginated } from "~/pagination"
+import { paginate } from "~/pagination"
+import { BadRequestException, NotFoundException } from "~/exceptions"
 
-import { authenticated, upload } from "@/core/middlewares"
-import { CreateListingSchema, GetListingSchema, GetListingsSchema, SearchListingsSchema } from "@/core/schemas"
-import { serializeListing } from "@/core/serializers"
-import { createListing, getListing, getListings } from "@/core/services"
+import { authenticated, upload } from "~/core/middlewares"
+import { CreateListingSchema, GetListingSchema, GetListingsSchema, SearchListingsSchema } from "~/core/schemas"
+import { serializeListing } from "~/core/serializers"
+import { createListing, getListing, getListings } from "~/core/services"
 
-import { HttpStatus } from "@lib/http"
+import { HttpStatus } from "@/http"
 
 export const listingsRouter = Router()
 export const searchRouter = Router()

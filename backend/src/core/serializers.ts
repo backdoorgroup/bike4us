@@ -1,4 +1,4 @@
-import type { IListing, IListingPicture } from "@/core/models"
+import type { IListing, IListingPicture } from "~/core/models"
 
 export const serializeListing = (listing: IListing): IListing => ({
   id: listing.id,

@@ -1,10 +1,10 @@
 import type { FindManyOptions, FindOneOptions } from "typeorm"
 import admin from "firebase-admin"
 
-import type { TCreateListingSchema } from "@/core/schemas"
-import { Listing, ListingPicture } from "@/core/models"
+import type { TCreateListingSchema } from "~/core/schemas"
+import { Listing, ListingPicture } from "~/core/models"
 
-import { settings } from "@/settings"
+import { settings } from "~/settings"
 
 const client = admin.initializeApp({
   credential: admin.credential.cert({

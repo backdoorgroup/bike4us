@@ -3,14 +3,14 @@ import type { UserRecord } from "firebase-admin/auth"
 import multer from "multer"
 import crypto from "crypto"
 
-import type { TAllowedMimetypes } from "@/core/constants"
-import { AllowedMimetypes, MaxFileSize, MaxFiles } from "@/core/constants"
-import { getUser, verifyIdToken } from "@/core/services"
+import type { TAllowedMimetypes } from "~/core/constants"
+import { AllowedMimetypes, MaxFileSize, MaxFiles } from "~/core/constants"
+import { getUser, verifyIdToken } from "~/core/services"
 
-import { UnauthorizedException } from "@/exceptions"
-import { settings } from "@/settings"
+import { UnauthorizedException } from "~/exceptions"
+import { settings } from "~/settings"
 
-import { HttpStatus } from "@lib/http"
+import { HttpStatus } from "@/http"
 
 export const upload = multer({
   fileFilter: (_req, file, callback) => {

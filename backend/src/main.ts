@@ -7,12 +7,12 @@ import express from "express"
 import helmet from "helmet"
 import morgan from "morgan"
 
-import { identity } from "@/core/middlewares"
+import { identity } from "~/core/middlewares"
 
-import { dataSource } from "@/database"
-import { logger } from "@/logger"
-import { router } from "@/router"
-import { settings } from "@/settings"
+import { dataSource } from "~/database"
+import { logger } from "~/logger"
+import { router } from "~/router"
+import { settings } from "~/settings"
 
 export const bootstrap = () => {
   const app = express()

@@ -1,7 +1,7 @@
 import path from "path"
 import { BaseEntity, DataSource, PrimaryGeneratedColumn } from "typeorm"
 
-import { settings } from "@/settings"
+import { settings } from "~/settings"
 
 export const dataSource = new DataSource({
   type: "postgres",

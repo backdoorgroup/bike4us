@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { PaginationSchema } from "@/schemas"
+import { PaginationSchema } from "~/schemas"
 
 import {
   ListingConditionEnum,
@@ -8,7 +8,7 @@ import {
   ListingMaterialEnum,
   ListingWheelSizeEnum,
   ListingTypeEnum
-} from "@/core/constants"
+} from "~/core/constants"
 
 export const FileSchema = z.object({
   destination: z.string().min(1),
