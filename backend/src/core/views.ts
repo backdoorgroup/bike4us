@@ -13,7 +13,7 @@ import { HttpStatus } from "@lib/http"
 
 export const listingsRouter = Router()
 export const searchRouter = Router()
-export const profileRouter = Router().use(authenticated())
+export const profileRouter = Router()
 
 listingsRouter.get("/", async (req, res) => {
   try {
