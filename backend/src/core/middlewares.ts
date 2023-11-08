@@ -59,6 +59,7 @@ export const identity = (): RequestHandler => {
     next()
   }
 }
+
 export const authenticated = (): RequestHandler => {
   return function (req, res, next) {
     const user = req.user
