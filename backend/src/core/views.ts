@@ -1,8 +1,9 @@
 import { Router } from "express"
 import { EntityNotFoundError, ILike } from "typeorm"
 
+import type { Paginated } from "@/pagination"
+import { paginate } from "@/pagination"
 import { BadRequestException, NotFoundException } from "@/exceptions"
-import { paginate } from "@/utils"
 
 import { authenticated, upload } from "@/core/middlewares"
 import { CreateListingSchema, GetListingSchema, GetListingsSchema, SearchListingsSchema } from "@/core/schemas"
@@ -20,12 +21,10 @@ listingsRouter.get("/", async (req, res) => {
     const params = GetListingsSchema.parse(req.query)
 
     const query = await getListings({ order: { createdAt: "desc" }, relations: { pictures: true } })
-    const listings = paginate(query, params.page, params.perPage)
+    const paginated = paginate(query, params.page, params.perPage)
+    const listings = paginated.map(serializeListing)
 
-    return res.status(HttpStatus.Ok).json({
-      listings: listings.map(serializeListing),
-      count: query.length
-    })
+    return res.status(HttpStatus.Ok).json({ listings, count: query.length } as Paginated)
   } catch (error) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
@@ -44,9 +43,10 @@ listingsRouter.post("/", authenticated(), upload.array("pictures[]"), async (req
       ...req.body
     })
 
-    const listing = await createListing(params)
+    const query = await createListing(params)
+    const listing = serializeListing(query)
 
-    return res.status(HttpStatus.Ok).json(serializeListing(listing))
+    return res.status(HttpStatus.Ok).json(listing)
   } catch (error) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
@@ -58,9 +58,10 @@ listingsRouter.get("/:id", async (req, res) => {
       ...req.params
     })
 
-    const listing = await getListing({ where: { id: params.id }, relations: { pictures: true } })
+    const query = await getListing({ where: { id: params.id }, relations: { pictures: true } })
+    const listing = serializeListing(query)
 
-    return res.status(HttpStatus.Ok).json(serializeListing(listing))
+    return res.status(HttpStatus.Ok).json(listing)
   } catch (error) {
     if (error instanceof EntityNotFoundError) {
       return res.status(HttpStatus.NotFound).json(NotFoundException)
@@ -79,12 +80,10 @@ searchRouter.get("/listings", async (req, res) => {
       order: { createdAt: "desc" },
       relations: { pictures: true }
     })
-    const listings = paginate(query, params.page, params.perPage)
+    const paginated = paginate(query, params.page, params.perPage)
+    const listings = paginated.map(serializeListing)
 
-    return res.status(HttpStatus.Ok).json({
-      listings: listings.map(serializeListing),
-      count: query.length
-    })
+    return res.status(HttpStatus.Ok).json({ listings, count: query.length } as Paginated)
   } catch (error) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
