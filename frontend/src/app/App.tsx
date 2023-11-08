@@ -18,7 +18,7 @@ import setDefaultOptions from "date-fns/setDefaultOptions"
 import { CacheProvider } from "@emotion/react"
 import createCache from "@emotion/cache"
 
-import { router } from "@/router"
+import { router } from "~/router"
 
 setDefaultOptions({
   locale: dateFnsLocale

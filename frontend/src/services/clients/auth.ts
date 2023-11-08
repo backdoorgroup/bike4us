@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app"
 import { GoogleAuthProvider, browserLocalPersistence, getAuth } from "firebase/auth"
 
-import { useAuthStore } from "@/stores"
-import { env } from "@/env"
+import { useAuthStore } from "~/stores"
+import { env } from "~/env"
 
 const { setUser } = useAuthStore.getState()
 

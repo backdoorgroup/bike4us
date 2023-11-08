@@ -18,8 +18,8 @@ import Typography from "@mui/material/Typography"
 
 import GoogleIcon from "@mui/icons-material/Google"
 
-import { EmailValidation, LoginForm, PasswordValidation } from "@/forms"
-import { AuthServices } from "@/services"
+import { EmailValidation, LoginForm, PasswordValidation } from "~/forms"
+import { AuthServices } from "~/services"
 
 export default function AuthLoginPage() {
   const navigate = useNavigate()

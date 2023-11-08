@@ -16,7 +16,7 @@ import FormControl from "@mui/material/FormControl"
 import Stack from "@mui/material/Stack"
 import Button from "@mui/material/Button"
 
-import { Condition, BikeType, FrameSize, WheelSize, Material } from "@/schemas"
+import { Condition, BikeType, FrameSize, WheelSize, Material } from "~/schemas"
 
 import {
   ListingForm,
@@ -30,9 +30,9 @@ import {
   TypeValidation,
   WheelSizeValidation,
   EntirelyNumericPattern
-} from "@/forms"
-import { ListingsServices } from "@/services"
-import { AnnounceImageUpload } from "@/components"
+} from "~/forms"
+import { ListingsServices } from "~/services"
+import { AnnounceImageUpload } from "~/components"
 
 export default function AnnouncePage() {
   const form = useForm<ListingForm>({ defaultValues: { pictures: [] } })

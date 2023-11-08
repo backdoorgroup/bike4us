@@ -1,7 +1,7 @@
 import { z } from "zod"
 
-import { env } from "@/env"
-import { extractEnum } from "@/utils"
+import { env } from "~/env"
+import { extractEnum } from "~/utils"
 
 export const Condition = {
   "new": "Novo",

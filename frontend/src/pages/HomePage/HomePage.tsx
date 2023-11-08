@@ -7,9 +7,9 @@ import Container from "@mui/material/Container"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
-import { ListingCard, SearchCard } from "@/components"
-import type { SearchForm } from "@/forms"
-import type { TListingsResponse } from "@/schemas"
+import { ListingCard, SearchCard } from "~/components"
+import type { SearchForm } from "~/forms"
+import type { TListingsResponse } from "~/schemas"
 
 export default function HomePage() {
   const { listings } = useLoaderData() as TListingsResponse

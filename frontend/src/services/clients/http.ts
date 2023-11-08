@@ -1,8 +1,8 @@
 import axios from "axios"
 
-import { authClient } from "@/services/clients"
-import { useAuthStore } from "@/stores"
-import { env } from "@/env"
+import { authClient } from "~/services/clients"
+import { useAuthStore } from "~/stores"
+import { env } from "~/env"
 
 export const httpClient = axios.create({
   baseURL: env.API_URL

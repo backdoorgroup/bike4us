@@ -15,8 +15,8 @@ import IconButton from "@mui/material/IconButton"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
-import type { ListingForm } from "@/forms"
-import { PicturesValidation } from "@/forms"
+import type { ListingForm } from "~/forms"
+import { PicturesValidation } from "~/forms"
 
 export default function AnnounceImageUpload({ control }: { control: Control<ListingForm> }) {
   const formState = useFormState({

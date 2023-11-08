@@ -8,9 +8,9 @@ import Link from "@mui/material/Link"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
-import { ListingCard, SearchCard } from "@/components"
-import type { SearchForm } from "@/forms"
-import { TListingsResponse } from "@/schemas"
+import { ListingCard, SearchCard } from "~/components"
+import type { SearchForm } from "~/forms"
+import { TListingsResponse } from "~/schemas"
 
 export default function SearchPage() {
   const { listings } = useLoaderData() as TListingsResponse

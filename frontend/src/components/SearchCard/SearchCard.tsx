@@ -11,8 +11,8 @@ import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 
-import type { SearchForm } from "@/forms"
-import { QueryValidation } from "@/forms"
+import type { SearchForm } from "~/forms"
+import { QueryValidation } from "~/forms"
 
 export default function SearchCard({
   title,

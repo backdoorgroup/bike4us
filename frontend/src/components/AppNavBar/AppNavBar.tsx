@@ -8,9 +8,9 @@ import Icon from "@mui/material/Icon"
 import Link from "@mui/material/Link"
 import Toolbar from "@mui/material/Toolbar"
 
-import { AuthDialog } from "@/components"
-import { AuthServices } from "@/services"
-import { useAuthStore } from "@/stores"
+import { AuthDialog } from "~/components"
+import { AuthServices } from "~/services"
+import { useAuthStore } from "~/stores"
 
 export default function AppNavBar({ basic }: { basic?: boolean }) {
   const { user } = useAuthStore()
