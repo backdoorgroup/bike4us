@@ -1,11 +1,17 @@
-import "reflect-metadata"
-import "tsconfig-paths/register"
 import "dotenv/config"
+import "reflect-metadata"
 
+import moduleAlias from "module-alias"
 import cors from "cors"
 import express from "express"
 import helmet from "helmet"
 import morgan from "morgan"
+import path from "path"
+
+moduleAlias.addAliases({
+  "~": path.join(__dirname, "."),
+  "@": path.join(__dirname, "..", "lib")
+})
 
 import { identity } from "~/core/middlewares"
 
