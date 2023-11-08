@@ -113,6 +113,7 @@ export default function AnnouncePage() {
             <TextField
               label="Preço por hora"
               placeholder="Digite o preço por hora de seu anúncio"
+              inputMode="numeric"
               error={!!form.formState.errors.hourPricing}
               helperText={form.formState.errors.hourPricing?.message}
               onBeforeInput={(_event) => {
