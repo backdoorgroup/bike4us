@@ -28,3 +28,5 @@ export class Model extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
 }
+
+export type ExtractInterface<T> = Pick<T, Exclude<keyof T, keyof BaseEntity>>
