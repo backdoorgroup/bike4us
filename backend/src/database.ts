@@ -13,7 +13,7 @@ export const dataSource = new DataSource({
   username: settings.DB_USER,
   password: settings.DB_PASSWORD,
 
-  entities: [path.join(__dirname, "**/models.{ts,js}")],
+  entities: [path.join(settings.EXPRESS_ROOT, "**/models.{ts,js}")],
 
   logger: "file",
   logging: settings.DB_LOGGING,

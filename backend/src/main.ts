@@ -7,7 +7,8 @@ import express from "express"
 import helmet from "helmet"
 import morgan from "morgan"
 
-import { identity } from "@/profile/middlewares"
+import { identity } from "@/core/middlewares"
+
 import { dataSource } from "@/database"
 import { logger } from "@/logger"
 import { router } from "@/router"
@@ -20,7 +21,7 @@ export const bootstrap = () => {
   dataSource.initialize()
 
   // Third-party Middlewares
-  app.use("/static", express.static(settings.EXPRESS_STATIC_PATH))
+  app.use("/static", express.static(settings.EXPRESS_STATIC))
   app.use(
     morgan("tiny", {
       stream: {

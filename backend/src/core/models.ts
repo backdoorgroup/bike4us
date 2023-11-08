@@ -8,7 +8,7 @@ import type {
   TListingStatus,
   TListingTypeEnum,
   TListingWheelSizeEnum
-} from "@/listings/constants"
+} from "@/core/constants"
 import {
   ListingConditionEnum,
   ListingFrameSizeEnum,
@@ -16,7 +16,7 @@ import {
   ListingStatusEnum,
   ListingTypeEnum,
   ListingWheelSizeEnum
-} from "@/listings/constants"
+} from "@/core/constants"
 
 @Entity()
 export class Listing extends Model {

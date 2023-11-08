@@ -1,4 +1,4 @@
-import { Listing, ListingPicture } from "@/listings/models"
+import { Listing, ListingPicture } from "@/core/models"
 
 export const serializeListing = (listing: Listing) => ({
   id: listing.id,
