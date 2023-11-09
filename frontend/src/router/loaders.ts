@@ -1,9 +1,9 @@
 import { redirect } from "react-router-dom"
 
-import { useUserStore } from "@/stores"
+import { useAuthStore } from "~/stores"
 
 export const redirectUnauthorizedLoader = () => {
-  const { user } = useUserStore.getState()
+  const { user } = useAuthStore.getState()
 
   if (!user?.uid) return redirect("/auth")
 
@@ -11,7 +11,7 @@ export const redirectUnauthorizedLoader = () => {
 }
 
 export const redirectAuthorizedLoader = () => {
-  const { user } = useUserStore.getState()
+  const { user } = useAuthStore.getState()
 
   if (user?.uid) return redirect("/")
 

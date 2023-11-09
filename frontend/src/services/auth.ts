@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
 
-import { authClient, googleProvider } from "@/services/clients"
+import { authClient, googleProvider } from "~/services/clients"
 
 export const AuthServices = {
   signInWithEmailAndPassword: async (email: string, password: string) => {

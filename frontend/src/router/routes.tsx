@@ -1,11 +1,11 @@
 import type { RouteObject } from "react-router-dom"
 import { Navigate, redirect } from "react-router-dom"
 
-import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "@/router/loaders"
+import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "~/router/loaders"
 
-import { HomeLayout } from "@/layouts"
-import { AnnouncePage, ErrorPage, HomePage, ListingPage, AuthLoginPage, AuthRegisterPage, SearchPage } from "@/pages"
-import { ListingsServices, SearchServices } from "@/services"
+import { HomeLayout } from "~/layouts"
+import { AnnouncePage, ErrorPage, HomePage, ListingPage, AuthLoginPage, AuthRegisterPage, SearchPage } from "~/pages"
+import { ListingsServices, SearchServices } from "~/services"
 
 export const routes: RouteObject[] = [
   {

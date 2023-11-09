@@ -4,7 +4,7 @@ import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme
 } from "@mui/material/styles"
-import teal from "@mui/material/colors/teal"
+import orange from "@mui/material/colors/orange"
 
 import CssBaseline from "@mui/material/CssBaseline"
 import StyledEngineProvider from "@mui/material/StyledEngineProvider"
@@ -18,7 +18,7 @@ import setDefaultOptions from "date-fns/setDefaultOptions"
 import { CacheProvider } from "@emotion/react"
 import createCache from "@emotion/cache"
 
-import { router } from "@/router"
+import { router } from "~/router"
 
 setDefaultOptions({
   locale: dateFnsLocale
@@ -30,14 +30,7 @@ const theme = extendTheme(
       light: {
         palette: {
           primary: {
-            main: teal[700]
-          }
-        }
-      },
-      dark: {
-        palette: {
-          primary: {
-            main: teal[500]
+            main: orange[900]
           }
         }
       }

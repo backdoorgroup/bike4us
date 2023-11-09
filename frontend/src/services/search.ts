@@ -1,5 +1,5 @@
-import { httpClient } from "@/services/clients"
-import { ListingsResponse } from "@/schemas"
+import { httpClient } from "~/services/clients"
+import { ListingsResponse } from "~/schemas"
 
 export const SearchServices = {
   searchListings: async (query: string) => {

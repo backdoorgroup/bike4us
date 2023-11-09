@@ -1,6 +1,9 @@
+import type { UserRecord } from "firebase-admin/auth"
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm"
 
-import { Model } from "@/database"
+import type { ExtractModel } from "~/database"
+import { Model } from "~/database"
+
 import type {
   TListingConditionEnum,
   TListingFrameSizeEnum,
@@ -8,7 +11,7 @@ import type {
   TListingStatus,
   TListingTypeEnum,
   TListingWheelSizeEnum
-} from "@/listings/constants"
+} from "~/core/constants"
 import {
   ListingConditionEnum,
   ListingFrameSizeEnum,
@@ -16,7 +19,7 @@ import {
   ListingStatusEnum,
   ListingTypeEnum,
   ListingWheelSizeEnum
-} from "@/listings/constants"
+} from "~/core/constants"
 
 @Entity()
 export class Listing extends Model {
@@ -60,8 +63,14 @@ export class Listing extends Model {
   material: TListingMaterialEnum
 
   @OneToMany(() => ListingPicture, (picture) => picture.listing, { cascade: true })
-  pictures: ListingPicture[]
+  pictures: ListingPicture[] | IListingPicture[]
 }
+
+export interface IListing extends ExtractModel<Listing> {
+  owner?: UserRecord
+}
+
+export interface IListingPicture extends Omit<ExtractModel<ListingPicture>, "listing"> {}
 
 @Entity()
 export class ListingPicture extends Model {

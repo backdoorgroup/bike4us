@@ -16,8 +16,8 @@ import TableContainer from "@mui/material/TableContainer"
 import TableRow from "@mui/material/TableRow"
 import Typography from "@mui/material/Typography"
 
-import type { TListing } from "@/schemas"
-import { BikeType, Condition, FrameSize, Material, WheelSize } from "@/schemas"
+import type { TListing } from "~/schemas"
+import { BikeType, Condition, FrameSize, Material, WheelSize } from "~/schemas"
 
 export default function ListingPage() {
   const listing = useLoaderData() as TListing

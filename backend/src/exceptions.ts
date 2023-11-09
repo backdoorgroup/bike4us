@@ -1,4 +1,4 @@
-import { HttpStatus } from "@lib/http"
+import { HttpStatus } from "@/http"
 
 export interface Exception {
   status: (typeof HttpStatus)[keyof typeof HttpStatus]

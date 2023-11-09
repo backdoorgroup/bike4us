@@ -3,107 +3,109 @@
   --announce-image-upload-width: 160px;
   --announce-image-upload-gap: 16px;
 
-  overflow-x: auto;
+  .aiu-wrapper {
+    overflow-x: auto;
 
-  .aiu-scrollable {
-    flex-direction: row;
-    gap: var(--announce-image-upload-gap);
-    height: var(--announce-image-upload-height);
-
-    .aius-images {
+    .aiuw-scrollable {
       flex-direction: row;
       gap: var(--announce-image-upload-gap);
+      height: var(--announce-image-upload-height);
 
-      .aiusi-wrapper {
-        position: relative;
-        border-radius: 4px;
-        border: 1px solid var(--mui-palette-action-disabled);
-        overflow: hidden;
-        min-width: var(--announce-image-upload-width);
-        max-width: var(--announce-image-upload-width);
+      .aiuws-images {
+        flex-direction: row;
+        gap: var(--announce-image-upload-gap);
 
-        .aiusiw-button {
-          position: absolute;
-          right: 0;
-          top: 0;
-          margin-right: 8px;
-          margin-top: 8px;
-          background-color: white !important;
-        }
+        .aiuwsi-wrapper {
+          position: relative;
+          border-radius: 4px;
+          border: 1px solid var(--mui-palette-action-disabled);
+          overflow: hidden;
+          min-width: var(--announce-image-upload-width);
+          max-width: var(--announce-image-upload-width);
 
-        .aiusiw-image {
-          object-fit: cover;
-          height: 100%;
-          width: 100%;
-        }
-      }
+          .aiuwsiw-button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            margin-right: 8px;
+            margin-top: 8px;
+            background-color: white !important;
+          }
 
-      &.hidden {
-        display: none;
-      }
-    }
-
-    .aius-button {
-      flex-direction: column;
-      color: var(--mui-palette-text-primary);
-      border: 1px solid var(--mui-palette-action-disabled);
-      gap: 8px;
-      border-radius: 4px;
-      padding: 8px;
-      min-width: var(--announce-image-upload-width);
-      max-width: var(--announce-image-upload-width);
-
-      .aiusb-input {
-        height: 1px;
-        width: 1px;
-        overflow: hidden;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        white-space: nowrap;
-        clip: rect(0 0 0 0);
-        clip-path: inset(50%);
-      }
-
-      .aiusb-container {
-        align-items: center;
-        text-align: center;
-
-        .aiusbc-circle {
-          background-color: var(--mui-palette-action-hover);
-          border-radius: 50%;
-          width: 32px;
-          height: 32px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
-          .aiusbcc-icon {
-            font-size: 24px;
+          .aiuwsiw-image {
+            object-fit: cover;
+            height: 100%;
+            width: 100%;
           }
         }
 
-        .aiusbc-title {
-          font-weight: 500;
+        &.hidden {
+          display: none;
+        }
+      }
+
+      .aiuws-button {
+        flex-direction: column;
+        color: var(--mui-palette-text-primary);
+        border: 1px solid var(--mui-palette-action-disabled);
+        gap: 8px;
+        border-radius: 4px;
+        padding: 8px;
+        min-width: var(--announce-image-upload-width);
+        max-width: var(--announce-image-upload-width);
+
+        .aiuwsb-input {
+          height: 1px;
+          width: 1px;
+          overflow: hidden;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          white-space: nowrap;
+          clip: rect(0 0 0 0);
+          clip-path: inset(50%);
+        }
+
+        .aiuwsb-container {
+          align-items: center;
+          text-align: center;
+
+          .aiuwsbc-circle {
+            background-color: var(--mui-palette-action-hover);
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .aiuwsbcc-icon {
+              font-size: 24px;
+            }
+          }
+
+          .aiuwsbc-title {
+            font-weight: 500;
+          }
+
+          &.error {
+            color: var(--mui-palette-error-main);
+          }
         }
 
         &.error {
           color: var(--mui-palette-error-main);
+          border-color: var(--mui-palette-error-main);
         }
-      }
 
-      &.error {
-        color: var(--mui-palette-error-main);
-        border-color: var(--mui-palette-error-main);
-      }
+        &.full-width {
+          min-width: 100%;
+          max-width: 100%;
+        }
 
-      &.full-width {
-        min-width: 100%;
-        max-width: 100%;
-      }
-
-      &.hidden {
-        display: none;
+        &.hidden {
+          display: none;
+        }
       }
     }
   }

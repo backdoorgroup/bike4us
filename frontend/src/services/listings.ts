@@ -1,7 +1,7 @@
-import { httpClient } from "@/services/clients"
-import { ListingsResponse, Listing } from "@/schemas"
+import { httpClient } from "~/services/clients"
+import { ListingsResponse, Listing } from "~/schemas"
 
-import type { ListingForm } from "@/forms"
+import type { ListingForm } from "~/forms"
 
 export const ListingsServices = {
   createListing: async (listing: ListingForm) => {

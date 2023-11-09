@@ -4,7 +4,7 @@ import { Outlet, ScrollRestoration, useLocation } from "react-router-dom"
 
 import Box from "@mui/material/Box"
 
-import { AppNavBar, AppNavBottom } from "@/components"
+import { AppNavBar, AppNavBottom } from "~/components"
 
 export default function HomeLayout() {
   const { pathname } = useLocation()

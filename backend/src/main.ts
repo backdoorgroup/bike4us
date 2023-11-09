@@ -1,17 +1,24 @@
-import "reflect-metadata"
-import "tsconfig-paths/register"
 import "dotenv/config"
+import "reflect-metadata"
 
+import moduleAlias from "module-alias"
 import cors from "cors"
 import express from "express"
 import helmet from "helmet"
 import morgan from "morgan"
+import path from "path"
 
-import { identity } from "@/profile/middlewares"
-import { dataSource } from "@/database"
-import { logger } from "@/logger"
-import { router } from "@/router"
-import { settings } from "@/settings"
+moduleAlias.addAliases({
+  "~": path.join(__dirname, "."),
+  "@": path.join(__dirname, "..", "lib")
+})
+
+import { identity } from "~/core/middlewares"
+
+import { dataSource } from "~/database"
+import { logger } from "~/logger"
+import { router } from "~/router"
+import { settings } from "~/settings"
 
 export const bootstrap = () => {
   const app = express()
@@ -20,7 +27,7 @@ export const bootstrap = () => {
   dataSource.initialize()
 
   // Third-party Middlewares
-  app.use("/static", express.static(settings.EXPRESS_STATIC_PATH))
+  app.use("/static", express.static(settings.EXPRESS_STATIC))
   app.use(
     morgan("tiny", {
       stream: {

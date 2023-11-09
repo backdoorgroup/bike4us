@@ -1,18 +1,18 @@
 import { initializeApp } from "firebase/app"
 import { GoogleAuthProvider, browserLocalPersistence, getAuth } from "firebase/auth"
 
-import { useUserStore } from "@/stores"
-import { settings } from "@config"
+import { useAuthStore } from "~/stores"
+import { env } from "~/env"
 
-const { setUser } = useUserStore.getState()
+const { setUser } = useAuthStore.getState()
 
 const app = initializeApp({
-  apiKey: settings.FB_API_KEY,
-  authDomain: settings.FB_AUTH_DOMAIN,
-  projectId: settings.FB_PROJECT_ID,
-  storageBucket: settings.FB_STORAGE_BUCKET,
-  messagingSenderId: settings.FB_MESSAGING_SENDER_ID,
-  appId: settings.FB_APP_ID
+  apiKey: env.FB_API_KEY,
+  authDomain: env.FB_AUTH_DOMAIN,
+  projectId: env.FB_PROJECT_ID,
+  storageBucket: env.FB_STORAGE_BUCKET,
+  messagingSenderId: env.FB_MESSAGING_SENDER_ID,
+  appId: env.FB_APP_ID
 })
 
 export const authClient = getAuth(app)

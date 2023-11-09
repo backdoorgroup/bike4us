@@ -1,7 +1,24 @@
 import type { FindManyOptions, FindOneOptions } from "typeorm"
+import admin from "firebase-admin"
 
-import type { TCreateListingSchema } from "@/listings/schemas"
-import { Listing, ListingPicture } from "@/listings/models"
+import type { TCreateListingSchema } from "~/core/schemas"
+import { Listing, ListingPicture } from "~/core/models"
+
+import { settings } from "~/settings"
+
+const client = admin.initializeApp({
+  credential: admin.credential.cert({
+    projectId: settings.FB_PROJECT_ID,
+    clientEmail: settings.FB_CLIENT_EMAIL,
+    privateKey: settings.FB_PRIVATE_KEY
+  })
+})
+
+const auth = client.auth()
+
+export const verifyIdToken = async (token: string) => await auth.verifyIdToken(token)
+
+export const getUser = async (uid: string) => await auth.getUser(uid)
 
 export const getListings = async (options?: FindManyOptions<Listing>) => await Listing.find(options)
 
