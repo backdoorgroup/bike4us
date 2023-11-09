@@ -1,6 +1,9 @@
 import type { IListing, IListingPicture } from "~/core/models"
 
-export const serializeListing = (listing: IListing): IListing => ({
+type SerializedListing = Omit<IListing, "pictures"> & { pictures: Omit<IListingPicture, "listing">[] }
+type SerializedListingPicture = Omit<IListingPicture, "listing">
+
+export const serializeListing = (listing: IListing): SerializedListing => ({
   id: listing.id,
   ownerUid: listing.ownerUid,
   createdAt: listing.createdAt,
@@ -15,10 +18,10 @@ export const serializeListing = (listing: IListing): IListing => ({
   frameSize: listing.frameSize,
   wheelSize: listing.wheelSize,
   material: listing.material,
-  pictures: listing.pictures.map(serializeListingPicture)
+  pictures: listing.pictures.map((picture) => serializeListingPicture(picture))
 })
 
-export const serializeListingPicture = (listingPicture: IListingPicture): IListingPicture => ({
+export const serializeListingPicture = (listingPicture: IListingPicture): SerializedListingPicture => ({
   id: listingPicture.id,
   path: listingPicture.path
 })

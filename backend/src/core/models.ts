@@ -21,6 +21,12 @@ import {
   ListingWheelSizeEnum
 } from "~/core/constants"
 
+export interface IListing extends ExtractModel<Listing> {
+  owner?: UserRecord
+}
+
+export interface IListingPicture extends ExtractModel<ListingPicture> {}
+
 @Entity()
 export class Listing extends Model {
   @Column({ type: "varchar", length: 128 })
@@ -30,7 +36,7 @@ export class Listing extends Model {
   createdAt: Date
 
   @Column({ type: "timestamptz", nullable: true })
-  updatedAt: Date
+  updatedAt?: Date
 
   @Column({ type: "varchar", length: 128 })
   title: string
@@ -65,12 +71,6 @@ export class Listing extends Model {
   @OneToMany(() => ListingPicture, (picture) => picture.listing, { cascade: true })
   pictures: ListingPicture[] | IListingPicture[]
 }
-
-export interface IListing extends ExtractModel<Listing> {
-  owner?: UserRecord
-}
-
-export interface IListingPicture extends Omit<ExtractModel<ListingPicture>, "listing"> {}
 
 @Entity()
 export class ListingPicture extends Model {
