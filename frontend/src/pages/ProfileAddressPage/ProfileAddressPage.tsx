@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom"
 import { useForm } from "react-hook-form"
+import { useIMask } from "react-imask"
 
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
@@ -10,14 +11,18 @@ import Button from "@mui/material/Button"
 
 import type { TProfile } from "~/schemas"
 import type { AddressForm } from "~/forms"
-import { ZipcodeValidation } from "~/forms"
+import { ZipcodeValidation, ZipcodeMask } from "~/forms"
 
 export default function ProfileAddressPage() {
   const profile = useLoaderData() as TProfile
   const form = useForm<AddressForm>()
 
-  const handleSubmit = ({ zipcode }: AddressForm) => {
-    console.log(zipcode)
+  const mask = useIMask({
+    mask: ZipcodeMask
+  })
+
+  const handleSubmit = () => {
+    console.log(mask.unmaskedValue)
   }
 
   return (
@@ -28,11 +33,12 @@ export default function ProfileAddressPage() {
       <FormControl component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
         <Stack sx={{ mb: 4 }}>
           <TextField
+            {...form.register("zipcode", ZipcodeValidation)}
+            inputRef={mask.ref}
             label="CEP"
             placeholder="Digite seu CEP"
             error={!!form.formState.errors.zipcode}
             helperText={form.formState.errors.zipcode?.message}
-            {...form.register("zipcode", ZipcodeValidation)}
           />
         </Stack>
 
