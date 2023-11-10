@@ -27,6 +27,8 @@ export interface IListing extends ExtractModel<Listing> {
 
 export interface IListingPicture extends ExtractModel<ListingPicture> {}
 
+export interface IAddress extends ExtractModel<Address> {}
+
 @Entity()
 export class Listing extends Model {
   @Column({ type: "varchar", length: 128 })

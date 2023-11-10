@@ -7,8 +7,8 @@ import { BadRequestException, NotFoundException } from "~/exceptions"
 
 import { authenticated, upload } from "~/core/middlewares"
 import { CreateListingSchema, GetListingSchema, GetListingsSchema, SearchListingsSchema } from "~/core/schemas"
-import { serializeListing } from "~/core/serializers"
-import { createListing, getListing, getListings } from "~/core/services"
+import { serializeAddress, serializeListing } from "~/core/serializers"
+import { createListing, getListing, getListings, safeGetAddress } from "~/core/services"
 
 import { HttpStatus } from "@/http"
 
@@ -87,4 +87,11 @@ searchRouter.get("/listings", async (req, res) => {
   } catch (error) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
+})
+
+profileRouter.get("/address", authenticated(), async (req, res) => {
+  const query = await safeGetAddress({ where: { ownerUid: req.user.uid } })
+  const address = query ? serializeAddress(query) : query
+
+  return res.status(HttpStatus.Ok).json(address)
 })
