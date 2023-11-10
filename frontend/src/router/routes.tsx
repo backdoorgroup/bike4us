@@ -1,11 +1,19 @@
 import type { RouteObject } from "react-router-dom"
 import { Navigate, redirect } from "react-router-dom"
 
-import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "~/router/loaders"
-
 import { HomeLayout } from "~/layouts"
-import { AnnouncePage, ErrorPage, HomePage, ListingPage, AuthLoginPage, AuthRegisterPage, SearchPage } from "~/pages"
-import { ListingsServices, SearchServices } from "~/services"
+import {
+  AnnouncePage,
+  AuthLoginPage,
+  AuthRegisterPage,
+  ErrorPage,
+  HomePage,
+  ListingPage,
+  ProfileAddressPage,
+  SearchPage
+} from "~/pages"
+import { ListingsServices, ProfileServices, SearchServices } from "~/services"
+import { useAuthStore } from "~/stores"
 
 export const routes: RouteObject[] = [
   {
@@ -16,9 +24,9 @@ export const routes: RouteObject[] = [
         index: true,
         element: <HomePage />,
         loader: async () => {
-          const data = await ListingsServices.getListings()
+          const listings = await ListingsServices.getListings()
 
-          return data
+          return listings
         }
       },
 
@@ -29,9 +37,9 @@ export const routes: RouteObject[] = [
           if (!params.id) return redirect("/")
 
           try {
-            const data = await ListingsServices.getListing(params.id)
+            const listing = await ListingsServices.getListing(params.id)
 
-            return data
+            return listing
           } catch (_) {
             return redirect("/")
           }
@@ -40,8 +48,26 @@ export const routes: RouteObject[] = [
 
       {
         path: "anunciar",
-        element: <AnnouncePage />,
-        loader: redirectUnauthorizedLoader
+        loader: () => {
+          const { user } = useAuthStore.getState()
+
+          if (!user?.uid) return redirect("/auth")
+
+          return null
+        },
+        children: [
+          {
+            index: true,
+            element: <AnnouncePage />,
+            loader: async () => {
+              const address = await ProfileServices.getAddress()
+
+              if (!address) return redirect("/perfil/endereco")
+
+              return null
+            }
+          }
+        ]
       },
 
       {
@@ -55,9 +81,9 @@ export const routes: RouteObject[] = [
           if (!query) return redirect("/")
 
           try {
-            const data = await SearchServices.searchListings(query)
+            const listings = await SearchServices.searchListings(query)
 
-            return data
+            return listings
           } catch (_) {
             return redirect("/")
           }
@@ -66,7 +92,13 @@ export const routes: RouteObject[] = [
 
       {
         path: "auth",
-        loader: redirectAuthorizedLoader,
+        loader: () => {
+          const { user } = useAuthStore.getState()
+
+          if (user?.uid) return redirect("/")
+
+          return null
+        },
         children: [
           {
             path: "*",
@@ -80,6 +112,25 @@ export const routes: RouteObject[] = [
           {
             path: "cadastrar",
             element: <AuthRegisterPage />
+          }
+        ]
+      },
+
+      {
+        path: "perfil",
+        children: [
+          {
+            path: "endereco",
+            element: <ProfileAddressPage />,
+            loader: async () => {
+              try {
+                const address = await ProfileServices.getAddress()
+
+                return address
+              } catch (_) {
+                return redirect("/")
+              }
+            }
           }
         ]
       },

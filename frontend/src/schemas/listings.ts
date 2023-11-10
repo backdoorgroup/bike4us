@@ -79,3 +79,18 @@ export const ListingsResponse = z.object({
   count: z.number()
 })
 export type TListingsResponse = z.infer<typeof ListingsResponse>
+
+export const Address = z
+  .object({
+    id: z.number(),
+    city: z.string(),
+    neighborhood: z.string(),
+    number: z.string(),
+    ownerUid: z.string(),
+    state: z.string(),
+    street: z.string(),
+    zipcode: z.string(),
+    complement: z.string()
+  })
+  .nullable()
+export type TAddress = z.infer<typeof Address>
