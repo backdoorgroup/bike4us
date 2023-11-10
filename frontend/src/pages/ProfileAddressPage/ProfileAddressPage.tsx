@@ -1,4 +1,3 @@
-import { useLoaderData } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { useIMask } from "react-imask"
 
@@ -9,16 +8,14 @@ import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 
-import type { TProfile } from "~/schemas"
 import type { AddressForm } from "~/forms"
-import { ZipcodeValidation, ZipcodeMask } from "~/forms"
+import { ZipcodeValidation } from "~/forms"
 
 export default function ProfileAddressPage() {
-  const profile = useLoaderData() as TProfile
   const form = useForm<AddressForm>()
 
   const mask = useIMask({
-    mask: ZipcodeMask
+    mask: "00000-000"
   })
 
   const handleSubmit = () => {

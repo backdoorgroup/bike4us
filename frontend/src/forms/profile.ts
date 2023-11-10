@@ -4,7 +4,6 @@ const RequiredFieldText = "Campo obrigatório"
 
 // O regex ja está incluindo o formato do CEP com o hífen
 export const ValidZipcodePattern = /(\d){5}-(\d){3}/
-export const ZipcodeMask = "00000-000"
 
 export interface AddressForm {
   zipcode: string
