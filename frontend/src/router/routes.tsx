@@ -126,7 +126,12 @@ export const routes: RouteObject[] = [
         children: [
           {
             path: "endereco",
-            element: <ProfileAddressPage />
+            element: <ProfileAddressPage />,
+            loader: async () => {
+              const address = await ProfileServices.getAddress()
+
+              return address
+            }
           }
         ]
       },
