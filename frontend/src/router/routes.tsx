@@ -48,26 +48,18 @@ export const routes: RouteObject[] = [
 
       {
         path: "anunciar",
-        loader: () => {
+        element: <AnnouncePage />,
+        loader: async () => {
           const { user } = useAuthStore.getState()
 
           if (!user?.uid) return redirect("/auth")
 
+          const address = await ProfileServices.getAddress()
+
+          if (!address) return redirect("/perfil/endereco")
+
           return null
-        },
-        children: [
-          {
-            index: true,
-            element: <AnnouncePage />,
-            loader: async () => {
-              const address = await ProfileServices.getAddress()
-
-              if (!address) return redirect("/perfil/endereco")
-
-              return null
-            }
-          }
-        ]
+        }
       },
 
       {
@@ -119,9 +111,11 @@ export const routes: RouteObject[] = [
       {
         path: "perfil",
         loader: async () => {
-          const profile = await ProfileServices.getProfile()
+          const { user } = useAuthStore.getState()
 
-          return profile
+          if (!user?.uid) return redirect("/auth")
+
+          return null
         },
         children: [
           {
