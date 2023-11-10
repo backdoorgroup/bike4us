@@ -38,7 +38,7 @@ listingsRouter.post("/", authenticated(), upload.array("pictures[]"), async (req
      * o Multer não aborta o upload dos arquivos e ele continua salvando arquivos mortos.
      */
     const params = CreateListingSchema.parse({
-      ownerUid: req.user.uid,
+      ownerUid: req.user?.uid,
       pictures: req.files,
       ...req.body
     })
@@ -89,9 +89,20 @@ searchRouter.get("/listings", async (req, res) => {
   }
 })
 
-profileRouter.get("/address", authenticated(), async (req, res) => {
-  const query = await safeGetAddress({ where: { ownerUid: req.user.uid } })
-  const address = query ? serializeAddress(query) : query
+profileRouter.get("/", async (req, res) => {
+  const user = req.user
+
+  const query = await safeGetAddress({ where: { ownerUid: user?.uid } })
+  const address = query ? serializeAddress(query) : null
+
+  return res.status(HttpStatus.Ok).json({ user, address })
+})
+
+profileRouter.get("/address", async (req, res) => {
+  const user = req.user
+
+  const query = await safeGetAddress({ where: { ownerUid: user?.uid } })
+  const address = query ? serializeAddress(query) : null
 
   return res.status(HttpStatus.Ok).json(address)
 })

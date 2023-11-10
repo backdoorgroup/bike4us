@@ -53,7 +53,7 @@ export const identity = (): RequestHandler => {
 
       req.user = user
     } catch (error) {
-      req.user = {} as UserRecord
+      req.user = null
     } finally {
       next()
     }
@@ -62,7 +62,7 @@ export const identity = (): RequestHandler => {
 
 export const authenticated = (): RequestHandler => {
   return function (req, res, next) {
-    if (!req.user.uid) return res.status(HttpStatus.Unauthorized).json(UnauthorizedException)
+    if (!req.user?.uid) return res.status(HttpStatus.Unauthorized).json(UnauthorizedException)
 
     next()
   }

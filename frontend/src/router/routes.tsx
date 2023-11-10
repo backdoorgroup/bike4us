@@ -118,19 +118,15 @@ export const routes: RouteObject[] = [
 
       {
         path: "perfil",
+        loader: async () => {
+          const profile = await ProfileServices.getProfile()
+
+          return profile
+        },
         children: [
           {
             path: "endereco",
-            element: <ProfileAddressPage />,
-            loader: async () => {
-              try {
-                const address = await ProfileServices.getAddress()
-
-                return address
-              } catch (_) {
-                return redirect("/")
-              }
-            }
+            element: <ProfileAddressPage />
           }
         ]
       },
