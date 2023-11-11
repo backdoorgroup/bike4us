@@ -9,12 +9,19 @@
   }
 
   .pap-form {
-    margin-bottom: 32px;
-    gap: 16px;
+    gap: 32px;
 
     .papf-fields {
-      margin-bottom: 32px;
       gap: 16px;
+
+      .papff-same-line {
+        flex-direction: row;
+        gap: 16px;
+
+        .papffsl-fixed {
+          width: 180px;
+        }
+      }
     }
 
     .papf-actions {

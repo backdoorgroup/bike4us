@@ -99,7 +99,7 @@ export default function ProfileAddressPage() {
             )}
           />
 
-          <Stack sx={{ flexDirection: "row", gap: 2 }}>
+          <Stack className="papff-same-line">
             <Controller
               name="number"
               control={form.control}
@@ -107,7 +107,7 @@ export default function ProfileAddressPage() {
               render={(state) => (
                 <TextField
                   {...state.field}
-                  sx={{ width: 180 }}
+                  className="papffsl-fixed"
                   label="Número"
                   value={state.field.value || ""}
                   error={!!form.formState.errors.number}
@@ -132,7 +132,7 @@ export default function ProfileAddressPage() {
               render={(state) => (
                 <TextField
                   {...state.field}
-                  sx={{ flexGrow: 1 }}
+                  fullWidth
                   label="Complemento"
                   value={state.field.value || ""}
                   error={!!form.formState.errors.complement}
@@ -157,7 +157,7 @@ export default function ProfileAddressPage() {
             )}
           />
 
-          <Stack sx={{ flexDirection: "row", gap: 2 }}>
+          <Stack className="papff-same-line">
             <Controller
               name="city"
               control={form.control}
@@ -165,7 +165,7 @@ export default function ProfileAddressPage() {
               render={(state) => (
                 <TextField
                   {...state.field}
-                  sx={{ flexGrow: 1 }}
+                  fullWidth
                   label="Cidade"
                   value={state.field.value || ""}
                   error={!!form.formState.errors.city}
@@ -181,7 +181,7 @@ export default function ProfileAddressPage() {
               render={(state) => (
                 <TextField
                   {...state.field}
-                  sx={{ width: 160 }}
+                  className="papffsl-fixed"
                   label="Estado"
                   value={state.field.value || ""}
                   error={!!form.formState.errors.state}
@@ -194,7 +194,7 @@ export default function ProfileAddressPage() {
 
         <Stack className="papf-actions">
           <Button type="submit" variant="contained" disableElevation>
-            Salvar
+            Cadastrar
           </Button>
 
           <Button disableElevation component={Link} to="/">
