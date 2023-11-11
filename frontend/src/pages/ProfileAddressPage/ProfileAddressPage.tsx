@@ -76,6 +76,7 @@ export default function ProfileAddressPage() {
 
           <TextField
             label="Logradouro"
+            InputLabelProps={{ shrink: !!form.watch("street") }}
             error={!!form.formState.errors.street}
             helperText={form.formState.errors.street?.message}
             {...form.register("street", StreetValidation)}
@@ -110,6 +111,7 @@ export default function ProfileAddressPage() {
 
           <TextField
             label="Bairro"
+            InputLabelProps={{ shrink: !!form.watch("neighborhood") }}
             error={!!form.formState.errors.neighborhood}
             helperText={form.formState.errors.neighborhood?.message}
             {...form.register("neighborhood", NeighborhoodValidation)}
@@ -119,6 +121,7 @@ export default function ProfileAddressPage() {
             <TextField
               sx={{ flexGrow: 1 }}
               label="Cidade"
+              InputLabelProps={{ shrink: !!form.watch("city") }}
               error={!!form.formState.errors.city}
               helperText={form.formState.errors.city?.message}
               {...form.register("city", CityValidation)}
@@ -127,6 +130,7 @@ export default function ProfileAddressPage() {
             <TextField
               sx={{ width: 160 }}
               label="Estado"
+              InputLabelProps={{ shrink: !!form.watch("state") }}
               error={!!form.formState.errors.state}
               helperText={form.formState.errors.state?.message}
               {...form.register("state", StateValidation)}
