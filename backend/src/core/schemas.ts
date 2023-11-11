@@ -45,6 +45,10 @@ export const SearchListingsSchema = PaginationSchema.extend({
   query: z.string().min(1).max(512)
 })
 
+export const GetProfileSchema = z.object({
+  uid: z.string().min(1).max(128)
+})
+
 export const CreateAddressSchema = z.object({
   city: z.string().min(1).max(64),
   complement: z.string().max(256).optional(),

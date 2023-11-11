@@ -11,10 +11,11 @@ import {
   CreateListingSchema,
   GetListingSchema,
   GetListingsSchema,
+  GetProfileSchema,
   SearchListingsSchema
 } from "~/core/schemas"
 import { serializeAddress, serializeListing } from "~/core/serializers"
-import { createAddress, createListing, getListing, getListings, safeGetAddress } from "~/core/services"
+import { createAddress, createListing, getListing, getListings, getUser, safeGetAddress } from "~/core/services"
 
 import { HttpStatus } from "@/http"
 
@@ -102,6 +103,26 @@ profileRouter.get("/", async (req, res) => {
   const address = query ? serializeAddress(query) : null
 
   return res.status(HttpStatus.Ok).json({ user, address })
+})
+
+profileRouter.get("/:uid", async (req, res) => {
+  try {
+    const params = GetProfileSchema.parse({
+      ...req.params
+    })
+
+    const addressPromise = safeGetAddress({ where: { ownerUid: params.uid } })
+    const userPromise = getUser(params.uid)
+
+    const [addressQuery, userQuery] = await Promise.all([addressPromise, userPromise])
+
+    const address = addressQuery ? serializeAddress(addressQuery) : null
+    const user = userQuery
+
+    return res.status(HttpStatus.Ok).json({ user, address })
+  } catch (error) {
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
 })
 
 profileRouter.post("/address", authenticated(), async (req, res) => {
