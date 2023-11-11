@@ -21,22 +21,32 @@ import {
   StateValidation,
   NeighborhoodValidation
 } from "~/forms"
-import { BrasilServices } from "~/services"
+import { BrasilServices, ProfileServices } from "~/services"
 
 // TODO: Resolver o problema de tipagem
 // @ts-expect-error Tá foda resolver isso
 const IMaskTextField = IMaskMixin(({ inputRef, ...props }) => <TextField inputRef={inputRef} {...props} />)
 
 export default function ProfileAddressPage() {
-  const form = useForm<AddressForm>()
+  const form = useForm<AddressForm>({
+    defaultValues: {
+      street: "",
+      neighborhood: "",
+      city: "",
+      state: ""
+    }
+  })
 
-  const handleSubmit = ({ zipcode }: AddressForm) => {
-    console.log(zipcode)
+  const handleSubmit = async (address: AddressForm) => {
+    await ProfileServices.createAddress(address)
   }
   const handleComplete = debounce(async (value: string) => {
     const cep = await BrasilServices.getCEP(value)
 
-    console.log(cep)
+    form.setValue("street", cep.street)
+    form.setValue("neighborhood", cep.neighborhood)
+    form.setValue("city", cep.city)
+    form.setValue("state", cep.state)
   }, 1000)
 
   return (
@@ -64,7 +74,7 @@ export default function ProfileAddressPage() {
                 label="CEP"
                 placeholder="Digite aqui seu CEP"
                 // @ts-expect-error Tá foda resolver isso
-                helperText={form.formState.errors.zipcode?.message}
+                helperText={form.formState.errors.zipcode?.message || "Ao preencher outros campos serão preenchidos"}
                 error={!!form.formState.errors.zipcode}
               />
             )}

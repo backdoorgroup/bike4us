@@ -1,4 +1,6 @@
 import { httpClient } from "~/services/clients"
+
+import type { AddressForm } from "~/forms"
 import { Address, Profile } from "~/schemas"
 
 export const ProfileServices = {
@@ -11,6 +13,13 @@ export const ProfileServices = {
   },
   getAddress: async () => {
     const response = await httpClient.get("/profile/address")
+
+    const parsed = Address.parse(response.data)
+
+    return parsed
+  },
+  createAddress: async (address: AddressForm) => {
+    const response = await httpClient.post("/profile/address", address)
 
     const parsed = Address.parse(response.data)
 

@@ -6,7 +6,7 @@ export const ValidZipcodePattern = /(\d){5}(\d){3}/
 
 export interface AddressForm {
   city: string
-  complement: string
+  complement?: string
   neighborhood: string
   number: string
   state: string
