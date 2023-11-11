@@ -1,5 +1,4 @@
 import type { RequestHandler } from "express"
-import type { UserRecord } from "firebase-admin/auth"
 import multer from "multer"
 import crypto from "crypto"
 
