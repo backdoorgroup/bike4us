@@ -33,11 +33,9 @@ export default function ProfileAddressPage() {
   const navigate = useNavigate()
 
   const handleSubmit = async (address: AddressForm) => {
-    try {
-      await ProfileServices.createAddress(address)
+    await ProfileServices.createAddress(address)
 
-      navigate("/perfil")
-    } catch (_) {}
+    navigate("/perfil")
   }
   const handleComplete = debounce(async (value: string) => {
     const cep = await BrasilServices.getCEP(value)
