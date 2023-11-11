@@ -8,31 +8,33 @@ import type { TLocation } from "~/schemas"
 import { env } from "~/env"
 import { useMemo } from "react"
 
-const BrazilInitialViewState: Partial<ViewState> = {
+const BrasilInitialViewState: Partial<ViewState> = {
   longitude: -51.92,
   latitude: -14.23,
   zoom: 2
 }
 
 export default function ListingMap({ location }: { location?: TLocation | null }) {
-  const initialViewState = useMemo<Partial<ViewState> | null>(() => {
-    const coordinates = location?.coordinates
+  const coordinates = useMemo(() => location?.coordinates, [location?.coordinates])
 
-    return coordinates?.longitude && coordinates?.latitude
+  const [latitude, longitude] = useMemo(() => [coordinates?.latitude, coordinates?.longitude], [coordinates])
+
+  const initialViewState = useMemo<Partial<ViewState> | null>(() => {
+    return latitude && longitude
       ? {
-          longitude: coordinates.longitude,
-          latitude: coordinates.latitude,
-          zoom: 12
+          latitude,
+          longitude,
+          zoom: 13
         }
       : null
-  }, [location?.coordinates])
+  }, [latitude, longitude])
 
   return (
     <Map
       mapLib={import("maplibre-gl")}
-      initialViewState={initialViewState || BrazilInitialViewState}
+      initialViewState={initialViewState || BrasilInitialViewState}
       mapStyle={env.MAP_STYLE}>
-      {/* {!!(longitude && latitude) && <Marker longitude={longitude} latitude={latitude} />} */}
+      {!!(longitude && latitude) && <Marker longitude={longitude} latitude={latitude} />}
     </Map>
   )
 }
