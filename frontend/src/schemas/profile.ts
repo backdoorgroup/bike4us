@@ -34,7 +34,7 @@ export const Address = z.object({
   state: z.string(),
   street: z.string(),
   zipcode: z.string(),
-  complement: z.string(),
+  complement: z.string().optional().nullable(),
   location: Location.optional().nullable()
 })
 

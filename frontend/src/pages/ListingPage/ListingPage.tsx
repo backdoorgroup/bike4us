@@ -1,10 +1,8 @@
 import "./ListingPage.scss"
-import "maplibre-gl/dist/maplibre-gl.css"
 
 import { useLoaderData } from "react-router-dom"
 import clsx from "clsx"
 import format from "date-fns/format"
-import Map, { Marker } from "react-map-gl/maplibre"
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
@@ -20,14 +18,10 @@ import Typography from "@mui/material/Typography"
 
 import type { TListing } from "~/schemas"
 import { BikeType, Condition, FrameSize, Material, WheelSize } from "~/schemas"
-import { env } from "~/env"
+import { ListingMap } from "~/components"
 
 export default function ListingPage() {
   const listing = useLoaderData() as TListing
-
-  const coordinates = listing.address?.location?.coordinates
-  const longitude = parseFloat(coordinates?.longitude || "-51.92")
-  const latitude = parseFloat(coordinates?.latitude || "-14.23")
 
   return (
     <Stack className="listing-page" divider={<Divider />}>
@@ -85,17 +79,7 @@ export default function ListingPage() {
         <Stack className="lps-container">
           <Typography variant="h6">Localização</Typography>
 
-          <Map
-            mapLib={import("maplibre-gl")}
-            initialViewState={{
-              longitude: longitude,
-              latitude: latitude,
-              zoom: 2
-            }}
-            mapStyle={env.MAP_STYLE}
-            style={{ width: "100%", height: 256, borderRadius: 4 }}>
-            <Marker longitude={longitude} latitude={latitude} />
-          </Map>
+          <ListingMap location={listing.address?.location} />
         </Stack>
       </Container>
 
