@@ -8,8 +8,20 @@ import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import Button from "@mui/material/Button"
 
+import { debounce } from "@mui/material/utils"
+
 import type { AddressForm } from "~/forms"
-import { ZipcodeValidation } from "~/forms"
+import {
+  ZipcodeValidation,
+  StreetValidation,
+  NumberValidation,
+  EntirelyNumericPattern,
+  ComplementValidation,
+  CityValidation,
+  StateValidation,
+  NeighborhoodValidation
+} from "~/forms"
+import { BrasilServices } from "~/services"
 
 // TODO: Resolver o problema de tipagem
 // @ts-expect-error Tá foda resolver isso
@@ -21,6 +33,11 @@ export default function ProfileAddressPage() {
   const handleSubmit = ({ zipcode }: AddressForm) => {
     console.log(zipcode)
   }
+  const handleComplete = debounce(async (value: string) => {
+    const cep = await BrasilServices.getCEP(value)
+
+    console.log(cep)
+  }, 1000)
 
   return (
     <Container sx={{ paddingY: 4 }}>
@@ -28,7 +45,7 @@ export default function ProfileAddressPage() {
         Opss! Parece que você ainda não tem endereço cadastrado
       </Typography>
       <FormControl component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
-        <Stack sx={{ mb: 4 }}>
+        <Stack sx={{ mb: 4, gap: 2 }}>
           <Controller
             name="zipcode"
             control={form.control}
@@ -42,19 +59,85 @@ export default function ProfileAddressPage() {
                 value={state.field.value}
                 onBlur={state.field.onBlur}
                 onAccept={(value) => state.field.onChange(value)}
+                onComplete={(value) => handleComplete(value)}
                 mask="00000-000"
                 label="CEP"
-                placeholder="Digite seu CEP"
+                placeholder="Digite aqui seu CEP"
                 // @ts-expect-error Tá foda resolver isso
                 helperText={form.formState.errors.zipcode?.message}
                 error={!!form.formState.errors.zipcode}
               />
             )}
           />
+
+          <TextField
+            label="Logradouro"
+            placeholder="Digite aqui o logradouro"
+            error={!!form.formState.errors.street}
+            helperText={form.formState.errors.street?.message}
+            {...form.register("street", StreetValidation)}
+          />
+
+          <Stack sx={{ flexDirection: "row", gap: 2 }}>
+            <TextField
+              sx={{ width: 180 }}
+              label="Número"
+              placeholder="Digite aqui o número"
+              error={!!form.formState.errors.number}
+              helperText={form.formState.errors.number?.message}
+              onBeforeInput={(_event) => {
+                const event = _event as unknown as CompositionEvent
+                const value = event.data
+                const valid = EntirelyNumericPattern.test(value)
+
+                if (!valid) return event.preventDefault()
+
+                return valid
+              }}
+              {...form.register("number", NumberValidation)}
+            />
+
+            <TextField
+              sx={{ flexGrow: 1 }}
+              label="Complemento"
+              placeholder="Digite aqui o complemento"
+              error={!!form.formState.errors.complement}
+              helperText={form.formState.errors.complement?.message}
+              {...form.register("complement", ComplementValidation)}
+            />
+          </Stack>
+
+          <TextField
+            label="Bairro"
+            placeholder="Digite aqui o bairro"
+            error={!!form.formState.errors.neighborhood}
+            helperText={form.formState.errors.neighborhood?.message}
+            {...form.register("neighborhood", NeighborhoodValidation)}
+          />
+
+          <Stack sx={{ flexDirection: "row", gap: 2 }}>
+            <TextField
+              sx={{ flexGrow: 1 }}
+              label="Cidade"
+              placeholder="Digite aqui o cidade"
+              error={!!form.formState.errors.city}
+              helperText={form.formState.errors.city?.message}
+              {...form.register("city", CityValidation)}
+            />
+
+            <TextField
+              sx={{ width: 160 }}
+              label="Estado"
+              placeholder="Digite aqui o estado"
+              error={!!form.formState.errors.state}
+              helperText={form.formState.errors.state?.message}
+              {...form.register("state", StateValidation)}
+            />
+          </Stack>
         </Stack>
 
         <Button type="submit" variant="contained" disableElevation>
-          Cadastrar
+          Salvar
         </Button>
       </FormControl>
     </Container>
