@@ -65,8 +65,13 @@ listingsRouter.get("/:id", async (req, res) => {
       ...req.params
     })
 
-    const query = await getListing({ where: { id: params.id }, relations: { pictures: true } })
-    const listing = serializeListing(query)
+    const listingQuery = await getListing({ where: { id: params.id }, relations: { pictures: true } })
+    const listing = serializeListing(listingQuery)
+
+    const addressQuery = await safeGetAddress({ where: { ownerUid: listing.ownerUid } })
+    const address = addressQuery ? serializeAddress(addressQuery) : null
+
+    listing.address = address
 
     return res.status(HttpStatus.Ok).json(listing)
   } catch (error) {

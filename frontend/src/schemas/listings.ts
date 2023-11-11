@@ -1,5 +1,6 @@
 import { z } from "zod"
 
+import { Address } from "~/schemas"
 import { env } from "~/env"
 import { extractEnum } from "~/utils"
 
@@ -60,6 +61,7 @@ export const Listing = z.object({
   title: z.string(),
   description: z.string().optional().nullable(),
   hourPricing: z.number(),
+  address: Address,
   status: z.string(),
   pictures: z.array(ListingPicture),
   brand: z.string(),

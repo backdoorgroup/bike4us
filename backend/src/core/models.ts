@@ -22,7 +22,8 @@ import {
 } from "~/core/constants"
 
 export interface IListing extends ExtractModel<Listing> {
-  owner?: UserRecord
+  owner?: UserRecord | null
+  address?: IAddress | null
 }
 
 export interface IListingPicture extends ExtractModel<ListingPicture> {}
