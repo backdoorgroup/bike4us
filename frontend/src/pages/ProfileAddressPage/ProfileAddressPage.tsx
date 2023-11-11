@@ -74,7 +74,7 @@ export default function ProfileAddressPage() {
                 mask="00000-000"
                 label="CEP"
                 // @ts-expect-error Tá foda resolver isso
-                helperText={form.formState.errors.zipcode?.message || "Ao preencher outros campos serão preenchidos"}
+                helperText={form.formState.errors.zipcode?.message || "Ao preencher, outros campos serão preenchidos"}
                 error={!!form.formState.errors.zipcode}
               />
             )}
