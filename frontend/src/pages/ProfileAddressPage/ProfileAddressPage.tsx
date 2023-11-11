@@ -1,6 +1,6 @@
 import { IMaskMixin } from "react-imask"
 import { useForm, Controller } from "react-hook-form"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
@@ -30,9 +30,14 @@ const IMaskTextField = IMaskMixin(({ inputRef, ...props }) => <TextField inputRe
 
 export default function ProfileAddressPage() {
   const form = useForm<AddressForm>()
+  const navigate = useNavigate()
 
   const handleSubmit = async (address: AddressForm) => {
-    await ProfileServices.createAddress(address)
+    try {
+      await ProfileServices.createAddress(address)
+
+      navigate("/perfil")
+    } catch (_) {}
   }
   const handleComplete = debounce(async (value: string) => {
     const cep = await BrasilServices.getCEP(value)
