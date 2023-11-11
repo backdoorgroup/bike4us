@@ -54,9 +54,9 @@ export const routes: RouteObject[] = [
 
           if (!user?.uid) return redirect("/auth")
 
-          const address = await ProfileServices.getAddress()
+          const profile = await ProfileServices.getProfile()
 
-          if (!address) return redirect("/perfil/endereco")
+          if (!profile.address) return redirect("/perfil/endereco")
 
           return null
         }
@@ -122,13 +122,13 @@ export const routes: RouteObject[] = [
             path: "endereco",
             element: <ProfileAddressPage />,
             loader: async () => {
-              const address = await ProfileServices.getAddress()
+              const profile = await ProfileServices.getProfile()
 
               // Isso aqui é pra travar um cara que já tem endereço de ficar criando anúncios
               // TODO: melhorar isso
-              if (address) return redirect("/")
+              if (profile.address) return redirect("/")
 
-              return address
+              return null
             }
           }
         ]

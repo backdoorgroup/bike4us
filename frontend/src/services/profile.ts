@@ -11,13 +11,7 @@ export const ProfileServices = {
 
     return parsed
   },
-  getAddress: async () => {
-    const response = await httpClient.get("/profile/address")
 
-    const parsed = Address.parse(response.data)
-
-    return parsed
-  },
   createAddress: async (address: AddressForm) => {
     const response = await httpClient.post("/profile/address", address)
 

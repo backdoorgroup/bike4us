@@ -104,15 +104,6 @@ profileRouter.get("/", async (req, res) => {
   return res.status(HttpStatus.Ok).json({ user, address })
 })
 
-profileRouter.get("/address", async (req, res) => {
-  const user = req.user
-
-  const query = await safeGetAddress({ where: { ownerUid: user?.uid } })
-  const address = query ? serializeAddress(query) : null
-
-  return res.status(HttpStatus.Ok).json(address)
-})
-
 profileRouter.post("/address", authenticated(), async (req, res) => {
   try {
     const params = CreateAddressSchema.parse({
