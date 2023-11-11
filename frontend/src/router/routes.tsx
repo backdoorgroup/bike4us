@@ -12,7 +12,7 @@ import {
   ProfileAddressPage,
   SearchPage
 } from "~/pages"
-import { ListingsServices, ProfileServices, SearchServices } from "~/services"
+import { BrasilServices, ListingsServices, ProfileServices, SearchServices } from "~/services"
 import { useAuthStore } from "~/stores"
 
 export const routes: RouteObject[] = [
@@ -38,6 +38,12 @@ export const routes: RouteObject[] = [
 
           try {
             const listing = await ListingsServices.getListing(params.id)
+
+            if (listing.address) {
+              const { location } = await BrasilServices.getCEP(listing.address.zipcode)
+
+              listing.address.location = location
+            }
 
             return listing
           } catch (_) {

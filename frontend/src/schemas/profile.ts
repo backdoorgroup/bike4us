@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { CEPLocation } from "."
 
 export const UserMetadata = z.object({
   creationTime: z.string(),
@@ -34,9 +35,11 @@ export const Address = z
     state: z.string(),
     street: z.string(),
     zipcode: z.string(),
-    complement: z.string()
+    complement: z.string(),
+    location: CEPLocation.optional().nullable()
   })
   .nullable()
+  .optional()
 export type TAddress = z.infer<typeof Address>
 
 export const Profile = z.object({

@@ -4,7 +4,7 @@ import "maplibre-gl/dist/maplibre-gl.css"
 import { useLoaderData } from "react-router-dom"
 import clsx from "clsx"
 import format from "date-fns/format"
-import Map from "react-map-gl/maplibre"
+import Map, { Marker } from "react-map-gl/maplibre"
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
@@ -24,6 +24,10 @@ import { env } from "~/env"
 
 export default function ListingPage() {
   const listing = useLoaderData() as TListing
+
+  const coordinates = listing.address?.location?.coordinates
+  const longitude = parseFloat(coordinates?.longitude || "-45")
+  const latitude = parseFloat(coordinates?.latitude || "-14.93")
 
   return (
     <Stack className="listing-page" divider={<Divider />}>
@@ -84,13 +88,14 @@ export default function ListingPage() {
           <Map
             mapLib={import("maplibre-gl")}
             initialViewState={{
-              longitude: -122.4,
-              latitude: 37.8,
+              longitude: longitude,
+              latitude: latitude,
               zoom: 14
             }}
             mapStyle={env.MAP_STYLE}
-            style={{ width: "100%", height: 256, borderRadius: 4 }}
-          />
+            style={{ width: "100%", height: 256, borderRadius: 4 }}>
+            <Marker longitude={longitude} latitude={latitude} />
+          </Map>
         </Stack>
       </Container>
 
