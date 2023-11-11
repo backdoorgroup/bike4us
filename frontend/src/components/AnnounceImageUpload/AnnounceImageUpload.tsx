@@ -28,6 +28,7 @@ export default function AnnounceImageUpload({ control }: { control: Control<List
     control
   })
   const field = useFieldArray({
+    // TODO: Resolver o problema de tipagem
     // @ts-expect-error Existe um erro na biblioteca
     name: "pictures",
     control

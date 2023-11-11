@@ -1,5 +1,5 @@
-import { useForm } from "react-hook-form"
-import { useIMask } from "react-imask"
+import { IMaskMixin } from "react-imask"
+import { useForm, Controller } from "react-hook-form"
 
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
@@ -11,15 +11,15 @@ import Button from "@mui/material/Button"
 import type { AddressForm } from "~/forms"
 import { ZipcodeValidation } from "~/forms"
 
+// TODO: Resolver o problema de tipagem
+// @ts-expect-error Tá foda resolver isso
+const IMaskTextField = IMaskMixin(({ inputRef, ...props }) => <TextField inputRef={inputRef} {...props} />)
+
 export default function ProfileAddressPage() {
   const form = useForm<AddressForm>()
 
-  const mask = useIMask({
-    mask: "00000-000"
-  })
-
-  const handleSubmit = () => {
-    console.log(mask.unmaskedValue)
+  const handleSubmit = ({ zipcode }: AddressForm) => {
+    console.log(zipcode)
   }
 
   return (
@@ -29,13 +29,26 @@ export default function ProfileAddressPage() {
       </Typography>
       <FormControl component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
         <Stack sx={{ mb: 4 }}>
-          <TextField
-            {...form.register("zipcode", ZipcodeValidation)}
-            inputRef={mask.ref}
-            label="CEP"
-            placeholder="Digite seu CEP"
-            error={!!form.formState.errors.zipcode}
-            helperText={form.formState.errors.zipcode?.message}
+          <Controller
+            name="zipcode"
+            control={form.control}
+            rules={ZipcodeValidation}
+            render={(state) => (
+              <IMaskTextField
+                inputRef={state.field.ref}
+                name={state.field.name}
+                disabled={state.field.disabled}
+                value={state.field.value}
+                onBlur={state.field.onBlur}
+                onAccept={(_value, maskRef) => state.field.onChange(maskRef.unmaskedValue)}
+                mask="00000-000"
+                label="CEP"
+                placeholder="Digite seu CEP"
+                // @ts-expect-error Tá foda resolver isso
+                helperText={form.formState.errors.zipcode?.message}
+                error={!!form.formState.errors.zipcode}
+              />
+            )}
           />
         </Stack>
 
