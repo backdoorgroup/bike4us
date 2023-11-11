@@ -99,7 +99,7 @@ searchRouter.get("/listings", async (req, res) => {
 profileRouter.get("/", async (req, res) => {
   const user = req.user
 
-  const query = await safeGetAddress({ where: { ownerUid: user?.uid } })
+  const query = user?.uid ? await safeGetAddress({ where: { ownerUid: user?.uid } }) : null
   const address = query ? serializeAddress(query) : null
 
   return res.status(HttpStatus.Ok).json({ user, address })
