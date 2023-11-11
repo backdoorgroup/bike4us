@@ -1,8 +1,10 @@
 import "./ListingPage.scss"
+import "maplibre-gl/dist/maplibre-gl.css"
 
 import { useLoaderData } from "react-router-dom"
 import clsx from "clsx"
 import format from "date-fns/format"
+import Map from "react-map-gl/maplibre"
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
@@ -18,6 +20,7 @@ import Typography from "@mui/material/Typography"
 
 import type { TListing } from "~/schemas"
 import { BikeType, Condition, FrameSize, Material, WheelSize } from "~/schemas"
+import { env } from "~/env"
 
 export default function ListingPage() {
   const listing = useLoaderData() as TListing
@@ -71,6 +74,23 @@ export default function ListingPage() {
           <Typography className={clsx("lpsd-content", { disabled: !listing?.description })} component="pre">
             {listing?.description || "Ainda não há descrição para este anúncio"}
           </Typography>
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
+        <Stack className="lps-container">
+          <Typography variant="h6">Localização</Typography>
+
+          <Map
+            mapLib={import("maplibre-gl")}
+            initialViewState={{
+              longitude: -122.4,
+              latitude: 37.8,
+              zoom: 14
+            }}
+            mapStyle={env.MAP_STYLE}
+            style={{ width: "100%", height: 256, borderRadius: 4 }}
+          />
         </Stack>
       </Container>
 
