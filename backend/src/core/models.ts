@@ -85,27 +85,27 @@ export class ListingPicture extends Model {
 
 @Entity()
 export class Address extends Model {
-  @Column({ type: "varchar", length: 128 })
-  ownerUid: string
-
-  @Column({ type: "char", length: 8 })
-  zipcode: string
-
-  @Column({ type: "varchar", length: 32 })
-  state: string
-
   @Column({ type: "varchar", length: 64 })
   city: string
+
+  @Column({ type: "varchar", length: 256, nullable: true })
+  complement?: string
 
   @Column({ type: "varchar", length: 256 })
   neighborhood: string
 
-  @Column({ type: "varchar", length: 256 })
-  street: string
-
   @Column({ type: "varchar", length: 16 })
   number: string
 
-  @Column({ type: "varchar", length: 256, nullable: true })
-  complement?: string
+  @Column({ type: "varchar", length: 128 })
+  ownerUid: string
+
+  @Column({ type: "varchar", length: 32 })
+  state: string
+
+  @Column({ type: "varchar", length: 256 })
+  street: string
+
+  @Column({ type: "char", length: 8 })
+  zipcode: string
 }

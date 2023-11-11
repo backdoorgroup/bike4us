@@ -6,9 +6,15 @@ import { paginate } from "~/pagination"
 import { BadRequestException, NotFoundException } from "~/exceptions"
 
 import { authenticated, upload } from "~/core/middlewares"
-import { CreateListingSchema, GetListingSchema, GetListingsSchema, SearchListingsSchema } from "~/core/schemas"
+import {
+  CreateAddressSchema,
+  CreateListingSchema,
+  GetListingSchema,
+  GetListingsSchema,
+  SearchListingsSchema
+} from "~/core/schemas"
 import { serializeAddress, serializeListing } from "~/core/serializers"
-import { createListing, getListing, getListings, safeGetAddress } from "~/core/services"
+import { createAddress, createListing, getListing, getListings, safeGetAddress } from "~/core/services"
 
 import { HttpStatus } from "@/http"
 
@@ -105,4 +111,20 @@ profileRouter.get("/address", async (req, res) => {
   const address = query ? serializeAddress(query) : null
 
   return res.status(HttpStatus.Ok).json(address)
+})
+
+profileRouter.post("/address", authenticated(), async (req, res) => {
+  try {
+    const params = CreateAddressSchema.parse({
+      ownerUid: req.user?.uid,
+      ...req.body
+    })
+
+    const query = await createAddress(params)
+    const address = serializeAddress(query)
+
+    res.status(HttpStatus.Ok).json(address)
+  } catch (error) {
+    res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
 })

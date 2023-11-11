@@ -44,3 +44,15 @@ export const GetListingSchema = z.object({
 export const SearchListingsSchema = PaginationSchema.extend({
   query: z.string().min(1).max(512)
 })
+
+export const CreateAddressSchema = z.object({
+  city: z.string().min(1).max(64),
+  complement: z.string().max(256).optional(),
+  neighborhood: z.string().min(1).max(256),
+  number: z.string().min(1).max(16),
+  ownerUid: z.string().min(1).max(128),
+  state: z.string().min(1).max(32),
+  street: z.string().min(1).max(256),
+  zipcode: z.string().length(8)
+})
+export type TCreateAddressSchema = z.infer<typeof CreateAddressSchema>
