@@ -124,6 +124,10 @@ export const routes: RouteObject[] = [
             loader: async () => {
               const address = await ProfileServices.getAddress()
 
+              // Isso aqui é pra travar um cara que já tem endereço de ficar criando anúncios
+              // TODO: melhorar isso
+              if (address) return redirect("/")
+
               return address
             }
           }
