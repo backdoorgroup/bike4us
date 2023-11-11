@@ -22,28 +22,26 @@ export const User = UserInfo.extend({
   metadata: UserMetadata,
   providerData: z.array(UserInfo),
   tokensValidAfterTime: z.string()
-}).nullable()
+})
 export type TUser = z.infer<typeof User>
 
-export const Address = z
-  .object({
-    id: z.number(),
-    city: z.string(),
-    neighborhood: z.string(),
-    number: z.string(),
-    ownerUid: z.string(),
-    state: z.string(),
-    street: z.string(),
-    zipcode: z.string(),
-    complement: z.string(),
-    location: Location.optional().nullable()
-  })
-  .nullable()
-  .optional()
+export const Address = z.object({
+  id: z.number(),
+  city: z.string(),
+  neighborhood: z.string(),
+  number: z.string(),
+  ownerUid: z.string(),
+  state: z.string(),
+  street: z.string(),
+  zipcode: z.string(),
+  complement: z.string(),
+  location: Location.optional().nullable()
+})
+
 export type TAddress = z.infer<typeof Address>
 
 export const Profile = z.object({
-  user: User,
-  address: Address
+  user: User.nullable(),
+  address: Address.nullable().optional()
 })
 export type TProfile = z.infer<typeof Profile>
