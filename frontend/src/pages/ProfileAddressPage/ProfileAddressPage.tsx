@@ -1,3 +1,5 @@
+import "./ProfileAddressPage.scss"
+
 import { IMaskMixin } from "react-imask"
 import { useForm, Controller } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
@@ -47,13 +49,18 @@ export default function ProfileAddressPage() {
   }, 1000)
 
   return (
-    <Container sx={{ paddingY: 4 }}>
-      <Typography variant="h5" sx={{ fontWeight: 500, textAlign: "center", mb: 4 }}>
+    <Container className="profile-address-page">
+      <Typography className="pap-title" variant="h5">
         Opss! Parece que você ainda não tem endereço cadastrado
       </Typography>
 
-      <FormControl component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
-        <Stack sx={{ mb: 4, gap: 2 }}>
+      <FormControl
+        className="pap-form"
+        component="form"
+        fullWidth
+        noValidate
+        onSubmit={form.handleSubmit(handleSubmit)}>
+        <Stack className="papf-fields">
           <Controller
             name="zipcode"
             control={form.control}
@@ -185,7 +192,7 @@ export default function ProfileAddressPage() {
           </Stack>
         </Stack>
 
-        <Stack sx={{ gap: 1 }}>
+        <Stack className="papf-actions">
           <Button type="submit" variant="contained" disableElevation>
             Salvar
           </Button>
