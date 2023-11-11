@@ -35,12 +35,13 @@ export default function ProfileAddressPage() {
             rules={ZipcodeValidation}
             render={(state) => (
               <IMaskTextField
+                unmask
                 inputRef={state.field.ref}
                 name={state.field.name}
                 disabled={state.field.disabled}
                 value={state.field.value}
                 onBlur={state.field.onBlur}
-                onAccept={(_value, maskRef) => state.field.onChange(maskRef.unmaskedValue)}
+                onAccept={(value) => state.field.onChange(value)}
                 mask="00000-000"
                 label="CEP"
                 placeholder="Digite seu CEP"
