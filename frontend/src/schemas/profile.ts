@@ -1,5 +1,5 @@
 import { z } from "zod"
-import { CEPLocation } from "."
+import { Location } from "~/schemas"
 
 export const UserMetadata = z.object({
   creationTime: z.string(),
@@ -36,7 +36,7 @@ export const Address = z
     street: z.string(),
     zipcode: z.string(),
     complement: z.string(),
-    location: CEPLocation.optional().nullable()
+    location: Location.optional().nullable()
   })
   .nullable()
   .optional()

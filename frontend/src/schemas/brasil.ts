@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-export const CEPLocation = z.object({
+export const Location = z.object({
   type: z.string(),
   coordinates: z.object({
     longitude: z.string(),
@@ -15,5 +15,5 @@ export const CEP = z.object({
   neighborhood: z.string(),
   street: z.string(),
   service: z.string(),
-  location: CEPLocation
+  location: Location
 })
