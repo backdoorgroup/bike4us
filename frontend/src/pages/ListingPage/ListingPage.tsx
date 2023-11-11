@@ -26,8 +26,8 @@ export default function ListingPage() {
   const listing = useLoaderData() as TListing
 
   const coordinates = listing.address?.location?.coordinates
-  const longitude = parseFloat(coordinates?.longitude || "-45")
-  const latitude = parseFloat(coordinates?.latitude || "-14.93")
+  const longitude = parseFloat(coordinates?.longitude || "-51.92")
+  const latitude = parseFloat(coordinates?.latitude || "-14.23")
 
   return (
     <Stack className="listing-page" divider={<Divider />}>
@@ -90,7 +90,7 @@ export default function ListingPage() {
             initialViewState={{
               longitude: longitude,
               latitude: latitude,
-              zoom: 14
+              zoom: 2
             }}
             mapStyle={env.MAP_STYLE}
             style={{ width: "100%", height: 256, borderRadius: 4 }}>
