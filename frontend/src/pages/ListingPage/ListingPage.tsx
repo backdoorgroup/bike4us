@@ -76,14 +76,6 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
-        <Stack className="lps-container">
-          <Typography variant="h6">Localização</Typography>
-
-          <ListingMap location={listing.address?.location} />
-        </Stack>
-      </Container>
-
-      <Container className="lp-section">
         <Stack className="lps-container lps-details">
           <Typography variant="h6">Detalhes</Typography>
 
@@ -117,6 +109,14 @@ export default function ListingPage() {
               </TableBody>
             </Table>
           </TableContainer>
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
+        <Stack className="lps-container">
+          <Typography variant="h6">Localização</Typography>
+
+          <ListingMap location={listing.address?.location} />
         </Stack>
       </Container>
     </Stack>
