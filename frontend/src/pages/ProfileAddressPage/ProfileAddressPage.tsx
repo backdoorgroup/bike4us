@@ -54,6 +54,7 @@ export default function ProfileAddressPage() {
       <Typography variant="h5" sx={{ fontWeight: 500, textAlign: "center", mb: 4 }}>
         Opss! Parece que você ainda não tem endereço cadastrado
       </Typography>
+
       <FormControl component="form" fullWidth noValidate onSubmit={form.handleSubmit(handleSubmit)}>
         <Stack sx={{ mb: 4, gap: 2 }}>
           <Controller
@@ -72,7 +73,6 @@ export default function ProfileAddressPage() {
                 onComplete={(value) => handleComplete(value)}
                 mask="00000-000"
                 label="CEP"
-                placeholder="Digite aqui seu CEP"
                 // @ts-expect-error Tá foda resolver isso
                 helperText={form.formState.errors.zipcode?.message || "Ao preencher outros campos serão preenchidos"}
                 error={!!form.formState.errors.zipcode}
@@ -82,7 +82,6 @@ export default function ProfileAddressPage() {
 
           <TextField
             label="Logradouro"
-            placeholder="Digite aqui o logradouro"
             error={!!form.formState.errors.street}
             helperText={form.formState.errors.street?.message}
             {...form.register("street", StreetValidation)}
@@ -92,7 +91,6 @@ export default function ProfileAddressPage() {
             <TextField
               sx={{ width: 180 }}
               label="Número"
-              placeholder="Digite aqui o número"
               error={!!form.formState.errors.number}
               helperText={form.formState.errors.number?.message}
               onBeforeInput={(_event) => {
@@ -110,7 +108,6 @@ export default function ProfileAddressPage() {
             <TextField
               sx={{ flexGrow: 1 }}
               label="Complemento"
-              placeholder="Digite aqui o complemento"
               error={!!form.formState.errors.complement}
               helperText={form.formState.errors.complement?.message}
               {...form.register("complement", ComplementValidation)}
@@ -119,7 +116,6 @@ export default function ProfileAddressPage() {
 
           <TextField
             label="Bairro"
-            placeholder="Digite aqui o bairro"
             error={!!form.formState.errors.neighborhood}
             helperText={form.formState.errors.neighborhood?.message}
             {...form.register("neighborhood", NeighborhoodValidation)}
@@ -129,7 +125,6 @@ export default function ProfileAddressPage() {
             <TextField
               sx={{ flexGrow: 1 }}
               label="Cidade"
-              placeholder="Digite aqui o cidade"
               error={!!form.formState.errors.city}
               helperText={form.formState.errors.city?.message}
               {...form.register("city", CityValidation)}
@@ -138,7 +133,6 @@ export default function ProfileAddressPage() {
             <TextField
               sx={{ width: 160 }}
               label="Estado"
-              placeholder="Digite aqui o estado"
               error={!!form.formState.errors.state}
               helperText={form.formState.errors.state?.message}
               {...form.register("state", StateValidation)}
