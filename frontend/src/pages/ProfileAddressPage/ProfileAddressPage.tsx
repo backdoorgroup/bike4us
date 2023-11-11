@@ -1,5 +1,6 @@
 import { IMaskMixin } from "react-imask"
 import { useForm, Controller } from "react-hook-form"
+import { Link } from "react-router-dom"
 
 import Container from "@mui/material/Container"
 import Typography from "@mui/material/Typography"
@@ -28,14 +29,7 @@ import { BrasilServices, ProfileServices } from "~/services"
 const IMaskTextField = IMaskMixin(({ inputRef, ...props }) => <TextField inputRef={inputRef} {...props} />)
 
 export default function ProfileAddressPage() {
-  const form = useForm<AddressForm>({
-    defaultValues: {
-      street: "",
-      neighborhood: "",
-      city: "",
-      state: ""
-    }
-  })
+  const form = useForm<AddressForm>()
 
   const handleSubmit = async (address: AddressForm) => {
     await ProfileServices.createAddress(address)
@@ -140,9 +134,15 @@ export default function ProfileAddressPage() {
           </Stack>
         </Stack>
 
-        <Button type="submit" variant="contained" disableElevation>
-          Salvar
-        </Button>
+        <Stack sx={{ gap: 1 }}>
+          <Button type="submit" variant="contained" disableElevation>
+            Salvar
+          </Button>
+
+          <Button disableElevation component={Link} to="/">
+            Voltar a página inicial
+          </Button>
+        </Stack>
       </FormControl>
     </Container>
   )
