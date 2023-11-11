@@ -77,66 +77,110 @@ export default function ProfileAddressPage() {
             )}
           />
 
-          <TextField
-            label="Logradouro"
-            InputLabelProps={{ shrink: !!form.watch("street") }}
-            error={!!form.formState.errors.street}
-            helperText={form.formState.errors.street?.message}
-            {...form.register("street", StreetValidation)}
+          <Controller
+            name="street"
+            control={form.control}
+            rules={StreetValidation}
+            render={(state) => (
+              <TextField
+                {...state.field}
+                label="Logradouro"
+                value={state.field.value || ""}
+                error={!!form.formState.errors.street}
+                helperText={form.formState.errors.street?.message}
+              />
+            )}
           />
 
           <Stack sx={{ flexDirection: "row", gap: 2 }}>
-            <TextField
-              sx={{ width: 180 }}
-              label="Número"
-              error={!!form.formState.errors.number}
-              helperText={form.formState.errors.number?.message}
-              onBeforeInput={(_event) => {
-                const event = _event as unknown as CompositionEvent
-                const value = event.data
-                const valid = EntirelyNumericPattern.test(value)
+            <Controller
+              name="number"
+              control={form.control}
+              rules={NumberValidation}
+              render={(state) => (
+                <TextField
+                  {...state.field}
+                  sx={{ width: 180 }}
+                  label="Número"
+                  value={state.field.value || ""}
+                  error={!!form.formState.errors.number}
+                  helperText={form.formState.errors.number?.message}
+                  onBeforeInput={(_event) => {
+                    const event = _event as unknown as CompositionEvent
+                    const value = event.data
+                    const valid = EntirelyNumericPattern.test(value)
 
-                if (!valid) return event.preventDefault()
+                    if (!valid) return event.preventDefault()
 
-                return valid
-              }}
-              {...form.register("number", NumberValidation)}
+                    return valid
+                  }}
+                />
+              )}
             />
 
-            <TextField
-              sx={{ flexGrow: 1 }}
-              label="Complemento"
-              error={!!form.formState.errors.complement}
-              helperText={form.formState.errors.complement?.message}
-              {...form.register("complement", ComplementValidation)}
+            <Controller
+              name="complement"
+              control={form.control}
+              rules={ComplementValidation}
+              render={(state) => (
+                <TextField
+                  {...state.field}
+                  sx={{ flexGrow: 1 }}
+                  label="Complemento"
+                  value={state.field.value || ""}
+                  error={!!form.formState.errors.complement}
+                  helperText={form.formState.errors.complement?.message}
+                />
+              )}
             />
           </Stack>
 
-          <TextField
-            label="Bairro"
-            InputLabelProps={{ shrink: !!form.watch("neighborhood") }}
-            error={!!form.formState.errors.neighborhood}
-            helperText={form.formState.errors.neighborhood?.message}
-            {...form.register("neighborhood", NeighborhoodValidation)}
+          <Controller
+            name="neighborhood"
+            control={form.control}
+            rules={NeighborhoodValidation}
+            render={(state) => (
+              <TextField
+                {...state.field}
+                label="Bairro"
+                value={state.field.value || ""}
+                error={!!form.formState.errors.neighborhood}
+                helperText={form.formState.errors.neighborhood?.message}
+              />
+            )}
           />
 
           <Stack sx={{ flexDirection: "row", gap: 2 }}>
-            <TextField
-              sx={{ flexGrow: 1 }}
-              label="Cidade"
-              InputLabelProps={{ shrink: !!form.watch("city") }}
-              error={!!form.formState.errors.city}
-              helperText={form.formState.errors.city?.message}
-              {...form.register("city", CityValidation)}
+            <Controller
+              name="city"
+              control={form.control}
+              rules={CityValidation}
+              render={(state) => (
+                <TextField
+                  {...state.field}
+                  sx={{ flexGrow: 1 }}
+                  label="Cidade"
+                  value={state.field.value || ""}
+                  error={!!form.formState.errors.city}
+                  helperText={form.formState.errors.city?.message}
+                />
+              )}
             />
 
-            <TextField
-              sx={{ width: 160 }}
-              label="Estado"
-              InputLabelProps={{ shrink: !!form.watch("state") }}
-              error={!!form.formState.errors.state}
-              helperText={form.formState.errors.state?.message}
-              {...form.register("state", StateValidation)}
+            <Controller
+              name="state"
+              control={form.control}
+              rules={StateValidation}
+              render={(state) => (
+                <TextField
+                  {...state.field}
+                  sx={{ width: 160 }}
+                  label="Estado"
+                  value={state.field.value || ""}
+                  error={!!form.formState.errors.state}
+                  helperText={form.formState.errors.state?.message}
+                />
+              )}
             />
           </Stack>
         </Stack>
