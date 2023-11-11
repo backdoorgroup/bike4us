@@ -9,14 +9,12 @@ import orange from "@mui/material/colors/orange"
 import CssBaseline from "@mui/material/CssBaseline"
 import StyledEngineProvider from "@mui/material/StyledEngineProvider"
 import { ptBR as muiLocale } from "@mui/material/locale"
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
-import { ptBR as muixLocale } from "@mui/x-date-pickers/locales"
-import dateFnsLocale from "date-fns/locale/pt-BR"
-import setDefaultOptions from "date-fns/setDefaultOptions"
 
 import { CacheProvider } from "@emotion/react"
 import createCache from "@emotion/cache"
+
+import dateFnsLocale from "date-fns/locale/pt-BR"
+import setDefaultOptions from "date-fns/setDefaultOptions"
 
 import { router } from "~/router"
 
@@ -56,13 +54,8 @@ export default function App() {
     <CacheProvider value={cache}>
       <StyledEngineProvider injectFirst>
         <CssVarsProvider theme={theme}>
-          <LocalizationProvider
-            dateAdapter={AdapterDateFns}
-            adapterLocale={dateFnsLocale}
-            localeText={muixLocale.components.MuiLocalizationProvider.defaultProps.localeText}>
-            <CssBaseline />
-            <RouterProvider router={router} />
-          </LocalizationProvider>
+          <CssBaseline />
+          <RouterProvider router={router} />
         </CssVarsProvider>
       </StyledEngineProvider>
     </CacheProvider>

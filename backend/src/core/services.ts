@@ -1,8 +1,8 @@
-import type { FindManyOptions, FindOneOptions } from "typeorm"
 import admin from "firebase-admin"
+import type { FindManyOptions, FindOneOptions } from "typeorm"
 
-import type { TCreateListingSchema } from "~/core/schemas"
-import { Listing, ListingPicture } from "~/core/models"
+import type { TCreateAddressSchema, TCreateListingSchema } from "~/core/schemas"
+import { Address, Listing, ListingPicture } from "~/core/models"
 
 import { settings } from "~/settings"
 
@@ -23,6 +23,8 @@ export const getUser = async (uid: string) => await auth.getUser(uid)
 export const getListings = async (options?: FindManyOptions<Listing>) => await Listing.find(options)
 
 export const getListing = async (options: FindOneOptions<Listing>) => await Listing.findOneOrFail(options)
+
+export const safeGetAddress = async (options: FindOneOptions<Address>) => await Address.findOne(options)
 
 export const createListing = async (params: TCreateListingSchema) => {
   const listing = new Listing()
@@ -48,4 +50,19 @@ export const createListing = async (params: TCreateListingSchema) => {
   })
 
   return await listing.save()
+}
+
+export const createAddress = async (params: TCreateAddressSchema) => {
+  const address = new Address()
+
+  address.city = params.city
+  address.complement = params.complement
+  address.neighborhood = params.neighborhood
+  address.number = params.number
+  address.ownerUid = params.ownerUid
+  address.state = params.state
+  address.street = params.street
+  address.zipcode = params.zipcode
+
+  return await address.save()
 }

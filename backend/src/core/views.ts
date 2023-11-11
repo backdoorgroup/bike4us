@@ -6,9 +6,16 @@ import { paginate } from "~/pagination"
 import { BadRequestException, NotFoundException } from "~/exceptions"
 
 import { authenticated, upload } from "~/core/middlewares"
-import { CreateListingSchema, GetListingSchema, GetListingsSchema, SearchListingsSchema } from "~/core/schemas"
-import { serializeListing } from "~/core/serializers"
-import { createListing, getListing, getListings } from "~/core/services"
+import {
+  CreateAddressSchema,
+  CreateListingSchema,
+  GetListingSchema,
+  GetListingsSchema,
+  GetProfileSchema,
+  SearchListingsSchema
+} from "~/core/schemas"
+import { serializeAddress, serializeListing } from "~/core/serializers"
+import { createAddress, createListing, getListing, getListings, getUser, safeGetAddress } from "~/core/services"
 
 import { HttpStatus } from "@/http"
 
@@ -38,7 +45,7 @@ listingsRouter.post("/", authenticated(), upload.array("pictures[]"), async (req
      * o Multer não aborta o upload dos arquivos e ele continua salvando arquivos mortos.
      */
     const params = CreateListingSchema.parse({
-      ownerUid: req.user.uid,
+      ownerUid: req.user?.uid,
       pictures: req.files,
       ...req.body
     })
@@ -58,8 +65,13 @@ listingsRouter.get("/:id", async (req, res) => {
       ...req.params
     })
 
-    const query = await getListing({ where: { id: params.id }, relations: { pictures: true } })
-    const listing = serializeListing(query)
+    const listingQuery = await getListing({ where: { id: params.id }, relations: { pictures: true } })
+    const listing = serializeListing(listingQuery)
+
+    const addressQuery = await safeGetAddress({ where: { ownerUid: listing.ownerUid } })
+    const address = addressQuery ? serializeAddress(addressQuery) : null
+
+    listing.address = address
 
     return res.status(HttpStatus.Ok).json(listing)
   } catch (error) {
@@ -86,5 +98,50 @@ searchRouter.get("/listings", async (req, res) => {
     return res.status(HttpStatus.Ok).json({ listings, count: query.length } as Paginated)
   } catch (error) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
+})
+
+profileRouter.get("/", async (req, res) => {
+  const user = req.user
+
+  const query = user?.uid ? await safeGetAddress({ where: { ownerUid: user?.uid } }) : null
+  const address = query ? serializeAddress(query) : null
+
+  return res.status(HttpStatus.Ok).json({ user, address })
+})
+
+profileRouter.get("/:uid", async (req, res) => {
+  try {
+    const params = GetProfileSchema.parse({
+      ...req.params
+    })
+
+    const addressPromise = safeGetAddress({ where: { ownerUid: params.uid } })
+    const userPromise = getUser(params.uid)
+
+    const [addressQuery, userQuery] = await Promise.all([addressPromise, userPromise])
+
+    const address = addressQuery ? serializeAddress(addressQuery) : null
+    const user = userQuery
+
+    return res.status(HttpStatus.Ok).json({ user, address })
+  } catch (error) {
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
+})
+
+profileRouter.post("/address", authenticated(), async (req, res) => {
+  try {
+    const params = CreateAddressSchema.parse({
+      ownerUid: req.user?.uid,
+      ...req.body
+    })
+
+    const query = await createAddress(params)
+    const address = serializeAddress(query)
+
+    res.status(HttpStatus.Ok).json(address)
+  } catch (error) {
+    res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
 })

@@ -1,11 +1,19 @@
 import type { RouteObject } from "react-router-dom"
 import { Navigate, redirect } from "react-router-dom"
 
-import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "~/router/loaders"
-
 import { HomeLayout } from "~/layouts"
-import { AnnouncePage, ErrorPage, HomePage, ListingPage, AuthLoginPage, AuthRegisterPage, SearchPage } from "~/pages"
-import { ListingsServices, SearchServices } from "~/services"
+import {
+  AnnouncePage,
+  AuthLoginPage,
+  AuthRegisterPage,
+  ErrorPage,
+  HomePage,
+  ListingPage,
+  ProfileAddressPage,
+  SearchPage
+} from "~/pages"
+import { BrasilServices, ListingsServices, ProfileServices, SearchServices } from "~/services"
+import { useAuthStore } from "~/stores"
 
 export const routes: RouteObject[] = [
   {
@@ -16,9 +24,9 @@ export const routes: RouteObject[] = [
         index: true,
         element: <HomePage />,
         loader: async () => {
-          const data = await ListingsServices.getListings()
+          const listings = await ListingsServices.getListings()
 
-          return data
+          return listings
         }
       },
 
@@ -29,9 +37,15 @@ export const routes: RouteObject[] = [
           if (!params.id) return redirect("/")
 
           try {
-            const data = await ListingsServices.getListing(params.id)
+            const listing = await ListingsServices.getListing(params.id)
 
-            return data
+            if (listing.address) {
+              const { location } = await BrasilServices.getCEP(listing.address.zipcode)
+
+              listing.address.location = location
+            }
+
+            return listing
           } catch (_) {
             return redirect("/")
           }
@@ -41,7 +55,17 @@ export const routes: RouteObject[] = [
       {
         path: "anunciar",
         element: <AnnouncePage />,
-        loader: redirectUnauthorizedLoader
+        loader: async () => {
+          const { user } = useAuthStore.getState()
+
+          if (!user?.uid) return redirect("/auth")
+
+          const profile = await ProfileServices.getProfile()
+
+          if (!profile.address) return redirect("/perfil/endereco")
+
+          return null
+        }
       },
 
       {
@@ -55,9 +79,9 @@ export const routes: RouteObject[] = [
           if (!query) return redirect("/")
 
           try {
-            const data = await SearchServices.searchListings(query)
+            const listings = await SearchServices.searchListings(query)
 
-            return data
+            return listings
           } catch (_) {
             return redirect("/")
           }
@@ -66,7 +90,13 @@ export const routes: RouteObject[] = [
 
       {
         path: "auth",
-        loader: redirectAuthorizedLoader,
+        loader: () => {
+          const { user } = useAuthStore.getState()
+
+          if (user?.uid) return redirect("/")
+
+          return null
+        },
         children: [
           {
             path: "*",
@@ -80,6 +110,32 @@ export const routes: RouteObject[] = [
           {
             path: "cadastrar",
             element: <AuthRegisterPage />
+          }
+        ]
+      },
+
+      {
+        path: "perfil",
+        loader: async () => {
+          const { user } = useAuthStore.getState()
+
+          if (!user?.uid) return redirect("/auth")
+
+          return null
+        },
+        children: [
+          {
+            path: "endereco",
+            element: <ProfileAddressPage />,
+            loader: async () => {
+              const profile = await ProfileServices.getProfile()
+
+              // Isso aqui é pra travar um cara que já tem endereço de ficar criando anúncios
+              // TODO: melhorar isso
+              if (profile.address) return redirect("/")
+
+              return null
+            }
           }
         ]
       },

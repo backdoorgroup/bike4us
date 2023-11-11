@@ -18,6 +18,7 @@ import Typography from "@mui/material/Typography"
 
 import type { TListing } from "~/schemas"
 import { BikeType, Condition, FrameSize, Material, WheelSize } from "~/schemas"
+import { ListingMap } from "~/components"
 
 export default function ListingPage() {
   const listing = useLoaderData() as TListing
@@ -108,6 +109,14 @@ export default function ListingPage() {
               </TableBody>
             </Table>
           </TableContainer>
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
+        <Stack className="lps-container">
+          <Typography variant="h6">Localização</Typography>
+
+          <ListingMap location={listing.address?.location} />
         </Stack>
       </Container>
     </Stack>

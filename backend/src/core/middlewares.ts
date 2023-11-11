@@ -1,5 +1,4 @@
 import type { RequestHandler } from "express"
-import type { UserRecord } from "firebase-admin/auth"
 import multer from "multer"
 import crypto from "crypto"
 
@@ -53,18 +52,16 @@ export const identity = (): RequestHandler => {
 
       req.user = user
     } catch (error) {
-      req.user = {} as UserRecord
+      req.user = null
+    } finally {
+      next()
     }
-
-    next()
   }
 }
 
 export const authenticated = (): RequestHandler => {
   return function (req, res, next) {
-    const user = req.user
-
-    if (!user?.uid) return res.status(HttpStatus.Unauthorized).json(UnauthorizedException)
+    if (!req.user?.uid) return res.status(HttpStatus.Unauthorized).json(UnauthorizedException)
 
     next()
   }
