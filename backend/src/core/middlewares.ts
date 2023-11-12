@@ -6,7 +6,7 @@ import type { TAllowedMimetypes } from "~/core/constants"
 import { AllowedMimetypes, MaxFileSize, MaxFiles } from "~/core/constants"
 import { getUser, verifyIdToken } from "~/core/services"
 
-import { UnauthorizedException } from "~/handling"
+import { UnauthorizedException, safeAsync } from "~/handling"
 import { settings } from "~/settings"
 
 import { HttpStatus } from "@/http"
@@ -41,28 +41,39 @@ export const upload = multer({
   }
 })
 
-export const identity = (): RequestHandler => {
-  return async function (req, _res, next) {
-    try {
-      const header = req.header("authorization") as string
-      const token = header.replace("Bearer", "").trim()
+export const identity = (): RequestHandler => async (req, _res, next) => {
+  const header = req.header("authorization")
+  const token = header?.replace("Bearer", "").trim()
 
-      const decodedToken = await verifyIdToken(token)
-      const user = await getUser(decodedToken.uid)
+  if (!token || !header) {
+    req.user = null
 
-      req.user = user
-    } catch (error) {
-      req.user = null
-    } finally {
-      next()
-    }
+    return next()
   }
+
+  const [decodedToken, decodedTokenError] = await safeAsync(verifyIdToken(token))
+
+  if (!decodedToken || decodedTokenError) {
+    req.user = null
+
+    return next()
+  }
+
+  const [user, userError] = await safeAsync(getUser(decodedToken.uid))
+
+  if (!user || userError) {
+    req.user = null
+
+    return next()
+  }
+
+  req.user = user
+
+  return next()
 }
 
-export const authenticated = (): RequestHandler => {
-  return function (req, res, next) {
-    if (!req.user?.uid) return res.status(HttpStatus.Unauthorized).json(UnauthorizedException)
+export const authenticated = (): RequestHandler => (req, res, next) => {
+  if (!req.user?.uid) return res.status(HttpStatus.Unauthorized).json(UnauthorizedException)
 
-    next()
-  }
+  return next()
 }
