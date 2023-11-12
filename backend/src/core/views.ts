@@ -194,17 +194,24 @@ profileRouter.get("/:uid", async (req, res) => {
 })
 
 profileRouter.post("/address", authenticated(), async (req, res) => {
-  try {
-    const params = CreateAddressSchema.parse({
+  const [params, paramsError] = await safeAsync(
+    CreateAddressSchema.parseAsync({
       ownerUid: req.user?.uid,
       ...req.body
     })
+  )
 
-    const query = await createAddress(params)
-    const address = serializeAddress(query)
-
-    res.status(HttpStatus.Ok).json(address)
-  } catch (error) {
-    res.status(HttpStatus.BadRequest).json(BadRequestException)
+  if (!params || paramsError) {
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
+
+  const [query, queryError] = await safeAsync(createAddress(params))
+
+  if (!query || queryError) {
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
+
+  const address = serializeAddress(query)
+
+  return res.status(HttpStatus.Ok).json(address)
 })
