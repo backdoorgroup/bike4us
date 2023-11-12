@@ -1,10 +1,10 @@
-import type { UserRecord } from "firebase-admin/auth"
 import { Router } from "express"
+import type { UserRecord } from "firebase-admin/auth"
 import { ILike } from "typeorm"
 
+import { BadRequestException, NotFoundException, safeAsync } from "~/handling"
 import type { Paginated } from "~/pagination"
 import { paginate } from "~/pagination"
-import { BadRequestException, NotFoundException, safeAsync } from "~/handling"
 
 import { authenticated, upload } from "~/core/middlewares"
 import {
@@ -16,15 +16,7 @@ import {
   SearchListingsSchema
 } from "~/core/schemas"
 import { serializeAddress, serializeListing } from "~/core/serializers"
-import {
-  createAddress,
-  createListing,
-  getAddress,
-  getListing,
-  getListings,
-  getUser,
-  safeGetAddress
-} from "~/core/services"
+import { createAddress, createListing, getAddress, getListing, getListings, getUser } from "~/core/services"
 
 import { HttpStatus } from "@/http"
 
@@ -174,23 +166,33 @@ profileRouter.get("/", authenticated(), async (req, res) => {
 })
 
 profileRouter.get("/:uid", async (req, res) => {
-  try {
-    const params = GetProfileSchema.parse({
+  const [params, paramsError] = await safeAsync(
+    GetProfileSchema.parseAsync({
       ...req.params
     })
+  )
 
-    const addressPromise = safeGetAddress({ where: { ownerUid: params.uid } })
-    const userPromise = getUser(params.uid)
-
-    const [addressQuery, userQuery] = await Promise.all([addressPromise, userPromise])
-
-    const address = addressQuery ? serializeAddress(addressQuery) : null
-    const user = userQuery
-
-    return res.status(HttpStatus.Ok).json({ user, address })
-  } catch (error) {
+  if (!params || paramsError) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
+
+  // TODO: paralelizar esses caras
+  const [addressQuery] = await safeAsync(
+    getAddress({
+      where: {
+        ownerUid: params.uid
+      }
+    })
+  )
+  const [userQuery] = await safeAsync(getUser(params.uid))
+
+  const address = addressQuery && serializeAddress(addressQuery)
+  const user = userQuery
+
+  return res.status(HttpStatus.Ok).json({
+    user,
+    address
+  })
 })
 
 profileRouter.post("/address", authenticated(), async (req, res) => {

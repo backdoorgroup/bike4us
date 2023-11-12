@@ -6,7 +6,7 @@ import { Address, Listing, ListingPicture } from "~/core/models"
 
 import { settings } from "~/settings"
 
-const client = admin.initializeApp({
+const firebase = admin.initializeApp({
   credential: admin.credential.cert({
     projectId: settings.FB_PROJECT_ID,
     clientEmail: settings.FB_CLIENT_EMAIL,
@@ -14,7 +14,7 @@ const client = admin.initializeApp({
   })
 })
 
-const auth = client.auth()
+const auth = firebase.auth()
 
 export const verifyIdToken = async (token: string) => await auth.verifyIdToken(token)
 
@@ -25,9 +25,6 @@ export const getListings = async (options?: FindManyOptions<Listing>) => await L
 export const getListing = async (options: FindOneOptions<Listing>) => await Listing.findOneOrFail(options)
 
 export const getAddress = async (options: FindOneOptions<Address>) => await Address.findOneOrFail(options)
-
-// TODO: Matar esse cara
-export const safeGetAddress = async (options: FindOneOptions<Address>) => await Address.findOne(options)
 
 export const createListing = async (params: TCreateListingSchema) => {
   const listing = new Listing()
