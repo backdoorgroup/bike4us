@@ -49,25 +49,32 @@ listingsRouter.get("/", async (req, res) => {
 })
 
 listingsRouter.post("/", authenticated(), upload.array("pictures[]"), async (req, res) => {
-  try {
-    /*
-     * TODO: esse endpoint tem um problema.
-     * se o usuário enviar algo que quebre na validação dentro desse try catch,
-     * o Multer não aborta o upload dos arquivos e ele continua salvando arquivos mortos.
-     */
-    const params = CreateListingSchema.parse({
+  /*
+   * TODO: esse endpoint tem um problema.
+   * se o usuário enviar algo que quebre na validação dentro desse try catch,
+   * o Multer não aborta o upload dos arquivos e ele continua salvando arquivos mortos.
+   */
+  const [params, paramsError] = await safeAsync(
+    CreateListingSchema.parseAsync({
       ownerUid: req.user?.uid,
       pictures: req.files,
       ...req.body
     })
+  )
 
-    const query = await createListing(params)
-    const listing = serializeListing(query)
-
-    return res.status(HttpStatus.Ok).json(listing)
-  } catch (error) {
+  if (!params || paramsError) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
+
+  const [created, createdError] = await safeAsync(createListing(params))
+
+  if (!created || createdError) {
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
+
+  const listing = serializeListing(created)
+
+  return res.status(HttpStatus.Ok).json(listing)
 })
 
 listingsRouter.get("/:id", async (req, res) => {
