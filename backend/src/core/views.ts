@@ -1,3 +1,4 @@
+import type { UserRecord } from "firebase-admin/auth"
 import { Router } from "express"
 import { ILike } from "typeorm"
 
@@ -154,13 +155,22 @@ searchRouter.get("/listings", async (req, res) => {
   } satisfies Paginated)
 })
 
-profileRouter.get("/", async (req, res) => {
-  const user = req.user
+profileRouter.get("/", authenticated(), async (req, res) => {
+  const user = req.user as UserRecord
 
-  const query = user?.uid ? await safeGetAddress({ where: { ownerUid: user?.uid } }) : null
-  const address = query ? serializeAddress(query) : null
+  const [query] = await safeAsync(
+    getAddress({
+      where: {
+        ownerUid: user.uid
+      }
+    })
+  )
+  const address = query && serializeAddress(query)
 
-  return res.status(HttpStatus.Ok).json({ user, address })
+  return res.status(HttpStatus.Ok).json({
+    user,
+    address
+  })
 })
 
 profileRouter.get("/:uid", async (req, res) => {
