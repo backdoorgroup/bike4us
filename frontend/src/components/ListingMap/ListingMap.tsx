@@ -15,18 +15,19 @@ const BrasilInitialViewState: Partial<ViewState> = {
 }
 
 export default function ListingMap({ location }: { location?: TLocation | null }) {
-  const coordinates = useMemo(() => location?.coordinates, [location?.coordinates])
+  const [latitude, longitude] = useMemo(
+    () => [location?.coordinates?.latitude, location?.coordinates?.longitude],
+    [location?.coordinates]
+  )
 
-  const [latitude, longitude] = useMemo(() => [coordinates?.latitude, coordinates?.longitude], [coordinates])
-
-  const initialViewState = useMemo<Partial<ViewState> | null>(() => {
-    return latitude && longitude
-      ? {
-          latitude,
-          longitude,
-          zoom: 13
-        }
-      : null
+  const AddressInitialViewState = useMemo<Partial<ViewState> | false>(() => {
+    return (
+      !!(latitude && longitude) && {
+        latitude,
+        longitude,
+        zoom: 13
+      }
+    )
   }, [latitude, longitude])
 
   return (
@@ -34,12 +35,11 @@ export default function ListingMap({ location }: { location?: TLocation | null }
       reuseMaps
       mapLib={import("maplibre-gl")}
       mapStyle={env.MAP_STYLE}
-      initialViewState={initialViewState || BrasilInitialViewState}
+      initialViewState={AddressInitialViewState || BrasilInitialViewState}
       dragRotate={false}
       attributionControl={false}
       minZoom={0}
       maxZoom={20}
-      /** Remove Plugin RTL que não é usado */
       RTLTextPlugin="">
       {!!(longitude && latitude) && <Marker longitude={longitude} latitude={latitude} />}
     </Map>
