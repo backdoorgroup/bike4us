@@ -176,7 +176,6 @@ profileRouter.get("/:uid", async (req, res) => {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
 
-  // TODO: paralelizar esses caras
   const [addressQuery] = await safeAsync(
     getAddress({
       where: {
