@@ -71,8 +71,8 @@ export const routes: RouteObject[] = [
       {
         path: "encontrar",
         element: <SearchPage />,
-        loader: async ({ request: { url: _url } }) => {
-          const url = new URL(_url)
+        loader: async ({ request }) => {
+          const url = new URL(request.url)
           const searchParams = url.searchParams
           const query = searchParams.get("query")
 
