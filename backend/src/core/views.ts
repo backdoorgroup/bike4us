@@ -3,7 +3,7 @@ import { EntityNotFoundError, ILike } from "typeorm"
 
 import type { Paginated } from "~/pagination"
 import { paginate } from "~/pagination"
-import { BadRequestException, NotFoundException } from "~/exceptions"
+import { BadRequestException, NotFoundException, safeAsync } from "~/handling"
 
 import { authenticated, upload } from "~/core/middlewares"
 import {
@@ -24,17 +24,28 @@ export const searchRouter = Router()
 export const profileRouter = Router()
 
 listingsRouter.get("/", async (req, res) => {
-  try {
-    const params = GetListingsSchema.parse(req.query)
+  const [params, paramsError] = await safeAsync(GetListingsSchema.parseAsync(req.query))
 
-    const query = await getListings({ order: { createdAt: "desc" }, relations: { pictures: true } })
-    const paginated = paginate(query, params.page, params.perPage)
-    const listings = paginated.map(serializeListing)
-
-    return res.status(HttpStatus.Ok).json({ listings, count: query.length } as Paginated)
-  } catch (error) {
+  if (!params || paramsError) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
+
+  const query = await getListings({
+    order: {
+      createdAt: "desc"
+    },
+    relations: {
+      pictures: true
+    }
+  })
+
+  const paginated = paginate(query, params.page, params.perPage)
+  const listings = paginated.map(serializeListing)
+
+  return res.status(HttpStatus.Ok).json({
+    listings,
+    count: query.length
+  } as Paginated)
 })
 
 listingsRouter.post("/", authenticated(), upload.array("pictures[]"), async (req, res) => {

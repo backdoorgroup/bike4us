@@ -6,7 +6,7 @@ import type { TAllowedMimetypes } from "~/core/constants"
 import { AllowedMimetypes, MaxFileSize, MaxFiles } from "~/core/constants"
 import { getUser, verifyIdToken } from "~/core/services"
 
-import { UnauthorizedException } from "~/exceptions"
+import { UnauthorizedException } from "~/handling"
 import { settings } from "~/settings"
 
 import { HttpStatus } from "@/http"
