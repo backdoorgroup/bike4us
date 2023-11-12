@@ -50,11 +50,7 @@ listingsRouter.get("/", async (req, res) => {
 })
 
 listingsRouter.post("/", authenticated(), upload.array("pictures[]"), async (req, res) => {
-  /*
-   * TODO: esse endpoint tem um problema.
-   * se o usuário enviar algo que quebre na validação dentro desse try catch,
-   * o Multer não aborta o upload dos arquivos e ele continua salvando arquivos mortos.
-   */
+  // TODO: esse endpoint tem um problema, se o usuário enviar algo que quebre na validação dentro desse try catch, o Multer não aborta o upload dos arquivos e ele continua salvando arquivos mortos.
   const [params, paramsError] = await safeAsync(
     CreateListingSchema.parseAsync({
       ownerUid: req.user?.uid,
