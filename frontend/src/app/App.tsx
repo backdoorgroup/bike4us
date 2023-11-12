@@ -4,7 +4,7 @@ import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme
 } from "@mui/material/styles"
-import orange from "@mui/material/colors/orange"
+import blue from "@mui/material/colors/blue"
 
 import CssBaseline from "@mui/material/CssBaseline"
 import StyledEngineProvider from "@mui/material/StyledEngineProvider"
@@ -28,7 +28,7 @@ const theme = extendTheme(
       light: {
         palette: {
           primary: {
-            main: orange[900]
+            main: blue["A700"]
           }
         }
       }
