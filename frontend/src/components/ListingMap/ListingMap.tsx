@@ -38,7 +38,9 @@ export default function ListingMap({ location }: { location?: TLocation | null }
       dragRotate={false}
       attributionControl={false}
       minZoom={0}
-      maxZoom={20}>
+      maxZoom={20}
+      /** Remove Plugin RTL que não é usado */
+      RTLTextPlugin="">
       {!!(longitude && latitude) && <Marker longitude={longitude} latitude={latitude} />}
     </Map>
   )
