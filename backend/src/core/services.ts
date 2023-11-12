@@ -24,6 +24,9 @@ export const getListings = async (options?: FindManyOptions<Listing>) => await L
 
 export const getListing = async (options: FindOneOptions<Listing>) => await Listing.findOneOrFail(options)
 
+export const getAddress = async (options: FindOneOptions<Address>) => await Address.findOneOrFail(options)
+
+// TODO: Matar esse cara
 export const safeGetAddress = async (options: FindOneOptions<Address>) => await Address.findOne(options)
 
 export const createListing = async (params: TCreateListingSchema) => {

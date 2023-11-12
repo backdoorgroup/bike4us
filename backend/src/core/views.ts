@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { EntityNotFoundError, ILike } from "typeorm"
+import { ILike } from "typeorm"
 
 import type { Paginated } from "~/pagination"
 import { paginate } from "~/pagination"
@@ -15,7 +15,15 @@ import {
   SearchListingsSchema
 } from "~/core/schemas"
 import { serializeAddress, serializeListing } from "~/core/serializers"
-import { createAddress, createListing, getListing, getListings, getUser, safeGetAddress } from "~/core/services"
+import {
+  createAddress,
+  createListing,
+  getAddress,
+  getListing,
+  getListings,
+  getUser,
+  safeGetAddress
+} from "~/core/services"
 
 import { HttpStatus } from "@/http"
 
@@ -78,27 +86,44 @@ listingsRouter.post("/", authenticated(), upload.array("pictures[]"), async (req
 })
 
 listingsRouter.get("/:id", async (req, res) => {
-  try {
-    const params = GetListingSchema.parse({
+  const [params, paramsError] = await safeAsync(
+    GetListingSchema.parseAsync({
       ...req.params
     })
+  )
 
-    const listingQuery = await getListing({ where: { id: params.id }, relations: { pictures: true } })
-    const listing = serializeListing(listingQuery)
-
-    const addressQuery = await safeGetAddress({ where: { ownerUid: listing.ownerUid } })
-    const address = addressQuery ? serializeAddress(addressQuery) : null
-
-    listing.address = address
-
-    return res.status(HttpStatus.Ok).json(listing)
-  } catch (error) {
-    if (error instanceof EntityNotFoundError) {
-      return res.status(HttpStatus.NotFound).json(NotFoundException)
-    }
-
+  if (!params || paramsError) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
+
+  const [listingQuery, listingQueryError] = await safeAsync(
+    getListing({
+      where: {
+        id: params.id
+      },
+      relations: {
+        pictures: true
+      }
+    })
+  )
+
+  if (!listingQuery || listingQueryError) {
+    return res.status(HttpStatus.NotFound).json(NotFoundException)
+  }
+
+  const listing = serializeListing(listingQuery)
+
+  // TODO: não sei se esse cara tá no lugar certo, estudar se tem como melhorar esse fluxo
+  const [addressQuery] = await safeAsync(
+    getAddress({
+      where: {
+        ownerUid: listing.ownerUid
+      }
+    })
+  )
+  listing.address = addressQuery && serializeAddress(addressQuery)
+
+  return res.status(HttpStatus.Ok).json(listing)
 })
 
 searchRouter.get("/listings", async (req, res) => {
