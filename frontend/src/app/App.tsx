@@ -28,7 +28,7 @@ const theme = extendTheme(
       light: {
         palette: {
           primary: {
-            main: blue["A700"]
+            main: blue[800]
           }
         }
       }
