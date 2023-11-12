@@ -3,8 +3,8 @@ import { z } from "zod"
 export const Location = z.object({
   type: z.string(),
   coordinates: z.object({
-    longitude: z.coerce.number(),
-    latitude: z.coerce.number()
+    longitude: z.coerce.number().optional(),
+    latitude: z.coerce.number().optional()
   })
 })
 export type TLocation = z.infer<typeof Location>
