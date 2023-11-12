@@ -53,7 +53,7 @@ listingsRouter.get("/", async (req, res) => {
   return res.status(HttpStatus.Ok).json({
     listings,
     count: query.length
-  } as Paginated)
+  } satisfies Paginated)
 })
 
 listingsRouter.post("/", authenticated(), upload.array("pictures[]"), async (req, res) => {
@@ -127,21 +127,31 @@ listingsRouter.get("/:id", async (req, res) => {
 })
 
 searchRouter.get("/listings", async (req, res) => {
-  try {
-    const params = SearchListingsSchema.parse(req.query)
+  const [params, paramsError] = await safeAsync(SearchListingsSchema.parseAsync(req.query))
 
-    const query = await getListings({
-      where: { title: ILike(`%${params.query}%`) },
-      order: { createdAt: "desc" },
-      relations: { pictures: true }
-    })
-    const paginated = paginate(query, params.page, params.perPage)
-    const listings = paginated.map(serializeListing)
-
-    return res.status(HttpStatus.Ok).json({ listings, count: query.length } as Paginated)
-  } catch (error) {
+  if (!params || paramsError) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
   }
+
+  const query = await getListings({
+    where: {
+      title: ILike(params.query + "%")
+    },
+    order: {
+      createdAt: "desc"
+    },
+    relations: {
+      pictures: true
+    }
+  })
+
+  const paginated = paginate(query, params.page, params.perPage)
+  const listings = paginated.map(serializeListing)
+
+  return res.status(HttpStatus.Ok).json({
+    listings,
+    count: query.length
+  } satisfies Paginated)
 })
 
 profileRouter.get("/", async (req, res) => {
