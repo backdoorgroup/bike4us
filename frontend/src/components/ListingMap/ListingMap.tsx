@@ -31,9 +31,14 @@ export default function ListingMap({ location }: { location?: TLocation | null }
 
   return (
     <Map
+      reuseMaps
       mapLib={import("maplibre-gl")}
+      mapStyle={env.MAP_STYLE}
       initialViewState={initialViewState || BrasilInitialViewState}
-      mapStyle={env.MAP_STYLE}>
+      dragRotate={false}
+      attributionControl={false}
+      minZoom={0}
+      maxZoom={20}>
       {!!(longitude && latitude) && <Marker longitude={longitude} latitude={latitude} />}
     </Map>
   )
