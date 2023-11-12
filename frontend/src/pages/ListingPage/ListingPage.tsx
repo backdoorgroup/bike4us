@@ -16,12 +16,12 @@ import TableContainer from "@mui/material/TableContainer"
 import TableRow from "@mui/material/TableRow"
 import Typography from "@mui/material/Typography"
 
-import type { TListing } from "~/schemas"
+import type { TListing, TProfile } from "~/schemas"
 import { BikeType, Condition, FrameSize, Material, WheelSize } from "~/schemas"
 import { ListingMap } from "~/components"
 
 export default function ListingPage() {
-  const listing = useLoaderData() as TListing
+  const { listing, profile } = useLoaderData() as { listing: TListing; profile: TProfile }
 
   return (
     <Stack className="listing-page" divider={<Divider />}>
@@ -116,7 +116,11 @@ export default function ListingPage() {
         <Stack className="lps-container">
           <Typography variant="h6">Localização</Typography>
 
-          <ListingMap location={listing.address?.location} />
+          <Typography variant="body2" sx={{ color: "text.primary" }}>
+            {profile.address?.neighborhood} - {profile.address?.city}, {profile.address?.state}
+          </Typography>
+
+          <ListingMap location={profile.address?.location} />
         </Stack>
       </Container>
     </Stack>

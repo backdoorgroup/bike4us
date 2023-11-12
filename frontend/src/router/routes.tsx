@@ -38,14 +38,15 @@ export const routes: RouteObject[] = [
 
           try {
             const listing = await ListingsServices.getListing(params.id)
+            const profile = await ProfileServices.getProfile(listing.ownerUid)
 
-            if (listing.address) {
-              const { location } = await BrasilServices.getCEP(listing.address.zipcode)
+            if (profile.address) {
+              const { location } = await BrasilServices.getCEP(profile.address.zipcode)
 
-              listing.address.location = location
+              profile.address.location = location
             }
 
-            return listing
+            return { listing, profile }
           } catch (_) {
             return redirect("/")
           }

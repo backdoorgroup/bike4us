@@ -42,6 +42,6 @@ export type TAddress = z.infer<typeof Address>
 
 export const Profile = z.object({
   user: User.nullable(),
-  address: Address.nullable().optional()
+  address: Address.nullable()
 })
 export type TProfile = z.infer<typeof Profile>

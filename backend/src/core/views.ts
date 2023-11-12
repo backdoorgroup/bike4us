@@ -102,16 +102,6 @@ listingsRouter.get("/:id", async (req, res) => {
 
   const listing = serializeListing(listingQuery)
 
-  // TODO: não sei se esse cara tá no lugar certo, estudar se tem como melhorar esse fluxo
-  const [addressQuery] = await safeAsync(
-    getAddress({
-      where: {
-        ownerUid: listing.ownerUid
-      }
-    })
-  )
-  listing.address = addressQuery && serializeAddress(addressQuery)
-
   return res.status(HttpStatus.Ok).json(listing)
 })
 

@@ -1,4 +1,3 @@
-import type { UserRecord } from "firebase-admin/auth"
 import { Column, Entity, ManyToOne, OneToMany } from "typeorm"
 
 import type { ExtractModel } from "~/database"
@@ -21,10 +20,7 @@ import {
   ListingWheelSizeEnum
 } from "~/core/constants"
 
-export interface IListing extends ExtractModel<Listing> {
-  owner?: UserRecord | null
-  address?: IAddress | null
-}
+export interface IListing extends ExtractModel<Listing> {}
 
 export interface IListingPicture extends ExtractModel<ListingPicture> {}
 

@@ -4,8 +4,14 @@ import type { AddressForm } from "~/forms"
 import { Address, Profile } from "~/schemas"
 
 export const ProfileServices = {
-  getProfile: async () => {
-    const response = await httpClient.get("/profile")
+  getProfile: async (uid?: string) => {
+    let response
+
+    if (!uid) {
+      response = await httpClient.get("/profile")
+    } else {
+      response = await httpClient.get(`/profile/${uid}`)
+    }
 
     const parsed = Profile.parse(response.data)
 
