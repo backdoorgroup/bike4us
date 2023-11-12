@@ -21,7 +21,7 @@ export default function HomeLayout() {
         <Outlet />
       </Box>
 
-      {!basic && <AppNavBottom />}
+      <AppNavBottom basic={basic} />
     </Box>
   )
 }
