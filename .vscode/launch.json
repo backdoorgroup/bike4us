@@ -11,10 +11,8 @@
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}/backend",
       "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
-      "linux": {
-        "program": "${workspaceFolder}/backend/node_modules/.bin/tsx",
-        "args": ["watch", "${workspaceFolder}/backend/src/main.ts"]
-      }
+      "program": "${workspaceFolder}/backend/node_modules/.bin/tsx",
+      "args": ["watch", "${workspaceFolder}/backend/src/main.ts"]
     },
     {
       "name": "Launch Frontend",
@@ -23,10 +21,15 @@
       "console": "integratedTerminal",
       "cwd": "${workspaceFolder}/frontend",
       "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
-      "linux": {
-        "program": "${workspaceFolder}/frontend/node_modules/.bin/vite",
-        "args": ["dev"]
-      }
+      "program": "${workspaceFolder}/frontend/node_modules/.bin/vite",
+      "args": ["dev"]
+    }
+  ],
+  "compounds": [
+    {
+      "name": "Launch Project",
+      "configurations": ["Launch Backend", "Launch Frontend"],
+      "stopAll": true
     }
   ]
 }
