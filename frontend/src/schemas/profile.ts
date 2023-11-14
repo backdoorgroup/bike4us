@@ -1,5 +1,4 @@
 import { z } from "zod"
-import { Location } from "~/schemas"
 
 export const UserMetadata = z.object({
   creationTime: z.string(),
