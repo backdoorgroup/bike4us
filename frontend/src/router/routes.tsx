@@ -1,5 +1,5 @@
 import type { RouteObject } from "react-router-dom"
-import { Navigate, redirect } from "react-router-dom"
+import { Navigate, redirect, defer } from "react-router-dom"
 
 import { HomeLayout } from "~/layouts"
 import {
@@ -12,7 +12,7 @@ import {
   ProfileAddressPage,
   SearchPage
 } from "~/pages"
-import { BrasilServices, ListingsServices, ProfileServices, SearchServices } from "~/services"
+import { ListingsServices, ProfileServices, SearchServices } from "~/services"
 import { useAuthStore } from "~/stores"
 
 export const routes: RouteObject[] = [
@@ -38,15 +38,13 @@ export const routes: RouteObject[] = [
 
           try {
             const listing = await ListingsServices.getListing(params.id)
-            const profile = await ProfileServices.getProfile(listing.ownerUid)
 
-            if (profile.address) {
-              const { location } = await BrasilServices.getCEP(profile.address.zipcode)
+            const deferredProfile = ProfileServices.getProfile(listing.ownerUid)
 
-              profile.address.location = location
-            }
-
-            return { listing, profile }
+            return defer({
+              listing,
+              profile: deferredProfile
+            })
           } catch (_) {
             return redirect("/")
           }

@@ -1,13 +1,15 @@
 import "./ListingPage.scss"
 
-import { useLoaderData } from "react-router-dom"
 import clsx from "clsx"
 import format from "date-fns/format"
+import { Suspense } from "react"
+import { Await, useLoaderData } from "react-router-dom"
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
 import Paper from "@mui/material/Paper"
+import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
 import Table from "@mui/material/Table"
 import TableBody from "@mui/material/TableBody"
@@ -16,12 +18,12 @@ import TableContainer from "@mui/material/TableContainer"
 import TableRow from "@mui/material/TableRow"
 import Typography from "@mui/material/Typography"
 
+import { ListingMap } from "~/components"
 import type { TListing, TProfile } from "~/schemas"
 import { BikeType, Condition, FrameSize, Material, WheelSize } from "~/schemas"
-import { ListingMap } from "~/components"
 
 export default function ListingPage() {
-  const { listing, profile } = useLoaderData() as { listing: TListing; profile: TProfile }
+  const { listing, profile } = useLoaderData() as { listing: TListing; profile: Promise<TProfile> }
 
   return (
     <Stack className="listing-page" divider={<Divider />}>
@@ -116,11 +118,26 @@ export default function ListingPage() {
         <Stack className="lps-container">
           <Typography variant="h6">Localização</Typography>
 
-          <Typography variant="body2" sx={{ color: "text.primary" }}>
-            {profile.address?.neighborhood} - {profile.address?.city}, {profile.address?.state}
-          </Typography>
+          <Suspense
+            fallback={
+              <>
+                <Skeleton variant="rounded" height={20} width="60%" />
+                <Skeleton variant="rounded" height={256} />
+              </>
+            }>
+            <Await resolve={profile}>
+              {/* TODO: pegar a geolocalização */}
+              {(profile: TProfile) => (
+                <>
+                  <Typography variant="body2" sx={{ color: "text.primary" }}>
+                    {profile.address?.neighborhood} - {profile.address?.city}, {profile.address?.state}
+                  </Typography>
 
-          <ListingMap location={profile.address?.location} />
+                  <ListingMap location={profile.address?.location} />
+                </>
+              )}
+            </Await>
+          </Suspense>
         </Stack>
       </Container>
     </Stack>
