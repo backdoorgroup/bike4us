@@ -19,11 +19,11 @@ import TableRow from "@mui/material/TableRow"
 import Typography from "@mui/material/Typography"
 
 import { ListingMap } from "~/components"
-import type { TListing, TProfile } from "~/schemas"
+import type { TListing, TLocations } from "~/schemas"
 import { BikeType, Condition, FrameSize, Material, WheelSize } from "~/schemas"
 
 export default function ListingPage() {
-  const { listing, profile } = useLoaderData() as { listing: TListing; profile: Promise<TProfile> }
+  const { listing, locations } = useLoaderData() as { listing: TListing; locations: Promise<TLocations> }
 
   return (
     <Stack className="listing-page" divider={<Divider />}>
@@ -125,15 +125,14 @@ export default function ListingPage() {
                 <Skeleton variant="rounded" height={256} />
               </>
             }>
-            <Await resolve={profile}>
-              {/* TODO: pegar a geolocalização */}
-              {(profile: TProfile) => (
+            <Await resolve={locations}>
+              {(locations: TLocations) => (
                 <>
                   <Typography variant="body2" sx={{ color: "text.primary" }}>
-                    {profile.address?.neighborhood} - {profile.address?.city}, {profile.address?.state}
+                    {listing.address?.neighborhood} - {listing.address?.city}, {listing.address?.state}
                   </Typography>
 
-                  <ListingMap />
+                  <ListingMap location={locations?.at(0)} />
                 </>
               )}
             </Await>

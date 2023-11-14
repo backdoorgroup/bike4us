@@ -1,12 +1,12 @@
 import "maplibre-gl/dist/maplibre-gl.css"
 import "./ListingMap.scss"
 
-import type { ViewState } from "react-map-gl/maplibre"
+import { useCallback, useMemo, useRef } from "react"
+import type { ViewState, MapRef, LngLatBoundsLike, LngLatLike } from "react-map-gl/maplibre"
 import Map, { Marker } from "react-map-gl/maplibre"
 
 import type { TLocation } from "~/schemas"
 import { env } from "~/env"
-import { useMemo } from "react"
 
 const BrasilInitialViewState: Partial<ViewState> = {
   longitude: -51.92,
@@ -14,28 +14,31 @@ const BrasilInitialViewState: Partial<ViewState> = {
   zoom: 2
 }
 
-export default function ListingMap({ location }: { location?: TLocation | null }) {
-  const [latitude, longitude] = useMemo(
-    () => [location?.coordinates?.latitude, location?.coordinates?.longitude],
-    [location?.coordinates]
-  )
+export default function ListingMap({ location }: { location?: TLocation }) {
+  const mapRef = useRef<MapRef | null>(null)
 
-  const AddressInitialViewState = useMemo<Partial<ViewState> | false>(() => {
-    return (
-      !!(latitude && longitude) && {
-        latitude,
-        longitude,
-        zoom: 13
-      }
-    )
-  }, [latitude, longitude])
+  const [latitude, longitude] = useMemo(() => [location?.lat, location?.lon], [location])
+
+  const fitBounds = useCallback(() => {
+    if (!mapRef.current || !location?.boundingbox || !Array.isArray(location?.boundingbox)) return
+
+    const bbox = location.boundingbox
+    const northEast: LngLatLike = [bbox[2], bbox[0]]
+    const southWest: LngLatLike = [bbox[3], bbox[1]]
+
+    const bounds: LngLatBoundsLike = [northEast, southWest]
+
+    mapRef.current.fitBounds(bounds, { padding: 16, animate: false })
+  }, [location?.boundingbox])
 
   return (
     <Map
       reuseMaps
+      ref={mapRef}
       mapLib={import("maplibre-gl")}
       mapStyle={env.MAP_STYLE}
-      initialViewState={AddressInitialViewState || BrasilInitialViewState}
+      onLoad={fitBounds}
+      initialViewState={BrasilInitialViewState}
       dragRotate={false}
       attributionControl={false}
       minZoom={0}

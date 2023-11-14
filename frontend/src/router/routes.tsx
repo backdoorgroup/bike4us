@@ -12,7 +12,7 @@ import {
   ProfileAddressPage,
   SearchPage
 } from "~/pages"
-import { ListingsServices, ProfileServices, SearchServices } from "~/services"
+import { ListingsServices, ProfileServices, SearchServices, NominatimClient } from "~/services"
 import { useAuthStore } from "~/stores"
 
 export const routes: RouteObject[] = [
@@ -38,12 +38,17 @@ export const routes: RouteObject[] = [
 
           try {
             const listing = await ListingsServices.getListing(params.id)
+            listing.address?.neighborhood
 
-            const deferredProfile = ProfileServices.getProfile(listing.ownerUid)
+            const deferredLocations = NominatimClient.compoundSearch({
+              city: listing.address?.city,
+              street: listing.address?.street,
+              state: listing.address?.state
+            })
 
             return defer({
               listing,
-              profile: deferredProfile
+              locations: deferredLocations
             })
           } catch (_) {
             return redirect("/")

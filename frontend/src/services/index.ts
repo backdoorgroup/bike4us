@@ -1,5 +1,6 @@
 export * as AuthServices from "./auth"
 export * as BrasilServices from "./brasil"
+export * as NominatimClient from "./nominatim"
 export * as ListingsServices from "./listings"
 export * as ProfileServices from "./profile"
 export * as SearchServices from "./search"
