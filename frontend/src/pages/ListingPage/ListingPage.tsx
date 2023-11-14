@@ -133,7 +133,7 @@ export default function ListingPage() {
                     {profile.address?.neighborhood} - {profile.address?.city}, {profile.address?.state}
                   </Typography>
 
-                  <ListingMap location={profile.address?.location} />
+                  <ListingMap />
                 </>
               )}
             </Await>
