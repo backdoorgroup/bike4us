@@ -91,7 +91,8 @@ listingsRouter.get("/:id", async (req, res) => {
         id: params.id
       },
       relations: {
-        pictures: true
+        pictures: true,
+        address: true
       }
     })
   )

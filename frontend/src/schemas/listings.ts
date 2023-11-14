@@ -1,6 +1,7 @@
 import { z } from "zod"
 
 import { env } from "~/env"
+import { Address } from "~/schemas"
 import { extractEnum } from "~/utils"
 
 export const Condition = {
@@ -67,7 +68,8 @@ export const Listing = z.object({
   type: extractEnum(BikeType),
   frameSize: extractEnum(FrameSize),
   wheelSize: extractEnum(WheelSize),
-  material: extractEnum(Material)
+  material: extractEnum(Material),
+  address: Address.optional()
 })
 export type TListing = z.infer<typeof Listing>
 

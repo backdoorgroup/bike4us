@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm"
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm"
 
 import type { ExtractModel } from "~/database"
 import { Model } from "~/database"
@@ -69,6 +69,10 @@ export class Listing extends Model {
 
   @OneToMany(() => ListingPicture, (picture) => picture.listing, { cascade: true })
   pictures: ListingPicture[] | IListingPicture[]
+
+  @ManyToOne(() => Address, (address) => address.ownerUid)
+  @JoinColumn({ name: "ownerUid", referencedColumnName: "ownerUid" })
+  address: Address | IAddress
 }
 
 @Entity()
@@ -94,7 +98,7 @@ export class Address extends Model {
   @Column({ type: "varchar", length: 16 })
   number: string
 
-  @Column({ type: "varchar", length: 128 })
+  @Column({ type: "varchar", length: 128, unique: true })
   ownerUid: string
 
   @Column({ type: "varchar", length: 32 })
