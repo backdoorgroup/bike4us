@@ -122,6 +122,7 @@ export default function ListingPage() {
             fallback={
               <>
                 <Skeleton variant="rounded" height={20} width="60%" />
+
                 <Skeleton variant="rounded" height={256} />
               </>
             }>
