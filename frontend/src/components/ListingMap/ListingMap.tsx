@@ -1,12 +1,12 @@
 import "maplibre-gl/dist/maplibre-gl.css"
 import "./ListingMap.scss"
 
-import { useCallback, useMemo, useRef } from "react"
-import type { ViewState, MapRef, LngLatBoundsLike, LngLatLike } from "react-map-gl/maplibre"
+import { useCallback, useMemo } from "react"
+import type { LngLatBoundsLike, LngLatLike, MapEvent, ViewState } from "react-map-gl/maplibre"
 import Map, { Marker } from "react-map-gl/maplibre"
 
-import type { TLocation } from "~/schemas"
 import { env } from "~/env"
+import type { TLocation } from "~/schemas"
 
 const BrasilInitialViewState: Partial<ViewState> = {
   longitude: -51.92,
@@ -15,28 +15,28 @@ const BrasilInitialViewState: Partial<ViewState> = {
 }
 
 export default function ListingMap({ location }: { location?: TLocation }) {
-  const mapRef = useRef<MapRef | null>(null)
-
   const [latitude, longitude] = useMemo(() => [location?.lat, location?.lon], [location])
+  const bbox = useMemo(() => location?.boundingbox, [location?.boundingbox])
 
-  const fitBounds = useCallback(() => {
-    if (!mapRef.current || !location?.boundingbox || !Array.isArray(location?.boundingbox)) return
+  const fitBounds = useCallback(
+    (event: MapEvent) => {
+      if (!bbox || !Array.isArray(bbox)) return
 
-    const bbox = location.boundingbox
-    const northEast: LngLatLike = [bbox[2], bbox[0]]
-    const southWest: LngLatLike = [bbox[3], bbox[1]]
+      const northEast: LngLatLike = [bbox[2], bbox[0]]
+      const southWest: LngLatLike = [bbox[3], bbox[1]]
 
-    const bounds: LngLatBoundsLike = [northEast, southWest]
+      const bounds: LngLatBoundsLike = [northEast, southWest]
 
-    mapRef.current.fitBounds(bounds, { padding: 16, animate: false })
-  }, [location?.boundingbox])
+      event.target.fitBounds(bounds)
+    },
+    [bbox]
+  )
 
   return (
     <Map
       reuseMaps
-      ref={mapRef}
-      mapLib={import("maplibre-gl")}
       mapStyle={env.MAP_STYLE}
+      mapLib={import("maplibre-gl")}
       onLoad={fitBounds}
       initialViewState={BrasilInitialViewState}
       dragRotate={false}
