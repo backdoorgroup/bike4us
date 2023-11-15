@@ -9,8 +9,26 @@
 
     .lps-hero {
       .lpsh-header {
-        .lpshh-condition {
-          color: var(--mui-palette-text-secondary);
+        .lpshh-headline {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+
+          .lpshhh-condition {
+            color: var(--mui-palette-text-secondary);
+            line-height: 1;
+          }
+
+          .lpshhh-rating {
+            flex-direction: row;
+            align-items: center;
+            gap: 4px;
+
+            .lpshhhr-text {
+              color: var(--mui-palette-text-secondary);
+              line-height: 1;
+            }
+          }
         }
       }
 
