@@ -15,8 +15,8 @@ import IconButton from "@mui/material/IconButton"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
-import type { ListingForm } from "@/forms"
-import { PicturesValidation } from "@/forms"
+import type { ListingForm } from "~/forms"
+import { PicturesValidation } from "~/forms"
 
 export default function AnnounceImageUpload({ control }: { control: Control<ListingForm> }) {
   const formState = useFormState({
@@ -28,6 +28,7 @@ export default function AnnounceImageUpload({ control }: { control: Control<List
     control
   })
   const field = useFieldArray({
+    // TODO: Resolver o problema de tipagem
     // @ts-expect-error Existe um erro na biblioteca
     name: "pictures",
     control

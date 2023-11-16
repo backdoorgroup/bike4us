@@ -4,21 +4,19 @@ import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme
 } from "@mui/material/styles"
-import teal from "@mui/material/colors/teal"
+import blue from "@mui/material/colors/blue"
 
 import CssBaseline from "@mui/material/CssBaseline"
 import StyledEngineProvider from "@mui/material/StyledEngineProvider"
 import { ptBR as muiLocale } from "@mui/material/locale"
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns"
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider"
-import { ptBR as muixLocale } from "@mui/x-date-pickers/locales"
-import dateFnsLocale from "date-fns/locale/pt-BR"
-import setDefaultOptions from "date-fns/setDefaultOptions"
 
 import { CacheProvider } from "@emotion/react"
 import createCache from "@emotion/cache"
 
-import { router } from "@/router"
+import dateFnsLocale from "date-fns/locale/pt-BR"
+import setDefaultOptions from "date-fns/setDefaultOptions"
+
+import { router } from "~/router"
 
 setDefaultOptions({
   locale: dateFnsLocale
@@ -30,14 +28,7 @@ const theme = extendTheme(
       light: {
         palette: {
           primary: {
-            main: teal[700]
-          }
-        }
-      },
-      dark: {
-        palette: {
-          primary: {
-            main: teal[500]
+            main: blue[800]
           }
         }
       }
@@ -63,13 +54,8 @@ export default function App() {
     <CacheProvider value={cache}>
       <StyledEngineProvider injectFirst>
         <CssVarsProvider theme={theme}>
-          <LocalizationProvider
-            dateAdapter={AdapterDateFns}
-            adapterLocale={dateFnsLocale}
-            localeText={muixLocale.components.MuiLocalizationProvider.defaultProps.localeText}>
-            <CssBaseline />
-            <RouterProvider router={router} />
-          </LocalizationProvider>
+          <CssBaseline />
+          <RouterProvider router={router} />
         </CssVarsProvider>
       </StyledEngineProvider>
     </CacheProvider>

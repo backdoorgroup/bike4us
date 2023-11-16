@@ -1,6 +1,6 @@
 import { z } from "zod"
 
-import { PaginationSchema } from "@/schemas"
+import { PaginationSchema } from "~/schemas"
 
 import {
   ListingConditionEnum,
@@ -8,7 +8,7 @@ import {
   ListingMaterialEnum,
   ListingWheelSizeEnum,
   ListingTypeEnum
-} from "@/listings/constants"
+} from "~/core/constants"
 
 export const FileSchema = z.object({
   destination: z.string().min(1),
@@ -40,3 +40,23 @@ export const GetListingsSchema = PaginationSchema.extend({})
 export const GetListingSchema = z.object({
   id: z.coerce.number().int().positive()
 })
+
+export const SearchListingsSchema = PaginationSchema.extend({
+  query: z.string().min(1).max(512)
+})
+
+export const GetProfileSchema = z.object({
+  uid: z.string().min(1).max(128)
+})
+
+export const CreateAddressSchema = z.object({
+  city: z.string().min(1).max(64),
+  complement: z.string().max(256).optional(),
+  neighborhood: z.string().min(1).max(256),
+  number: z.string().min(1).max(16),
+  ownerUid: z.string().min(1).max(128),
+  state: z.string().min(1).max(32),
+  street: z.string().min(1).max(256),
+  zipcode: z.string().length(8)
+})
+export type TCreateAddressSchema = z.infer<typeof CreateAddressSchema>

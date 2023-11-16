@@ -1,6 +1,7 @@
 import "./AppNavBottom.scss"
 
 import { NavLink, useLocation } from "react-router-dom"
+import clsx from "clsx"
 
 import BottomNavigation from "@mui/material/BottomNavigation"
 import BottomNavigationAction from "@mui/material/BottomNavigationAction"
@@ -11,11 +12,15 @@ const NavigationEnum = {
   Announce: "/anunciar"
 } as const
 
-export default function AppNavBottom() {
+export default function AppNavBottom({ basic }: { basic?: boolean }) {
   const { pathname } = useLocation()
 
   return (
-    <BottomNavigation className="app-nav-bottom" component="footer" showLabels value={pathname}>
+    <BottomNavigation
+      className={clsx("app-nav-bottom", { hidden: basic })}
+      component="footer"
+      showLabels
+      value={pathname}>
       <BottomNavigationAction
         label="Encontrar"
         component={NavLink}

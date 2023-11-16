@@ -1,7 +1,8 @@
 import { z } from "zod"
 
-import { settings } from "@config"
-import { extractEnum } from "@/utils"
+import { env } from "~/env"
+import { Address } from "~/schemas"
+import { extractEnum } from "~/utils"
 
 export const Condition = {
   "new": "Novo",
@@ -48,7 +49,7 @@ export const Material = {
 
 export const ListingPicture = z.object({
   id: z.number(),
-  path: z.string().transform((path) => settings.STATIC_URL + path)
+  path: z.string().transform((path) => env.STATIC_URL + path)
 })
 export type TListingPicture = z.infer<typeof ListingPicture>
 
@@ -67,7 +68,8 @@ export const Listing = z.object({
   type: extractEnum(BikeType),
   frameSize: extractEnum(FrameSize),
   wheelSize: extractEnum(WheelSize),
-  material: extractEnum(Material)
+  material: extractEnum(Material),
+  address: Address.optional()
 })
 export type TListing = z.infer<typeof Listing>
 

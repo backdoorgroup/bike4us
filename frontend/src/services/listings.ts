@@ -1,30 +1,28 @@
-import { httpClient } from "@/services/clients"
-import { ListingsResponse, Listing } from "@/schemas"
+import { httpClient } from "~/services/clients"
+import { ListingsResponse, Listing } from "~/schemas"
 
-import type { ListingForm } from "@/forms"
+import type { ListingForm } from "~/forms"
 
-export const ListingsServices = {
-  createListing: async (listing: ListingForm) => {
-    const response = await httpClient.postForm("/listings", listing)
+export const createListing = async (listing: ListingForm) => {
+  const response = await httpClient.postForm("/listings", listing)
 
-    const parsed = Listing.parse(response.data)
+  const parsed = Listing.parse(response.data)
 
-    return parsed
-  },
+  return parsed
+}
 
-  getListing: async (id: number | string) => {
-    const response = await httpClient.get(`/listings/${id}`)
+export const getListing = async (id: number | string) => {
+  const response = await httpClient.get(`/listings/${id}`)
 
-    const parsed = Listing.parse(response.data)
+  const parsed = Listing.parse(response.data)
 
-    return parsed
-  },
+  return parsed
+}
 
-  getListings: async () => {
-    const response = await httpClient.get("/listings")
+export const getListings = async () => {
+  const response = await httpClient.get("/listings")
 
-    const parsed = ListingsResponse.parse(response.data)
+  const parsed = ListingsResponse.parse(response.data)
 
-    return parsed
-  }
+  return parsed
 }

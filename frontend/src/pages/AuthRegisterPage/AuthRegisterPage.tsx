@@ -15,8 +15,9 @@ import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 
-import { EmailValidation, PasswordValidation, RegisterForm } from "@/forms"
-import { AuthServices } from "@/services"
+import type { RegisterForm } from "~/forms"
+import { EmailValidation, PasswordValidation } from "~/forms"
+import { AuthServices } from "~/services"
 
 export default function AuthRegisterPage() {
   const navigate = useNavigate()

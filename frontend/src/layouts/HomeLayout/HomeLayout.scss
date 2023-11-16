@@ -1,5 +1,9 @@
 .home-layout {
   .hl-main {
     padding-bottom: 56px;
+
+    &.basic {
+      padding-bottom: 0px;
+    }
   }
 }

@@ -1,3 +1,5 @@
+# TODO: fazer o dockerfile do front e backend
+
 services:
   postgres:
     image: postgres:14.2

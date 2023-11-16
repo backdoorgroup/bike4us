@@ -1,8 +1,15 @@
 export const HttpStatus = {
+  /**
+   * Informational Responses (100 - 199)
+   */
   Continue: 100,
   SwitchingProtocols: 101,
   Processing: 102,
   EarlyHints: 103,
+
+  /**
+   * Successful Responses (200 - 299)
+   */
   Ok: 200,
   Created: 201,
   Accepted: 202,
@@ -13,6 +20,10 @@ export const HttpStatus = {
   MultiStatus: 207,
   AlreadyReported: 208,
   ImUsed: 226,
+
+  /**
+   * Redirection Responses (300 - 399)
+   */
   MultipleChoices: 300,
   MovedPermanently: 301,
   Found: 302,
@@ -22,6 +33,10 @@ export const HttpStatus = {
   Unused: 306,
   TemporaryRedirect: 307,
   PermanentRedirect: 308,
+
+  /**
+   * Client Error Responses (400 - 499)
+   */
   BadRequest: 400,
   Unauthorized: 401,
   PaymentRequired: 402,
@@ -51,6 +66,10 @@ export const HttpStatus = {
   TooManyRequests: 429,
   RequestHeaderFieldsTooLarge: 431,
   UnavailableForLegalReasons: 451,
+
+  /**
+   * Server Error Responses (500 - 599)
+   */
   InternalServerError: 500,
   NotImplemented: 501,
   BadGateway: 502,

@@ -1,10 +1,11 @@
 import "./HomeLayout.scss"
 
 import { Outlet, ScrollRestoration, useLocation } from "react-router-dom"
+import clsx from "clsx"
 
 import Box from "@mui/material/Box"
 
-import { AppNavBar, AppNavBottom } from "@/components"
+import { AppNavBar, AppNavBottom } from "~/components"
 
 export default function HomeLayout() {
   const { pathname } = useLocation()
@@ -17,11 +18,11 @@ export default function HomeLayout() {
 
       <AppNavBar basic={basic} />
 
-      <Box className="hl-main" component="main">
+      <Box className={clsx("hl-main", { basic })} component="main">
         <Outlet />
       </Box>
 
-      {!basic && <AppNavBottom />}
+      <AppNavBottom basic={basic} />
     </Box>
   )
 }

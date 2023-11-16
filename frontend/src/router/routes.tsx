@@ -1,8 +1,19 @@
 import type { RouteObject } from "react-router-dom"
-import { Navigate, redirect } from "react-router-dom"
+import { Navigate, redirect, defer } from "react-router-dom"
 
-import { redirectAuthorizedLoader, redirectUnauthorizedLoader } from "@/router/loaders"
-
+import { HomeLayout } from "~/layouts"
+import {
+  AnnouncePage,
+  AuthLoginPage,
+  AuthRegisterPage,
+  ErrorPage,
+  HomePage,
+  ListingPage,
+  ProfileAddressPage,
+  SearchPage
+} from "~/pages"
+import { ListingsServices, ProfileServices, SearchServices, NominatimClient } from "~/services"
+import { useAuthStore } from "~/stores"
 import { HomeLayout } from "@/layouts"
 import {
   AnnouncePage,
@@ -25,9 +36,9 @@ export const routes: RouteObject[] = [
         index: true,
         element: <HomePage />,
         loader: async () => {
-          const data = await ListingsServices.getListings()
+          const listings = await ListingsServices.getListings()
 
-          return data
+          return listings
         }
       },
 
@@ -38,9 +49,19 @@ export const routes: RouteObject[] = [
           if (!params.id) return redirect("/")
 
           try {
-            const data = await ListingsServices.getListing(params.id)
+            const listing = await ListingsServices.getListing(params.id)
+            listing.address?.neighborhood
 
-            return data
+            const deferredLocations = NominatimClient.compoundSearch({
+              city: listing.address?.city,
+              street: listing.address?.street,
+              state: listing.address?.state
+            })
+
+            return defer({
+              listing,
+              locations: deferredLocations
+            })
           } catch (_) {
             return redirect("/")
           }
@@ -50,23 +71,33 @@ export const routes: RouteObject[] = [
       {
         path: "anunciar",
         element: <AnnouncePage />,
-        loader: redirectUnauthorizedLoader
+        loader: async () => {
+          const { user } = useAuthStore.getState()
+
+          if (!user?.uid) return redirect("/auth")
+
+          const profile = await ProfileServices.getProfile()
+
+          if (!profile.address) return redirect("/perfil/endereco")
+
+          return null
+        }
       },
 
       {
         path: "encontrar",
         element: <SearchPage />,
-        loader: async ({ request: { url: _url } }) => {
-          const url = new URL(_url)
+        loader: async ({ request }) => {
+          const url = new URL(request.url)
           const searchParams = url.searchParams
           const query = searchParams.get("query")
 
           if (!query) return redirect("/")
 
           try {
-            const data = await SearchServices.searchListings(query)
+            const listings = await SearchServices.searchListings(query)
 
-            return data
+            return listings
           } catch (_) {
             return redirect("/")
           }
@@ -75,7 +106,13 @@ export const routes: RouteObject[] = [
 
       {
         path: "auth",
-        loader: redirectAuthorizedLoader,
+        loader: () => {
+          const { user } = useAuthStore.getState()
+
+          if (user?.uid) return redirect("/")
+
+          return null
+        },
         children: [
           {
             path: "*",
@@ -89,6 +126,32 @@ export const routes: RouteObject[] = [
           {
             path: "cadastrar",
             element: <AuthRegisterPage />
+          }
+        ]
+      },
+
+      {
+        path: "perfil",
+        loader: async () => {
+          const { user } = useAuthStore.getState()
+
+          if (!user?.uid) return redirect("/auth")
+
+          return null
+        },
+        children: [
+          {
+            path: "endereco",
+            element: <ProfileAddressPage />,
+            loader: async () => {
+              const profile = await ProfileServices.getProfile()
+
+              // Isso aqui é pra travar um cara que já tem endereço de ficar criando anúncios
+              // TODO: melhorar isso
+              if (profile.address) return redirect("/")
+
+              return null
+            }
           }
         ]
       },

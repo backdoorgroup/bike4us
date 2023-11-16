@@ -1,4 +1,4 @@
-export const settings = {
+export const env = {
   get FB_API_KEY() {
     return import.meta.env._FB_API_KEY
   },
@@ -30,5 +30,15 @@ export const settings = {
   },
   get STATIC_URL() {
     return this.BACKEND_URL + "static/"
+  },
+
+  get MAP_STYLE_TOKEN() {
+    return import.meta.env._MAP_STYLE_TOKEN
+  },
+  get MAP_STYLE_URL() {
+    return import.meta.env._MAP_STYLE_URL
+  },
+  get MAP_STYLE() {
+    return `${this.MAP_STYLE_URL}?key=${this.MAP_STYLE_TOKEN}`
   }
 } as const

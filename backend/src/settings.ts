@@ -19,8 +19,11 @@ export const settings = {
   get EXPRESS_PROD() {
     return settings.EXPRESS_MODE === "prod"
   },
-  get EXPRESS_STATIC_PATH() {
-    return path.join(__dirname, "/static")
+  get EXPRESS_ROOT() {
+    return __dirname
+  },
+  get EXPRESS_STATIC() {
+    return path.join(this.EXPRESS_ROOT, "/static")
   },
 
   // Database Connection

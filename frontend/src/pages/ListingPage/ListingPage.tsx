@@ -1,13 +1,15 @@
 import "./ListingPage.scss"
 
-import { useLoaderData } from "react-router-dom"
 import clsx from "clsx"
 import format from "date-fns/format"
+import { Suspense } from "react"
+import { Await, useLoaderData } from "react-router-dom"
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
 import Paper from "@mui/material/Paper"
+import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
 import Table from "@mui/material/Table"
 import TableBody from "@mui/material/TableBody"
@@ -16,11 +18,12 @@ import TableContainer from "@mui/material/TableContainer"
 import TableRow from "@mui/material/TableRow"
 import Typography from "@mui/material/Typography"
 
-import type { TListing } from "@/schemas"
-import { BikeType, Condition, FrameSize, Material, WheelSize } from "@/schemas"
+import { ListingMap } from "~/components"
+import type { TListing, TLocations } from "~/schemas"
+import { BikeType, Condition, FrameSize, Material, WheelSize } from "~/schemas"
 
 export default function ListingPage() {
-  const listing = useLoaderData() as TListing
+  const { listing, locations } = useLoaderData() as { listing: TListing; locations: Promise<TLocations> }
 
   return (
     <Stack className="listing-page" divider={<Divider />}>
@@ -108,6 +111,33 @@ export default function ListingPage() {
               </TableBody>
             </Table>
           </TableContainer>
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
+        <Stack className="lps-container">
+          <Typography variant="h6">Localização</Typography>
+
+          <Suspense
+            fallback={
+              <>
+                <Skeleton variant="rounded" height={20} width="60%" />
+
+                <Skeleton variant="rounded" height={256} />
+              </>
+            }>
+            <Await resolve={locations}>
+              {(locations: TLocations) => (
+                <>
+                  <Typography variant="body2" sx={{ color: "text.primary" }}>
+                    {listing.address?.neighborhood} - {listing.address?.city}, {listing.address?.state}
+                  </Typography>
+
+                  <ListingMap location={locations?.at(0)} />
+                </>
+              )}
+            </Await>
+          </Suspense>
         </Stack>
       </Container>
     </Stack>

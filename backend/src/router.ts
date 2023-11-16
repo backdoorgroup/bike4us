@@ -1,9 +1,9 @@
 import { Router } from "express"
 
-import { router as listingsRouter } from "@/listings/views"
-import { router as searchRouter } from "@/search/views"
+import { listingsRouter, searchRouter, profileRouter } from "~/core/views"
 
 export const router = Router()
 
 router.use("/listings", listingsRouter)
 router.use("/search", searchRouter)
+router.use("/profile", profileRouter)

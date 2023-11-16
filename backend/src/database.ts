@@ -1,7 +1,7 @@
 import path from "path"
 import { BaseEntity, DataSource, PrimaryGeneratedColumn } from "typeorm"
 
-import { settings } from "@/settings"
+import { settings } from "~/settings"
 
 export const dataSource = new DataSource({
   type: "postgres",
@@ -13,7 +13,7 @@ export const dataSource = new DataSource({
   username: settings.DB_USER,
   password: settings.DB_PASSWORD,
 
-  entities: [path.join(__dirname, "**/models.{ts,js}")],
+  entities: [path.join(settings.EXPRESS_ROOT, "**/models.{ts,js}")],
 
   logger: "file",
   logging: settings.DB_LOGGING,
@@ -28,3 +28,5 @@ export class Model extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
 }
+
+export type ExtractModel<T> = Pick<T, Exclude<keyof T, keyof BaseEntity>>

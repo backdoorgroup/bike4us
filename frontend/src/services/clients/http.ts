@@ -1,11 +1,11 @@
 import axios from "axios"
 
-import { authClient } from "@/services/clients"
-import { useAuthStore } from "@/stores"
-import { settings } from "@config"
+import { authClient } from "~/services/clients"
+import { useAuthStore } from "~/stores"
+import { env } from "~/env"
 
 export const httpClient = axios.create({
-  baseURL: settings.API_URL
+  baseURL: env.API_URL
 })
 
 httpClient.interceptors.request.use(

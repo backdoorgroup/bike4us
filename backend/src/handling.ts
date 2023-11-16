@@ -1,4 +1,4 @@
-import { HttpStatus } from "@lib/http"
+import { HttpStatus } from "@/http"
 
 export interface Exception {
   status: (typeof HttpStatus)[keyof typeof HttpStatus]
@@ -23,3 +23,13 @@ export const NotFoundException = {
   message: "Not Found",
   detail: "The resource that you are looking for does not exist."
 } satisfies Exception
+
+export const safeAsync = async <T>(promise: Promise<T>) => {
+  try {
+    const data = await promise
+
+    return [data, null] as const
+  } catch (error) {
+    return [null, error] as const
+  }
+}

@@ -1,6 +1,8 @@
-import { Column, Entity, ManyToOne, OneToMany } from "typeorm"
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm"
 
-import { Model } from "@/database"
+import type { ExtractModel } from "~/database"
+import { Model } from "~/database"
+
 import type {
   TListingConditionEnum,
   TListingFrameSizeEnum,
@@ -8,7 +10,7 @@ import type {
   TListingStatus,
   TListingTypeEnum,
   TListingWheelSizeEnum
-} from "@/listings/constants"
+} from "~/core/constants"
 import {
   ListingConditionEnum,
   ListingFrameSizeEnum,
@@ -16,7 +18,13 @@ import {
   ListingStatusEnum,
   ListingTypeEnum,
   ListingWheelSizeEnum
-} from "@/listings/constants"
+} from "~/core/constants"
+
+export interface IListing extends ExtractModel<Listing> {}
+
+export interface IListingPicture extends ExtractModel<ListingPicture> {}
+
+export interface IAddress extends ExtractModel<Address> {}
 
 @Entity()
 export class Listing extends Model {
@@ -27,7 +35,7 @@ export class Listing extends Model {
   createdAt: Date
 
   @Column({ type: "timestamptz", nullable: true })
-  updatedAt: Date
+  updatedAt?: Date
 
   @Column({ type: "varchar", length: 128 })
   title: string
@@ -60,7 +68,11 @@ export class Listing extends Model {
   material: TListingMaterialEnum
 
   @OneToMany(() => ListingPicture, (picture) => picture.listing, { cascade: true })
-  pictures: ListingPicture[]
+  pictures: ListingPicture[] | IListingPicture[]
+
+  @ManyToOne(() => Address, (address) => address.ownerUid)
+  @JoinColumn({ name: "ownerUid", referencedColumnName: "ownerUid" })
+  address: Address | IAddress
 }
 
 @Entity()
@@ -70,4 +82,31 @@ export class ListingPicture extends Model {
 
   @Column({ type: "varchar", length: 512, unique: true })
   path: string
+}
+
+@Entity()
+export class Address extends Model {
+  @Column({ type: "varchar", length: 64 })
+  city: string
+
+  @Column({ type: "varchar", length: 256, nullable: true })
+  complement?: string
+
+  @Column({ type: "varchar", length: 256 })
+  neighborhood: string
+
+  @Column({ type: "varchar", length: 16 })
+  number: string
+
+  @Column({ type: "varchar", length: 128, unique: true })
+  ownerUid: string
+
+  @Column({ type: "varchar", length: 32 })
+  state: string
+
+  @Column({ type: "varchar", length: 256 })
+  street: string
+
+  @Column({ type: "char", length: 8 })
+  zipcode: string
 }

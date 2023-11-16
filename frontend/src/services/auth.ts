@@ -1,18 +1,19 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth"
+import * as firebase from "firebase/auth"
 
-import { authClient, googleProvider } from "@/services/clients"
+import { authClient, googleProvider } from "~/services/clients"
 
-export const AuthServices = {
-  signInWithEmailAndPassword: async (email: string, password: string) => {
-    return await signInWithEmailAndPassword(authClient, email, password)
-  },
-  signInWithGooglePopup: async () => {
-    return await signInWithPopup(authClient, googleProvider)
-  },
-  signOut: async () => {
-    return await signOut(authClient)
-  },
-  createUserWithEmailAndPassword: async (email: string, password: string) => {
-    return await createUserWithEmailAndPassword(authClient, email, password)
-  }
+export const signInWithEmailAndPassword = async (email: string, password: string) => {
+  return await firebase.signInWithEmailAndPassword(authClient, email, password)
+}
+
+export const signInWithGooglePopup = async () => {
+  return await firebase.signInWithPopup(authClient, googleProvider)
+}
+
+export const signOut = async () => {
+  return await firebase.signOut(authClient)
+}
+
+export const createUserWithEmailAndPassword = async (email: string, password: string) => {
+  return await firebase.createUserWithEmailAndPassword(authClient, email, password)
 }

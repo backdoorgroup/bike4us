@@ -1,0 +1,31 @@
+.profile-address-page {
+  padding-top: 32px;
+  padding-bottom: 32px;
+
+  .pap-title {
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .pap-form {
+    gap: 32px;
+
+    .papf-fields {
+      gap: 16px;
+
+      .papff-same-line {
+        flex-direction: row;
+        gap: 16px;
+
+        .papffsl-fixed {
+          width: 180px;
+        }
+      }
+    }
+
+    .papf-actions {
+      gap: 8px;
+    }
+  }
+}
