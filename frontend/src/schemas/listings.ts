@@ -69,15 +69,21 @@ export const Listing = z.object({
   frameSize: extractEnum(FrameSize),
   wheelSize: extractEnum(WheelSize),
   material: extractEnum(Material),
-  address: Address.optional()
+  address: Address
 })
 export type TListing = z.infer<typeof Listing>
+
+export const ReducedListing = Listing.omit({ address: true })
+export type TReducedListing = z.infer<typeof ReducedListing>
 
 export const Listings = z.array(Listing)
 export type TListings = z.infer<typeof Listings>
 
+export const ReducedListings = z.array(ReducedListing)
+export type TReducedListings = z.infer<typeof ReducedListings>
+
 export const ListingsResponse = z.object({
-  listings: Listings,
+  listings: ReducedListings,
   count: z.number()
 })
 export type TListingsResponse = z.infer<typeof ListingsResponse>

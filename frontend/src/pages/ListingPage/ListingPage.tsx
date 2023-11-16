@@ -14,13 +14,20 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
 import { ListingMap, ListingRating, ListingTable } from "~/components"
-import type { TListing, TLocations } from "~/schemas"
+import type { TListing, TLocations, TAddress } from "~/schemas"
 import { Condition } from "~/schemas"
 import { useAuthStore } from "~/stores"
 
 export default function ListingPage() {
   const { listing, locations } = useLoaderData() as { listing: TListing; locations: Promise<TLocations> }
   const { user } = useAuthStore()
+
+  // TODO: colocar uma máscara
+  const formatAddress = (address: TAddress) =>
+    `${address.street} - ${address.neighborhood}, ${address.city} - ${address.state}, ${address.zipcode.slice(
+      0,
+      5
+    )}-${address.zipcode.slice(4, 7)}`
 
   return (
     <Stack className="listing-page" divider={<Divider />}>
@@ -79,6 +86,14 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
+        <Stack className="lps-container">
+          <Typography variant="h6">Avaliação</Typography>
+
+          <ListingRating user={user} />
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
         <Stack className="lps-container lps-description">
           <Typography variant="h6">Descrição</Typography>
 
@@ -112,7 +127,7 @@ export default function ListingPage() {
               {(locations: TLocations) => (
                 <>
                   <Typography variant="body2" sx={{ color: "text.primary" }}>
-                    {listing.address?.neighborhood} - {listing.address?.city}, {listing.address?.state}
+                    {formatAddress(listing.address)}
                   </Typography>
 
                   <ListingMap location={locations?.at(0)} />
@@ -120,14 +135,6 @@ export default function ListingPage() {
               )}
             </Await>
           </Suspense>
-        </Stack>
-      </Container>
-
-      <Container className="lp-section">
-        <Stack className="lps-container">
-          <Typography variant="h6">Avaliação</Typography>
-
-          <ListingRating user={user} />
         </Stack>
       </Container>
     </Stack>

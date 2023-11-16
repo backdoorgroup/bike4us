@@ -12,7 +12,7 @@ import CardMedia from "@mui/material/CardMedia"
 import CardContent from "@mui/material/CardContent"
 import Typography from "@mui/material/Typography"
 
-import type { TListing, TListingPicture } from "~/schemas"
+import type { TListingPicture, TReducedListing } from "~/schemas"
 
 const Directions = {
   Row: "row",
@@ -25,7 +25,7 @@ export default function ListingCard({
   fullWidth = false,
   direction = Directions.Column
 }: {
-  listing: TListing
+  listing: TReducedListing
   fullWidth?: boolean
   direction?: TDirections
 }) {
