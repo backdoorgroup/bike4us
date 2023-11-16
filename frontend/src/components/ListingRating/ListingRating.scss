@@ -1,0 +1,38 @@
+.listing-rating {
+  gap: 24px;
+  align-items: center;
+
+  .lr-feedback {
+    flex-direction: row;
+    width: 100%;
+    gap: 24px;
+
+    .lrf-distribution {
+      width: 100%;
+      gap: 8px;
+    }
+
+    .lrf-details {
+      align-items: center;
+
+      .lrfd-title {
+        line-height: 1;
+      }
+
+      .lrfd-rating {
+        color: var(--mui-palette-rating);
+      }
+
+      .lrfd-total {
+        color: var(--mui-palette-text-secondary);
+      }
+    }
+  }
+
+  .lr-actions {
+    .lra-helper {
+      color: var(--mui-palette-action-disabled);
+      line-height: 2;
+    }
+  }
+}
