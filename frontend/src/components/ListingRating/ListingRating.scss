@@ -46,6 +46,8 @@
   }
 
   .lrd-content {
+    padding-bottom: 0;
+
     .lrdc-rating {
       color: var(--mui-palette-rating);
     }
@@ -53,5 +55,6 @@
 
   .lrd-actions {
     justify-content: center;
+    padding: 16px 24px;
   }
 }
