@@ -39,3 +39,19 @@
     }
   }
 }
+
+.listing-rating-dialog {
+  .lrd-title {
+    text-align: center;
+  }
+
+  .lrd-content {
+    .lrdc-rating {
+      color: var(--mui-palette-rating);
+    }
+  }
+
+  .lrd-actions {
+    justify-content: center;
+  }
+}

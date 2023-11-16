@@ -43,7 +43,7 @@ export default function ListingPage() {
                   4.5
                 </Typography>
 
-                <Rating readOnly defaultValue={4.5} precision={0.5} size="small" sx={{ color: "rating" }} />
+                <Rating readOnly defaultValue={4.5} precision={0.1} size="small" sx={{ color: "rating" }} />
 
                 <Typography className="lpshhhr-text" variant="caption">
                   (48)
