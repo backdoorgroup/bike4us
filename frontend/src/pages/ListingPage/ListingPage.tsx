@@ -11,20 +11,14 @@ import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
 import Icon from "@mui/material/Icon"
 import LinearProgress from "@mui/material/LinearProgress"
-import Paper from "@mui/material/Paper"
 import Rating from "@mui/material/Rating"
 import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
-import Table from "@mui/material/Table"
-import TableBody from "@mui/material/TableBody"
-import TableCell from "@mui/material/TableCell"
-import TableContainer from "@mui/material/TableContainer"
-import TableRow from "@mui/material/TableRow"
 import Typography from "@mui/material/Typography"
 
-import { ListingMap } from "~/components"
+import { ListingMap, ListingTable } from "~/components"
 import type { TListing, TLocations } from "~/schemas"
-import { BikeType, Condition, FrameSize, Material, WheelSize } from "~/schemas"
+import { Condition } from "~/schemas"
 import { useAuthStore } from "~/stores"
 
 export default function ListingPage() {
@@ -98,39 +92,10 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
-        <Stack className="lps-container lps-details">
+        <Stack className="lps-container">
           <Typography variant="h6">Detalhes</Typography>
 
-          <TableContainer className="lpsd-table-container" variant="outlined" component={Paper}>
-            <Table size="small">
-              <TableBody>
-                <TableRow>
-                  <TableCell>Tipo de Bicicleta</TableCell>
-                  <TableCell>{BikeType[listing.type]}</TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>Marca</TableCell>
-                  <TableCell>{listing.brand}</TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>Quadro</TableCell>
-                  <TableCell>{FrameSize[listing.frameSize]}</TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>Aro</TableCell>
-                  <TableCell>{WheelSize[listing.wheelSize]}</TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>Material</TableCell>
-                  <TableCell>{Material[listing.material]}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <ListingTable listing={listing} />
         </Stack>
       </Container>
 

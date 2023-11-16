@@ -1,0 +1,21 @@
+.listing-table {
+  border-radius: 4px;
+
+  table {
+    tr {
+      :first-child {
+        font-weight: 500;
+      }
+
+      &:nth-of-type(odd) {
+        background: var(--mui-palette-action-hover);
+      }
+
+      &:last-child {
+        * {
+          border-bottom: 0px;
+        }
+      }
+    }
+  }
+}

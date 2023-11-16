@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 import type { PaletteOptions as MuiPaletteOptions, Palette as MuiPalette } from "@mui/material/styles"
 
 declare module "@mui/material/styles" {
