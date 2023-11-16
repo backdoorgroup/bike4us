@@ -130,6 +130,12 @@ export default function ListingPage() {
                   </Typography>
 
                   <ListingMap location={locations?.at(0)} />
+
+                  {!locations?.at(0) && (
+                    <Typography variant="caption" sx={{ color: "text.secondary" }}>
+                      Não foi possível encontrar a localização precisa deste anunciante
+                    </Typography>
+                  )}
                 </>
               )}
             </Await>

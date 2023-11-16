@@ -42,7 +42,7 @@ export const routes: RouteObject[] = [
 
             const deferredLocations = NominatimClient.compoundSearch({
               city: listing.address?.city,
-              street: listing.address?.street,
+              street: `${listing.address?.street}, ${listing.address?.number}`,
               state: listing.address?.state
             })
 

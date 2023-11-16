@@ -15,7 +15,7 @@ const BrasilInitialViewState: Partial<ViewState> = {
 }
 
 export default function ListingMap({ location }: { location?: TLocation }) {
-  const [latitude, longitude] = useMemo(() => [location?.lat, location?.lon], [location])
+  const [longitude, latitude] = useMemo(() => [location?.lon, location?.lat], [location])
   const bbox = useMemo(() => location?.boundingbox, [location?.boundingbox])
 
   const fitBounds = useCallback(
