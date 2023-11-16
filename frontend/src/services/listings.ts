@@ -1,12 +1,12 @@
+import { Listing, ListingsResponse, ReducedListing } from "~/schemas"
 import { httpClient } from "~/services/clients"
-import { ListingsResponse, Listing } from "~/schemas"
 
 import type { ListingForm } from "~/forms"
 
 export const createListing = async (listing: ListingForm) => {
   const response = await httpClient.postForm("/listings", listing)
 
-  const parsed = Listing.parse(response.data)
+  const parsed = ReducedListing.parse(response.data)
 
   return parsed
 }

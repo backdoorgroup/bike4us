@@ -14,7 +14,8 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
 import { ListingMap, ListingRating, ListingTable } from "~/components"
-import type { TListing, TLocations, TAddress } from "~/schemas"
+import { formatZipcode } from "~/masks"
+import type { TAddress, TListing, TLocations } from "~/schemas"
 import { Condition } from "~/schemas"
 import { useAuthStore } from "~/stores"
 
@@ -22,12 +23,10 @@ export default function ListingPage() {
   const { listing, locations } = useLoaderData() as { listing: TListing; locations: Promise<TLocations> }
   const { user } = useAuthStore()
 
-  // TODO: colocar uma máscara
   const formatAddress = (address: TAddress) =>
-    `${address.street} - ${address.neighborhood}, ${address.city} - ${address.state}, ${address.zipcode.slice(
-      0,
-      5
-    )}-${address.zipcode.slice(4, 7)}`
+    `${address.street}, ${address.number} - ${address.neighborhood}, ${address.city} - ${
+      address.state
+    }, ${formatZipcode(address.zipcode)}`
 
   return (
     <Stack className="listing-page" divider={<Divider />}>
