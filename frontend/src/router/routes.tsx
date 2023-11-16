@@ -1,5 +1,5 @@
 import type { RouteObject } from "react-router-dom"
-import { Navigate, redirect, defer } from "react-router-dom"
+import { Navigate, defer, redirect } from "react-router-dom"
 
 import { HomeLayout } from "~/layouts"
 import {
@@ -10,22 +10,11 @@ import {
   HomePage,
   ListingPage,
   ProfileAddressPage,
+  ProfilePage,
   SearchPage
 } from "~/pages"
-import { ListingsServices, ProfileServices, SearchServices, NominatimClient } from "~/services"
+import { ListingsServices, NominatimClient, ProfileServices, SearchServices } from "~/services"
 import { useAuthStore } from "~/stores"
-import { HomeLayout } from "@/layouts"
-import {
-  AnnouncePage,
-  ErrorPage,
-  HomePage,
-  ListingPage,
-  AuthLoginPage,
-  AuthRegisterPage,
-  SearchPage,
-  ProfilePage
-} from "@/pages"
-import { ListingsServices, SearchServices } from "@/services"
 
 export const routes: RouteObject[] = [
   {
@@ -140,6 +129,10 @@ export const routes: RouteObject[] = [
           return null
         },
         children: [
+          {
+            index: true,
+            element: <ProfilePage />
+          },
           {
             path: "endereco",
             element: <ProfileAddressPage />,
