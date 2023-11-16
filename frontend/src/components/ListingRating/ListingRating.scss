@@ -1,11 +1,11 @@
 .listing-rating {
-  gap: 24px;
+  gap: 16px;
   align-items: center;
 
   .lr-feedback {
     flex-direction: row;
     width: 100%;
-    gap: 24px;
+    gap: 32px;
 
     .lrf-distribution {
       width: 100%;
@@ -30,9 +30,12 @@
   }
 
   .lr-actions {
+    width: 100%;
+
     .lra-helper {
       color: var(--mui-palette-action-disabled);
       line-height: 2;
+      text-align: center;
     }
   }
 }

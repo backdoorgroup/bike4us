@@ -88,7 +88,7 @@ export default function ListingPage() {
         <Stack className="lps-container">
           <Typography variant="h6">Avaliação</Typography>
 
-          <ListingRating user={user} />
+          <ListingRating disabled={!user} />
         </Stack>
       </Container>
 
@@ -133,7 +133,7 @@ export default function ListingPage() {
 
                   {!locations?.at(0) && (
                     <Typography variant="caption" sx={{ color: "text.secondary" }}>
-                      Não foi possível encontrar a localização precisa deste anunciante
+                      Não foi possível encontrar a localização
                     </Typography>
                   )}
                 </>

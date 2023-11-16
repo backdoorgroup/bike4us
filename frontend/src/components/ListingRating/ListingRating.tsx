@@ -1,7 +1,5 @@
 import "./ListingRating.scss"
 
-import type { User } from "firebase/auth"
-
 import Button from "@mui/material/Button"
 import Icon from "@mui/material/Icon"
 import Rating from "@mui/material/Rating"
@@ -10,7 +8,7 @@ import Typography from "@mui/material/Typography"
 
 import { ListingRatingBar } from "~/components"
 
-export default function ListingRating({ user }: { user?: User | null }) {
+export default function ListingRating({ disabled }: { disabled: boolean }) {
   return (
     <Stack className="listing-rating">
       <Stack className="lr-feedback">
@@ -36,11 +34,11 @@ export default function ListingRating({ user }: { user?: User | null }) {
       </Stack>
 
       <Stack className="lr-actions">
-        <Button disabled={!user} startIcon={<Icon>rate_review</Icon>} disableElevation>
+        <Button disabled={disabled} startIcon={<Icon>rate_review</Icon>} disableElevation>
           Contribua com sua avaliação
         </Button>
 
-        {!user && (
+        {disabled && (
           <Typography variant="caption" className="lra-helper">
             Você precisa estar logado para avaliar
           </Typography>
