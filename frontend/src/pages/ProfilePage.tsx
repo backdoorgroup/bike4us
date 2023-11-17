@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom"
+import { Await, useLoaderData } from "react-router-dom"
 
 import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
@@ -11,10 +11,12 @@ import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
 import { ListingCard } from "~/components"
-import type { TListings, TProfile } from "~/schemas"
+import type { TListingsResponse, TProfile } from "~/schemas"
+import { Suspense } from "react"
+import Skeleton from "@mui/material/Skeleton"
 
 export function ProfilePage() {
-  const { profile, listings } = useLoaderData() as { listings: TListings; profile: TProfile }
+  const { profile, listings } = useLoaderData() as { listings: Promise<TListingsResponse>; profile: TProfile }
 
   return (
     <Stack divider={<Divider />}>
@@ -73,14 +75,29 @@ export function ProfilePage() {
         <Container sx={{ paddingY: "24px" }}>
           <Typography variant="h6">Anúncios</Typography>
 
-          <Stack>
-            {listings.map((listing) => (
-              <ListingCard key={listing.id} listing={listing} direction="row" fullWidth />
-            ))}
+          <Stack spacing="16px">
+            <Suspense
+              fallback={
+                <>
+                  <Skeleton variant="rounded" height={120} />
+                  <Skeleton variant="rounded" height={120} />
+                  <Skeleton variant="rounded" height={120} />
+                </>
+              }>
+              <Await resolve={listings}>
+                {({ listings }: TListingsResponse) => (
+                  <>
+                    {listings.map((listing) => (
+                      <ListingCard key={listing.id} listing={listing} direction="row" fullWidth />
+                    ))}
 
-            {!listings.length && (
-              <Typography sx={{ color: "text.secondary" }}>Este usuário ainda não anunciou</Typography>
-            )}
+                    {!listings.length && (
+                      <Typography sx={{ color: "text.secondary" }}>Este usuário ainda não anunciou</Typography>
+                    )}
+                  </>
+                )}
+              </Await>
+            </Suspense>
           </Stack>
         </Container>
       </Box>

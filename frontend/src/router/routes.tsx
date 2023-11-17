@@ -126,9 +126,9 @@ export const routes: RouteObject[] = [
 
           if (!profile.user?.uid) return redirect("/auth")
 
-          const { listings } = await ListingsServices.getListings({ uid: profile.user?.uid, perPage: 3 })
+          const deferredListings = ListingsServices.getListings({ uid: profile.user?.uid, perPage: 3 })
 
-          return { profile, listings }
+          return defer({ profile, listings: deferredListings })
         },
         element: <ProfilePage />,
         children: [
