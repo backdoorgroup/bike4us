@@ -1,3 +1,5 @@
+import "./ProfilePage.scss"
+
 import { Await, Link as RouterLink, useLoaderData } from "react-router-dom"
 
 import Avatar from "@mui/material/Avatar"
@@ -16,7 +18,7 @@ import { Suspense } from "react"
 import { ListingCard } from "~/components"
 import type { TListingsResponse, TProfile } from "~/schemas"
 
-export function ProfilePage() {
+export default function ProfilePage() {
   const { profile, listings } = useLoaderData() as { listings: Promise<TListingsResponse>; profile: TProfile }
 
   return (
