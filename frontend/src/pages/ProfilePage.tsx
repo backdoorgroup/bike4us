@@ -33,11 +33,11 @@ export function ProfilePage() {
                 textAlign: "center",
                 gap: "16px"
               }}>
-              <Box sx={{ minWidth: "96px", minHeight: "96px", maxWidth: "96px", maxHeight: "96px" }}>
-                <Avatar src={profile.user?.photoURL || ""} sx={{ height: "100%", width: "100%" }}>
-                  {profile.user?.displayName?.charAt(0)}
-                </Avatar>
-              </Box>
+              <Avatar
+                src={profile.user?.photoURL || ""}
+                sx={{ minWidth: "96px", minHeight: "96px", maxWidth: "96px", maxHeight: "96px" }}>
+                {profile.user?.displayName?.charAt(0)}
+              </Avatar>
 
               <Stack spacing="16px">
                 <Typography variant="h6">{profile.user?.displayName || "Usuário sem nome"}</Typography>
