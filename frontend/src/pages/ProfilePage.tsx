@@ -101,7 +101,7 @@ export function ProfilePage() {
                       <Typography sx={{ color: "text.secondary" }}>Esse usuário não tem anúncios</Typography>
                     )}
 
-                    {listings.length >= 3 && (
+                    {listings.length > 3 && (
                       <Link component={RouterLink} to={`/perfil/${profile.user?.uid}/anuncios`}>
                         Ver todos os anúncios
                       </Link>
