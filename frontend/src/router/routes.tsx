@@ -120,21 +120,15 @@ export const routes: RouteObject[] = [
       },
 
       {
-        path: "perfil",
-        loader: async () => {
-          try {
-            const profile = await ProfileServices.getProfile()
+        path: "perfil/:uid?",
+        element: <ProfilePage />,
+        loader: async ({ params }) => {
+          const uid = params.uid
+          const profile = await ProfileServices.getProfile(uid)
+          const deferredListings = uid ? ListingsServices.getListings({ uid: uid, perPage: 3 }) : null
 
-            if (!profile.user?.uid) return redirect("/auth")
-
-            const deferredListings = ListingsServices.getListings({ uid: profile.user?.uid, perPage: 3 })
-
-            return defer({ profile, listings: deferredListings })
-          } catch (_) {
-            return redirect("/")
-          }
-        },
-        element: <ProfilePage />
+          return defer({ profile, listings: deferredListings })
+        }
       },
 
       {
