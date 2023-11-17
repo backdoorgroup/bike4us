@@ -130,27 +130,21 @@ export const routes: RouteObject[] = [
 
           return defer({ profile, listings: deferredListings })
         },
-        element: <ProfilePage />,
-        children: [
-          {
-            path: "endereco",
-            element: <ProfileAddressPage />,
-            loader: async () => {
-              const profile = await ProfileServices.getProfile()
-
-              // Isso aqui é pra travar um cara que já tem endereço de ficar criando anúncios
-              // TODO: melhorar isso
-              if (profile.address) return redirect("/")
-
-              return null
-            }
-          }
-        ]
+        element: <ProfilePage />
       },
 
       {
-        path: "perfil",
-        element: <ProfilePage />
+        path: "perfil/endereco",
+        element: <ProfileAddressPage />,
+        loader: async () => {
+          const profile = await ProfileServices.getProfile()
+
+          // Isso aqui é pra travar um cara que já tem endereço de ficar criando anúncios
+          // TODO: melhorar isso
+          if (profile.address) return redirect("/")
+
+          return null
+        }
       },
 
       {

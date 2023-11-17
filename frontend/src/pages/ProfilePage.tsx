@@ -39,14 +39,14 @@ export function ProfilePage() {
               </Box>
 
               <Stack spacing="16px">
-                <Typography variant="h6">{profile.user?.displayName?.split(" ")?.slice(0, 2)?.join(" ")}</Typography>
+                <Typography variant="h6">{profile.user?.displayName || "Usuário sem nome"}</Typography>
 
                 <Stack spacing="8px" sx={{ color: "text.secondary" }}>
                   <Stack spacing="8px" direction="row" sx={{ alignItems: "center" }}>
                     <Icon sx={{ fontSize: "16px !important" }}>phone</Icon>
 
                     <Typography sx={{ lineHeight: "1" }} variant="body2">
-                      1238192314134
+                      {profile.user?.phoneNumber || "Usuário sem telefone"}
                     </Typography>
                   </Stack>
 
@@ -54,7 +54,9 @@ export function ProfilePage() {
                     <Icon sx={{ fontSize: "16px !important" }}>location_on</Icon>
 
                     <Typography sx={{ lineHeight: "1" }} variant="body2">
-                      {profile.address?.neighborhood} - {profile.address?.city}/{profile.address?.state}
+                      {profile.address
+                        ? `${profile.address?.neighborhood} - ${profile.address?.city}/${profile.address?.state}`
+                        : "Usuário sem endereço"}
                     </Typography>
                   </Stack>
 
@@ -62,7 +64,7 @@ export function ProfilePage() {
                     <Icon sx={{ fontSize: "16px !important" }}>email</Icon>
 
                     <Typography sx={{ lineHeight: "1" }} variant="body2">
-                      {profile.user?.email}
+                      {profile.user?.email || "Usuário sem email"}
                     </Typography>
                   </Stack>
                 </Stack>
@@ -74,14 +76,16 @@ export function ProfilePage() {
 
       <Box>
         <Container sx={{ paddingY: "24px" }}>
-          <Typography variant="h6">Anúncios</Typography>
+          <Typography variant="h6" gutterBottom>
+            Anúncios
+          </Typography>
 
           <Stack spacing="16px">
             <Suspense
               fallback={
                 <>
                   <Skeleton variant="rounded" height={120} />
-                  <Skeleton variant="rounded" height={120} />
+
                   <Skeleton variant="rounded" height={120} />
                 </>
               }>
@@ -93,7 +97,7 @@ export function ProfilePage() {
                     ))}
 
                     {!listings.length && (
-                      <Typography sx={{ color: "text.secondary" }}>Este usuário ainda não anunciou</Typography>
+                      <Typography sx={{ color: "text.secondary" }}>Esse usuário não tem anúncios</Typography>
                     )}
                   </>
                 )}
