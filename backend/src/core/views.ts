@@ -35,6 +35,9 @@ listingsRouter.get("/", async (req, res) => {
     order: {
       createdAt: "desc"
     },
+    where: {
+      ownerUid: params.uid
+    },
     relations: {
       pictures: true
     }

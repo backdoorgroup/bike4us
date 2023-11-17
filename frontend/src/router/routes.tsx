@@ -122,17 +122,16 @@ export const routes: RouteObject[] = [
       {
         path: "perfil",
         loader: async () => {
-          const { user } = useAuthStore.getState()
+          const profile = await ProfileServices.getProfile()
 
-          if (!user?.uid) return redirect("/auth")
+          if (!profile.user?.uid) return redirect("/auth")
 
-          return null
+          const { listings } = await ListingsServices.getListings({ uid: profile.user?.uid, perPage: 3 })
+
+          return { profile, listings }
         },
+        element: <ProfilePage />,
         children: [
-          {
-            index: true,
-            element: <ProfilePage />
-          },
           {
             path: "endereco",
             element: <ProfileAddressPage />,
