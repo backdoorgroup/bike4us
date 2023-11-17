@@ -1,13 +1,15 @@
 import { useLoaderData } from "react-router-dom"
 
-import Stack from "@mui/material/Stack"
-import Divider from "@mui/material/Divider"
-import Container from "@mui/material/Container"
+import Avatar from "@mui/material/Avatar"
+import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
-import Box from "@mui/material/Box"
-import Avatar from "@mui/material/Avatar"
+import Container from "@mui/material/Container"
+import Divider from "@mui/material/Divider"
+import Icon from "@mui/material/Icon"
+import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
+
 import { ListingCard } from "~/components"
 import type { TListings, TProfile } from "~/schemas"
 
@@ -21,8 +23,7 @@ export function ProfilePage() {
           <Card variant="outlined" sx={{ margin: "0 auto", maxWidth: "fit-content" }}>
             <CardContent
               sx={{
-                paddingY: "16px !important",
-                paddingX: "24px     ",
+                padding: "24px !important",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -30,22 +31,38 @@ export function ProfilePage() {
                 gap: "16px"
               }}>
               <Box sx={{ minWidth: "96px", minHeight: "96px", maxWidth: "96px", maxHeight: "96px" }}>
-                <Avatar src={profile.user?.photoURL || ""} style={{ height: "100%", width: "100%" }} />
+                <Avatar src={profile.user?.photoURL || ""} sx={{ height: "100%", width: "100%" }}>
+                  {profile.user?.displayName?.charAt(0)}
+                </Avatar>
               </Box>
 
-              <Stack>
+              <Stack spacing="16px">
                 <Typography variant="h6">{profile.user?.displayName?.split(" ")?.slice(0, 2)?.join(" ")}</Typography>
 
-                <Stack spacing="4px">
-                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                    1238192314134
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                    {profile.address?.neighborhood} - {profile.address?.city}/{profile.address?.state}
-                  </Typography>
-                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                    {profile.user?.email}
-                  </Typography>
+                <Stack spacing="8px" sx={{ color: "text.secondary" }}>
+                  <Stack spacing="8px" direction="row" sx={{ alignItems: "center" }}>
+                    <Icon sx={{ fontSize: "16px !important" }}>phone</Icon>
+
+                    <Typography sx={{ lineHeight: "1" }} variant="body2">
+                      1238192314134
+                    </Typography>
+                  </Stack>
+
+                  <Stack spacing="8px" direction="row" sx={{ alignItems: "center" }}>
+                    <Icon sx={{ fontSize: "16px !important" }}>location_on</Icon>
+
+                    <Typography sx={{ lineHeight: "1" }} variant="body2">
+                      {profile.address?.neighborhood} - {profile.address?.city}/{profile.address?.state}
+                    </Typography>
+                  </Stack>
+
+                  <Stack spacing="8px" direction="row" sx={{ alignItems: "center" }}>
+                    <Icon sx={{ fontSize: "16px !important" }}>email</Icon>
+
+                    <Typography sx={{ lineHeight: "1" }} variant="body2">
+                      {profile.user?.email}
+                    </Typography>
+                  </Stack>
                 </Stack>
               </Stack>
             </CardContent>
