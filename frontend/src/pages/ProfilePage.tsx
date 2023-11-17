@@ -1,4 +1,4 @@
-import { Await, useLoaderData } from "react-router-dom"
+import { Await, Link as RouterLink, useLoaderData } from "react-router-dom"
 
 import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
@@ -7,13 +7,14 @@ import CardContent from "@mui/material/CardContent"
 import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
 import Icon from "@mui/material/Icon"
+import Link from "@mui/material/Link"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
+import Skeleton from "@mui/material/Skeleton"
+import { Suspense } from "react"
 import { ListingCard } from "~/components"
 import type { TListingsResponse, TProfile } from "~/schemas"
-import { Suspense } from "react"
-import Skeleton from "@mui/material/Skeleton"
 
 export function ProfilePage() {
   const { profile, listings } = useLoaderData() as { listings: Promise<TListingsResponse>; profile: TProfile }
@@ -98,6 +99,12 @@ export function ProfilePage() {
 
                     {!listings.length && (
                       <Typography sx={{ color: "text.secondary" }}>Esse usuário não tem anúncios</Typography>
+                    )}
+
+                    {listings.length >= 3 && (
+                      <Link component={RouterLink} to={`/perfil/${profile.user?.uid}/anuncios`}>
+                        Ver todos os anúncios
+                      </Link>
                     )}
                   </>
                 )}
