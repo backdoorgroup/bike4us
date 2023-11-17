@@ -71,6 +71,7 @@ export function ProfilePage() {
           </Card>
         </Container>
       </Box>
+
       <Box>
         <Container sx={{ paddingY: "24px" }}>
           <Typography variant="h6">Anúncios</Typography>
