@@ -41,7 +41,7 @@ export function ProfilePage() {
                     1238192314134
                   </Typography>
                   <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                    {profile.address?.neighborhood} - {profile.address?.city} - {profile.address?.state}
+                    {profile.address?.neighborhood} - {profile.address?.city}/{profile.address?.state}
                   </Typography>
                   <Typography variant="body2" sx={{ color: "text.secondary" }}>
                     {profile.user?.email}
