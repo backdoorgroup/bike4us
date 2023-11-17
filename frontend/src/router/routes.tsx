@@ -13,6 +13,7 @@ import {
   ProfilePage,
   SearchPage
 } from "~/pages"
+import type { TListingsResponse } from "~/schemas"
 import { ListingsServices, NominatimClient, ProfileServices, SearchServices } from "~/services"
 import { useAuthStore } from "~/stores"
 
@@ -123,11 +124,18 @@ export const routes: RouteObject[] = [
         path: "perfil/:uid?",
         element: <ProfilePage />,
         loader: async ({ params }) => {
-          const uid = params.uid
-          const profile = await ProfileServices.getProfile(uid)
-          const deferredListings = uid ? ListingsServices.getListings({ uid: uid, perPage: 3 }) : null
+          const profile = await ProfileServices.getProfile(params.uid)
+          const uid = profile.user?.uid
 
-          return defer({ profile, listings: deferredListings })
+          let deferredListings: Promise<TListingsResponse>
+
+          if (!uid) {
+            deferredListings = Promise.resolve({ listings: [], count: 0 })
+          } else {
+            deferredListings = ListingsServices.getListings({ uid, perPage: 3 })
+          }
+
+          return defer({ profile, listings: deferredListings }, 5000)
         }
       },
 
