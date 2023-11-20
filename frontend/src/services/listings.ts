@@ -35,8 +35,7 @@ export const getListings = async (params?: {
 export const updateListing = async (id: number | string, data: unknown) => {
   const response = await httpClient.patch(`/listings/${id}`, data)
 
-  // TODO: parse response
-  const parsed = response
+  const parsed = Listing.omit({ pictures: true, address: true }).parse(response.data)
 
   return parsed
 }

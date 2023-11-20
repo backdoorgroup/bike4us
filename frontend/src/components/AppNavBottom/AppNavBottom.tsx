@@ -7,10 +7,13 @@ import BottomNavigation from "@mui/material/BottomNavigation"
 import BottomNavigationAction from "@mui/material/BottomNavigationAction"
 import Icon from "@mui/material/Icon"
 
-const NavigationEnum = {
+export const AppNavBottomEnum = {
   Find: "/",
-  Announce: "/anunciar"
+  Announce: "/anunciar",
+  Profile: "/perfil"
 } as const
+export const AppNavBottomEnumValues = Object.values(AppNavBottomEnum)
+export type TAppNavBottomEnumValues = (typeof AppNavBottomEnumValues)[number]
 
 export default function AppNavBottom({ basic }: { basic?: boolean }) {
   const { pathname } = useLocation()
@@ -24,25 +27,24 @@ export default function AppNavBottom({ basic }: { basic?: boolean }) {
       <BottomNavigationAction
         label="Encontrar"
         component={NavLink}
-        to={NavigationEnum.Find}
-        value={NavigationEnum.Find}
+        to={AppNavBottomEnum.Find}
+        value={AppNavBottomEnum.Find}
         icon={<Icon>search</Icon>}
       />
       <BottomNavigationAction
         label="Anunciar"
         component={NavLink}
-        to={NavigationEnum.Announce}
-        value={NavigationEnum.Announce}
+        to={AppNavBottomEnum.Announce}
+        value={AppNavBottomEnum.Announce}
         icon={<Icon>add_circle_outline</Icon>}
       />
-      {/* TODO: ter uma página de perfil, pra ver o perfil do usuário e os anúncios dele */}
-      {/* <BottomNavigationAction
-        label="Anúncios"
+      <BottomNavigationAction
+        label="Meus anúncios"
         component={NavLink}
-        to={NavigationEnum.Profile}
-        value={NavigationEnum.Profile}
+        to={AppNavBottomEnum.Profile}
+        value={AppNavBottomEnum.Profile}
         icon={<Icon>grid_view</Icon>}
-      /> */}
+      />
     </BottomNavigation>
   )
 }

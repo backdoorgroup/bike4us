@@ -5,20 +5,21 @@ import { Await, Link as RouterLink, useLoaderData, useRevalidator } from "react-
 
 import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
+import Button from "@mui/material/Button"
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
 import Icon from "@mui/material/Icon"
 import Link from "@mui/material/Link"
+import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-import Skeleton from "@mui/material/Skeleton"
 
 import { ListingCard } from "~/components"
 import type { TListingsResponse, TProfile } from "~/schemas"
-import { useAuthStore } from "~/stores"
 import { ListingsServices } from "~/services"
+import { useAuthStore } from "~/stores"
 
 export default function ProfilePage() {
   const { profile, listings } = useLoaderData() as { listings: Promise<TListingsResponse>; profile: TProfile }
@@ -73,6 +74,18 @@ export default function ProfilePage() {
                     <Typography variant="body2">{profile.user?.email || "Usuário sem email"}</Typography>
                   </Stack>
                 </Stack>
+
+                {!!(profile.user?.uid === user?.uid && !user?.phoneNumber) && (
+                  <Button
+                    variant="contained"
+                    component={RouterLink}
+                    to="/perfil/telefone"
+                    startIcon={<Icon>phone</Icon>}
+                    disableElevation
+                    fullWidth>
+                    Atualize seu número
+                  </Button>
+                )}
               </Stack>
             </CardContent>
           </Card>

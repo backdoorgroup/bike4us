@@ -49,7 +49,7 @@ export const Material = {
 
 export const Status = {
   available: "Disponível",
-  rented: "Alugada"
+  rented: "Alugado"
 } as const
 
 export const ListingPicture = z.object({

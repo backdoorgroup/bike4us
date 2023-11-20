@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 import formatDistanceToNow from "date-fns/formatDistanceToNow"
 import subSeconds from "date-fns/subSeconds"
 
-import Stack from "@mui/material/Stack"
+import Box from "@mui/material/Box"
 import Card from "@mui/material/Card"
 import CardActionArea from "@mui/material/CardActionArea"
 import CardActions from "@mui/material/CardActions"
@@ -80,7 +80,7 @@ export default function ListingCard({
 
             <Typography gutterBottom>{listing.title}</Typography>
 
-            <Stack className="lcac-information">
+            <Box className="lcac-information">
               <Typography className="lcaci-text" variant="caption" component="p">
                 {formatDistanceToNow(subSeconds(listing.createdAt, listing.createdAt.getSeconds()), {
                   addSuffix: true,
@@ -93,7 +93,7 @@ export default function ListingCard({
                   {Status[listing.status]}
                 </Typography>
               )}
-            </Stack>
+            </Box>
           </CardContent>
         </CardActionArea>
 
@@ -118,7 +118,7 @@ export default function ListingCard({
                 <Icon>done</Icon>
               </ListItemIcon>
 
-              <ListItemText>Marcar como vendido</ListItemText>
+              <ListItemText>Marcar como alugado</ListItemText>
             </MenuItem>
           )}
 
