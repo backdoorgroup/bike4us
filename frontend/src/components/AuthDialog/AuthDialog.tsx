@@ -24,13 +24,15 @@ export default function AuthDialog({
   open,
   handleSignIn,
   handleSignOut,
-  handleClose
+  handleClose,
+  handleProfile
 }: {
   user: User | null
   open: boolean
   handleSignIn: () => void
   handleSignOut: () => void
   handleClose: () => void
+  handleProfile: () => void
 }) {
   return (
     <Dialog className="auth-dialog" fullScreen open={open} onClose={handleClose}>
@@ -47,15 +49,16 @@ export default function AuthDialog({
       <List disablePadding className="ad-list">
         {user?.uid && (
           <>
-            <ListItem>
-              <ListItemAvatar>
-                <Avatar src={user?.photoURL || ""}>{user?.displayName?.charAt(0)}</Avatar>
-              </ListItemAvatar>
-
-              <ListItemText
-                primary={user?.displayName || "Usuário sem nome"}
-                secondary={user?.email || "Usuário sem email"}
-              />
+            <ListItem disablePadding>
+              <ListItemButton component={Link} onClick={handleProfile} to="perfil">
+                <ListItemAvatar>
+                  <Avatar src={user?.photoURL || ""}>{user?.displayName?.charAt(0)}</Avatar>
+                </ListItemAvatar>
+                <ListItemText
+                  primary={user?.displayName || "Usuário sem nome"}
+                  secondary={user?.email || "Usuário sem email"}
+                />
+              </ListItemButton>
             </ListItem>
 
             <Divider />

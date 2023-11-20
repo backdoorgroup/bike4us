@@ -1,0 +1,61 @@
+.profile-page {
+  .pp-wrapper {
+    .ppw-container {
+      padding-top: 32px;
+      padding-bottom: 32px;
+
+      .ppwc-card {
+        margin: 0 auto;
+
+        min-width: fit-content;
+        max-width: fit-content;
+
+        .ppwcc-content {
+          padding: 24px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          gap: 16px;
+
+          .ppwccc-avatar {
+            min-width: 96px;
+            min-height: 96px;
+            max-width: 96px;
+            max-height: 96px;
+          }
+
+          .ppwccc-wrapper {
+            gap: 16px;
+
+            .ppwcccw-information {
+              color: var(--mui-palette-text-secondary);
+              gap: 8px;
+
+              .ppwcccwi-line {
+                flex-direction: row;
+                gap: 8px;
+                align-items: center;
+
+                .ppwcccwil-icon {
+                  font-size: 16px;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      .ppwc-listings {
+        .ppwcl-helper-text {
+          color: var(--mui-palette-text-secondary);
+        }
+      }
+    }
+
+    &.colored {
+      background-color: var(--mui-palette-primary-main);
+    }
+  }
+}

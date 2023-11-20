@@ -19,8 +19,8 @@ export const getListing = async (id: number | string) => {
   return parsed
 }
 
-export const getListings = async () => {
-  const response = await httpClient.get("/listings")
+export const getListings = async (params?: { uid?: string; perPage?: number; page?: number }) => {
+  const response = await httpClient.get("/listings", { params })
 
   const parsed = ListingsResponse.parse(response.data)
 

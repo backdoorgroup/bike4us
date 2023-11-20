@@ -35,7 +35,9 @@ export const CreateListingSchema = z.object({
 })
 export type TCreateListingSchema = z.infer<typeof CreateListingSchema>
 
-export const GetListingsSchema = PaginationSchema.extend({})
+export const GetListingsSchema = PaginationSchema.extend({
+  uid: z.string().optional()
+})
 
 export const GetListingSchema = z.object({
   id: z.coerce.number().int().positive()

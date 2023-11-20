@@ -30,6 +30,9 @@ export default function AppNavBar({ basic }: { basic?: boolean }) {
     navigate("/")
     handleCloseDialog()
   }
+  const handleProfile = () => {
+    handleCloseDialog()
+  }
 
   return (
     <AppBar className="app-nav-bar" component="header" elevation={0}>
@@ -50,6 +53,7 @@ export default function AppNavBar({ basic }: { basic?: boolean }) {
               handleSignIn={handleSignIn}
               handleSignOut={handleSignOut}
               handleClose={handleCloseDialog}
+              handleProfile={handleProfile}
             />
           </>
         )}
