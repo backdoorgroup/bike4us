@@ -132,7 +132,7 @@ export const routes: RouteObject[] = [
           if (!uid) {
             deferredListings = Promise.resolve({ listings: [], count: 0 })
           } else {
-            deferredListings = ListingsServices.getListings({ uid, perPage: 3 })
+            deferredListings = ListingsServices.getListings({ uid })
           }
 
           return defer({ profile, listings: deferredListings })
