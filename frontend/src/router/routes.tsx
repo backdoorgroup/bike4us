@@ -135,7 +135,7 @@ export const routes: RouteObject[] = [
             deferredListings = ListingsServices.getListings({ uid, perPage: 3 })
           }
 
-          return defer({ profile, listings: deferredListings }, 5000)
+          return defer({ profile, listings: deferredListings })
         }
       },
 
