@@ -39,7 +39,7 @@ export default function ListingCard({
         [Directions.Column]: direction === Directions.Column
       })}
       variant="outlined">
-      <CardActionArea className={"lc-action"} component={Link} to={`/anuncios/${listing.id}`}>
+      <CardActionArea className="lc-action" disableRipple component={Link} to={`/anuncios/${listing.id}`}>
         <CardMedia className="lca-image" component="img" image={picture.path} />
 
         <CardContent className="lca-content">
