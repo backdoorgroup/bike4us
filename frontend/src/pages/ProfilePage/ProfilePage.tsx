@@ -22,53 +22,39 @@ export default function ProfilePage() {
   const { profile, listings } = useLoaderData() as { listings: Promise<TListingsResponse>; profile: TProfile }
 
   return (
-    <Stack divider={<Divider />}>
-      <Box sx={{ backgroundColor: "primary.main" }}>
-        <Container sx={{ paddingY: "32px" }}>
-          <Card variant="outlined" sx={{ margin: "0 auto", maxWidth: "fit-content" }}>
-            <CardContent
-              sx={{
-                padding: "24px !important",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                textAlign: "center",
-                gap: "16px"
-              }}>
-              <Avatar
-                src={profile.user?.photoURL || ""}
-                sx={{ minWidth: "96px", minHeight: "96px", maxWidth: "96px", maxHeight: "96px" }}>
+    <Stack className="profile-page" divider={<Divider />}>
+      <Box className="pp-wrapper colored">
+        <Container className="ppw-container">
+          <Card className="ppwc-card" variant="outlined">
+            <CardContent className="ppwcc-content">
+              <Avatar className="ppwccc-avatar" src={profile.user?.photoURL || ""}>
                 {profile.user?.displayName?.charAt(0)}
               </Avatar>
 
-              <Stack spacing="16px">
+              <Stack className="ppwccc-wrapper">
                 <Typography variant="h6">{profile.user?.displayName || "Usuário sem nome"}</Typography>
 
-                <Stack spacing="8px" sx={{ color: "text.secondary" }}>
-                  <Stack spacing="8px" direction="row" sx={{ alignItems: "center" }}>
-                    <Icon sx={{ fontSize: "16px !important" }}>phone</Icon>
+                <Stack className="ppwcccw-information">
+                  <Stack className="ppwcccwi-line">
+                    <Icon className="ppwcccwil-icon">phone</Icon>
 
-                    <Typography sx={{ lineHeight: "1" }} variant="body2">
-                      {profile.user?.phoneNumber || "Usuário sem telefone"}
-                    </Typography>
+                    <Typography variant="body2">{profile.user?.phoneNumber || "Usuário sem telefone"}</Typography>
                   </Stack>
 
-                  <Stack spacing="8px" direction="row" sx={{ alignItems: "center" }}>
-                    <Icon sx={{ fontSize: "16px !important" }}>location_on</Icon>
+                  <Stack className="ppwcccwi-line">
+                    <Icon className="ppwcccwil-icon">location_on</Icon>
 
-                    <Typography sx={{ lineHeight: "1" }} variant="body2">
+                    <Typography variant="body2">
                       {profile.address
                         ? `${profile.address?.neighborhood} - ${profile.address?.city}/${profile.address?.state}`
                         : "Usuário sem endereço"}
                     </Typography>
                   </Stack>
 
-                  <Stack spacing="8px" direction="row" sx={{ alignItems: "center" }}>
-                    <Icon sx={{ fontSize: "16px !important" }}>email</Icon>
+                  <Stack className="ppwcccwi-line">
+                    <Icon className="ppwcccwil-icon">email</Icon>
 
-                    <Typography sx={{ lineHeight: "1" }} variant="body2">
-                      {profile.user?.email || "Usuário sem email"}
-                    </Typography>
+                    <Typography variant="body2">{profile.user?.email || "Usuário sem email"}</Typography>
                   </Stack>
                 </Stack>
               </Stack>
@@ -77,13 +63,13 @@ export default function ProfilePage() {
         </Container>
       </Box>
 
-      <Box>
-        <Container sx={{ paddingY: "24px" }}>
+      <Box className="pp-wrapper">
+        <Container className="ppw-container">
           <Typography variant="h6" gutterBottom>
             Anúncios
           </Typography>
 
-          <Stack spacing="16px">
+          <Stack className="ppwc-listings">
             <Suspense
               fallback={
                 <>
@@ -100,7 +86,7 @@ export default function ProfilePage() {
                     ))}
 
                     {!listings.length && (
-                      <Typography sx={{ color: "text.secondary" }}>Esse usuário não tem anúncios</Typography>
+                      <Typography className="ppwcl-helper-text">Esse usuário não tem anúncios</Typography>
                     )}
 
                     {listings.length > 3 && (

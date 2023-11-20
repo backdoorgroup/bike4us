@@ -129,7 +129,7 @@ export default function ListingPage() {
             <Await resolve={locations}>
               {(locations: TLocations) => (
                 <>
-                  <Typography variant="body2" sx={{ color: "text.primary" }}>
+                  <Typography variant="body2">
                     {listing.address?.neighborhood} - {listing.address?.city}, {listing.address?.state}
                   </Typography>
 
