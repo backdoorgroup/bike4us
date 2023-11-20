@@ -1,7 +1,7 @@
 import admin from "firebase-admin"
 import type { FindManyOptions, FindOneOptions } from "typeorm"
 
-import type { TCreateAddressSchema, TCreateListingSchema } from "~/core/schemas"
+import type { TCreateAddressSchema, TCreateListingSchema, TEditListingSchema } from "~/core/schemas"
 import { Address, Listing, ListingPicture } from "~/core/models"
 
 import { settings } from "~/settings"
@@ -65,4 +65,16 @@ export const createAddress = async (params: TCreateAddressSchema) => {
   address.zipcode = params.zipcode
 
   return await address.save()
+}
+
+export const updateListing = async (listing: Listing, params: TEditListingSchema) => {
+  const entries = Object.entries(params) as [keyof TEditListingSchema, never][]
+
+  entries.forEach(([key, value]) => {
+    if (!key || !value) return
+
+    listing[key] = value
+  })
+
+  return await listing.save()
 }

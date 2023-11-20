@@ -2,7 +2,7 @@ import { Router } from "express"
 import type { UserRecord } from "firebase-admin/auth"
 import { ILike } from "typeorm"
 
-import { BadRequestException, NotFoundException, safeAsync } from "~/handling"
+import { BadRequestException, MethodNotAllowedException, NotFoundException, safeAsync } from "~/handling"
 import type { Paginated } from "~/pagination"
 import { paginate } from "~/pagination"
 
@@ -13,10 +13,19 @@ import {
   GetListingSchema,
   GetListingsSchema,
   GetProfileSchema,
-  SearchListingsSchema
+  SearchListingsSchema,
+  EditListingSchema
 } from "~/core/schemas"
 import { serializeAddress, serializeListing } from "~/core/serializers"
-import { createAddress, createListing, getAddress, getListing, getListings, getUser } from "~/core/services"
+import {
+  createAddress,
+  createListing,
+  getAddress,
+  getListing,
+  getListings,
+  getUser,
+  updateListing
+} from "~/core/services"
 
 import { HttpStatus } from "@/http"
 
@@ -36,7 +45,8 @@ listingsRouter.get("/", async (req, res) => {
       createdAt: "desc"
     },
     where: {
-      ownerUid: params.uid
+      ownerUid: params.uid,
+      status: params.status
     },
     relations: {
       pictures: true
@@ -78,11 +88,7 @@ listingsRouter.post("/", authenticated(), upload.array("pictures[]"), async (req
 })
 
 listingsRouter.get("/:id", async (req, res) => {
-  const [params, paramsError] = await safeAsync(
-    GetListingSchema.parseAsync({
-      ...req.params
-    })
-  )
+  const [params, paramsError] = await safeAsync(GetListingSchema.parseAsync(req.params))
 
   if (!params || paramsError) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)
@@ -91,7 +97,8 @@ listingsRouter.get("/:id", async (req, res) => {
   const [listingQuery, listingQueryError] = await safeAsync(
     getListing({
       where: {
-        id: params.id
+        id: params.id,
+        status: "available"
       },
       relations: {
         pictures: true,
@@ -109,6 +116,34 @@ listingsRouter.get("/:id", async (req, res) => {
   return res.status(HttpStatus.Ok).json(listing)
 })
 
+listingsRouter.patch("/:id", authenticated(), async (req, res) => {
+  const [params, paramsError] = await safeAsync(EditListingSchema.parseAsync({ ...req.params, ...req.body }))
+
+  if (!params || paramsError) {
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
+
+  const [listingQuery, listingQueryError] = await safeAsync(getListing({ where: { id: params.id } }))
+
+  if (!listingQuery || listingQueryError) {
+    return res.status(HttpStatus.NotFound).json(NotFoundException)
+  }
+
+  if (listingQuery.ownerUid !== req.user?.uid) {
+    return res.status(HttpStatus.MethodNotAllowed).json(MethodNotAllowedException)
+  }
+
+  const [updateListingQuery, updateListingQueryError] = await safeAsync(updateListing(listingQuery, params))
+
+  if (!updateListingQuery || updateListingQueryError) {
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
+
+  const listing = serializeListing(updateListingQuery)
+
+  return res.status(HttpStatus.Ok).json(listing)
+})
+
 searchRouter.get("/listings", async (req, res) => {
   const [params, paramsError] = await safeAsync(SearchListingsSchema.parseAsync(req.query))
 
@@ -118,7 +153,8 @@ searchRouter.get("/listings", async (req, res) => {
 
   const query = await getListings({
     where: {
-      title: ILike(params.query + "%")
+      title: ILike(params.query + "%"),
+      status: "available"
     },
     order: {
       createdAt: "desc"
@@ -156,11 +192,7 @@ profileRouter.get("/", authenticated(), async (req, res) => {
 })
 
 profileRouter.get("/:uid", async (req, res) => {
-  const [params, paramsError] = await safeAsync(
-    GetProfileSchema.parseAsync({
-      ...req.params
-    })
-  )
+  const [params, paramsError] = await safeAsync(GetProfileSchema.parseAsync(req.params))
 
   if (!params || paramsError) {
     return res.status(HttpStatus.BadRequest).json(BadRequestException)

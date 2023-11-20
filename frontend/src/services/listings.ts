@@ -1,5 +1,5 @@
 import { httpClient } from "~/services/clients"
-import { ListingsResponse, Listing } from "~/schemas"
+import { ListingsResponse, Listing, Status } from "~/schemas"
 
 import type { ListingForm } from "~/forms"
 
@@ -19,10 +19,24 @@ export const getListing = async (id: number | string) => {
   return parsed
 }
 
-export const getListings = async (params?: { uid?: string; perPage?: number; page?: number }) => {
+export const getListings = async (params?: {
+  uid?: string
+  perPage?: number
+  page?: number
+  status?: keyof typeof Status
+}) => {
   const response = await httpClient.get("/listings", { params })
 
   const parsed = ListingsResponse.parse(response.data)
+
+  return parsed
+}
+
+export const updateListing = async (id: number | string, data: unknown) => {
+  const response = await httpClient.patch(`/listings/${id}`, data)
+
+  // TODO: parse response
+  const parsed = response
 
   return parsed
 }

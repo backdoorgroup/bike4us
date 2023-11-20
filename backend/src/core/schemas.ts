@@ -7,7 +7,8 @@ import {
   ListingFrameSizeEnum,
   ListingMaterialEnum,
   ListingWheelSizeEnum,
-  ListingTypeEnum
+  ListingTypeEnum,
+  ListingStatusEnum
 } from "~/core/constants"
 
 export const FileSchema = z.object({
@@ -36,12 +37,21 @@ export const CreateListingSchema = z.object({
 export type TCreateListingSchema = z.infer<typeof CreateListingSchema>
 
 export const GetListingsSchema = PaginationSchema.extend({
-  uid: z.string().optional()
+  uid: z.string().optional(),
+  status: z.nativeEnum(ListingStatusEnum).optional()
 })
 
 export const GetListingSchema = z.object({
   id: z.coerce.number().int().positive()
 })
+
+export const EditListingSchema = CreateListingSchema.partial()
+  .merge(GetListingSchema)
+  .omit({ pictures: true, ownerUid: true })
+  .extend({
+    status: z.nativeEnum(ListingStatusEnum).optional()
+  })
+export type TEditListingSchema = z.infer<typeof EditListingSchema>
 
 export const SearchListingsSchema = PaginationSchema.extend({
   query: z.string().min(1).max(512)

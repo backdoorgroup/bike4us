@@ -1,6 +1,7 @@
 import "./ProfilePage.scss"
 
-import { Await, Link as RouterLink, useLoaderData } from "react-router-dom"
+import { Suspense } from "react"
+import { Await, Link as RouterLink, useLoaderData, useRevalidator } from "react-router-dom"
 
 import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
@@ -12,14 +13,29 @@ import Icon from "@mui/material/Icon"
 import Link from "@mui/material/Link"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-
 import Skeleton from "@mui/material/Skeleton"
-import { Suspense } from "react"
+
 import { ListingCard } from "~/components"
 import type { TListingsResponse, TProfile } from "~/schemas"
+import { useAuthStore } from "~/stores"
+import { ListingsServices } from "~/services"
 
 export default function ProfilePage() {
   const { profile, listings } = useLoaderData() as { listings: Promise<TListingsResponse>; profile: TProfile }
+  const { user } = useAuthStore()
+  const { revalidate } = useRevalidator()
+
+  const handleMarkAsAvailable = async (id: number) => {
+    await ListingsServices.updateListing(id, { status: "available" })
+
+    revalidate()
+  }
+
+  const handleMarkAsRented = async (id: number) => {
+    await ListingsServices.updateListing(id, { status: "rented" })
+
+    revalidate()
+  }
 
   return (
     <Stack className="profile-page" divider={<Divider />}>
@@ -82,7 +98,15 @@ export default function ProfilePage() {
                 {({ listings }: TListingsResponse) => (
                   <>
                     {listings.map((listing) => (
-                      <ListingCard key={listing.id} listing={listing} direction="row" fullWidth />
+                      <ListingCard
+                        fullWidth
+                        direction="row"
+                        key={listing.id}
+                        listing={listing}
+                        editable={user?.uid === profile.user?.uid}
+                        handleMarkAsAvailable={() => handleMarkAsAvailable(listing.id)}
+                        handleMarkAsRented={() => handleMarkAsRented(listing.id)}
+                      />
                     ))}
 
                     {!listings.length && (

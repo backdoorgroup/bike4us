@@ -47,6 +47,11 @@ export const Material = {
   "titanium": "Titânio"
 } as const
 
+export const Status = {
+  available: "Disponível",
+  rented: "Alugada"
+} as const
+
 export const ListingPicture = z.object({
   id: z.number(),
   path: z.string().transform((path) => env.STATIC_URL + path)
@@ -61,7 +66,7 @@ export const Listing = z.object({
   title: z.string(),
   description: z.string().optional().nullable(),
   hourPricing: z.number(),
-  status: z.string(),
+  status: extractEnum(Status),
   pictures: z.array(ListingPicture),
   brand: z.string(),
   condition: extractEnum(Condition),

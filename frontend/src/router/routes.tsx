@@ -26,7 +26,7 @@ export const routes: RouteObject[] = [
         index: true,
         element: <HomePage />,
         loader: async () => {
-          const listings = await ListingsServices.getListings()
+          const listings = await ListingsServices.getListings({ status: "available" })
 
           return listings
         }

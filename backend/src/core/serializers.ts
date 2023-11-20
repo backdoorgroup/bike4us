@@ -19,7 +19,7 @@ export const serializeListing = (listing: IListing): SerializedListing => ({
   frameSize: listing.frameSize,
   wheelSize: listing.wheelSize,
   material: listing.material,
-  pictures: listing.pictures.map((picture) => serializeListingPicture(picture)),
+  pictures: listing.pictures && listing.pictures.map((picture) => serializeListingPicture(picture)),
   address: listing.address && serializeAddress(listing.address)
 })
 
