@@ -26,6 +26,8 @@ export interface IListingPicture extends ExtractModel<ListingPicture> {}
 
 export interface IAddress extends ExtractModel<Address> {}
 
+export interface IRating extends ExtractModel<Rating> {}
+
 @Entity()
 export class Listing extends Model {
   @Column({ type: "varchar", length: 128 })
@@ -73,6 +75,9 @@ export class Listing extends Model {
   @ManyToOne(() => Address, (address) => address.ownerUid)
   @JoinColumn({ name: "ownerUid", referencedColumnName: "ownerUid" })
   address: Address | IAddress
+
+  @OneToMany(() => Rating, (rating) => rating.listing, { nullable: true })
+  ratings?: Rating[] | IRating[]
 }
 
 @Entity()
@@ -109,4 +114,16 @@ export class Address extends Model {
 
   @Column({ type: "char", length: 8 })
   zipcode: string
+}
+
+@Entity()
+export class Rating extends Model {
+  @Column({ type: "integer" })
+  value: number
+
+  @Column({ type: "varchar", length: 128 })
+  ownerUid: string
+
+  @ManyToOne(() => Listing, (listing) => listing.ratings)
+  listing: Listing
 }

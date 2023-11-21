@@ -1,5 +1,5 @@
 import { httpClient } from "~/services/clients"
-import { ListingsResponse, Listing, Status } from "~/schemas"
+import { ListingsResponse, Listing, Status, RawRating } from "~/schemas"
 
 import type { ListingForm } from "~/forms"
 
@@ -15,6 +15,14 @@ export const getListing = async (id: number | string) => {
   const response = await httpClient.get(`/listings/${id}`)
 
   const parsed = Listing.parse(response.data)
+
+  return parsed
+}
+
+export const rateListing = async (id: number | string, data: unknown) => {
+  const response = await httpClient.post(`/listings/${id}/rate`, data)
+
+  const parsed = RawRating.parse(response.data)
 
   return parsed
 }

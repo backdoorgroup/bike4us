@@ -1,8 +1,8 @@
 import admin from "firebase-admin"
 import type { FindManyOptions, FindOneOptions } from "typeorm"
 
-import type { TCreateAddressSchema, TCreateListingSchema, TEditListingSchema } from "~/core/schemas"
-import { Address, Listing, ListingPicture } from "~/core/models"
+import type { TCreateAddressSchema, TCreateListingSchema, TEditListingSchema, TRateListingSchema } from "~/core/schemas"
+import { Address, Listing, ListingPicture, Rating } from "~/core/models"
 
 import { settings } from "~/settings"
 
@@ -77,4 +77,14 @@ export const updateListing = async (listing: Listing, params: TEditListingSchema
   })
 
   return await listing.save()
+}
+
+export const createRating = async (listing: Listing, params: TRateListingSchema) => {
+  const rating = new Rating()
+
+  rating.listing = listing
+  rating.value = params.value
+  rating.ownerUid = params.ownerUid
+
+  return await rating.save()
 }

@@ -58,6 +58,12 @@ export const ListingPicture = z.object({
 })
 export type TListingPicture = z.infer<typeof ListingPicture>
 
+export const RawRating = z.object({
+  id: z.number(),
+  value: z.number(),
+  ownerUid: z.string()
+})
+
 export const Rating = z.object({
   average: z.number(),
   count: z.number(),
