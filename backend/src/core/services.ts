@@ -91,10 +91,14 @@ export const createRating = async (listing: Listing, params: TRateListingSchema)
 }
 
 export const parseRating = (ratings: Rating[] | TRating[]): TParsedRating => {
+  const truncate = (value: number, digits: number = 1) => parseFloat(value.toFixed(digits))
+
   const distribution = new Map()
 
   const values = ratings.map((rating) => {
-    distribution.set(rating.value, (distribution.get(rating.value) || 0) + 1)
+    const value = distribution.get(rating.value) || 0
+
+    distribution.set(rating.value, value + 1)
 
     return rating.value
   })
@@ -104,9 +108,15 @@ export const parseRating = (ratings: Rating[] | TRating[]): TParsedRating => {
       return prev + next
     }, 0) / total
 
+  distribution.forEach((value, key) => {
+    const percentage = (value / total) * 100
+
+    distribution.set(key, truncate(percentage))
+  })
+
   return {
     total,
-    average,
+    average: truncate(average),
     distribution: Object.fromEntries(distribution.entries())
   }
 }
