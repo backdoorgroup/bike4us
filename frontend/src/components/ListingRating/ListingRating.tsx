@@ -60,7 +60,12 @@ export default function ListingRating({
         </Stack>
 
         <Stack className="lr-actions">
-          <Button onClick={handleOpenDialog} disabled={disabled} startIcon={<Icon>rate_review</Icon>} disableElevation>
+          <Button
+            startIcon={<Icon>rate_review</Icon>}
+            disabled={disabled}
+            onClick={handleOpenDialog}
+            variant="contained"
+            disableElevation>
             Contribua com sua avaliação
           </Button>
 
