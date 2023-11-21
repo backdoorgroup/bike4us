@@ -58,13 +58,13 @@ export const ListingPicture = z.object({
 })
 export type TListingPicture = z.infer<typeof ListingPicture>
 
-export const RawRating = z.object({
+export const Rating = z.object({
   id: z.number(),
   value: z.number(),
   ownerUid: z.string()
 })
 
-export const Rating = z.object({
+export const OverallRating = z.object({
   total: z.number(),
   average: z.number(),
   distribution: z
@@ -77,7 +77,7 @@ export const Rating = z.object({
     })
     .partial()
 })
-export type TRating = z.infer<typeof Rating>
+export type TOverallRating = z.infer<typeof OverallRating>
 
 export const Listing = z.object({
   id: z.number(),
@@ -96,7 +96,7 @@ export const Listing = z.object({
   wheelSize: extractEnum(WheelSize),
   material: extractEnum(Material),
   address: Address.optional(),
-  rating: Rating
+  rating: OverallRating.optional()
 })
 export type TListing = z.infer<typeof Listing>
 

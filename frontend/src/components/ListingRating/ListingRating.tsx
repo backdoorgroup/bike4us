@@ -18,7 +18,7 @@ import Typography from "@mui/material/Typography"
 
 import { ListingRatingBar, ListingRatingStars } from "~/components"
 import { RatingValidation, type RateListingForm } from "~/forms"
-import type { TRating } from "~/schemas"
+import type { TOverallRating } from "~/schemas"
 
 export default function ListingRating({
   rating,
@@ -28,7 +28,7 @@ export default function ListingRating({
   handleCloseDialog,
   handleSubmitRating
 }: {
-  rating?: TRating
+  rating?: TOverallRating
   disabled: boolean
   dialogOpen: boolean
   handleOpenDialog: () => void
