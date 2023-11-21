@@ -140,24 +140,40 @@ export default function ListingPage() {
           <Suspense
             fallback={
               <>
-                <Skeleton variant="rounded" height="20px" width="60%" />
+                <Skeleton variant="rounded" height="20px" width="80%" />
 
                 <Skeleton variant="rounded" height="256px" width="100%" />
 
-                <Skeleton variant="rounded" height="20px" width="80%" />
+                <Skeleton variant="rounded" height="20px" width="70%" />
               </>
             }>
             <Await resolve={locations}>
               {(locations: TLocations) => (
                 <>
-                  <Typography variant="body2">{formatAddress(listing.address as TAddress)}</Typography>
+                  {!user && (
+                    <>
+                      <Skeleton variant="rounded" height="20px" width="80%" />
 
-                  <ListingMap location={locations?.at(0)} />
+                      <Skeleton variant="rounded" height="256px" width="100%" />
 
-                  {!locations?.at(0) && (
-                    <Typography className="lpsl-helper-text" variant="caption">
-                      Não foi possível encontrar a localização
-                    </Typography>
+                      <Typography className="lpsl-helper-text" variant="caption">
+                        É necessário estar logado para ver a localização
+                      </Typography>
+                    </>
+                  )}
+
+                  {user && (
+                    <>
+                      <Typography variant="body2">{formatAddress(listing.address as TAddress)}</Typography>
+
+                      <ListingMap location={locations.at(0)} />
+
+                      {!locations.at(0) && (
+                        <Typography className="lpsl-helper-text" variant="caption">
+                          Não foi possível encontrar a localização
+                        </Typography>
+                      )}
+                    </>
                   )}
                 </>
               )}

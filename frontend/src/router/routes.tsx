@@ -14,7 +14,7 @@ import {
   ProfilePage,
   SearchPage
 } from "~/pages"
-import type { TListingsResponse } from "~/schemas"
+import type { TListingsResponse, TLocations } from "~/schemas"
 import { ListingsServices, NominatimClient, ProfileServices, SearchServices } from "~/services"
 import { useAuthStore } from "~/stores"
 
@@ -40,13 +40,19 @@ export const routes: RouteObject[] = [
         loader: async ({ params }) => {
           if (!params.id) return redirect("/")
 
+          const { user } = useAuthStore.getState()
+
           const listing = await ListingsServices.getListing(params.id)
 
-          const deferredLocations = NominatimClient.compoundSearch({
-            city: listing.address?.city,
-            street: `${listing.address?.street}, ${listing.address?.number}`,
-            state: listing.address?.state
-          })
+          let deferredLocations: Promise<TLocations> = Promise.resolve([] as TLocations)
+
+          if (user) {
+            deferredLocations = NominatimClient.compoundSearch({
+              city: listing.address?.city,
+              street: `${listing.address?.street}, ${listing.address?.number}`,
+              state: listing.address?.state
+            })
+          }
 
           return defer({
             listing,
@@ -122,14 +128,11 @@ export const routes: RouteObject[] = [
           const profile = await ProfileServices.getProfile(params.uid)
           const uid = profile.user?.uid
 
-          let deferredListings: Promise<TListingsResponse>
+          let deferredListings: Promise<TListingsResponse> = Promise.resolve({ listings: [], count: 0 })
 
-          if (!uid) {
-            deferredListings = Promise.resolve({ listings: [], count: 0 })
-          } else {
+          if (uid) {
             deferredListings = ListingsServices.getListings({ uid })
           }
-
           return defer({ profile, listings: deferredListings })
         }
       },
