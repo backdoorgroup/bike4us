@@ -120,7 +120,7 @@ export default function ListingPage() {
           <Typography variant="h6">Descrição</Typography>
 
           <Typography className={clsx("lpsd-content", { disabled: !listing?.description })} component="pre">
-            {listing?.description || "Ainda não há descrição para este anúncio"}
+            {listing?.description || "Não há descrição para este anúncio"}
           </Typography>
         </Stack>
       </Container>
