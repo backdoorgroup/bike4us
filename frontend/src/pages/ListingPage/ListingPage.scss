@@ -74,5 +74,11 @@
         }
       }
     }
+
+    .lps-location {
+      .lpsl-helper-text {
+        color: var(--mui-palette-text-secondary);
+      }
+    }
   }
 }

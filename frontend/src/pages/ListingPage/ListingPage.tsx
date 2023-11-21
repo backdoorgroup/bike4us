@@ -111,7 +111,7 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
-        <Stack className="lps-container">
+        <Stack className="lps-container lps-location">
           <Typography variant="h6">Localização</Typography>
 
           <Suspense
@@ -130,7 +130,7 @@ export default function ListingPage() {
                   <ListingMap location={locations?.at(0)} />
 
                   {!locations?.at(0) && (
-                    <Typography variant="caption" sx={{ color: "text.secondary" }}>
+                    <Typography className="lpsl-helper-text" variant="caption">
                       Não foi possível encontrar a localização
                     </Typography>
                   )}
