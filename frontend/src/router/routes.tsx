@@ -1,5 +1,5 @@
 import type { RouteObject } from "react-router-dom"
-import { Navigate, redirect, defer } from "react-router-dom"
+import { Navigate, defer, redirect } from "react-router-dom"
 
 import { HomeLayout } from "~/layouts"
 import {
@@ -10,9 +10,12 @@ import {
   HomePage,
   ListingPage,
   ProfileAddressPage,
+  ProfilePhonePage,
+  ProfilePage,
   SearchPage
 } from "~/pages"
-import { ListingsServices, ProfileServices, SearchServices, NominatimClient } from "~/services"
+import type { TListingsResponse } from "~/schemas"
+import { ListingsServices, NominatimClient, ProfileServices, SearchServices } from "~/services"
 import { useAuthStore } from "~/stores"
 
 export const routes: RouteObject[] = [
@@ -24,7 +27,7 @@ export const routes: RouteObject[] = [
         index: true,
         element: <HomePage />,
         loader: async () => {
-          const listings = await ListingsServices.getListings()
+          const listings = await ListingsServices.getListings({ status: "available" })
 
           return listings
         }
@@ -33,26 +36,23 @@ export const routes: RouteObject[] = [
       {
         path: "anuncios/:id",
         element: <ListingPage />,
+        ErrorBoundary: () => <Navigate to="/" />,
         loader: async ({ params }) => {
           if (!params.id) return redirect("/")
 
-          try {
-            const listing = await ListingsServices.getListing(params.id)
-            listing.address?.neighborhood
+          const listing = await ListingsServices.getListing(params.id)
+          listing.address?.neighborhood
 
-            const deferredLocations = NominatimClient.compoundSearch({
-              city: listing.address?.city,
-              street: `${listing.address?.street}, ${listing.address?.number}`,
-              state: listing.address?.state
-            })
+          const deferredLocations = NominatimClient.compoundSearch({
+            city: listing.address?.city,
+            street: `${listing.address?.street}, ${listing.address?.number}`,
+            state: listing.address?.state
+          })
 
-            return defer({
-              listing,
-              locations: deferredLocations
-            })
-          } catch (_) {
-            return redirect("/")
-          }
+          return defer({
+            listing,
+            locations: deferredLocations
+          })
         }
       },
 
@@ -75,6 +75,7 @@ export const routes: RouteObject[] = [
       {
         path: "encontrar",
         element: <SearchPage />,
+        ErrorBoundary: () => <Navigate to="/" />,
         loader: async ({ request }) => {
           const url = new URL(request.url)
           const searchParams = url.searchParams
@@ -82,13 +83,9 @@ export const routes: RouteObject[] = [
 
           if (!query) return redirect("/")
 
-          try {
-            const listings = await SearchServices.searchListings(query)
+          const listings = await SearchServices.searchListings(query)
 
-            return listings
-          } catch (_) {
-            return redirect("/")
-          }
+          return listings
         }
       },
 
@@ -119,29 +116,51 @@ export const routes: RouteObject[] = [
       },
 
       {
-        path: "perfil",
+        path: "perfil/:uid?",
+        element: <ProfilePage />,
+        ErrorBoundary: () => <Navigate to="/auth" />,
+        loader: async ({ params }) => {
+          const profile = await ProfileServices.getProfile(params.uid)
+          const uid = profile.user?.uid
+
+          let deferredListings: Promise<TListingsResponse>
+
+          if (!uid) {
+            deferredListings = Promise.resolve({ listings: [], count: 0 })
+          } else {
+            deferredListings = ListingsServices.getListings({ uid })
+          }
+
+          return defer({ profile, listings: deferredListings })
+        }
+      },
+
+      {
+        path: "perfil/endereco",
+        element: <ProfileAddressPage />,
+        ErrorBoundary: () => <Navigate to="/" />,
+        loader: async () => {
+          const profile = await ProfileServices.getProfile()
+
+          // Isso aqui é pra travar um cara que já tem endereço de ficar criando anúncios
+          // TODO: melhorar isso
+          if (profile.address) return redirect("/")
+
+          return null
+        }
+      },
+
+      {
+        path: "perfil/telefone",
+        element: <ProfilePhonePage />,
+        ErrorBoundary: () => <Navigate to="/" />,
         loader: async () => {
           const { user } = useAuthStore.getState()
 
-          if (!user?.uid) return redirect("/auth")
+          if (user?.phoneNumber) return redirect("/")
 
           return null
-        },
-        children: [
-          {
-            path: "endereco",
-            element: <ProfileAddressPage />,
-            loader: async () => {
-              const profile = await ProfileServices.getProfile()
-
-              // Isso aqui é pra travar um cara que já tem endereço de ficar criando anúncios
-              // TODO: melhorar isso
-              if (profile.address) return redirect("/")
-
-              return null
-            }
-          }
-        ]
+        }
       },
 
       {

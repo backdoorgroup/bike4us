@@ -24,6 +24,12 @@ export const NotFoundException = {
   detail: "The resource that you are looking for does not exist."
 } satisfies Exception
 
+export const MethodNotAllowedException = {
+  status: HttpStatus.MethodNotAllowed,
+  message: "Method Not Allowed",
+  detail: "You aren't allowed to interact with this resource."
+} satisfies Exception
+
 export const safeAsync = async <T>(promise: Promise<T>) => {
   try {
     const data = await promise

@@ -1,18 +1,22 @@
 .listing-card {
+  display: flex;
+  flex-direction: row;
   min-width: 256px;
   max-width: 256px;
 
   .lc-action {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
 
     .lca-image {
       height: 160px;
+      width: 100%;
     }
 
-    .lca-content {
-      .lcac-date {
+    .lcac-information {
+      .lcaci-text {
         color: var(--mui-palette-text-secondary);
 
         &::first-letter {
@@ -22,24 +26,24 @@
     }
   }
 
+  .lc-editable {
+    align-items: flex-start;
+  }
+
   &.full-width {
     min-width: 100%;
     max-width: 100%;
   }
 
-  &.column {
-    .lc-action {
-      flex-direction: column;
-    }
-  }
-
   &.row {
+    height: 144px;
+
     .lc-action {
       flex-direction: row;
 
       .lca-image {
         width: 120px;
-        height: 120px;
+        height: 100%;
       }
     }
   }

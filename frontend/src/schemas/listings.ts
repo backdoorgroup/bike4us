@@ -47,6 +47,11 @@ export const Material = {
   "titanium": "Titânio"
 } as const
 
+export const Status = {
+  available: "Disponível",
+  rented: "Alugado"
+} as const
+
 export const ListingPicture = z.object({
   id: z.number(),
   path: z.string().transform((path) => env.STATIC_URL + path)
@@ -61,7 +66,7 @@ export const Listing = z.object({
   title: z.string(),
   description: z.string().optional().nullable(),
   hourPricing: z.number(),
-  status: z.string(),
+  status: extractEnum(Status),
   pictures: z.array(ListingPicture),
   brand: z.string(),
   condition: extractEnum(Condition),
@@ -69,21 +74,15 @@ export const Listing = z.object({
   frameSize: extractEnum(FrameSize),
   wheelSize: extractEnum(WheelSize),
   material: extractEnum(Material),
-  address: Address
+  address: Address.optional()
 })
 export type TListing = z.infer<typeof Listing>
-
-export const ReducedListing = Listing.omit({ address: true })
-export type TReducedListing = z.infer<typeof ReducedListing>
 
 export const Listings = z.array(Listing)
 export type TListings = z.infer<typeof Listings>
 
-export const ReducedListings = z.array(ReducedListing)
-export type TReducedListings = z.infer<typeof ReducedListings>
-
 export const ListingsResponse = z.object({
-  listings: ReducedListings,
+  listings: Listings,
   count: z.number()
 })
 export type TListingsResponse = z.infer<typeof ListingsResponse>

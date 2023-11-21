@@ -125,9 +125,7 @@ export default function ListingPage() {
             <Await resolve={locations}>
               {(locations: TLocations) => (
                 <>
-                  <Typography variant="body2" sx={{ color: "text.primary" }}>
-                    {formatAddress(listing.address)}
-                  </Typography>
+                  <Typography variant="body2">{formatAddress(listing.address as TAddress)}</Typography>
 
                   <ListingMap location={locations?.at(0)} />
 
