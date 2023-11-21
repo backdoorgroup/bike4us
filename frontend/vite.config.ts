@@ -8,7 +8,9 @@ export default defineConfig({
   envPrefix: "_",
   plugins: [react()],
   server: {
-    port: 3000
+    port: 3000,
+    host: true,
+    cors: true
   },
   resolve: {
     alias: {
