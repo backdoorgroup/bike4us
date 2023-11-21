@@ -28,7 +28,7 @@ export type TAddress = ExtractModel<Address>
 
 export type TRating = ExtractModel<Rating>
 
-export type TParsedRating = {
+export type TOverallRating = {
   total: number
   average: number
   distribution: {
@@ -90,7 +90,7 @@ export class Listing extends Model {
   @OneToMany(() => Rating, (rating) => rating.listing, { nullable: true })
   ratings?: Rating[] | TRating[]
 
-  rating?: TParsedRating
+  rating?: TOverallRating
 }
 
 @Entity()

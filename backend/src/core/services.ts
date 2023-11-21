@@ -1,12 +1,10 @@
 import admin from "firebase-admin"
 import type { FindManyOptions, FindOneOptions } from "typeorm"
 
-import type { TParsedRating, TRating } from "~/core/models"
 import { Address, Listing, ListingPicture, Rating } from "~/core/models"
 import type { TCreateAddressSchema, TCreateListingSchema, TEditListingSchema, TRateListingSchema } from "~/core/schemas"
 
 import { settings } from "~/settings"
-import { truncateFloat } from "~/utils"
 
 const firebase = admin.initializeApp({
   credential: admin.credential.cert({
@@ -89,33 +87,4 @@ export const createRating = async (listing: Listing, params: TRateListingSchema)
   rating.ownerUid = params.ownerUid
 
   return await rating.save()
-}
-
-export const parseRating = (ratings: Rating[] | TRating[]): TParsedRating => {
-  const distribution = new Map()
-
-  const values = ratings.map((rating) => {
-    const value = distribution.get(rating.value) || 0
-
-    distribution.set(rating.value, value + 1)
-
-    return rating.value
-  })
-  const total = values.length
-  const average =
-    values.reduce((prev, next) => {
-      return prev + next
-    }, 0) / total
-
-  distribution.forEach((value, key) => {
-    const percentage = (value / total) * 100
-
-    distribution.set(key, truncateFloat(percentage))
-  })
-
-  return {
-    total,
-    average: truncateFloat(average),
-    distribution: Object.fromEntries(distribution.entries())
-  }
 }

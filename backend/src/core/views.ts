@@ -26,7 +26,6 @@ import {
   getListing,
   getListings,
   getUser,
-  parseRating,
   updateListing
 } from "~/core/services"
 
@@ -116,10 +115,6 @@ listingsRouter.get("/:id", async (req, res) => {
   }
 
   const listing = serializeListing(listingQuery)
-
-  if (listingQuery.ratings?.length) {
-    listing.rating = parseRating(listingQuery.ratings)
-  }
 
   return res.status(HttpStatus.Ok).json(listing)
 })

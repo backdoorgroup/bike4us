@@ -96,7 +96,7 @@ export const Listing = z.object({
   wheelSize: extractEnum(WheelSize),
   material: extractEnum(Material),
   address: Address.optional(),
-  rating: Rating.optional()
+  rating: Rating
 })
 export type TListing = z.infer<typeof Listing>
 

@@ -1,9 +1,12 @@
-import type { TAddress, TListing, TListingPicture, TRating } from "~/core/models"
+import type { Rating, TAddress, TListing, TListingPicture, TRating, TOverallRating } from "~/core/models"
 
-type SerializedListing = Omit<TListing, "pictures"> & { pictures: Omit<TListingPicture, "listing">[] }
-type SerializedListingPicture = Omit<TListingPicture, "listing">
-type SerializedAddress = TAddress
-type SerializedRating = Omit<TRating, "listing">
+import { truncateFloat } from "~/utils"
+
+export type SerializedListing = Omit<TListing, "pictures"> & { pictures: Omit<TListingPicture, "listing">[] }
+export type SerializedListingPicture = Omit<TListingPicture, "listing">
+export type SerializedAddress = TAddress
+export type SerializedRating = Omit<TRating, "listing">
+export type SerializedOverallRating = TOverallRating
 
 export const serializeListing = (listing: TListing): SerializedListing => ({
   id: listing.id,
@@ -21,7 +24,8 @@ export const serializeListing = (listing: TListing): SerializedListing => ({
   wheelSize: listing.wheelSize,
   material: listing.material,
   pictures: listing.pictures && listing.pictures.map((picture) => serializeListingPicture(picture)),
-  address: listing.address && serializeAddress(listing.address)
+  address: listing.address && serializeAddress(listing.address),
+  rating: listing.ratings && serializeOverallRating(listing.ratings)
 })
 
 export const serializeListingPicture = (listingPicture: TListingPicture): SerializedListingPicture => ({
@@ -46,3 +50,33 @@ export const serializeRating = (rating: TRating): SerializedRating => ({
   ownerUid: rating.ownerUid,
   value: rating.value
 })
+
+export const serializeOverallRating = (ratings: Rating[] | TRating[]): SerializedOverallRating => {
+  const distribution = new Map()
+
+  const total = ratings.length
+
+  const values = ratings.map((rating) => {
+    const value = distribution.get(rating.value) || 0
+
+    distribution.set(rating.value, value + 1)
+
+    return rating.value
+  })
+  const average =
+    values.reduce((prev, next) => {
+      return prev + next
+    }, 0) / total
+
+  distribution.forEach((value, key) => {
+    const percentage = (value / total) * 100
+
+    distribution.set(key, truncateFloat(percentage))
+  })
+
+  return {
+    total: total || 0,
+    average: truncateFloat(average) || 0,
+    distribution: Object.fromEntries(distribution.entries())
+  }
+}
