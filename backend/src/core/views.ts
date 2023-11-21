@@ -117,7 +117,7 @@ listingsRouter.get("/:id", async (req, res) => {
 
   const listing = serializeListing(listingQuery)
 
-  if (listingQuery.ratings) {
+  if (listingQuery.ratings?.length) {
     listing.rating = parseRating(listingQuery.ratings)
   }
 
