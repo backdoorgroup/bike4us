@@ -2,7 +2,7 @@ import "./ListingPage.scss"
 
 import clsx from "clsx"
 import format from "date-fns/format"
-import { Suspense, useState } from "react"
+import { Suspense, useMemo, useState } from "react"
 import { Await, useLoaderData, useRevalidator } from "react-router-dom"
 
 import Box from "@mui/material/Box"
@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography"
 
 import { ListingMap, ListingRating, ListingTable, ListingRatingStars } from "~/components"
 import { formatZipcode } from "~/masks"
-import type { TAddress, TListing, TLocations } from "~/schemas"
+import type { TListing, TLocations } from "~/schemas"
 import type { RateListingForm } from "~/forms"
 import { Condition } from "~/schemas"
 import { useAuthStore } from "~/stores"
@@ -27,10 +27,14 @@ export default function ListingPage() {
 
   const [dialogOpen, setDialogOpen] = useState(false)
 
-  const formatAddress = (address: TAddress) =>
-    `${address.street}, ${address.number} - ${address.neighborhood}, ${address.city} - ${
-      address.state
-    }, ${formatZipcode(address.zipcode)}`
+  const address = useMemo(() => {
+    if (!listing.address) return
+
+    return `${listing.address.street}, ${listing.address.number} - ${listing.address.neighborhood}, ${
+      listing.address.city
+    } - ${listing.address.state}, ${formatZipcode(listing.address.zipcode)}`
+  }, [listing.address])
+
   const handleOpenDialog = () => {
     setDialogOpen(true)
   }
@@ -164,7 +168,7 @@ export default function ListingPage() {
 
                   {user && (
                     <>
-                      <Typography variant="body2">{formatAddress(listing.address as TAddress)}</Typography>
+                      <Typography variant="body2">{address}</Typography>
 
                       <ListingMap location={locations.at(0)} />
 

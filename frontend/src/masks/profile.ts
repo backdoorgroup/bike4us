@@ -5,14 +5,6 @@ export const zipcodeMaskFactory = () =>
     mask: "00000-000"
   })
 
-export const formatZipcode = (zipcode: string) => {
-  const zipcodeMask = zipcodeMaskFactory()
-
-  zipcodeMask.resolve(zipcode)
-
-  return zipcodeMask.value
-}
-
 export const phoneMaskFactory = () =>
   IMask.createMask({
     mask: [
@@ -24,3 +16,13 @@ export const phoneMaskFactory = () =>
       }
     ]
   })
+
+export const formatZipcode = (zipcode?: string) => {
+  if (!zipcode) return
+
+  const zipcodeMask = zipcodeMaskFactory()
+
+  zipcodeMask.resolve(zipcode)
+
+  return zipcodeMask.value
+}
