@@ -58,6 +58,18 @@ export const ListingPicture = z.object({
 })
 export type TListingPicture = z.infer<typeof ListingPicture>
 
+export const Rating = z.object({
+  average: z.number(),
+  count: z.number(),
+  distribution: z.object({
+    5: z.number(),
+    4: z.number(),
+    3: z.number(),
+    2: z.number(),
+    1: z.number()
+  })
+})
+
 export const Listing = z.object({
   id: z.number(),
   ownerUid: z.string(),
@@ -74,7 +86,8 @@ export const Listing = z.object({
   frameSize: extractEnum(FrameSize),
   wheelSize: extractEnum(WheelSize),
   material: extractEnum(Material),
-  address: Address.optional()
+  address: Address.optional(),
+  rating: Rating.optional()
 })
 export type TListing = z.infer<typeof Listing>
 
