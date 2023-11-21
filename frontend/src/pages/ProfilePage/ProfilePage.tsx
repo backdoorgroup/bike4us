@@ -11,7 +11,6 @@ import CardContent from "@mui/material/CardContent"
 import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
 import Icon from "@mui/material/Icon"
-import Link from "@mui/material/Link"
 import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
@@ -124,12 +123,6 @@ export default function ProfilePage() {
 
                     {!listings.length && (
                       <Typography className="ppwcl-helper-text">Esse usuário não tem anúncios</Typography>
-                    )}
-
-                    {listings.length > 3 && (
-                      <Link component={RouterLink} to={`/perfil/${profile.user?.uid}/anuncios`}>
-                        Ver todos os anúncios
-                      </Link>
                     )}
                   </>
                 )}

@@ -14,12 +14,14 @@ import {
   GetListingsSchema,
   GetProfileSchema,
   SearchListingsSchema,
-  EditListingSchema
+  EditListingSchema,
+  RateListingSchema
 } from "~/core/schemas"
-import { serializeAddress, serializeListing } from "~/core/serializers"
+import { serializeAddress, serializeListing, serializeRating } from "~/core/serializers"
 import {
   createAddress,
   createListing,
+  createRating,
   getAddress,
   getListing,
   getListings,
@@ -102,7 +104,8 @@ listingsRouter.get("/:id", async (req, res) => {
       },
       relations: {
         pictures: true,
-        address: true
+        address: true,
+        ratings: true
       }
     })
   )
@@ -114,6 +117,36 @@ listingsRouter.get("/:id", async (req, res) => {
   const listing = serializeListing(listingQuery)
 
   return res.status(HttpStatus.Ok).json(listing)
+})
+
+listingsRouter.post("/:id/rate", authenticated(), async (req, res) => {
+  const [params, paramsError] = await safeAsync(
+    RateListingSchema.parseAsync({ ownerUid: req.user?.uid, ...req.params, ...req.body })
+  )
+
+  if (!params || paramsError) {
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
+
+  const [listingQuery, listingQueryError] = await safeAsync(getListing({ where: { id: params.id } }))
+
+  if (!listingQuery || listingQueryError) {
+    return res.status(HttpStatus.NotFound).json(NotFoundException)
+  }
+
+  if (listingQuery.ownerUid === req.user?.uid) {
+    return res.status(HttpStatus.MethodNotAllowed).json(MethodNotAllowedException)
+  }
+
+  const [ratingQuery, ratingQueryError] = await safeAsync(createRating(listingQuery, params))
+
+  if (!ratingQuery || ratingQueryError) {
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
+
+  const rating = serializeRating(ratingQuery)
+
+  return res.status(HttpStatus.Ok).json(rating)
 })
 
 listingsRouter.patch("/:id", authenticated(), async (req, res) => {

@@ -24,7 +24,7 @@ export const dataSource = new DataSource({
   useUTC: true
 })
 
-export class Model extends BaseEntity {
+export abstract class Model extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number
 }

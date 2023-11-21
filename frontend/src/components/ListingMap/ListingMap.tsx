@@ -8,14 +8,14 @@ import Map, { Marker } from "react-map-gl/maplibre"
 import { env } from "~/env"
 import type { TLocation } from "~/schemas"
 
-const BrasilInitialViewState: Partial<ViewState> = {
-  longitude: -51.92,
-  latitude: -14.23,
-  zoom: 2
+const SouthAmerica: Partial<ViewState> = {
+  longitude: -55.4915,
+  latitude: -8.7832,
+  zoom: 0
 }
 
 export default function ListingMap({ location }: { location?: TLocation }) {
-  const [latitude, longitude] = useMemo(() => [location?.lat, location?.lon], [location])
+  const [longitude, latitude] = useMemo(() => [location?.lon, location?.lat], [location])
   const bbox = useMemo(() => location?.boundingbox, [location?.boundingbox])
 
   const fitBounds = useCallback(
@@ -34,11 +34,9 @@ export default function ListingMap({ location }: { location?: TLocation }) {
 
   return (
     <Map
-      reuseMaps
       mapStyle={env.MAP_STYLE}
-      mapLib={import("maplibre-gl")}
       onLoad={fitBounds}
-      initialViewState={BrasilInitialViewState}
+      initialViewState={SouthAmerica}
       dragRotate={false}
       attributionControl={false}
       minZoom={0}

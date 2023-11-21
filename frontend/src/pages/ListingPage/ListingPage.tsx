@@ -2,37 +2,70 @@ import "./ListingPage.scss"
 
 import clsx from "clsx"
 import format from "date-fns/format"
-import { Suspense } from "react"
-import { Await, useLoaderData } from "react-router-dom"
+import { Suspense, useState } from "react"
+import { Await, useLoaderData, useRevalidator } from "react-router-dom"
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
-import Paper from "@mui/material/Paper"
 import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
-import Table from "@mui/material/Table"
-import TableBody from "@mui/material/TableBody"
-import TableCell from "@mui/material/TableCell"
-import TableContainer from "@mui/material/TableContainer"
-import TableRow from "@mui/material/TableRow"
 import Typography from "@mui/material/Typography"
 
-import { ListingMap } from "~/components"
-import type { TListing, TLocations } from "~/schemas"
-import { BikeType, Condition, FrameSize, Material, WheelSize } from "~/schemas"
+import { ListingMap, ListingRating, ListingTable, ListingRatingStars } from "~/components"
+import { formatZipcode } from "~/masks"
+import type { TAddress, TListing, TLocations } from "~/schemas"
+import type { RateListingForm } from "~/forms"
+import { Condition } from "~/schemas"
+import { useAuthStore } from "~/stores"
+import { ListingsServices } from "~/services"
 
 export default function ListingPage() {
   const { listing, locations } = useLoaderData() as { listing: TListing; locations: Promise<TLocations> }
+  const { user } = useAuthStore()
+  const { revalidate } = useRevalidator()
+
+  const [dialogOpen, setDialogOpen] = useState(false)
+
+  const formatAddress = (address: TAddress) =>
+    `${address.street}, ${address.number} - ${address.neighborhood}, ${address.city} - ${
+      address.state
+    }, ${formatZipcode(address.zipcode)}`
+  const handleOpenDialog = () => {
+    setDialogOpen(true)
+  }
+  const handleCloseDialog = () => {
+    setDialogOpen(false)
+  }
+  const handleSubmitRating = async (rating: RateListingForm) => {
+    await ListingsServices.rateListing(listing.id, rating)
+
+    handleCloseDialog()
+    revalidate()
+  }
 
   return (
     <Stack className="listing-page" divider={<Divider />}>
       <Container className="lp-section">
         <Stack className="lps-container lps-hero">
           <Box className="lpsh-header">
-            <Typography className="lpshh-condition" variant="caption">
-              {Condition[listing.condition]}
-            </Typography>
+            <Stack className="lpshh-headline">
+              <Typography className="lpshhh-condition" variant="caption">
+                {Condition[listing.condition]}
+              </Typography>
+
+              <Stack className="lpshhh-rating">
+                <Typography className="lpshhhr-text" variant="caption">
+                  {listing.rating?.average || 0}
+                </Typography>
+
+                <ListingRatingStars value={listing.rating?.average || 0} />
+
+                <Typography className="lpshhhr-text" variant="caption">
+                  ({listing.rating?.total || 0})
+                </Typography>
+              </Stack>
+            </Stack>
 
             <Typography>{listing.title}</Typography>
           </Box>
@@ -68,6 +101,21 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
+        <Stack className="lps-container">
+          <Typography variant="h6">Avaliação</Typography>
+
+          <ListingRating
+            rating={listing.rating}
+            disabled={!user || user?.uid === listing.ownerUid}
+            dialogOpen={dialogOpen}
+            handleCloseDialog={handleCloseDialog}
+            handleOpenDialog={handleOpenDialog}
+            handleSubmitRating={handleSubmitRating}
+          />
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
         <Stack className="lps-container lps-description">
           <Typography variant="h6">Descrição</Typography>
 
@@ -78,44 +126,15 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
-        <Stack className="lps-container lps-details">
+        <Stack className="lps-container">
           <Typography variant="h6">Detalhes</Typography>
 
-          <TableContainer className="lpsd-table-container" variant="outlined" component={Paper}>
-            <Table size="small">
-              <TableBody>
-                <TableRow>
-                  <TableCell>Tipo de Bicicleta</TableCell>
-                  <TableCell>{BikeType[listing.type]}</TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>Marca</TableCell>
-                  <TableCell>{listing.brand}</TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>Quadro</TableCell>
-                  <TableCell>{FrameSize[listing.frameSize]}</TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>Aro</TableCell>
-                  <TableCell>{WheelSize[listing.wheelSize]}</TableCell>
-                </TableRow>
-
-                <TableRow>
-                  <TableCell>Material</TableCell>
-                  <TableCell>{Material[listing.material]}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <ListingTable listing={listing} />
         </Stack>
       </Container>
 
       <Container className="lp-section">
-        <Stack className="lps-container">
+        <Stack className="lps-container lps-location">
           <Typography variant="h6">Localização</Typography>
 
           <Suspense
@@ -129,11 +148,15 @@ export default function ListingPage() {
             <Await resolve={locations}>
               {(locations: TLocations) => (
                 <>
-                  <Typography variant="body2">
-                    {listing.address?.neighborhood} - {listing.address?.city}, {listing.address?.state}
-                  </Typography>
+                  <Typography variant="body2">{formatAddress(listing.address as TAddress)}</Typography>
 
                   <ListingMap location={locations?.at(0)} />
+
+                  {!locations?.at(0) && (
+                    <Typography className="lpsl-helper-text" variant="caption">
+                      Não foi possível encontrar a localização
+                    </Typography>
+                  )}
                 </>
               )}
             </Await>

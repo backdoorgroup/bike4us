@@ -21,7 +21,7 @@ import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 import Typography from "@mui/material/Typography"
 
-import type { TListing, TListingPicture } from "~/schemas"
+import type { TListingPicture, TListing } from "~/schemas"
 import { Status } from "~/schemas"
 
 const Directions = {

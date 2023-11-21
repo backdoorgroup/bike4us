@@ -1,29 +1,31 @@
 import "./ProfileAddressPage.scss"
 
+import { useMemo } from "react"
+import { Controller, useForm } from "react-hook-form"
 import { IMaskMixin } from "react-imask"
-import { useForm, Controller } from "react-hook-form"
 import { Link, useNavigate } from "react-router-dom"
 
+import Button from "@mui/material/Button"
 import Container from "@mui/material/Container"
-import Typography from "@mui/material/Typography"
 import FormControl from "@mui/material/FormControl"
 import Stack from "@mui/material/Stack"
 import TextField from "@mui/material/TextField"
-import Button from "@mui/material/Button"
+import Typography from "@mui/material/Typography"
 
 import { debounce } from "@mui/material/utils"
 
 import type { AddressForm } from "~/forms"
 import {
-  ZipcodeValidation,
-  StreetValidation,
-  NumberValidation,
-  EntirelyNumericPattern,
-  ComplementValidation,
   CityValidation,
+  ComplementValidation,
+  EntirelyNumericPattern,
+  NeighborhoodValidation,
+  NumberValidation,
   StateValidation,
-  NeighborhoodValidation
+  StreetValidation,
+  ZipcodeValidation
 } from "~/forms"
+import { zipcodeMaskFactory } from "~/masks"
 import { BrasilServices, ProfileServices } from "~/services"
 
 // TODO: Resolver o problema de tipagem
@@ -33,6 +35,8 @@ const IMaskTextField = IMaskMixin(({ inputRef, ...props }) => <TextField inputRe
 export default function ProfileAddressPage() {
   const form = useForm<AddressForm>()
   const navigate = useNavigate()
+
+  const zipcodeMask = useMemo(zipcodeMaskFactory, [])
 
   const handleSubmit = async (address: AddressForm) => {
     await ProfileServices.createAddress(address)
@@ -75,7 +79,7 @@ export default function ProfileAddressPage() {
                 onBlur={state.field.onBlur}
                 onAccept={(value) => state.field.onChange(value)}
                 onComplete={(value) => handleComplete(value)}
-                mask="00000-000"
+                mask={zipcodeMask}
                 label="CEP"
                 // @ts-expect-error Tá foda resolver isso
                 helperText={form.formState.errors.zipcode?.message || "Ao preencher, outros campos serão preenchidos"}

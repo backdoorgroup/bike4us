@@ -9,8 +9,26 @@
 
     .lps-hero {
       .lpsh-header {
-        .lpshh-condition {
-          color: var(--mui-palette-text-secondary);
+        .lpshh-headline {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+
+          .lpshhh-condition {
+            color: var(--mui-palette-text-secondary);
+            line-height: 1;
+          }
+
+          .lpshhh-rating {
+            flex-direction: row;
+            align-items: center;
+            gap: 4px;
+
+            .lpshhhr-text {
+              color: var(--mui-palette-text-secondary);
+              line-height: 1;
+            }
+          }
         }
       }
 
@@ -57,27 +75,9 @@
       }
     }
 
-    .lps-details {
-      .lpsd-table-container {
-        border-radius: 4px;
-
-        table {
-          tr {
-            :first-child {
-              font-weight: 500;
-            }
-
-            &:nth-of-type(odd) {
-              background: var(--mui-palette-action-hover);
-            }
-
-            &:last-child {
-              * {
-                border-bottom: 0px;
-              }
-            }
-          }
-        }
+    .lps-location {
+      .lpsl-helper-text {
+        color: var(--mui-palette-text-secondary);
       }
     }
   }

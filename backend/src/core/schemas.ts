@@ -45,6 +45,12 @@ export const GetListingSchema = z.object({
   id: z.coerce.number().int().positive()
 })
 
+export const RateListingSchema = GetListingSchema.extend({
+  value: z.number().min(1).max(5),
+  ownerUid: z.string().min(1).max(128)
+})
+export type TRateListingSchema = z.infer<typeof RateListingSchema>
+
 export const EditListingSchema = CreateListingSchema.partial()
   .merge(GetListingSchema)
   .omit({ pictures: true, ownerUid: true })

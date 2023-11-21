@@ -52,7 +52,7 @@ export default function SearchCard({
             {...form.register("query", QueryValidation)}
           />
 
-          <Button fullWidth disableElevation variant="contained" type="submit" endIcon={<Icon>search</Icon>}>
+          <Button fullWidth disableElevation variant="contained" type="submit" startIcon={<Icon>search</Icon>}>
             Encontrar
           </Button>
         </FormControl>

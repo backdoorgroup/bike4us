@@ -8,16 +8,12 @@
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
 
-    "types": ["vite/client"],
-
     "paths": {
-      "@": ["./src"],
-      "~/*": ["./src/*"],
-      "@config": ["./config"],
-      "@config/*": ["./config/*"]
+      "~/": ["./src/"],
+      "~/*": ["./src/*"]
     }
   },
 
-  "include": ["src", "config"],
+  "include": ["./env.d.ts", "./src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

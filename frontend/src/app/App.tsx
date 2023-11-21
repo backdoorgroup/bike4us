@@ -5,6 +5,7 @@ import {
   experimental_extendTheme as extendTheme
 } from "@mui/material/styles"
 import blue from "@mui/material/colors/blue"
+import amber from "@mui/material/colors/amber"
 
 import CssBaseline from "@mui/material/CssBaseline"
 import StyledEngineProvider from "@mui/material/StyledEngineProvider"
@@ -29,7 +30,8 @@ const theme = extendTheme(
         palette: {
           primary: {
             main: blue[800]
-          }
+          },
+          rating: amber[600]
         }
       }
     },

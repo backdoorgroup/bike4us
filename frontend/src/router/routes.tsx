@@ -41,11 +41,10 @@ export const routes: RouteObject[] = [
           if (!params.id) return redirect("/")
 
           const listing = await ListingsServices.getListing(params.id)
-          listing.address?.neighborhood
 
           const deferredLocations = NominatimClient.compoundSearch({
             city: listing.address?.city,
-            street: listing.address?.street,
+            street: `${listing.address?.street}, ${listing.address?.number}`,
             state: listing.address?.state
           })
 
