@@ -41,11 +41,15 @@
     text-align: center;
   }
 
-  .lrd-content {
-    padding-bottom: 0;
+  .lrd-form {
+    .lrdf-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-    .lrdc-rating {
-      color: var(--mui-palette-rating);
+      .lrdfc-rating {
+        color: var(--mui-palette-rating);
+      }
     }
   }
 

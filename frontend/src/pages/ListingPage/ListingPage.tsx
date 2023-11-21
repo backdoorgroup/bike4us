@@ -2,8 +2,8 @@ import "./ListingPage.scss"
 
 import clsx from "clsx"
 import format from "date-fns/format"
-import { Suspense } from "react"
-import { Await, useLoaderData } from "react-router-dom"
+import { Suspense, useState } from "react"
+import { Await, useLoaderData, useRevalidator } from "react-router-dom"
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
@@ -15,17 +15,34 @@ import Typography from "@mui/material/Typography"
 import { ListingMap, ListingRating, ListingTable, ListingRatingStars } from "~/components"
 import { formatZipcode } from "~/masks"
 import type { TAddress, TListing, TLocations } from "~/schemas"
+import type { RateListingForm } from "~/forms"
 import { Condition } from "~/schemas"
 import { useAuthStore } from "~/stores"
+import { ListingsServices } from "~/services"
 
 export default function ListingPage() {
   const { listing, locations } = useLoaderData() as { listing: TListing; locations: Promise<TLocations> }
   const { user } = useAuthStore()
+  const { revalidate } = useRevalidator()
+
+  const [dialogOpen, setDialogOpen] = useState(false)
 
   const formatAddress = (address: TAddress) =>
     `${address.street}, ${address.number} - ${address.neighborhood}, ${address.city} - ${
       address.state
     }, ${formatZipcode(address.zipcode)}`
+  const handleOpenDialog = () => {
+    setDialogOpen(true)
+  }
+  const handleCloseDialog = () => {
+    setDialogOpen(false)
+  }
+  const handleSubmitRating = async (rating: RateListingForm) => {
+    await ListingsServices.rateListing(listing.id, rating)
+
+    handleCloseDialog()
+    revalidate()
+  }
 
   return (
     <Stack className="listing-page" divider={<Divider />}>
@@ -87,7 +104,13 @@ export default function ListingPage() {
         <Stack className="lps-container">
           <Typography variant="h6">Avaliação</Typography>
 
-          <ListingRating disabled={!user} />
+          <ListingRating
+            disabled={!user || user?.uid === listing.ownerUid}
+            dialogOpen={dialogOpen}
+            handleCloseDialog={handleCloseDialog}
+            handleOpenDialog={handleOpenDialog}
+            handleSubmitRating={handleSubmitRating}
+          />
         </Stack>
       </Container>
 
