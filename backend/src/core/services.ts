@@ -1,8 +1,9 @@
 import admin from "firebase-admin"
 import type { FindManyOptions, FindOneOptions } from "typeorm"
 
-import type { TCreateAddressSchema, TCreateListingSchema, TEditListingSchema, TRateListingSchema } from "~/core/schemas"
 import { Address, Listing, ListingPicture, Rating } from "~/core/models"
+import type { TRating, TParsedRating } from "~/core/models"
+import type { TCreateAddressSchema, TCreateListingSchema, TEditListingSchema, TRateListingSchema } from "~/core/schemas"
 
 import { settings } from "~/settings"
 
@@ -87,4 +88,25 @@ export const createRating = async (listing: Listing, params: TRateListingSchema)
   rating.ownerUid = params.ownerUid
 
   return await rating.save()
+}
+
+export const parseRating = (ratings: Rating[] | TRating[]): TParsedRating => {
+  const distribution = new Map()
+
+  const values = ratings.map((rating) => {
+    distribution.set(rating.value, (distribution.get(rating.value) || 0) + 1)
+
+    return rating.value
+  })
+  const total = values.length
+  const average =
+    values.reduce((prev, next) => {
+      return prev + next
+    }, 0) / total
+
+  return {
+    total,
+    average,
+    distribution: Object.fromEntries(distribution.entries())
+  }
 }

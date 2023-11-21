@@ -1,11 +1,11 @@
-import type { IAddress, IListing, IListingPicture, IRating } from "~/core/models"
+import type { TAddress, TListing, TListingPicture, TRating } from "~/core/models"
 
-type SerializedListing = Omit<IListing, "pictures"> & { pictures: Omit<IListingPicture, "listing">[] }
-type SerializedListingPicture = Omit<IListingPicture, "listing">
-type SerializedAddress = IAddress
-type SerializedRating = Omit<IRating, "listing">
+type SerializedListing = Omit<TListing, "pictures"> & { pictures: Omit<TListingPicture, "listing">[] }
+type SerializedListingPicture = Omit<TListingPicture, "listing">
+type SerializedAddress = TAddress
+type SerializedRating = Omit<TRating, "listing">
 
-export const serializeListing = (listing: IListing): SerializedListing => ({
+export const serializeListing = (listing: TListing): SerializedListing => ({
   id: listing.id,
   ownerUid: listing.ownerUid,
   createdAt: listing.createdAt,
@@ -24,12 +24,12 @@ export const serializeListing = (listing: IListing): SerializedListing => ({
   address: listing.address && serializeAddress(listing.address)
 })
 
-export const serializeListingPicture = (listingPicture: IListingPicture): SerializedListingPicture => ({
+export const serializeListingPicture = (listingPicture: TListingPicture): SerializedListingPicture => ({
   id: listingPicture.id,
   path: listingPicture.path
 })
 
-export const serializeAddress = (address: IAddress): SerializedAddress => ({
+export const serializeAddress = (address: TAddress): SerializedAddress => ({
   id: address.id,
   city: address.city,
   neighborhood: address.neighborhood,
@@ -41,7 +41,7 @@ export const serializeAddress = (address: IAddress): SerializedAddress => ({
   complement: address.complement
 })
 
-export const serializeRating = (rating: IRating): SerializedRating => ({
+export const serializeRating = (rating: TRating): SerializedRating => ({
   id: rating.id,
   ownerUid: rating.ownerUid,
   value: rating.value

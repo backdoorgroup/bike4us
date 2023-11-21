@@ -65,15 +65,17 @@ export const RawRating = z.object({
 })
 
 export const Rating = z.object({
+  total: z.number(),
   average: z.number(),
-  count: z.number(),
-  distribution: z.object({
-    5: z.number(),
-    4: z.number(),
-    3: z.number(),
-    2: z.number(),
-    1: z.number()
-  })
+  distribution: z
+    .object({
+      5: z.number(),
+      4: z.number(),
+      3: z.number(),
+      2: z.number(),
+      1: z.number()
+    })
+    .partial()
 })
 
 export const Listing = z.object({

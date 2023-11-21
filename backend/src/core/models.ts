@@ -20,14 +20,25 @@ import {
   ListingWheelSizeEnum
 } from "~/core/constants"
 
-export interface IListing extends ExtractModel<Listing> {}
+export type TListing = ExtractModel<Listing>
 
-export interface IListingPicture extends ExtractModel<ListingPicture> {}
+export type TListingPicture = ExtractModel<ListingPicture>
 
-export interface IAddress extends ExtractModel<Address> {}
+export type TAddress = ExtractModel<Address>
 
-export interface IRating extends ExtractModel<Rating> {}
+export type TRating = ExtractModel<Rating>
 
+export type TParsedRating = {
+  total: number
+  average: number
+  distribution: {
+    5: number
+    4: number
+    3: number
+    2: number
+    1: number
+  }
+}
 @Entity()
 export class Listing extends Model {
   @Column({ type: "varchar", length: 128 })
@@ -70,14 +81,16 @@ export class Listing extends Model {
   material: TListingMaterialEnum
 
   @OneToMany(() => ListingPicture, (picture) => picture.listing, { cascade: true })
-  pictures: ListingPicture[] | IListingPicture[]
+  pictures: ListingPicture[] | TListingPicture[]
 
   @ManyToOne(() => Address, (address) => address.ownerUid)
   @JoinColumn({ name: "ownerUid", referencedColumnName: "ownerUid" })
-  address: Address | IAddress
+  address: Address | TAddress
 
   @OneToMany(() => Rating, (rating) => rating.listing, { nullable: true })
-  ratings?: Rating[] | IRating[]
+  ratings?: Rating[] | TRating[]
+
+  rating?: TParsedRating
 }
 
 @Entity()
@@ -125,5 +138,5 @@ export class Rating extends Model {
   ownerUid: string
 
   @ManyToOne(() => Listing, (listing) => listing.ratings)
-  listing: Listing
+  listing: Listing | TListing
 }
