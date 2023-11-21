@@ -18,14 +18,17 @@ import Typography from "@mui/material/Typography"
 
 import { ListingRatingBar, ListingRatingStars } from "~/components"
 import { RatingValidation, type RateListingForm } from "~/forms"
+import type { TRating } from "~/schemas"
 
 export default function ListingRating({
+  rating,
   disabled,
   dialogOpen,
   handleOpenDialog,
   handleCloseDialog,
   handleSubmitRating
 }: {
+  rating?: TRating
   disabled: boolean
   dialogOpen: boolean
   handleOpenDialog: () => void
@@ -39,22 +42,22 @@ export default function ListingRating({
       <Stack className="listing-rating">
         <Stack className="lr-feedback">
           <Stack className="lrf-distribution">
-            <ListingRatingBar text="5" rating={100} />
-            <ListingRatingBar text="4" rating={80} />
-            <ListingRatingBar text="3" rating={50} />
-            <ListingRatingBar text="2" rating={30} />
-            <ListingRatingBar text="1" rating={10} />
+            <ListingRatingBar text="5" rating={rating?.distribution[5] || 0} />
+            <ListingRatingBar text="4" rating={rating?.distribution[4] || 0} />
+            <ListingRatingBar text="3" rating={rating?.distribution[3] || 0} />
+            <ListingRatingBar text="2" rating={rating?.distribution[2] || 0} />
+            <ListingRatingBar text="1" rating={rating?.distribution[1] || 0} />
           </Stack>
 
           <Stack className="lrf-details">
             <Typography className="lrfd-title" variant="h3">
-              3.4
+              {rating?.average || 0}
             </Typography>
 
-            <ListingRatingStars value={3.4} />
+            <ListingRatingStars value={rating?.average || 0} />
 
             <Typography className="lrfd-total" variant="caption">
-              48 avaliações
+              {rating?.total || 0} avaliações
             </Typography>
           </Stack>
         </Stack>
@@ -71,7 +74,7 @@ export default function ListingRating({
 
           {disabled && (
             <Typography variant="caption" className="lra-helper">
-              Pode ser que você não esteja logado ou que você seja o dono deste anúncio
+              Você não pode avaliar este anúncio
             </Typography>
           )}
         </Stack>

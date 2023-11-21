@@ -77,6 +77,7 @@ export const Rating = z.object({
     })
     .partial()
 })
+export type TRating = z.infer<typeof Rating>
 
 export const Listing = z.object({
   id: z.number(),

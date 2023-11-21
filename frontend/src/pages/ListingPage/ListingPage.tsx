@@ -56,13 +56,13 @@ export default function ListingPage() {
 
               <Stack className="lpshhh-rating">
                 <Typography className="lpshhhr-text" variant="caption">
-                  4.5
+                  {listing.rating?.average || 0}
                 </Typography>
 
-                <ListingRatingStars value={4.3} />
+                <ListingRatingStars value={listing.rating?.average || 0} />
 
                 <Typography className="lpshhhr-text" variant="caption">
-                  (48)
+                  ({listing.rating?.total || 0})
                 </Typography>
               </Stack>
             </Stack>
@@ -105,6 +105,7 @@ export default function ListingPage() {
           <Typography variant="h6">Avaliação</Typography>
 
           <ListingRating
+            rating={listing.rating}
             disabled={!user || user?.uid === listing.ownerUid}
             dialogOpen={dialogOpen}
             handleCloseDialog={handleCloseDialog}
