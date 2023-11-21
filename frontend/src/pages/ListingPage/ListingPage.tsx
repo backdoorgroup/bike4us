@@ -8,12 +8,11 @@ import { Await, useLoaderData } from "react-router-dom"
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
-import Rating from "@mui/material/Rating"
 import Skeleton from "@mui/material/Skeleton"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
-import { ListingMap, ListingRating, ListingTable } from "~/components"
+import { ListingMap, ListingRating, ListingTable, ListingRatingStars } from "~/components"
 import { formatZipcode } from "~/masks"
 import type { TAddress, TListing, TLocations } from "~/schemas"
 import { Condition } from "~/schemas"
@@ -43,7 +42,7 @@ export default function ListingPage() {
                   4.5
                 </Typography>
 
-                <Rating readOnly defaultValue={4.5} precision={0.1} size="small" sx={{ color: "rating" }} />
+                <ListingRatingStars value={4.3} />
 
                 <Typography className="lpshhhr-text" variant="caption">
                   (48)

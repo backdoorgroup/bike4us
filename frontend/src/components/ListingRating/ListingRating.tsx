@@ -13,7 +13,7 @@ import Rating from "@mui/material/Rating"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
 
-import { ListingRatingBar } from "~/components"
+import { ListingRatingBar, ListingRatingStars } from "~/components"
 
 export default function ListingRating({ disabled }: { disabled: boolean }) {
   const [open, setOpen] = useState(false)
@@ -38,7 +38,7 @@ export default function ListingRating({ disabled }: { disabled: boolean }) {
               3.4
             </Typography>
 
-            <Rating className="lrfd-rating" size="small" value={3.4} precision={0.1} readOnly />
+            <ListingRatingStars value={3.4} />
 
             <Typography className="lrfd-total" variant="caption">
               48 avaliações
