@@ -2,7 +2,6 @@ import "./ProfileAddressPage.scss"
 
 import { useMemo } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { IMaskMixin } from "react-imask"
 import { Link, useNavigate } from "react-router-dom"
 
 import Button from "@mui/material/Button"
@@ -15,6 +14,7 @@ import Typography from "@mui/material/Typography"
 import { debounce } from "@mui/material/utils"
 
 import type { AddressForm } from "~/forms"
+import { MaskableTextField } from "~/components"
 import {
   CityValidation,
   ComplementValidation,
@@ -27,10 +27,6 @@ import {
 } from "~/forms"
 import { zipcodeMaskFactory } from "~/masks"
 import { BrasilServices, ProfileServices } from "~/services"
-
-// TODO: Resolver o problema de tipagem
-// @ts-expect-error Tá foda resolver isso
-const IMaskTextField = IMaskMixin(({ inputRef, ...props }) => <TextField inputRef={inputRef} {...props} />)
 
 export default function ProfileAddressPage() {
   const form = useForm<AddressForm>()
@@ -70,7 +66,7 @@ export default function ProfileAddressPage() {
             control={form.control}
             rules={ZipcodeValidation}
             render={(state) => (
-              <IMaskTextField
+              <MaskableTextField
                 unmask
                 inputRef={state.field.ref}
                 name={state.field.name}
@@ -81,7 +77,6 @@ export default function ProfileAddressPage() {
                 onComplete={(value) => handleComplete(value)}
                 mask={zipcodeMask}
                 label="CEP"
-                // @ts-expect-error Tá foda resolver isso
                 helperText={form.formState.errors.zipcode?.message || "Ao preencher, outros campos serão preenchidos"}
                 error={!!form.formState.errors.zipcode}
               />
