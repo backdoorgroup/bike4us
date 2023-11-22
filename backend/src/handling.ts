@@ -30,6 +30,12 @@ export const MethodNotAllowedException = {
   detail: "You aren't allowed to interact with this resource."
 } satisfies Exception
 
+export const GoneException = {
+  status: HttpStatus.Gone,
+  message: "Gone",
+  detail: "This resource isn't available from the server."
+} satisfies Exception
+
 export const safeAsync = async <T>(promise: Promise<T>) => {
   try {
     const data = await promise

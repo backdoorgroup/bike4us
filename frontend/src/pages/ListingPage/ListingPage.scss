@@ -80,5 +80,24 @@
         color: var(--mui-palette-text-secondary);
       }
     }
+
+    .lps-owner {
+      .lpso-wrapper {
+        flex-direction: row;
+        gap: 16px;
+        align-items: center;
+
+        .lpsow-avatar {
+          height: 48px;
+          width: 48px;
+        }
+
+        .lpsow-text {
+          .lpsowt-name {
+            font-weight: 500;
+          }
+        }
+      }
+    }
   }
 }

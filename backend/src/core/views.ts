@@ -114,6 +114,14 @@ listingsRouter.get("/:id", async (req, res) => {
     return res.status(HttpStatus.NotFound).json(NotFoundException)
   }
 
+  const [ownerQuery, ownerQueryError] = await safeAsync(getUser(listingQuery.ownerUid))
+
+  if (!ownerQuery || ownerQueryError) {
+    return res.status(HttpStatus.Gone).json(NotFoundException)
+  }
+
+  listingQuery.owner = ownerQuery
+
   const listing = serializeListing(listingQuery)
 
   return res.status(HttpStatus.Ok).json(listing)

@@ -1,3 +1,4 @@
+import type { UserRecord } from "firebase-admin/auth"
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from "typeorm"
 
 import type { ExtractModel } from "~/database"
@@ -91,6 +92,8 @@ export class Listing extends Model {
   ratings?: Rating[] | TRating[]
 
   rating?: TOverallRating
+
+  owner?: UserRecord
 }
 
 @Entity()

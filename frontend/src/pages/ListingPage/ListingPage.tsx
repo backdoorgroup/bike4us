@@ -3,14 +3,16 @@ import "./ListingPage.scss"
 import clsx from "clsx"
 import format from "date-fns/format"
 import { Suspense, useMemo, useState } from "react"
-import { Await, useLoaderData, useRevalidator } from "react-router-dom"
+import { Await, useLoaderData, useRevalidator, Link as RouterLink } from "react-router-dom"
 
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
 import Skeleton from "@mui/material/Skeleton"
+import Avatar from "@mui/material/Avatar"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
+import Link from "@mui/material/Link"
 
 import { ListingMap, ListingRating, ListingTable, ListingRatingStars } from "~/components"
 import { formatZipcode } from "~/masks"
@@ -105,21 +107,6 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
-        <Stack className="lps-container">
-          <Typography variant="h6">Avaliação</Typography>
-
-          <ListingRating
-            rating={listing.rating}
-            disabled={!user || user?.uid === listing.ownerUid}
-            dialogOpen={dialogOpen}
-            handleCloseDialog={handleCloseDialog}
-            handleOpenDialog={handleOpenDialog}
-            handleSubmitRating={handleSubmitRating}
-          />
-        </Stack>
-      </Container>
-
-      <Container className="lp-section">
         <Stack className="lps-container lps-description">
           <Typography variant="h6">Descrição</Typography>
 
@@ -183,6 +170,41 @@ export default function ListingPage() {
               )}
             </Await>
           </Suspense>
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
+        <Stack className="lps-container">
+          <Typography variant="h6">Avaliação</Typography>
+
+          <ListingRating
+            rating={listing.rating}
+            disabled={!user || user?.uid === listing.ownerUid}
+            dialogOpen={dialogOpen}
+            handleCloseDialog={handleCloseDialog}
+            handleOpenDialog={handleOpenDialog}
+            handleSubmitRating={handleSubmitRating}
+          />
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
+        <Stack className="lps-container lps-owner">
+          <Typography variant="h6">Anunciante</Typography>
+
+          <Stack className="lpso-wrapper">
+            <Avatar className="lpsow-avatar" src={listing.owner?.photoURL || ""}>
+              {listing.owner?.displayName?.charAt(0)}
+            </Avatar>
+
+            <Box className="lpsow-text">
+              <Typography className="lpsowt-name">{listing.owner?.displayName}</Typography>
+
+              <Link component={RouterLink} variant="body2" to={`/perfil/${listing.ownerUid}`}>
+                Ver mais do anunciante
+              </Link>
+            </Box>
+          </Stack>
         </Stack>
       </Container>
     </Stack>
