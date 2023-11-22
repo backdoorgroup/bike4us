@@ -3,8 +3,10 @@ import { IMaskMixin } from "react-imask"
 
 import TextField, { type TextFieldProps } from "@mui/material/TextField"
 
-export const InternalMaskableTextField = IMaskMixin((props) => <TextField {...(props as TextFieldProps)} />)
+type MaskableTextFieldProps = TextFieldProps & ComponentProps<typeof InternalMaskableTextField>
 
-export default function MaskableTextField(props: TextFieldProps & ComponentProps<typeof InternalMaskableTextField>) {
+export const InternalMaskableTextField = IMaskMixin((props) => <TextField {...(props as MaskableTextFieldProps)} />)
+
+export default function MaskableTextField(props: MaskableTextFieldProps) {
   return <InternalMaskableTextField {...props} />
 }
