@@ -74,9 +74,11 @@ export default function ProfilePhonePage() {
               noValidate
               onSubmit={phoneForm.handleSubmit(handleVerifyPhoneNumber)}>
               <TextField
-                label="Número de celular"
                 fullWidth
+                label="Número de celular"
                 sx={{ mb: "32px" }}
+                error={!!phoneForm.formState.errors.phoneNumber}
+                helperText={phoneForm.formState.errors.phoneNumber?.message}
                 {...phoneForm.register("phoneNumber", PhoneNumberValidation)}
               />
 
@@ -103,9 +105,11 @@ export default function ProfilePhonePage() {
               noValidate
               onSubmit={verificationForm.handleSubmit(handleUpdatePhoneNumber)}>
               <TextField
-                label="Código de confirmação"
                 fullWidth
+                label="Código de confirmação"
                 sx={{ mb: "32px" }}
+                error={!!verificationForm.formState.errors.verificationCode}
+                helperText={verificationForm.formState.errors.verificationCode?.message}
                 {...verificationForm.register("verificationCode", VerificationCodeValidation)}
               />
 
