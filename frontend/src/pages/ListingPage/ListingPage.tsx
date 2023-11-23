@@ -103,24 +103,6 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
-        <Stack className="lps-container lps-description">
-          <Typography variant="h6">Descrição</Typography>
-
-          <Typography className={clsx("lpsd-content", { disabled: !listing?.description })} component="pre">
-            {listing?.description || "Não há descrição para este anúncio"}
-          </Typography>
-        </Stack>
-      </Container>
-
-      <Container className="lp-section">
-        <Stack className="lps-container">
-          <Typography variant="h6">Detalhes</Typography>
-
-          <ListingTable listing={listing} />
-        </Stack>
-      </Container>
-
-      <Container className="lp-section">
         <Stack className="lps-container lps-owner">
           <Typography variant="h6">Locador</Typography>
 
@@ -186,6 +168,24 @@ export default function ListingPage() {
               )}
             </Await>
           </Suspense>
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
+        <Stack className="lps-container">
+          <Typography variant="h6">Detalhes</Typography>
+
+          <ListingTable listing={listing} />
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
+        <Stack className="lps-container lps-description">
+          <Typography variant="h6">Descrição</Typography>
+
+          <Typography className={clsx("lpsd-content", { disabled: !listing?.description })} component="pre">
+            {listing?.description || "Não há descrição para este anúncio"}
+          </Typography>
         </Stack>
       </Container>
 
