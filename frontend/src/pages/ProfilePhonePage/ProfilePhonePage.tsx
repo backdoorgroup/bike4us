@@ -24,12 +24,9 @@ import { AuthServices } from "~/services"
 import { useAuthStore } from "~/stores"
 
 export default function ProfilePhonePage() {
-  const { user } = useAuthStore()
+  const { user, verificationId, setVerificationId } = useAuthStore()
 
   const [activeStep, setActiveStep] = useState(0)
-
-  // Isso deveria ter persistência
-  const [verificationId, setVerificationId] = useState("")
 
   const phoneForm = useForm<PhoneNumberForm>()
   const verificationForm = useForm<VerificationCodeForm>()
@@ -49,7 +46,7 @@ export default function ProfilePhonePage() {
   }
 
   const handleUpdatePhoneNumber = async ({ verificationCode }: VerificationCodeForm) => {
-    await AuthServices.updatePhoneNumber(user as User, verificationId, verificationCode)
+    await AuthServices.updatePhoneNumber(user as User, verificationId as string, verificationCode)
 
     handleNext()
   }
