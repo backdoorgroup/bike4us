@@ -25,7 +25,7 @@
 ## :chart_with_upwards_trend: Resumo
 
 
-- Ferramenta de Gerenciamento de Projetos: Trello
+### Ferramenta de Gerenciamento de Projetos: Trello
 
 <img src="/docs/assets/trello2.png" /> 
 

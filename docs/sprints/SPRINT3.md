@@ -24,13 +24,13 @@
 ## :chart_with_upwards_trend: Resumo
 
 
-- Ferramenta de Gerenciamento de Projetos: Trello
+### Ferramenta de Gerenciamento de Projetos: Trello
 
 <img src="/docs/assets/trello3.png" /> 
 
 Quadro Kanban para a *Sprint 3* com implementações mecessárias para entrega final do projeto.
 
-- Tarefas Realizadas *Sprint 3*:
+### Tarefas Realizadas *Sprint 3*:
 
 <img src="/docs/assets/perfilusuario.png" /> 
 
