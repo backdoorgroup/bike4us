@@ -136,13 +136,13 @@ export const routes: RouteObject[] = [
       {
         path: "perfil/endereco",
         element: <ProfileAddressPage />,
-        ErrorBoundary: () => <Navigate to="/" />,
+        ErrorBoundary: () => <Navigate to="/perfil" />,
         loader: async () => {
           const profile = await ProfileServices.getProfile()
 
           // Isso aqui é pra travar um cara que já tem endereço de ficar criando anúncios
           // TODO: melhorar isso
-          if (profile.address) return redirect("/")
+          if (profile.address) return redirect("/perfil")
 
           return null
         }
@@ -151,11 +151,11 @@ export const routes: RouteObject[] = [
       {
         path: "perfil/telefone",
         element: <ProfilePhonePage />,
-        ErrorBoundary: () => <Navigate to="/" />,
+        ErrorBoundary: () => <Navigate to="/perfil" />,
         loader: async () => {
           const { user } = useAuthStore.getState()
 
-          if (user?.phoneNumber) return redirect("/")
+          if (user?.phoneNumber) return redirect("/perfil")
 
           return null
         }
