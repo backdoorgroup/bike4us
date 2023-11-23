@@ -1,4 +1,5 @@
 import { IMask } from "react-imask"
+import { TAddress } from "~/schemas"
 
 export const zipcodeMaskFactory = () =>
   IMask.createMask({
@@ -35,4 +36,14 @@ export const formatZipcode = (zipcode?: string) => {
   zipcodeMask.resolve(zipcode)
 
   return zipcodeMask.value
+}
+
+export const formatAddress = (address?: TAddress | null, complete: boolean = false) => {
+  if (!address) return
+
+  const streetAndNumber = `${address.street}, ${address.number}`
+  const cityAndState = `${address.neighborhood}, ${address.city} - ${address.state}`
+  const zipcode = formatZipcode(address.zipcode)
+
+  return complete ? `${streetAndNumber} - ${cityAndState}, ${zipcode}` : cityAndState
 }

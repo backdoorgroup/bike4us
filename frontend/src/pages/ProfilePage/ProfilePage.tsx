@@ -19,7 +19,7 @@ import { ListingCard } from "~/components"
 import type { TListingsResponse, TProfile } from "~/schemas"
 import { ListingsServices } from "~/services"
 import { useAuthStore } from "~/stores"
-import { formatPhoneNumber } from "~/masks"
+import { formatPhoneNumber, formatAddress } from "~/masks"
 
 export default function ProfilePage() {
   const { profile, listings } = useLoaderData() as { listings: Promise<TListingsResponse>; profile: TProfile }
@@ -63,11 +63,7 @@ export default function ProfilePage() {
                   <Stack className="ppwcccwi-line">
                     <Icon className="ppwcccwil-icon">location_on</Icon>
 
-                    <Typography variant="body2">
-                      {profile.address
-                        ? `${profile.address?.neighborhood} - ${profile.address?.city}/${profile.address?.state}`
-                        : "Usuário sem endereço"}
-                    </Typography>
+                    <Typography variant="body2">{formatAddress(profile.address) || "Usuário sem endereço"}</Typography>
                   </Stack>
 
                   <Stack className="ppwcccwi-line">

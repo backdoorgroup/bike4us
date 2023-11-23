@@ -2,7 +2,7 @@ import "./ListingPage.scss"
 
 import clsx from "clsx"
 import format from "date-fns/format"
-import { Suspense, useMemo, useState } from "react"
+import { Suspense, useState } from "react"
 import { Await, Link as RouterLink, useLoaderData, useRevalidator } from "react-router-dom"
 
 import Avatar from "@mui/material/Avatar"
@@ -16,7 +16,7 @@ import Typography from "@mui/material/Typography"
 
 import { ListingMap, ListingRating, ListingRatingStars, ListingTable } from "~/components"
 import type { RateListingForm } from "~/forms"
-import { formatZipcode } from "~/masks"
+import { formatAddress } from "~/masks"
 import type { TListing, TLocations, TUser } from "~/schemas"
 import { Condition } from "~/schemas"
 import { ListingsServices } from "~/services"
@@ -32,14 +32,6 @@ export default function ListingPage() {
   const { revalidate } = useRevalidator()
 
   const [dialogOpen, setDialogOpen] = useState(false)
-
-  const address = useMemo(() => {
-    if (!listing.address) return
-
-    return `${listing.address.street}, ${listing.address.number} - ${listing.address.neighborhood}, ${
-      listing.address.city
-    } - ${listing.address.state}, ${formatZipcode(listing.address.zipcode)}`
-  }, [listing.address])
 
   const handleOpenDialog = () => {
     setDialogOpen(true)
@@ -162,7 +154,7 @@ export default function ListingPage() {
             <Await resolve={locations}>
               {(locations: TLocations) => (
                 <>
-                  <Typography variant="body2">{address}</Typography>
+                  <Typography variant="body2">{formatAddress(listing.address, true)}</Typography>
 
                   <ListingMap location={locations.at(0)} />
 
