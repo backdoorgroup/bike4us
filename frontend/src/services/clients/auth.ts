@@ -1,8 +1,14 @@
 import { initializeApp } from "firebase/app"
-import { GoogleAuthProvider, browserLocalPersistence, getAuth } from "firebase/auth"
+import {
+  GoogleAuthProvider,
+  PhoneAuthProvider,
+  RecaptchaVerifier,
+  browserLocalPersistence,
+  getAuth
+} from "firebase/auth"
 
-import { useAuthStore } from "~/stores"
 import { env } from "~/env"
+import { useAuthStore } from "~/stores"
 
 const { setUser } = useAuthStore.getState()
 
@@ -17,6 +23,8 @@ const app = initializeApp({
 
 export const authClient = getAuth(app)
 export const googleProvider = new GoogleAuthProvider()
+export const phoneProvider = new PhoneAuthProvider(authClient)
+export const recaptchaVerifier = new RecaptchaVerifier(authClient, "__recaptcha", { size: "invisible" })
 
 authClient.useDeviceLanguage()
 authClient.setPersistence(browserLocalPersistence)

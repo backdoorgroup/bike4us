@@ -1,5 +1,7 @@
 import "./ProfilePhonePage.scss"
 
+import { useState } from "react"
+
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Container from "@mui/material/Container"
@@ -11,9 +13,19 @@ import StepLabel from "@mui/material/StepLabel"
 import Stepper from "@mui/material/Stepper"
 import Typography from "@mui/material/Typography"
 
-// const ProfilePhonePageSteps = {} as const
+// import { AuthServices } from "~/services"
 
 export default function ProfilePhonePage() {
+  const [activeStep, setActiveStep] = useState<number>(0)
+
+  const handleNext = () => {
+    setActiveStep((prev) => prev + 1)
+  }
+
+  const handleBack = () => {
+    setActiveStep((prev) => prev - 1)
+  }
+
   return (
     <Container className="profile-phone-page">
       <Box className="ppp-introduction">
@@ -26,7 +38,7 @@ export default function ProfilePhonePage() {
         </Typography>
       </Box>
 
-      <Stepper orientation="vertical">
+      <Stepper activeStep={activeStep} orientation="vertical">
         <Step>
           <StepLabel>Insira seu número de telefone</StepLabel>
 
@@ -34,7 +46,7 @@ export default function ProfilePhonePage() {
             <TextField label="Número de celular" fullWidth sx={{ mb: "32px" }} />
 
             <Stack sx={{ flexDirection: "row", gap: "16px", justifyContent: "flex-end" }}>
-              <Button variant="contained" disableElevation size="small">
+              <Button disableElevation variant="contained" size="small" onClick={handleNext}>
                 Próximo
               </Button>
 
@@ -48,7 +60,19 @@ export default function ProfilePhonePage() {
         <Step>
           <StepLabel>Verifique seu número de telefone</StepLabel>
 
-          <StepContent TransitionProps={{ unmountOnExit: false }}>a</StepContent>
+          <StepContent TransitionProps={{ unmountOnExit: false }} sx={{ mt: "8px" }}>
+            <TextField label="Código de confirmação" fullWidth sx={{ mb: "32px" }} />
+
+            <Stack sx={{ flexDirection: "row", gap: "16px", justifyContent: "flex-end" }}>
+              <Button variant="contained" disableElevation size="small">
+                Confirmar
+              </Button>
+
+              <Button onClick={handleBack} sx={{ mr: 1 }}>
+                Voltar
+              </Button>
+            </Stack>
+          </StepContent>
         </Step>
       </Stepper>
     </Container>
