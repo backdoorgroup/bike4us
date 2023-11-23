@@ -11,7 +11,7 @@ import StepLabel from "@mui/material/StepLabel"
 import Stepper from "@mui/material/Stepper"
 import Typography from "@mui/material/Typography"
 
-const ProfilePhonePageSteps = {} as const
+// const ProfilePhonePageSteps = {} as const
 
 export default function ProfilePhonePage() {
   return (
