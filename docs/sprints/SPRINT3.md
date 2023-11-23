@@ -28,7 +28,7 @@
 
 <img src="/docs/assets/trello3.png" /> 
 
-Quadro Kanban para a *Sprint 3* com implementações mecessárias para entrega final do projeto.
+Quadro Kanban para a *Sprint 3* com implementações necessárias para entrega final do projeto.
 
 ### Tarefas Realizadas *Sprint 3*:
 
