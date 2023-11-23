@@ -31,7 +31,7 @@ export default function HomePage() {
             <Typography variant="body2">Descubra o padrão ouro em aluguel de bicicletas</Typography>
           </Box>
 
-          <SearchCard title="Encontre seu anunciado" handleSubmit={handleSubmit} />
+          <SearchCard title="Encontre uma bicicleta" handleSubmit={handleSubmit} />
         </Container>
       </Box>
 

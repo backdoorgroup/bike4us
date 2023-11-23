@@ -46,7 +46,6 @@ export default function SearchCard({
           <TextField
             className="sccf-field"
             label="Encontrar"
-            placeholder="O que você procura?"
             helperText={form.formState.errors.query?.message}
             fullWidth
             {...form.register("query", QueryValidation)}

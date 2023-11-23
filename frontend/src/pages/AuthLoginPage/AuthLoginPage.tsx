@@ -60,7 +60,6 @@ export default function AuthLoginPage() {
         <Stack className="alpf-fields">
           <TextField
             label="Email"
-            placeholder="Digite seu email"
             error={!!form.formState.errors.email}
             helperText={form.formState.errors.email?.message}
             {...form.register("email", EmailValidation)}
@@ -68,7 +67,6 @@ export default function AuthLoginPage() {
 
           <TextField
             label="Senha"
-            placeholder="Digite sua senha"
             type={showPassword ? "text" : "password"}
             InputProps={{
               endAdornment: (

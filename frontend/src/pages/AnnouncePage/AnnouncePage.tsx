@@ -104,7 +104,6 @@ export default function AnnouncePage() {
 
             <TextField
               label="Título"
-              placeholder="Digite o título de seu anúncio"
               error={!!form.formState.errors.title}
               helperText={form.formState.errors.title?.message}
               {...form.register("title", TitleValidation)}
@@ -112,7 +111,6 @@ export default function AnnouncePage() {
 
             <TextField
               label="Preço por hora"
-              placeholder="Digite o preço por hora de seu anúncio"
               inputMode="numeric"
               error={!!form.formState.errors.hourPricing}
               helperText={form.formState.errors.hourPricing?.message}
@@ -132,7 +130,6 @@ export default function AnnouncePage() {
               select
               defaultValue=""
               label="Condição"
-              placeholder="Digite a condição de sua bicicleta"
               error={!!form.formState.errors.condition}
               helperText={form.formState.errors.condition?.message}
               {...form.register("condition", ConditionValidation)}>
@@ -169,7 +166,6 @@ export default function AnnouncePage() {
 
             <TextField
               label="Marca"
-              placeholder="Digite a marca de sua bicicleta"
               error={!!form.formState.errors.brand}
               helperText={form.formState.errors.brand?.message}
               {...form.register("brand", BrandValidation)}
@@ -220,7 +216,6 @@ export default function AnnouncePage() {
             <TextField
               multiline
               label="Descrição"
-              placeholder="Digite a descrição de seu anúncio"
               minRows={3}
               maxRows={5}
               error={!!form.formState.errors.description}
