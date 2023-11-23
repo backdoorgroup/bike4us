@@ -1,5 +1,6 @@
 import "./ProfilePhonePage.scss"
 
+import type { User } from "firebase/auth"
 import { useState } from "react"
 
 import Box from "@mui/material/Box"
@@ -13,17 +14,34 @@ import StepLabel from "@mui/material/StepLabel"
 import Stepper from "@mui/material/Stepper"
 import Typography from "@mui/material/Typography"
 
-// import { AuthServices } from "~/services"
+import { AuthServices } from "~/services"
+import { useAuthStore } from "~/stores"
 
 export default function ProfilePhonePage() {
-  const [activeStep, setActiveStep] = useState<number>(0)
+  const [activeStep, setActiveStep] = useState(0)
+  const [verificationId, setVerificationId] = useState("")
+  const [verificationCode, setVerificationCode] = useState("")
+  const [phoneNumber, setPhoneNumber] = useState("")
+  const { user } = useAuthStore()
 
   const handleNext = () => {
     setActiveStep((prev) => prev + 1)
   }
-
   const handleBack = () => {
     setActiveStep((prev) => prev - 1)
+  }
+
+  const handleSubmitPhoneNumber = async () => {
+    const verificationId = await AuthServices.verifyPhoneNumber(phoneNumber)
+
+    setVerificationId(verificationId)
+    handleNext()
+  }
+
+  const handleUpdatePhoneNumber = async () => {
+    await AuthServices.updatePhoneNumber(user as User, verificationId, verificationCode)
+
+    handleNext()
   }
 
   return (
@@ -46,7 +64,7 @@ export default function ProfilePhonePage() {
             <TextField label="Número de celular" fullWidth sx={{ mb: "32px" }} />
 
             <Stack sx={{ flexDirection: "row", gap: "16px", justifyContent: "flex-end" }}>
-              <Button disableElevation variant="contained" size="small" onClick={handleNext}>
+              <Button disableElevation variant="contained" size="small" onClick={handleSubmitPhoneNumber}>
                 Próximo
               </Button>
 
@@ -64,7 +82,7 @@ export default function ProfilePhonePage() {
             <TextField label="Código de confirmação" fullWidth sx={{ mb: "32px" }} />
 
             <Stack sx={{ flexDirection: "row", gap: "16px", justifyContent: "flex-end" }}>
-              <Button variant="contained" disableElevation size="small">
+              <Button variant="contained" disableElevation size="small" onClick={handleUpdatePhoneNumber}>
                 Confirmar
               </Button>
 
