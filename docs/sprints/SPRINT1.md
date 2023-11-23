@@ -28,11 +28,11 @@
 
 <img src="/docs/assets/trello.png" /> 
 
-- O quadro Kanban no Trello serve para visualizar e gerenciar nossas tarefas de forma eficiente. Ele fornece uma visão geral de nossos fluxos de trabalho, permite que as equipes colaborem, movam tarefas de coluna em coluna (como "A fazer", "Fazendo" e "Done"), atribuam responsáveis e priorizem o trabalho de maneira organizada. Isso ajuda a manter o controle das atividades, melhorar a produtividade e garantir que todos estejam alinhados com as metas do projeto.
+O quadro Kanban no Trello serve para visualizar e gerenciar nossas tarefas de forma eficiente. Ele fornece uma visão geral de nossos fluxos de trabalho, permite que as equipes colaborem, movam tarefas de coluna em coluna (como "A fazer", "Fazendo" e "Done"), atribuam responsáveis e priorizem o trabalho de maneira organizada. Isso ajuda a manter o controle das atividades, melhorar a produtividade e garantir que todos estejam alinhados com as metas do projeto.
 
 <img src="/docs/assets/db.png" /> 
 
-- Foi iniciada a parte de Back-end com a modelagem do banco de dados.
+Foi iniciada a parte de Back-end com a modelagem do banco de dados.
 
 <span id="entregas">
         

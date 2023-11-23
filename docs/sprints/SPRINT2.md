@@ -29,7 +29,7 @@
 
 <img src="/docs/assets/trello2.png" /> 
 
-- Demos continuidade no gerenciamento das tarefas criando um novo quadro Kanban para a *Sprint 2* com novas tarefas.
+Demos continuidade no gerenciamento das tarefas criando um novo quadro Kanban para a *Sprint 2* com novas tarefas.
 
    
    Voltar Para: <a href="https://github.com/backdoorgroup/bike4us/blob/main/README.md"><strong>Documentação</strong></a> 
