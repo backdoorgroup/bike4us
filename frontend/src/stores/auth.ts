@@ -16,9 +16,11 @@ export const useAuthStore = create<State & Actions>()(
     (set) => ({
       user: null,
       verificationId: null,
-      setUser: (user) => set(() => ({ user }), true),
-      setVerificationId: (verificationId) => set(() => ({ verificationId }), true)
+      setVerificationId: (verificationId) => set(() => ({ verificationId })),
+      setUser: (user) => set(() => ({ user }))
     }),
-    { name: "authStore" }
+    {
+      name: "authStore"
+    }
   )
 )

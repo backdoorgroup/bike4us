@@ -1,10 +1,12 @@
 import "./ProfilePhonePage.scss"
 
 import type { User } from "firebase/auth"
-import { useState } from "react"
-import { useForm } from "react-hook-form"
+import { useEffect, useMemo, useState } from "react"
+import { Controller, useForm } from "react-hook-form"
 import { Link as RouterLink } from "react-router-dom"
 
+import Alert from "@mui/material/Alert"
+import AlertTitle from "@mui/material/AlertTitle"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import Container from "@mui/material/Container"
@@ -18,13 +20,17 @@ import Stepper from "@mui/material/Stepper"
 import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 
+import { MaskableTextField } from "~/components"
 import type { PhoneNumberForm, VerificationCodeForm } from "~/forms"
 import { PhoneNumberValidation, VerificationCodeValidation } from "~/forms"
+import { phoneMaskFactory } from "~/masks"
 import { AuthServices } from "~/services"
 import { useAuthStore } from "~/stores"
 
 export default function ProfilePhonePage() {
   const { user, verificationId, setVerificationId } = useAuthStore()
+
+  const phoneMask = useMemo(phoneMaskFactory, [])
 
   const [activeStep, setActiveStep] = useState(0)
 
@@ -48,8 +54,15 @@ export default function ProfilePhonePage() {
   const handleUpdatePhoneNumber = async ({ verificationCode }: VerificationCodeForm) => {
     await AuthServices.updatePhoneNumber(user as User, verificationId as string, verificationCode)
 
+    setVerificationId(null)
     handleNext()
   }
+
+  useEffect(() => {
+    if (!verificationId) return
+
+    setActiveStep(1)
+  }, [verificationId])
 
   return (
     <Container className="profile-phone-page">
@@ -73,13 +86,26 @@ export default function ProfilePhonePage() {
               fullWidth
               noValidate
               onSubmit={phoneForm.handleSubmit(handleVerifyPhoneNumber)}>
-              <TextField
-                fullWidth
-                label="Número de celular"
-                sx={{ mb: "32px" }}
-                error={!!phoneForm.formState.errors.phoneNumber}
-                helperText={phoneForm.formState.errors.phoneNumber?.message}
-                {...phoneForm.register("phoneNumber", PhoneNumberValidation)}
+              <Controller
+                name="phoneNumber"
+                control={phoneForm.control}
+                rules={PhoneNumberValidation}
+                render={(state) => (
+                  <MaskableTextField
+                    inputRef={state.field.ref}
+                    name={state.field.name}
+                    disabled={state.field.disabled}
+                    value={state.field.value}
+                    onBlur={state.field.onBlur}
+                    onAccept={(value) => state.field.onChange(value)}
+                    mask={phoneMask}
+                    label="Número de celular"
+                    sx={{ mb: "32px" }}
+                    helperText={phoneForm.formState.errors.phoneNumber?.message}
+                    error={!!phoneForm.formState.errors.phoneNumber}
+                    fullWidth
+                  />
+                )}
               />
 
               <Stack sx={{ flexDirection: "row", gap: "16px", justifyContent: "flex-end" }}>
@@ -128,14 +154,13 @@ export default function ProfilePhonePage() {
       </Stepper>
 
       {activeStep === 2 && (
-        <Box>
-          <Typography gutterBottom sx={{ mt: 2 }}>
-            Seu número de telefone foi verificado com sucesso.
-          </Typography>
-
-          <Link component={RouterLink} variant="subtitle1" to="/perfil">
-            Voltar à página de perfil
-          </Link>
+        <Box sx={{ mt: "32px" }}>
+          <Alert severity="success" variant="standard">
+            <AlertTitle>Sucesso, seu número de celular foi atualizado!</AlertTitle>
+            <Link component={RouterLink} variant="subtitle1" to="/perfil">
+              Voltar à página de perfil
+            </Link>
+          </Alert>
         </Box>
       )}
     </Container>

@@ -19,6 +19,7 @@ import { ListingCard } from "~/components"
 import type { TListingsResponse, TProfile } from "~/schemas"
 import { ListingsServices } from "~/services"
 import { useAuthStore } from "~/stores"
+import { formatPhoneNumber } from "~/masks"
 
 export default function ProfilePage() {
   const { profile, listings } = useLoaderData() as { listings: Promise<TListingsResponse>; profile: TProfile }
@@ -54,7 +55,9 @@ export default function ProfilePage() {
                   <Stack className="ppwcccwi-line">
                     <Icon className="ppwcccwil-icon">phone</Icon>
 
-                    <Typography variant="body2">{profile.user?.phoneNumber || "Usuário sem telefone"}</Typography>
+                    <Typography variant="body2">
+                      {formatPhoneNumber(profile.user?.phoneNumber) || "Usuário sem telefone"}
+                    </Typography>
                   </Stack>
 
                   <Stack className="ppwcccwi-line">
