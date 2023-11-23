@@ -23,7 +23,7 @@ export const settings = {
     return __dirname
   },
   get EXPRESS_STATIC() {
-    return path.join(this.EXPRESS_ROOT, "..", "static")
+    return path.join(this.EXPRESS_ROOT, "..", "/static")
   },
 
   // Database Connection
