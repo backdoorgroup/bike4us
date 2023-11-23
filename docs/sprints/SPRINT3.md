@@ -33,19 +33,19 @@ Quadro Kanban para a *Sprint 3* com implementações mecessárias para entrega f
 Tarefas Realizadas *Sprint 3*:
 
 <img src=".png" /> 
-Objetivo: Criar página de perfil do usuário com informações de contato.
+- Objetivo: Criar página de perfil do usuário com informações de contato.
 
 <img src="/docs/assets/pagendereco.png" /> 
-Objetivo: Adicionar informações de endereço do usuário.
+- Objetivo: Adicionar informações de endereço do usuário.
 
 <img src=".png" /> 
-Objetivo: Possibilitar upload de mais de uma foto no anúncio.
+- Objetivo: Possibilitar upload de mais de uma foto no anúncio.
 
 <img src=".png" /> 
-Objetivo: Implementar pesquisa de bicicletas.
+- Objetivo: Implementar pesquisa de bicicletas.
 
 <img src=".png" /> 
-Objetivo: Implementar sistema de avaliação.
+- Objetivo: Implementar sistema de avaliação.
 
 - Desempenho Final da Equipe:
 
