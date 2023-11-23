@@ -18,7 +18,6 @@ export const dataSource = new DataSource({
   logger: "file",
   logging: settings.DB_LOGGING,
   synchronize: settings.DB_SYNCHRONIZE,
-  dropSchema: settings.DB_DROP_SCHEMA,
 
   useUTC: true
 })

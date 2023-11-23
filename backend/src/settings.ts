@@ -44,9 +44,6 @@ export const settings = {
   },
 
   // Database Configuration
-  get DB_DROP_SCHEMA() {
-    return (env.DB_DROP_SCHEMA === "true" && settings.EXPRESS_DEV) || false
-  },
   get DB_SYNCHRONIZE() {
     return settings.EXPRESS_DEV
   },
