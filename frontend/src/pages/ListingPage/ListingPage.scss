@@ -59,6 +59,8 @@
 
     .lps-description {
       .lpsd-content {
+        white-space: pre-wrap;
+
         &.disabled {
           color: var(--mui-palette-text-secondary);
         }

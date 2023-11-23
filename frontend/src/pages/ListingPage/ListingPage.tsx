@@ -121,6 +121,26 @@ export default function ListingPage() {
       </Container>
 
       <Container className="lp-section">
+        <Stack className="lps-container lps-owner">
+          <Typography variant="h6">Locador</Typography>
+
+          <Stack className="lpso-wrapper">
+            <Avatar className="lpsow-avatar" src={listing.owner?.photoURL || ""}>
+              {listing.owner?.displayName?.charAt(0)}
+            </Avatar>
+
+            <Box className="lpsow-text">
+              <Typography className="lpsowt-name">{listing.owner?.displayName}</Typography>
+
+              <Link component={RouterLink} variant="body2" to={`/perfil/${listing.ownerUid}`}>
+                Ver mais do anunciante
+              </Link>
+            </Box>
+          </Stack>
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
         <Stack className="lps-container lps-location">
           <Typography variant="h6">Localização</Typography>
 
@@ -166,26 +186,6 @@ export default function ListingPage() {
               )}
             </Await>
           </Suspense>
-        </Stack>
-      </Container>
-
-      <Container className="lp-section">
-        <Stack className="lps-container lps-owner">
-          <Typography variant="h6">Locador</Typography>
-
-          <Stack className="lpso-wrapper">
-            <Avatar className="lpsow-avatar" src={listing.owner?.photoURL || ""}>
-              {listing.owner?.displayName?.charAt(0)}
-            </Avatar>
-
-            <Box className="lpsow-text">
-              <Typography className="lpsowt-name">{listing.owner?.displayName}</Typography>
-
-              <Link component={RouterLink} variant="body2" to={`/perfil/${listing.ownerUid}`}>
-                Ver mais do anunciante
-              </Link>
-            </Box>
-          </Stack>
         </Stack>
       </Container>
 
