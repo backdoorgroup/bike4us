@@ -11,6 +11,10 @@ export default defineConfig({
     port: 3000,
     cors: true
   },
+  preview: {
+    port: 3000,
+    cors: true
+  },
   resolve: {
     alias: {
       "~": fileURLToPath(new URL("./src", import.meta.url))
