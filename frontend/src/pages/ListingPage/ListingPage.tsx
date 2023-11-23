@@ -87,21 +87,17 @@ export default function ListingPage() {
           </Stack>
 
           <Box className="lpsh-information">
-            <Typography className="lpshi-pricing" variant="h4">
-              <Box className="lpship-currency" component="span">
-                R$
-              </Box>
-
-              <Box component="span">{listing.hourPricing}</Box>
+            <Typography variant="h5" component="span">
+              R$ {listing.hourPricing}
             </Typography>
 
-            <Typography className="lpshi-caption" variant="subtitle2">
-              Por hora
+            <Typography variant="body2" component="span">
+              /hora
             </Typography>
           </Box>
 
-          <Typography className="lpsh-date" variant="subtitle2">
-            Anunciado em {format(listing.createdAt, "dd/MM")} às&nbsp;{format(listing.createdAt, "HH:mm")}
+          <Typography className="lpsh-date" variant="body2">
+            Anunciado em {format(listing.createdAt, "dd/MM")}
           </Typography>
         </Stack>
       </Container>
@@ -121,6 +117,26 @@ export default function ListingPage() {
           <Typography variant="h6">Detalhes</Typography>
 
           <ListingTable listing={listing} />
+        </Stack>
+      </Container>
+
+      <Container className="lp-section">
+        <Stack className="lps-container lps-owner">
+          <Typography variant="h6">Anunciante</Typography>
+
+          <Stack className="lpso-wrapper">
+            <Avatar className="lpsow-avatar" src={listing.owner?.photoURL || ""}>
+              {listing.owner?.displayName?.charAt(0)}
+            </Avatar>
+
+            <Box className="lpsow-text">
+              <Typography className="lpsowt-name">{listing.owner?.displayName}</Typography>
+
+              <Link component={RouterLink} variant="body2" to={`/perfil/${listing.ownerUid}`}>
+                Ver mais do anunciante
+              </Link>
+            </Box>
+          </Stack>
         </Stack>
       </Container>
 
@@ -185,26 +201,6 @@ export default function ListingPage() {
             handleOpenDialog={handleOpenDialog}
             handleSubmitRating={handleSubmitRating}
           />
-        </Stack>
-      </Container>
-
-      <Container className="lp-section">
-        <Stack className="lps-container lps-owner">
-          <Typography variant="h6">Anunciante</Typography>
-
-          <Stack className="lpso-wrapper">
-            <Avatar className="lpsow-avatar" src={listing.owner?.photoURL || ""}>
-              {listing.owner?.displayName?.charAt(0)}
-            </Avatar>
-
-            <Box className="lpsow-text">
-              <Typography className="lpsowt-name">{listing.owner?.displayName}</Typography>
-
-              <Link component={RouterLink} variant="body2" to={`/perfil/${listing.ownerUid}`}>
-                Ver mais do anunciante
-              </Link>
-            </Box>
-          </Stack>
         </Stack>
       </Container>
     </Stack>

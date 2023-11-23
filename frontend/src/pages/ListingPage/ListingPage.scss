@@ -35,7 +35,7 @@
       .lpsh-carousel {
         overflow-x: auto;
         flex-direction: row;
-        height: 288px;
+        height: 224px;
         gap: 16px;
 
         .lpshc-image {
@@ -47,17 +47,7 @@
       }
 
       .lpsh-information {
-        .lpshi-pricing {
-          .lpship-currency {
-            margin-right: 6px;
-          }
-        }
-
-        .lpshi-caption {
-          margin-left: 2px;
-          font-weight: 400;
-          color: var(--mui-palette-text-secondary);
-        }
+        line-height: 1.25;
       }
 
       .lpsh-date {
