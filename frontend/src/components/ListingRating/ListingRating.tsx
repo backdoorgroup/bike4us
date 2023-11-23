@@ -69,7 +69,7 @@ export default function ListingRating({
             onClick={handleOpenDialog}
             variant="contained"
             disableElevation>
-            Contribua com sua avaliação
+            Avaliar
           </Button>
 
           {disabled && (
