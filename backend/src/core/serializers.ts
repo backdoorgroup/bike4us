@@ -25,8 +25,7 @@ export const serializeListing = (listing: TListing): SerializedListing => ({
   material: listing.material,
   pictures: listing.pictures && listing.pictures.map((picture) => serializeListingPicture(picture)),
   address: listing.address && serializeAddress(listing.address),
-  rating: listing.ratings && serializeOverallRating(listing.ratings),
-  owner: listing.owner
+  rating: listing.ratings && serializeOverallRating(listing.ratings)
 })
 
 export const serializeListingPicture = (listingPicture: TListingPicture): SerializedListingPicture => ({

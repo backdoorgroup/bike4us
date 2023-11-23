@@ -3,27 +3,31 @@ import "./ListingPage.scss"
 import clsx from "clsx"
 import format from "date-fns/format"
 import { Suspense, useMemo, useState } from "react"
-import { Await, useLoaderData, useRevalidator, Link as RouterLink } from "react-router-dom"
+import { Await, Link as RouterLink, useLoaderData, useRevalidator } from "react-router-dom"
 
+import Avatar from "@mui/material/Avatar"
 import Box from "@mui/material/Box"
 import Container from "@mui/material/Container"
 import Divider from "@mui/material/Divider"
+import Link from "@mui/material/Link"
 import Skeleton from "@mui/material/Skeleton"
-import Avatar from "@mui/material/Avatar"
 import Stack from "@mui/material/Stack"
 import Typography from "@mui/material/Typography"
-import Link from "@mui/material/Link"
 
-import { ListingMap, ListingRating, ListingTable, ListingRatingStars } from "~/components"
-import { formatZipcode } from "~/masks"
-import type { TListing, TLocations } from "~/schemas"
+import { ListingMap, ListingRating, ListingRatingStars, ListingTable } from "~/components"
 import type { RateListingForm } from "~/forms"
+import { formatZipcode } from "~/masks"
+import type { TListing, TLocations, TUser } from "~/schemas"
 import { Condition } from "~/schemas"
-import { useAuthStore } from "~/stores"
 import { ListingsServices } from "~/services"
+import { useAuthStore } from "~/stores"
 
 export default function ListingPage() {
-  const { listing, locations } = useLoaderData() as { listing: TListing; locations: Promise<TLocations> }
+  const { listing, locations, owner } = useLoaderData() as {
+    listing: TListing
+    locations: Promise<TLocations>
+    owner: Promise<TUser>
+  }
   const { user } = useAuthStore()
   const { revalidate } = useRevalidator()
 
@@ -107,17 +111,36 @@ export default function ListingPage() {
           <Typography variant="h6">Locador</Typography>
 
           <Stack className="lpso-wrapper">
-            <Avatar className="lpsow-avatar" src={listing.owner?.photoURL || ""}>
-              {listing.owner?.displayName?.charAt(0)}
-            </Avatar>
+            <Suspense
+              fallback={
+                <>
+                  <Skeleton className="lpsow-avatar" variant="circular" />
 
-            <Box className="lpsow-text">
-              <Typography className="lpsowt-name">{listing.owner?.displayName}</Typography>
+                  <Stack className="lpsow-text" spacing={1}>
+                    <Skeleton variant="rounded" width="40%" height="20px" />
 
-              <Link component={RouterLink} variant="body2" to={`/perfil/${listing.ownerUid}`}>
-                Ver mais do anunciante
-              </Link>
-            </Box>
+                    <Skeleton variant="rounded" width="60%" height="16px" />
+                  </Stack>
+                </>
+              }>
+              <Await resolve={owner}>
+                {(owner: TUser) => (
+                  <>
+                    <Avatar className="lpsow-avatar" src={owner?.photoURL || ""}>
+                      {owner?.displayName?.charAt(0)}
+                    </Avatar>
+
+                    <Box className="lpsow-text">
+                      <Typography className="lpsowt-name">{owner?.displayName}</Typography>
+
+                      <Link component={RouterLink} variant="body2" to={`/perfil/${owner.uid}`}>
+                        Ver mais do anunciante
+                      </Link>
+                    </Box>
+                  </>
+                )}
+              </Await>
+            </Suspense>
           </Stack>
         </Stack>
       </Container>
@@ -139,30 +162,14 @@ export default function ListingPage() {
             <Await resolve={locations}>
               {(locations: TLocations) => (
                 <>
-                  {!user && (
-                    <>
-                      <Skeleton variant="rounded" height="20px" width="80%" />
+                  <Typography variant="body2">{address}</Typography>
 
-                      <Skeleton variant="rounded" height="256px" width="100%" />
+                  <ListingMap location={locations.at(0)} />
 
-                      <Typography className="lpsl-helper-text" variant="caption">
-                        É necessário estar logado para ver a localização
-                      </Typography>
-                    </>
-                  )}
-
-                  {user && (
-                    <>
-                      <Typography variant="body2">{address}</Typography>
-
-                      <ListingMap location={locations.at(0)} />
-
-                      {!locations.at(0) && (
-                        <Typography className="lpsl-helper-text" variant="caption">
-                          Não foi possível encontrar a localização
-                        </Typography>
-                      )}
-                    </>
+                  {!locations.at(0) && (
+                    <Typography className="lpsl-helper-text" variant="caption">
+                      Não foi possível encontrar a localização
+                    </Typography>
                   )}
                 </>
               )}

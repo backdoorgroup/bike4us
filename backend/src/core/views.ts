@@ -10,12 +10,13 @@ import { authenticated, upload } from "~/core/middlewares"
 import {
   CreateAddressSchema,
   CreateListingSchema,
+  EditListingSchema,
   GetListingSchema,
   GetListingsSchema,
   GetProfileSchema,
-  SearchListingsSchema,
-  EditListingSchema,
-  RateListingSchema
+  GetUserSchema,
+  RateListingSchema,
+  SearchListingsSchema
 } from "~/core/schemas"
 import { serializeAddress, serializeListing, serializeRating } from "~/core/serializers"
 import {
@@ -113,14 +114,6 @@ listingsRouter.get("/:id", async (req, res) => {
   if (!listingQuery || listingQueryError) {
     return res.status(HttpStatus.NotFound).json(NotFoundException)
   }
-
-  const [ownerQuery, ownerQueryError] = await safeAsync(getUser(listingQuery.ownerUid))
-
-  if (!ownerQuery || ownerQueryError) {
-    return res.status(HttpStatus.Gone).json(NotFoundException)
-  }
-
-  listingQuery.owner = ownerQuery
 
   const listing = serializeListing(listingQuery)
 
@@ -255,6 +248,20 @@ profileRouter.get("/:uid", async (req, res) => {
     user,
     address
   })
+})
+
+profileRouter.get("/:uid/user", async (req, res) => {
+  const [params, paramsError] = await safeAsync(GetUserSchema.parseAsync(req.params))
+
+  if (!params || paramsError) {
+    return res.status(HttpStatus.BadRequest).json(BadRequestException)
+  }
+
+  const [userQuery] = await safeAsync(getUser(params.uid))
+
+  const user = userQuery
+
+  return res.status(HttpStatus.Ok).json(user)
 })
 
 profileRouter.post("/address", authenticated(), async (req, res) => {

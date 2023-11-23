@@ -80,11 +80,15 @@
         align-items: center;
 
         .lpsow-avatar {
-          height: 48px;
-          width: 48px;
+          min-height: 48px;
+          min-width: 48px;
+          max-height: 48px;
+          max-width: 48px;
         }
 
         .lpsow-text {
+          width: 100%;
+
           .lpsowt-name {
             font-weight: 500;
           }
