@@ -45,7 +45,8 @@ export const settings = {
 
   // Database Configuration
   get DB_SYNCHRONIZE() {
-    return settings.EXPRESS_DEV
+    // Isso é `unsafe` em produção.
+    return settings.EXPRESS_DEV || settings.EXPRESS_PROD
   },
   get DB_LOGGING() {
     return settings.EXPRESS_DEV
