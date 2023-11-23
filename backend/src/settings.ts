@@ -53,9 +53,6 @@ export const settings = {
   get DB_LOGGING() {
     return settings.EXPRESS_DEV
   },
-  get DB_SSL() {
-    return settings.EXPRESS_PROD
-  },
 
   // Firebase
   get FB_PROJECT_ID() {

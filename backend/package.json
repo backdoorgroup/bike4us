@@ -1,7 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "dev": "tsx watch src/main.ts"
+    "dev": "tsx watch src/main.ts",
+    "build": "tsc",
+    "start": "EXPRESS_MODE=prod node dist/src/main.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

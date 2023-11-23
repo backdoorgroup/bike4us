@@ -20,7 +20,6 @@ export const dataSource = new DataSource({
   synchronize: settings.DB_SYNCHRONIZE,
   dropSchema: settings.DB_DROP_SCHEMA,
 
-  ssl: settings.DB_SSL,
   useUTC: true
 })
 
