@@ -186,11 +186,12 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
     </tr>
     <tr>
       <td>03</td>
-      <td>23/11/2023</td>
+      <td>22/11/2023</td>
       <td>Finalizada</td>
       <td>
         <a>
-          Relatório - Ainda não Disponível
+          href="https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT3.md" target="_blank">
+          Ver Relatório
         </a>
       </td>
     </tr>

@@ -52,7 +52,7 @@ Quadro Kanban para a *Sprint 3* com implementações mecessárias para entrega f
 
 - Objetivo: Implementar sistema de avaliação.
 
-- Desempenho Final da Equipe:
+### Desempenho Final da Equipe:
 
 <img src="/docs/assets/burndown.png" /> 
 
