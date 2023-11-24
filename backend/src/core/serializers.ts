@@ -1,6 +1,6 @@
 import type { Rating, TAddress, TListing, TListingPicture, TRating, TOverallRating } from "~/core/models"
 
-import { truncateFloat } from "~/utils"
+import { truncateFloat, totalize } from "~/utils"
 
 export type SerializedListing = Omit<TListing, "pictures"> & { pictures: Omit<TListingPicture, "listing">[] }
 export type SerializedListingPicture = Omit<TListingPicture, "listing">
@@ -63,10 +63,7 @@ export const serializeOverallRating = (ratings: Rating[] | TRating[]): Serialize
 
     return rating.value
   })
-  const average =
-    values.reduce((prev, next) => {
-      return prev + next
-    }, 0) / total
+  const average = totalize(values) / total
 
   distribution.forEach((value, key) => {
     const percentage = (value / total) * 100
