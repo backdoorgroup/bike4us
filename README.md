@@ -149,20 +149,6 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
         </a>
       </td>
     </tr>
-    <tr>
-      <td>Thiago Nathan</td>
-      <td>Dev Team</td>
-      <td>
-        <a>
-          <img src="https://img.shields.io/badge/Linkedin-blue?style=flat-square&logo=Linkedin&logoColor=white" />
-        </a>
-      </td>
-      <td>
-        <a href="https://github.com/Nathanthiago" target="_blank">
-          <img src="https://img.shields.io/badge/GitHub-111217?style=flat-square&logo=github&logoColor=white" />
-        </a>
-      </td>
-    </tr>
   </tbody>
 </table>
 
@@ -200,11 +186,12 @@ Um aplicativo web inovador que visa criar uma comunidade de entusiastas de bicic
     </tr>
     <tr>
       <td>03</td>
-      <td>Sem Data Prevista</td>
-      <td>Não Iniciada</td>
+      <td>22/11/2023</td>
+      <td>Finalizada</td>
       <td>
-        <a>
-          Relatório - Ainda não Disponível
+        <a
+          href="https://github.com/backdoorgroup/bike4us/blob/main/docs/sprints/SPRINT3.md" target="_blank">
+          Ver Relatório
         </a>
       </td>
     </tr>
