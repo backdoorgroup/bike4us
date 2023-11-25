@@ -2,7 +2,8 @@
   "private": true,
   "scripts": {
     "dev": "tsx watch src/main.ts",
-    "build": "tsc",
+    "prebuild": "mkdirp ./dist/static",
+    "build": "npm run prebuild && tsc",
     "start": "EXPRESS_MODE=prod node dist/src/main.js"
   },
   "dependencies": {
@@ -33,6 +34,7 @@
     "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
+    "mkdirp": "^3.0.1",
     "prettier": "3.0.3",
     "tsx": "^3.12.10",
     "typescript": "^5.2.2"
