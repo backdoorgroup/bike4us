@@ -17,7 +17,6 @@ import Step from "@mui/material/Step"
 import StepContent from "@mui/material/StepContent"
 import StepLabel from "@mui/material/StepLabel"
 import Stepper from "@mui/material/Stepper"
-import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 
 import { MaskableTextField } from "~/components"
@@ -76,12 +75,13 @@ export default function ProfilePhonePage() {
         </Typography>
       </Box>
 
-      <Stepper activeStep={activeStep} orientation="vertical">
-        <Step>
+      <Stepper className="ppp-stepper" activeStep={activeStep} orientation="vertical">
+        <Step className="ppps-step">
           <StepLabel>Insira seu número de telefone</StepLabel>
 
-          <StepContent TransitionProps={{ unmountOnExit: false }}>
+          <StepContent className="pppss-content" TransitionProps={{ unmountOnExit: false }}>
             <FormControl
+              className="pppssc-form"
               component="form"
               fullWidth
               noValidate
@@ -92,6 +92,7 @@ export default function ProfilePhonePage() {
                 rules={PhoneNumberValidation}
                 render={(state) => (
                   <MaskableTextField
+                    className="pppsscf-field"
                     inputRef={state.field.ref}
                     name={state.field.name}
                     disabled={state.field.disabled}
@@ -100,7 +101,6 @@ export default function ProfilePhonePage() {
                     onAccept={(value) => state.field.onChange(value)}
                     mask={phoneMask}
                     label="Número de celular"
-                    sx={{ mb: "32px" }}
                     helperText={phoneForm.formState.errors.phoneNumber?.message}
                     error={!!phoneForm.formState.errors.phoneNumber}
                     fullWidth
@@ -108,45 +108,56 @@ export default function ProfilePhonePage() {
                 )}
               />
 
-              <Stack sx={{ flexDirection: "row", gap: "16px", justifyContent: "flex-end" }}>
-                <Button disableElevation variant="contained" size="small" type="submit">
+              <Stack className="pppsscf-actions">
+                <Button disableElevation variant="contained" type="submit">
                   Próximo
                 </Button>
 
-                <Button disabled sx={{ mr: 1 }}>
-                  Voltar
-                </Button>
+                <Button disabled>Voltar</Button>
               </Stack>
             </FormControl>
           </StepContent>
         </Step>
 
-        <Step>
+        <Step className="ppps-step">
           <StepLabel>Verifique seu número de telefone</StepLabel>
 
-          <StepContent TransitionProps={{ unmountOnExit: false }}>
+          <StepContent className="pppss-content" TransitionProps={{ unmountOnExit: false }}>
             <FormControl
+              className="pppssc-form"
               component="form"
               fullWidth
               noValidate
               onSubmit={verificationForm.handleSubmit(handleUpdatePhoneNumber)}>
-              <TextField
-                fullWidth
-                label="Código de confirmação"
-                sx={{ mb: "32px" }}
-                error={!!verificationForm.formState.errors.verificationCode}
-                helperText={verificationForm.formState.errors.verificationCode?.message}
-                {...verificationForm.register("verificationCode", VerificationCodeValidation)}
+              <Controller
+                name="verificationCode"
+                control={verificationForm.control}
+                rules={VerificationCodeValidation}
+                render={(state) => (
+                  <MaskableTextField
+                    className="pppsscf-field"
+                    inputRef={state.field.ref}
+                    name={state.field.name}
+                    disabled={state.field.disabled}
+                    value={state.field.value}
+                    onBlur={state.field.onBlur}
+                    onAccept={(value) => state.field.onChange(value)}
+                    error={!!verificationForm.formState.errors.verificationCode}
+                    helperText={verificationForm.formState.errors.verificationCode?.message}
+                    mask="000 000"
+                    label="Código de confirmação"
+                    fullWidth
+                    unmask
+                  />
+                )}
               />
 
-              <Stack sx={{ flexDirection: "row", gap: "16px", justifyContent: "flex-end" }}>
-                <Button disableElevation variant="contained" size="small" type="submit">
+              <Stack className="pppsscf-actions">
+                <Button disableElevation variant="contained" type="submit">
                   Confirmar
                 </Button>
 
-                <Button onClick={handleBack} sx={{ mr: 1 }}>
-                  Voltar
-                </Button>
+                <Button onClick={handleBack}>Voltar</Button>
               </Stack>
             </FormControl>
           </StepContent>
@@ -154,14 +165,13 @@ export default function ProfilePhonePage() {
       </Stepper>
 
       {activeStep === 2 && (
-        <Box sx={{ mt: "32px" }}>
-          <Alert severity="success" variant="standard">
-            <AlertTitle>Sucesso, seu número de celular foi atualizado!</AlertTitle>
-            <Link component={RouterLink} variant="subtitle1" to="/perfil">
-              Voltar à página de perfil
-            </Link>
-          </Alert>
-        </Box>
+        <Alert className="ppp-alert" severity="success" variant="standard">
+          <AlertTitle>Sucesso, seu número de celular foi atualizado!</AlertTitle>
+
+          <Link component={RouterLink} variant="subtitle1" to="/perfil">
+            Voltar à página de perfil
+          </Link>
+        </Alert>
       )}
     </Container>
   )

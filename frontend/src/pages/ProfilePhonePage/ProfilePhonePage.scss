@@ -15,4 +15,28 @@
       color: var(--mui-palette-text-secondary);
     }
   }
+
+  .ppp-stepper {
+    .ppps-step {
+      .pppss-content {
+        .pppssc-form {
+          padding-top: 16px;
+
+          .pppsscf-field {
+            margin-bottom: 32px;
+          }
+
+          .pppsscf-actions {
+            flex-direction: row;
+            gap: 16px;
+            justify-content: flex-end;
+          }
+        }
+      }
+    }
+  }
+
+  .ppp-alert {
+    margin-top: 24px;
+  }
 }
