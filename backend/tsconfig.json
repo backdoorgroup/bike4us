@@ -7,14 +7,16 @@
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
 
-    "sourceMap": true,
-
     "baseUrl": ".",
     "outDir": "./dist",
 
     "paths": {
       "~/*": ["./src/*"],
       "@/*": ["./lib/*"]
-    }
+    },
+
+    "include": [
+      "./dist/.gitkeep"
+    ]
   }
 }
