@@ -45,11 +45,13 @@ export const settings = {
 
   // Database Configuration
   get DB_SYNCHRONIZE() {
-    // Isso é `unsafe` em produção.
-    return settings.EXPRESS_DEV || settings.EXPRESS_PROD
+    return settings.EXPRESS_DEV || settings.EXPRESS_PROD // This is unsafe in production
   },
   get DB_LOGGING() {
     return settings.EXPRESS_DEV
+  },
+  get DB_ENTITIES() {
+    return path.join(settings.EXPRESS_ROOT, "**/models.{ts,js}")
   },
 
   // Firebase

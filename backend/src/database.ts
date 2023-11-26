@@ -1,4 +1,3 @@
-import path from "path"
 import { BaseEntity, DataSource, PrimaryGeneratedColumn } from "typeorm"
 
 import { settings } from "~/settings"
@@ -13,7 +12,7 @@ export const dataSource = new DataSource({
   username: settings.DB_USER,
   password: settings.DB_PASSWORD,
 
-  entities: [path.join(settings.EXPRESS_ROOT, "**/models.{ts,js}")],
+  entities: [settings.DB_ENTITIES],
 
   logger: "file",
   logging: settings.DB_LOGGING,
